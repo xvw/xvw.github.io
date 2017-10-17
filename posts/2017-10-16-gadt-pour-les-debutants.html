@@ -119,7 +119,7 @@
 <span class="kw">val</span> empty : (empty_t, 'a) t
 <span class="kw">val</span> cons : 'b -&gt; ('a, 'b) t -&gt; (not_empty_t, 'b) t
 <span class="kw">val</span> head : (not_empty_t, 'a) t -&gt; 'a</code></pre></div>
-<p>Dans l’interface, nous n’allons pas exposer le types non nécéssaires, par exemple, <code class="sourceCode ocaml" rundoc-language="ocaml">my_list</code>, comme ça, on peut forcer l’utilisation de nos fonctions <code class="sourceCode ocaml" rundoc-language="ocaml">cons</code> et <code class="sourceCode ocaml" rundoc-language="ocaml">empty</code> qui retournent des types <code class="sourceCode ocaml" rundoc-language="ocaml">t</code> bien typés.</p>
+<p>Dans l’interface, nous n’allons pas exposer le types non nécéssaire, par exemple, <code class="sourceCode ocaml" rundoc-language="ocaml">my_list</code>, comme ça, on peut forcer l’utilisation de nos fonctions <code class="sourceCode ocaml" rundoc-language="ocaml">cons</code> et <code class="sourceCode ocaml" rundoc-language="ocaml">empty</code> qui retournent des types <code class="sourceCode ocaml" rundoc-language="ocaml">t</code> bien typés.</p>
 <ul>
 <li><code class="sourceCode ocaml" rundoc-language="ocaml">empty</code> : retournera toujours une liste vide ;</li>
 <li><code class="sourceCode ocaml" rundoc-language="ocaml">cons</code> : retournera toujours une liste non-vide.</li>
@@ -159,9 +159,9 @@
 <p>Dans la bibliothèque standard de OCaml, les GADTs ont étés utilisés, notamment, pour une nouvelle implémentation des <a href="https://ocaml.org/meetings/ocaml/2013/proposals/formats-as-gadts.pdf">Formats</a>.</p>
 <h1 id="les-types-sommes-dans-les-langages-objets">Les types sommes dans les langages objets</h1>
 <blockquote>
-<p>Tout d’abord, je voudrais sincèrement remercier <a href="https://twitter.com/NicolasRinaudo">Nicolas Rinaudo</a> et <a href="http://gallium.inria.fr/~scherer/">Gabriel Scherer</a> pour m’avoir aidé dans l’a rédaction de cet article, respectivement pour m’avoir expliqué des traits relatifs à <a href="https://www.scala-lang.org/">Scala</a> et pour m’avoir donné plus d’éléments théoriques sur ce que sont réellement les GADTs et les travers liés à l’analogie entre GADTs et héritage.</p>
+<p>Tout d’abord, je voudrais sincèrement remercier <a href="https://twitter.com/NicolasRinaudo">Nicolas Rinaudo</a> et <a href="http://gallium.inria.fr/~scherer/">Gabriel Scherer</a> pour m’avoir aidé dans la rédaction de cet article, respectivement pour m’avoir expliqué des traits relatifs à <a href="https://www.scala-lang.org/">Scala</a> et pour m’avoir donné plus d’éléments théoriques sur ce que sont réellement les GADTs et les travers liés à l’analogie entre GADTs et héritage.</p>
 </blockquote>
-<p>Dans un langage de programmation orienté objets, on peut faire une rapide analogie entre les types sommes et les <strong>classes unifiés par des liens d’héritage</strong>. Implémentons le type <code class="sourceCode ocaml" rundoc-language="ocaml"><span class="dt">option</span></code> que nous avons utilisé précédemment, en Scala :</p>
+<p>Dans un langage de programmation orientée objets, on peut faire une rapide analogie entre les types sommes et les <strong>classes unifiés par des liens d’héritage</strong>. Implémentons le type <code class="sourceCode ocaml" rundoc-language="ocaml"><span class="dt">option</span></code> que nous avons utilisé précédemment, en Scala :</p>
 <div class="sourceCode"><pre class="sourceCode scala"><code class="sourceCode scala"><span class="kw">sealed</span> <span class="kw">trait</span> Option[+A]
 <span class="kw">case</span> <span class="kw">object</span> None <span class="kw">extends</span> Option[Nothing]
 <span class="kw">case</span> <span class="kw">class</span>  Some[A](value: A) <span class="kw">extends</span> Option[A]</code></pre></div>
