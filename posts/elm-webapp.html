@@ -449,7 +449,7 @@ subscriptions model =
 <p>Comme l’entièreté de la logique des patches discrets repose sur les souscriptions, il ne faut que rajouter des <em>producers</em> et des traitement dans le <em>batch</em> pour être capable de manipuler n’importe quel type de signaux (<em>Workers</em>, <em>Websockets</em> ou encore des <em>BroadcastChannels</em>).</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>Dans cet article, nous avons couvert certains éléments d’interactions utils pour la conception d’une application web moderne. Comme je l’ai répété à de multiple reprises tout au long de l’article, je ne propose pas une architecture inclue dans la Elm-architecture et le code présenté ici n’est, hélas, pas générique.</p>
-<p>Le manque d’expressivité du système de types et des modules prive le code général d’une certaine forme de réutilisabilité. Même si je le regrette un peu, je dois avouer que c’est loin d’être dramatique et que le langage et son <em>framework</em> me sont très agréables !</p>
+<p>Le manque d’expressivité du système de types et des modules<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> prive le code général d’une certaine forme de réutilisabilité. Même si je le regrette un peu, je dois avouer que c’est loin d’être dramatique et que le langage et son <em>framework</em> me sont très agréables !</p>
 <p>En organisant son code entre des modules (qui unissent des fonctionnalités sémantiquement proches), et en n’hésitant pas à ne pas aplatir les modèles et les messages on peut facilement approcher l’idée derrière les <em>composants</em> que l’on nous vend à toutes les sauces et le passage par la fonction de rafraîchissement permet <strong>d’unifier l’ensemble</strong> <strong>des composants</strong> (qui sont en fait la conjonction d’un type, et d’une interface).</p>
 <p>Quoi qu’il en soit, j’attend avec impatience la sortie de Elm <code class="elm rundoc-block" rundoc-language="elm">0.19</code> et même si, à mon sens, il serait sûrement possible de faire quelques améliorations au niveau du système de types et de modules (mais à quel prix ?), Elm reste très utilisable en production et très agréable à utiliser. Comme l’ensemble des concepts qu’il manipule sont exposé dans la Elm-architecture, sa <em>learn-curve</em> est très souple ce qui fait de Elm un langage accessible, y comprit pour les gens n’ayant pas un très gros bagage en programmation fonctionnelle statiquement typée.</p>
 <p>Le compilateur est une véritable aide pour les phase de <em>refactoring</em> et pour tâcher de traiter un maximum de cas dans toutes les membranes du programme.</p>
@@ -461,6 +461,12 @@ subscriptions model =
 <li>profitez au maximum de la Elm-architecture (par exemple pour les souscriptions).</li>
 </ul>
 <p>Pour finir, Elm c’est vraiment cool et facile à appréhender (pour preuve, la partie la plus dur a été, selon moi, la mise en place de <a href="https://webpack.github.io/">Webpack</a>) !</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Attention, ce n’est évidemment pas une critique, mais une constatation en comparaison avec des langages comme OCaml ou Haskell. En aucun cas je considère ce manque d’expressivité comme une faiblesse sur tous les autres aspects. Je suis cependant conscient que la tournure de phrase peut être prise comme une critique virulente… d’où cette note en bas de page …<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
     <div class="article-footer">
 	Cet article est terminé ! <br /> Si jamais vous avez des
 	remarques, n'hésitez pas à écrire un <strong>commentaire</strong>
