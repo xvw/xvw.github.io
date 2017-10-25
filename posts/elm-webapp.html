@@ -445,7 +445,7 @@ subscriptions model =
        (\s -&gt; Discrete handleMessage (Anonymous s)) 
   ]
 </code></pre>
-<p>Par soucis d’extensibilité, j’utilise <a href="http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Platform-Sub#batch"><code class="elm rundoc-block" rundoc-language="elm">Sub.batch</code></a> dans le cas où je devrais manipuler plusieurs singaux discrets différents.</p>
+<p>Par soucis d’extensibilité, j’utilise <a href="http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Platform-Sub#batch"><code class="elm rundoc-block" rundoc-language="elm">Sub.batch</code></a> dans le cas où je devrais manipuler plusieurs signaux discrets différents.</p>
 <p>Comme l’entièreté de la logique des patches discrets repose sur les souscriptions, il ne faut que rajouter des <em>producers</em> et des traitement dans le <em>batch</em> pour être capable de manipuler n’importe quel type de signaux (<em>Workers</em>, <em>Websockets</em> ou encore des <em>BroadcastChannels</em>).</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>Dans cet article, nous avons couvert certains éléments d’interactions utils pour la conception d’une application web moderne. Comme je l’ai répété à de multiple reprises tout au long de l’article, je ne propose pas une architecture inclue dans la Elm-architecture et le code présenté ici n’est, hélas, pas générique.</p>
