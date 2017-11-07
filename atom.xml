@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>xvw's blog</title>
+    <link href="https://xvw.github.io/atom.xml" rel="self" />
+    <link href="https://xvw.github.io" />
+    <id>https://xvw.github.io/atom.xml</id>
+    <author>
+        <name>Xavier Van de Woestyne</name>
+        <email>xaviervdw@gmail.com</email>
+    </author>
+    <updated>2017-10-25T00:00:00Z</updated>
+    <entry>
+    <title>Une application web moderne en Elm</title>
+    <link href="https://xvw.github.io/posts/elm-webapp.html" />
+    <id>https://xvw.github.io/posts/elm-webapp.html</id>
+    <published>2017-10-25T00:00:00Z</published>
+    <updated>2017-10-25T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Implémentations, pas à pas, d'une application moderne en Elm]]></summary>
+</entry>
+<entry>
+    <title>Un cas d'école à l'utilisation des GADTs</title>
+    <link href="https://xvw.github.io/posts/gadt-pour-les-debutants.html" />
+    <id>https://xvw.github.io/posts/gadt-pour-les-debutants.html</id>
+    <published>2017-10-16T00:00:00Z</published>
+    <updated>2017-10-16T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Une brève introduction aux types algébriques généralisés avec OCaml]]></summary>
+</entry>
+
+</feed>
