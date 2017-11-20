@@ -8,8 +8,16 @@
         <name>Xavier Van de Woestyne</name>
         <email>xaviervdw@gmail.com</email>
     </author>
-    <updated>2017-10-25T00:00:00Z</updated>
+    <updated>2017-11-20T00:00:00Z</updated>
     <entry>
+    <title>Voyager dans le temps avec un Zipper</title>
+    <link href="https://xvw.github.io/posts/history.html" />
+    <id>https://xvw.github.io/posts/history.html</id>
+    <published>2017-11-20T00:00:00Z</published>
+    <updated>2017-11-20T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Cet article propose l'utilisation d'un Zipper pour implémenter un historique naviguable]]></summary>
+</entry>
+<entry>
     <title>Une application web moderne en Elm</title>
     <link href="https://xvw.github.io/posts/elm-webapp.html" />
     <id>https://xvw.github.io/posts/elm-webapp.html</id>
