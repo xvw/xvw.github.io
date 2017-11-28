@@ -44,7 +44,7 @@
 <li><code>contact.html</code></li>
 <li><code>liens.html</code></li>
 </ul>
-<p>Initialement, quand on démarre une session, l’utilisateur ou l’utilisatrice ne possède qu’un <strong>état courant</strong>. En effet, comme il ou elle vient de démarrer l’application, il est impossible qu’il y ait une page précédente et une page suivante et l’était courant est la page <code>index.html</code> :</p>
+<p>Initialement, quand on démarre une session, l’utilisateur ou l’utilisatrice ne possède qu’un <strong>état courant</strong>. En effet, comme il ou elle vient de démarrer l’application, il est impossible qu’il y ait une page précédente et une page suivante et l’état courant est la page <code>index.html</code> :</p>
 <div class="figure">
 <img src="../images/zipper-init.png" title="SAMPLE2" alt="Un exemple de navigation" />
 <p class="caption">Un exemple de navigation</p>
@@ -54,7 +54,7 @@
 <img src="../images/zipper-init2.png" title="SAMPLE3" alt="Un exemple de navigation avec des prédécesseurs" />
 <p class="caption">Un exemple de navigation avec des prédécesseurs</p>
 </div>
-<p>Concrètement, le fait de se rendre sur une autre page consiste simplement à <strong>empiler</strong> dans la pile de l’historique la page que l’on quitte. A ce stade, nous avons déjà les ingrédients pour implémenter la stratégie d’enregistrement des pages précédentes.</p>
+<p>Concrètement, le fait de se rendre sur une autre page consiste simplement à <strong>empiler</strong> dans la pile de l’historique la page que l’on quitte. À ce stade, nous avons déjà les ingrédients pour implémenter la stratégie d’enregistrement des pages précédentes.</p>
 <p>Imaginons maintenant que l’utilisateur ou l’utilisatrice veuille se rendre sur la page <code>aPropos.html</code> en <strong>utilisant le bouton précédent</strong> :</p>
 <div class="figure">
 <img src="../images/zipper-init3.png" title="SAMPLE4" alt="Un exemple de navigation avec des successeurs" />
@@ -70,7 +70,7 @@
 <img src="../images/zipper-init3.png" title="SAMPLE4" alt="Un exemple de navigation avec des successeurs" />
 <p class="caption">Un exemple de navigation avec des successeurs</p>
 </div>
-<p>Et décidons de nous rendre à la page <code>contact.html</code>. Dès lors que l’on ne se sert plus des boutons précédents et suivants pour naviguer, notre futur potentiel est <strong>nettoyé</strong> :</p>
+<p>Et décidons de nous rendre à la page <code>contact.html</code>. Dès lors que l’on ne se sert plus des boutons <em>précédent</em> et <em>suivant</em> pour naviguer, notre futur potentiel est <strong>nettoyé</strong> :</p>
 <div class="figure">
 <img src="../images/zipper-init5.png" title="SAMPLE5" alt="Suppression du futur potentiel" />
 <p class="caption">Suppression du futur potentiel</p>
@@ -140,22 +140,22 @@ forward zipper =
                  }
 </code></pre>
 <p>La tâche est identique pour <em>avancer dans le temps</em>, sauf qu’on agit sur le future et non sur le passé. Nous pouvons maintenant très facilement naviguer dans notre <em>Zipper</em>. De plus, nous pouvons aussi nous servir de nos deux fonctions pour implémenter des combinateurs complémentaires :</p>
-<pre class="elm"><code>hasPast : History a -&gt; Bool 
-hasPast zipper = 
-    case backward zipper of 
-      Nothing -&gt; 
-         False 
+<pre class="elm"><code>hasPast : History a -&gt; Bool
+hasPast zipper =
+    case backward zipper of
+      Nothing -&gt;
+         False
 
-      Just _  -&gt; 
+      Just _  -&gt;
          True
 
-hasFuture : History a -&gt; Bool 
-hasFuture zipper = 
-    case forward zipper of 
-      Nothing -&gt; 
-         False 
+hasFuture : History a -&gt; Bool
+hasFuture zipper =
+    case forward zipper of
+      Nothing -&gt;
+         False
 
-      Just _  -&gt; 
+      Just _  -&gt;
          True
 </code></pre>
 <p>Maintenant que nous avons la navigation dans l’historique, il ne nous reste plus qu’a intégrer une fonction pour <strong>visiter</strong> l’historique.</p>
