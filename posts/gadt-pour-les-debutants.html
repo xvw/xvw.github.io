@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108165898-1"></script>
-	<script>
-	 window.dataLayer = window.dataLayer || [];
-	 function gtag(){dataLayer.push(arguments);}
-	 gtag('js', new Date());
 
-	 gtag('config', 'UA-108165898-1');
-	</script>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108165898-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-        <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
-	<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
-        <link rel="stylesheet" href="../css/default.css" />
-        <title>xvw - Un cas d'école à l'utilisation des GADTs</title>
-    </head>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-    <body>
-	<main class="article">
-    <a href="../index.html">Revenir à l'accueil</a>
-    <h1 class="main-title">Un cas d'école à l'utilisation des GADTs</h1>
-    <div class="date">Publié le 16 du 10 2017</div>
-    <blockquote>
+    gtag('config', 'UA-108165898-1');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="../css/default.css" />
+  <title>xvw - Un cas d'école à l'utilisation des GADTs</title>
+</head>
+
+<body>
+  <main class="article">
+  <a href="../index.html">Revenir à l'accueil</a>
+  <h1 class="main-title">Un cas d'école à l'utilisation des GADTs</h1>
+  <div class="date">Publié le 16 du 10 2017</div>
+  <blockquote>
 <p>Cet article fait écho à un <a href="https://twitter.com/clementd/status/915635752117129216">tweet</a> et à une conversation que nous avons eu sur le Slack de <strong>LilleFP</strong>. L’article propose de survoler un cas d’école de l’usage des types algébriques généralisés (<strong>GADTs</strong>) avec le langage <a href="http://ocaml.org">OCaml</a> qui a l’avantage d’avoir une syntaxe concise et relativement claire.</p>
 <p>L’objectif de l’article est avant tout de donner un exemple clair de l’utilisation des <em>GADTs</em>, sans rentrer dans des considérations théoriques complexes (en plus je n’en ai pas les compétences), et de fournir une définition <em>naïve</em> de ce qu’ils sont, par rapport à des types algébriques <em>classiques</em>. A la fin de l’article, on parlera un peu des langages <strong>orientés objets</strong>, de leur manière de représenter des <em>types sommes</em> et de pourquoi il ne s’agit pas réellement de GADTs en donnant une définition un peu plus fine que lors de la première partie de l’article.</p>
 <p>Une connaissance d’un langage de la famille <strong>ML</strong> est préférable pour la lecture de cet article.</p>
@@ -192,36 +196,36 @@
 <p>En Scala, le traitement des égalités entre type est trop fragile et pose parfois des soucis au compilateur. De ce fait, Scala ne possède pas de GADTs à proprement parlé, mais permet, via l’héritage, de répondre à certaines problématiques que les GADTs solutionnent aussi. Cependant, <a href="http://dotty.epfl.ch/">Dotty</a> (un compilateur expérimental pour le langage Scala, qui fait aussi office d’incubateur et qui a pour vocation de faire reposer Scala sur des bases plus formalisées) semble intégrer de véritables GADTs… <em>wait and see</em>.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>Comme beaucoup <em>d’usages avancés du système de type</em>, il est parfois difficile de trouver des cas d’usages où les GADTs sont essentiel. J’espère tout de même que cet article aura, pour certain, pu être une introduction abordable à leurs usages. Je remercie encore sincèrement Nicolas Rinaudo et Gabriel Scherer pour leurs apports techniques sur la question et tous les membres de la communauté <strong>LilleFP</strong> pour m’avoir forcé (voire oppressé) pour la mise en place d’un <em>blog</em> !</p>
-    <div class="article-footer">
-	Cet article est terminé ! <br /> Si jamais vous avez des
-	remarques, n'hésitez pas à écrire un <strong>commentaire</strong>
-	ou à <a href="https://github.com/xvw/blog">contribuer</a>
+  <div class="article-footer">
+    Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
-	<div id="disqus_thread"></div>
-	<script>
-	 
-	 var disqus_config = function () {
-	     this.page.url = "https://xvw.github.io/";  // Replace PAGE_URL with your page's canonical URL variable
-	     this.page.identifier = "posts/gadt-pour-les-debutants.org"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-	 };
-	 
-	 (function() { // DON'T EDIT BELOW THIS LINE
-	     var d = document, s = d.createElement('script');
-	     s.src = 'https://xvw-blog.disqus.com/embed.js';
-	     s.setAttribute('data-timestamp', +new Date());
-	     (d.head || d.body).appendChild(s);
-	 })();
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function() {
+        this.page.url = "https://xvw.github.io/"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "posts/gadt-pour-les-debutants.org"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://xvw-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
 </main>
 
-	<footer>
-	    Merci 
-	    <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, 
-	    tu es un superbe générateur ❤ 
-	</footer>
-	<script src="../js/hl.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    </body>
+  <footer>
+    Merci
+    <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, tu es un superbe générateur ❤
+  </footer>
+  <script src="../js/hl.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+
 </html>

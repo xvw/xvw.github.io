@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-108165898-1"></script>
-	<script>
-	 window.dataLayer = window.dataLayer || [];
-	 function gtag(){dataLayer.push(arguments);}
-	 gtag('js', new Date());
 
-	 gtag('config', 'UA-108165898-1');
-	</script>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108165898-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-        <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
-	<link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
-        <link rel="stylesheet" href="../css/default.css" />
-        <title>xvw - Une application web moderne en Elm</title>
-    </head>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-    <body>
-	<main class="article">
-    <a href="../index.html">Revenir à l'accueil</a>
-    <h1 class="main-title">Une application web moderne en Elm</h1>
-    <div class="date">Publié le 25 du 10 2017</div>
-    <blockquote>
+    gtag('config', 'UA-108165898-1');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="../css/default.css" />
+  <title>xvw - Une application web moderne en Elm</title>
+</head>
+
+<body>
+  <main class="article">
+  <a href="../index.html">Revenir à l'accueil</a>
+  <h1 class="main-title">Une application web moderne en Elm</h1>
+  <div class="date">Publié le 25 du 10 2017</div>
+  <blockquote>
 <p><strong>Note du 5 Décembre 2017</strong></p>
 <p>Attention, bien que le laïus sur la morphologie des messages et des modèles et toujours d’actualité. La proposition des <strong>Patch</strong> des messages <strong>Discrets</strong> a été, à juste titre, remise en question (car cela impose un style <strong>impératif</strong>). Je laisse tout de même l’article parce que je pense que sa première partie et celle sur le routing sont pertinentes et que j’assume mes erreurs… aha.</p>
 <p><strong>Reprise de l’article</strong></p>
@@ -473,36 +477,36 @@ subscriptions model =
 <li id="fn1"><p>Attention, ce n’est évidemment pas une critique, mais une constatation en comparaison avec des langages comme OCaml ou Haskell. En aucun cas je considère ce manque d’expressivité comme une faiblesse sur tous les autres aspects. Je suis cependant conscient que la tournure de phrase peut être prise comme une critique virulente… d’où cette note en bas de page …<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
-    <div class="article-footer">
-	Cet article est terminé ! <br /> Si jamais vous avez des
-	remarques, n'hésitez pas à écrire un <strong>commentaire</strong>
-	ou à <a href="https://github.com/xvw/blog">contribuer</a>
+  <div class="article-footer">
+    Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
-	<div id="disqus_thread"></div>
-	<script>
-	 
-	 var disqus_config = function () {
-	     this.page.url = "https://xvw.github.io/";  // Replace PAGE_URL with your page's canonical URL variable
-	     this.page.identifier = "posts/elm-webapp.org"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-	 };
-	 
-	 (function() { // DON'T EDIT BELOW THIS LINE
-	     var d = document, s = d.createElement('script');
-	     s.src = 'https://xvw-blog.disqus.com/embed.js';
-	     s.setAttribute('data-timestamp', +new Date());
-	     (d.head || d.body).appendChild(s);
-	 })();
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_config = function() {
+        this.page.url = "https://xvw.github.io/"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "posts/elm-webapp.org"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://xvw-blog.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
 </main>
 
-	<footer>
-	    Merci 
-	    <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, 
-	    tu es un superbe générateur ❤ 
-	</footer>
-	<script src="../js/hl.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    </body>
+  <footer>
+    Merci
+    <a href="https://jaspervdj.be/hakyll/">Hakyll</a>, tu es un superbe générateur ❤
+  </footer>
+  <script src="../js/hl.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+
 </html>
