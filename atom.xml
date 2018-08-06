@@ -8,8 +8,16 @@
         <name>Xavier Van de Woestyne</name>
         <email>xaviervdw@gmail.com</email>
     </author>
-    <updated>2017-11-20T00:00:00Z</updated>
+    <updated>2018-06-20T00:00:00Z</updated>
     <entry>
+    <title>Schémas de récursivité et mots barbares</title>
+    <link href="https://xvw.github.io/posts/recursion-scheme.html" />
+    <id>https://xvw.github.io/posts/recursion-scheme.html</id>
+    <published>2018-06-20T00:00:00Z</published>
+    <updated>2018-06-20T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Description]]></summary>
+</entry>
+<entry>
     <title>Voyager dans le temps avec un Zipper</title>
     <link href="https://xvw.github.io/posts/history.html" />
     <id>https://xvw.github.io/posts/history.html</id>
