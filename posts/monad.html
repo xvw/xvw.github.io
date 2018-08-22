@@ -38,7 +38,7 @@
 <p>L’objectif de l’article est de résumer ce que <strong>je pense</strong> avoir compris des monades, quelques années après en avoir utilisé dans plusieurs projets (parfois ne sachant pas du tout qu’il s’agissait de monades). Pour ça, on s’intéressera aux origines des monades, et on en présentera sommairement quelques unes.</p>
 <p>Par contre, je pense que le terme est parfois trop utilisé, par exemple : “<em>Ah ! Ta fonction doit potentiellement ne rien renvoyer ? Tu n’as qu’à utiliser</em> <em>la monade Option</em> !”. Je pense que ce genre de phrase véhicule une idée d’élitisme <em>latent</em>, bien que peu pernicieuse. J’ai rarement entendu quelqu’un dire “<em>Ah ! tu veux transformer les données d’une liste en autre chose ? Tu n’as qu’à</em> <em>utiliser le Foncteur List</em>”.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 <h2 id="de-la-théorie-des-catégories-à-la-programmation">De la théorie des catégories à la programmation</h2>
-<p>Historiquement appelé “<em>constructions standards</em>” ou “<em>triples</em>” en topologie algébrique dans les années 50, c’est en 1971 que <a href="https://en.wikipedia.org/wiki/Saunders_Mac_Lane">Saunders MacLane</a> leur donne le nom de <strong>monade</strong>, en référence au <em>concept philosophique</em> du même nom, et en l’utilisant dans <strong>la théorie des catégories</strong>. Il introduit aussi une des <em>punchlines</em> les plus <em>badass</em> du monde de la programmation fonctionnelle (à mon sens), “<em>a monad is a monoid in the category of endofunctors</em>”. Ce qui est cool avec cette phrase, c’est qu’elle ne dit absolument rien pour, à mon avis, 89% (ce nombre est évidemment choisi arbitrairement) des programmeurs.</p>
+<p>Historiquement appelées “<em>constructions standards</em>” ou “<em>triples</em>” en topologie algébrique dans les années 50, c’est en 1971 que <a href="https://en.wikipedia.org/wiki/Saunders_Mac_Lane">Saunders MacLane</a> leur donne le nom de <strong>monades</strong>, en référence au <em>concept philosophique</em> du même nom, et en l’utilisant dans <strong>la théorie des catégories</strong>. Il introduit aussi une des <em>punchlines</em> les plus <em>badass</em> du monde de la programmation fonctionnelle (à mon sens), “<em>a monad is a monoid in the category of endofunctors</em>”. Ce qui est cool avec cette phrase, c’est qu’elle ne dit absolument rien pour, à mon avis, 89% (ce nombre est évidemment choisi arbitrairement) des programmeurs.</p>
 <p>Plus tard, <a href="https://en.wikipedia.org/wiki/Eugenio_Moggi">Eugenio Moggi</a> donnera cette définition : une <strong>monade</strong> sur une <strong>catégorie</strong> <span class="math inline"><em>Ω</em></span> est un <strong>triplet</strong> (<span class="math inline"><em>T</em>, <em>η</em>, <em>μ</em></span>) où :</p>
 <ul>
 <li><span class="math inline"><em>T</em> : <em>Ω</em> → <em>Ω</em></span> est un <strong>foncteur</strong> ;</li>
@@ -51,7 +51,7 @@
 <p>Tout ça ne nous avance pas beaucoup, surtout si on a aucun bagage en théorie des catégories. Cependant, ça aura eu le mérite de faire croitre la crédibilité de l’article en ajoutant des petits symboles grecs un peu partout !</p>
 <p>Concrètement, essayons de voir rapidement ce que tout cela veut dire :</p>
 <ul>
-<li>le <span class="math inline"><em>T</em></span> de notre foncteur signifique qu’il s’agit d’un <strong>type paramétré</strong>, par exemple <em>une liste de choses</em> (<code class="sourceCode ocaml" rundoc-language="ocaml">'a <span class="dt">list</span></code>), ou une option de quelque chose (<code class="sourceCode ocaml" rundoc-language="ocaml">'a <span class="dt">option</span></code>) ;</li>
+<li>le <span class="math inline"><em>T</em></span> de notre foncteur signifie qu’il s’agit d’un <strong>type paramétré</strong>, par exemple <em>une liste de choses</em> (<code class="sourceCode ocaml" rundoc-language="ocaml">'a <span class="dt">list</span></code>), ou d’une option de quelque chose (<code class="sourceCode ocaml" rundoc-language="ocaml">'a <span class="dt">option</span></code>) ;</li>
 <li>les transformations naturelles <span class="math inline"><em>η</em></span> et <span class="math inline"><em>μ</em></span> sont en quelques sortes des fonctions ;</li>
 <li><span class="math inline"><em>T</em><sup>2</sup></span> exprime, en référence à nos exemples précédents, <em>une liste de liste de</em> <em>choses</em> (<code class="sourceCode ocaml" rundoc-language="ocaml">'a <span class="dt">list</span> <span class="dt">list</span></code>) ou encore <code class="sourceCode ocaml" rundoc-language="ocaml">'a <span class="dt">option</span> <span class="dt">option</span></code> ;</li>
 <li><span class="math inline"><em>I</em><em>d</em></span> exprime l’identité, donc une fonction qui pour <code class="sourceCode ocaml" rundoc-language="ocaml">x</code> renvoie <code class="sourceCode ocaml" rundoc-language="ocaml">x</code>, par exemple <code class="sourceCode ocaml" rundoc-language="ocaml"><span class="kw">fun</span> x -&gt; x</code> ;</li>
@@ -60,7 +60,7 @@
 <p>Essayons de projeter ces ingrédients dans un langage de programmation statiquement typé, comme <strong>OCaml</strong> par exemple.</p>
 <h3 id="traduction-dune-définition-catégorique-dans-un-langage-fonctionnel">Traduction d’une définition catégorique dans un langage fonctionnel</h3>
 <p>La traduction proposée par <a href="http://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf">Philip Wadler</a> considère que le foncteur devient <strong>un constructeur de type</strong> (un type paramétré) avec une fonction de <em>mapping</em>, ce qui correspond formellement à la définition d’un foncteur. Et les deux transformations naturelles deviennent des <strong>fonctions</strong>, <code class="sourceCode ocaml" rundoc-language="ocaml">join</code> pour <span class="math inline"><em>μ</em></span> et <code class="sourceCode ocaml" rundoc-language="ocaml">pure</code> pour <span class="math inline"><em>η</em></span>.</p>
-<p>Dans l’exemple ci-dessous, j’utilise un module pour représenter les opérations liés à une monade.</p>
+<p>Dans l’exemple ci-dessous, j’utilise un module pour représenter les opérations liées à une monade.</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">module</span> <span class="kw">type</span> MONAD =
 <span class="kw">sig</span>
   <span class="co">(* Le foncteur *)</span>
@@ -76,13 +76,13 @@
 <blockquote>
 <p><strong>NB:</strong> Parfois, il arrive que la transformation <code class="sourceCode ocaml" rundoc-language="ocaml">pure</code> s’apelle <code class="sourceCode ocaml" rundoc-language="ocaml">return</code>, j’ai pris la décision d’utiliser <code class="sourceCode ocaml" rundoc-language="ocaml">pure</code> pour éviter une confusion potentielle avec le mot clé <strong>return</strong> de la programmation impérative.</p>
 </blockquote>
-<p>Nous avons encodé, en OCaml, une partie des ingrédients évoqué en théorie des catégories, cependant, dans la définition, il était question de certaines contraintes liés aux transformations naturelles.</p>
+<p>Nous avons encodé, en OCaml, une partie des ingrédients évoqués en théorie des catégories, cependant, dans la définition, il était question de certaines contraintes liées aux transformations naturelles.</p>
 <p>On pose donc les deux contraintes (qu’on appelle des “<strong>lois</strong>”) :</p>
 <ul>
 <li><span class="math inline"><em>j</em><em>o</em><em>i</em><em>n</em> • <em>j</em><em>o</em><em>i</em><em>n</em> = <em>j</em><em>o</em><em>i</em><em>n</em> • <em>m</em><em>a</em><em>p</em> <em>j</em><em>o</em><em>i</em><em>n</em></span></li>
 <li><span class="math inline"><em>j</em><em>o</em><em>i</em><em>n</em> • <em>p</em><em>u</em><em>r</em><em>e</em> = <em>i</em><em>d</em> = <em>j</em><em>o</em><em>i</em><em>n</em> • <em>m</em><em>a</em><em>p</em> <em>p</em><em>u</em><em>r</em><em>e</em></span></li>
 </ul>
-<p>Ce n’est malheureusement pas suffisant. En décrivant les fonctions comme des transformations naturelles, nous avions évoqué que c’était “presque pareil”. Les transformations naturelles impliquent des lois complémentaires, qui sont implicites dans la définition catégorique car on est <strong>explicite</strong> sur le fait qu’il s’agit de transformations naturelles. Ici comme on utilise des fonctions, il est nécéssaires d’adjoindre 4 lois pour formaliser le fait que les deux fonctions <code class="sourceCode ocaml" rundoc-language="ocaml">join</code> et <code class="sourceCode ocaml" rundoc-language="ocaml">pure</code> sont bien des transformations naturelles :</p>
+<p>Ce n’est malheureusement pas suffisant. En décrivant les fonctions comme des transformations naturelles, nous avions évoqué que c’était “presque pareil”. Les transformations naturelles impliquent des lois complémentaires, qui sont implicites dans la définition catégorique car on est <strong>explicite</strong> sur le fait qu’il s’agit de transformations naturelles. Ici comme on utilise des fonctions, il est nécessaires d’adjoindre 4 lois pour formaliser le fait que les deux fonctions <code class="sourceCode ocaml" rundoc-language="ocaml">join</code> et <code class="sourceCode ocaml" rundoc-language="ocaml">pure</code> sont bien des transformations naturelles :</p>
 <ul>
 <li><span class="math inline"><em>m</em><em>a</em><em>p</em> <em>i</em><em>d</em> = <em>i</em><em>d</em></span></li>
 <li><span class="math inline"><em>m</em><em>a</em><em>p</em> (<em>g</em> • <em>f</em>)  = <em>m</em><em>a</em><em>p</em> <em>g</em> • <em>m</em><em>a</em><em>p</em> <em>f</em></span></li>
@@ -90,13 +90,13 @@
 <li><span class="math inline"><em>m</em><em>a</em><em>p</em><em>f</em> • <em>p</em><em>u</em><em>r</em><em>e</em> = <em>p</em><em>u</em><em>r</em><em>e</em> • <em>f</em></span></li>
 </ul>
 <p>Cependant, la traduction dans un langage fonctionnel ne garantit absolument pas que la fonction de <em>mapping</em> termine. De ce fait, <strong>la définition dans un langage</strong> <strong>fonctionnel n’est pas formellement une monade de la théorie des catégories</strong>.</p>
-<p>Mais dans l’absolu, est-ce que ça nous concerne réellement quand on est utilisateur de bibliothèque monadiques ?</p>
+<p>Mais dans l’absolu, est-ce que ça nous concerne réellement quand on est utilisateur de bibliothèques monadiques ?</p>
 <h3 id="une-différence-entre-la-définition-catégorique-et-programmatique">Une différence entre la définition <em>catégorique</em> et <em>programmatique</em></h3>
-<p>En fait, le point essentiel de cette introduction un peu barbante, c’est que même si elles sont analogues, elles sont aussi différentes. En théorie des catégories, les monades ont étés développées par Moggi pour <strong>raisonner</strong> à propos des programmes à effets, alors que les monades présentées par Wadler sont utilisées pour <strong>implémenter</strong> des programmes à effets dans un langage de programmation fonctionnel pur. En plus de ça, la sémantique du contexte fait légèrement varier les deux définitions de monades, certains aspects des propositions de Moggi ne sont pas nécéssaires dans une monade définie dans le contexte d’un langage de programmation.</p>
-<p>Donc même si connaitre l’origine mathématique d’un objet de programmation est sans doute toujours intéressant, il ne faut pas développer d’analogies trop fortes, pour ne pas tendre vers une stricte équivalence entre le concepts initial, issu des mathématiques, et son implémentation concrète dans un langage de programmation parce qu’il est fort probable que certaines règles, certains outils soient légèrement altérés par le changement de contexte.</p>
+<p>En fait, le point essentiel de cette introduction un peu barbante, c’est que même si elles sont analogues, elles sont aussi différentes. En théorie des catégories, les monades ont été développées par Moggi pour <strong>raisonner</strong> à propos des programmes à effets, alors que les monades présentées par Wadler sont utilisées pour <strong>implémenter</strong> des programmes à effets dans un langage de programmation fonctionnel pur. En plus de ça, la sémantique du contexte fait légèrement varier les deux définitions de monades, certains aspects des propositions de Moggi ne sont pas nécessaires dans une monade définie dans le contexte d’un langage de programmation.</p>
+<p>Donc même si connaitre l’origine mathématique d’un objet de programmation est sans doute toujours intéressant, il ne faut pas développer d’analogies trop fortes, pour ne pas tendre vers une stricte équivalence entre le concept initial, issu des mathématiques, et son implémentation concrète dans un langage de programmation parce qu’il est fort probable que certaines règles, certains outils soient légèrement altérés par le changement de contexte.</p>
 <p>Ne retenons donc que la phrase “<em>A monad is just a monoid in the category of</em> <em>endofunctors, what’s the problem?</em>” pour pouvoir briller en société.</p>
 <h2 id="les-monades-en-programmation-fonctionnelle">Les monades en programmation fonctionnelle</h2>
-<p>En général, quand on lit des ressources sur les monades, on utilise parfois (… oké, souvent) un autre interface :</p>
+<p>En général, quand on lit des ressources sur les monades, on utilise parfois (… oké, souvent) une autre interface :</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">module</span> <span class="kw">type</span> MONAD =
 <span class="kw">sig</span>
   <span class="kw">type</span> 'a t
@@ -104,7 +104,7 @@
   <span class="kw">val</span> (&gt;&gt;=) : 'a t -&gt; ('a -&gt; 'b t)  -&gt; 'b t
 <span class="kw">end</span></code></pre></div>
 <blockquote>
-<p><strong>NB:</strong> Dans certain langage, <code class="sourceCode ocaml" rundoc-language="ocaml">&gt;&gt;=</code> s’appelle parfois <code class="sourceCode ocaml" rundoc-language="ocaml">flatMap</code>.</p>
+<p><strong>NB:</strong> Dans certains langages, <code class="sourceCode ocaml" rundoc-language="ocaml">&gt;&gt;=</code> s’appelle parfois <code class="sourceCode ocaml" rundoc-language="ocaml">flatMap</code>.</p>
 </blockquote>
 <p>Qui doit satisfaire ces lois :</p>
 <ul>
@@ -120,14 +120,14 @@
 <blockquote>
 <p><strong>NB:</strong> Ici, le nom <code class="sourceCode ocaml" rundoc-language="ocaml">flatMap</code> prend tout son sens.</p>
 </blockquote>
-<p>Cette équivalence est possible si l’on respecte les lois que nous avons évoqué précédemment. C’est d’ailleurs tout l’intérêts de ces dernières. Elles permettent, en plus de créer une équivalence entre les deux interfaces, de dériver une <a href="http://hackage.haskell.org/package/base-4.11.1.0/docs/Control-Monad.html">collections de combinateurs</a> utiles lorsque l’on travaille avec des monades. Donc ces deux interfaces, couplés à leurs “lois”, sont les prérequis minimum pour découler une série d’outils très utiles. Cependant, nous ne les développerons pas dans cet article.</p>
+<p>Cette équivalence est possible si l’on respecte les lois que nous avons évoquées précédemment. C’est d’ailleurs tout l’intérêt de ces dernières. Elles permettent, en plus de créer une équivalence entre les deux interfaces, de dériver une <a href="http://hackage.haskell.org/package/base-4.11.1.0/docs/Control-Monad.html">collection de combinateurs</a> utiles lorsque l’on travaille avec des monades. Donc ces deux interfaces, couplées à leurs “lois”, sont les prérequis minimums pour découler une série d’outils très utiles. Cependant, nous ne les développerons pas dans cet article.</p>
 <p>Concrètement, ces lois sont des axiomes attachés aux monades. Ils peuvent donc servir de base de raisonnement !</p>
 <p>Certains me demanderont pourquoi j’ai introduit la monade en informatique avec la première interface, qui semble plus complexe et qui possède plus de lois. C’est parce que je trouve qu’il est <strong>plus facile de comprendre la relation</strong> entre une monade en programmation et une monade en théorie des catégories. En effet, on peut projeter presque chacun des ingrédients de la monade en théorie des catégories dans des objets d’un langage de programmation fonctionnelle statiquement typé.</p>
 <h2 id="tout-ça-ce-ne-sont-que-des-interfaces">Tout ça, ce ne sont que des interfaces !</h2>
-<p>Jusqu’à présent, nous avons observé (de loin) l’origine des monades et nous les avons représentés sous forme d’interfaces. Mais ça ne nous dit toujours pas ce que c’est et à quoi ça sert. Une manière de résumer le concept derrière des monades pourrait être de proposer deux petites définitions :</p>
+<p>Jusqu’à présent, nous avons observé (de loin) l’origine des monades et nous les avons représentées sous forme d’interfaces. Mais ça ne nous dit toujours pas ce que c’est et à quoi ça sert. Une manière de résumer le concept derrière des monades pourrait être de proposer deux petites définitions :</p>
 <ul>
 <li>une monade <strong>encapsule</strong> un <em>objet</em> dans une structure plus riche ;</li>
-<li>et elle permet d’exprimer plusieurs <strong>types de constructions</strong> pour une <strong>même structure</strong>.</li>
+<li>et elle permet d’exprimer plusieurs <strong>types de construction</strong> pour une <strong>même structure</strong>.</li>
 </ul>
 <p>Concrètement, il suffit d’implémenter une des deux interfaces en veillant bien à respecter “les lois” pour avoir une monade. Donc <strong>il n’existe pas, à priori, de nombre fini de monade</strong>. Même s’il en existe des courantes, la condition pour être une monade est de respecter les pré-requis des interfaces précédemment évoquées (tout en respectant leur lois).</p>
 <p>Voici un module paramétré qui permet de construire des modules “monadiques” au besoin. Nous nous en servirons pour présenter quelques exemples.</p>
@@ -378,11 +378,11 @@ Dans le cas des listes, je trouve qu’utiliser la première interface est plus 
 <p>Le premier apport lié à l’usage des monades est qu’elles offrent une manière <strong>systèmatique</strong> de structurer un programme en deux parties bien distincts :</p>
 <ul>
 <li>l’algorithme à proprement parlé ;</li>
-<li>l’outillage nécéssaire à cet algorithme (par exemple un état). Et cet outillage peut être masqué dans des bibliothèque (potentiellement réutilisables).</li>
+<li>l’outillage nécessaire à cet algorithme (par exemple un état). Et cet outillage peut être masqué dans des bibliothèque (potentiellement réutilisables).</li>
 </ul>
 <p>De plus, elles permettent aussi de rendre explicite le flot d’un programme, d’une manière assez uniforme. Car même si, comme on l’a vu, le rôle de chaque monade diffère, le fait de partager une interface commune donne tout de même de bonnes informations sur le comportement général du calcul, de manière abstraite. Les monades amènent une notion de <strong>composition</strong> élégante et uniforme.</p>
 <h3 id="de-la-réutilisabilité">De la réutilisabilité</h3>
-<p>Même si dans les exemples précédents, nous n’avons utilisé des versions minimales de nos monades, en utilisant une interface (volontairement) limité, les monades exposent <a href="http://hackage.haskell.org/package/base-4.11.1.0/docs/Control-Monad.html">un grand nombre de fonctions complémentaires</a>. Ces fonctions ne nécéssitent généralement que les fonctions exposées par notre interface minimaliste pour être implémentée, de ce fait, n’implémenter que 2 ou 3 fonctions peut suffire à construire une interface riche, et ce pour toutes les monades. Par exemple, les fonctions de promotion (<em>lifting</em>) que nous avons évoqués précédemment sont génériques et ne peuvent être implémentée qu’une seule fois et être offerte par le module paramétré qui construit une monade.</p>
+<p>Même si dans les exemples précédents, nous n’avons utilisé des versions minimales de nos monades, en utilisant une interface (volontairement) limité, les monades exposent <a href="http://hackage.haskell.org/package/base-4.11.1.0/docs/Control-Monad.html">un grand nombre de fonctions complémentaires</a>. Ces fonctions ne nécessitent généralement que les fonctions exposées par notre interface minimaliste pour être implémentée, de ce fait, n’implémenter que 2 ou 3 fonctions peut suffire à construire une interface riche, et ce pour toutes les monades. Par exemple, les fonctions de promotion (<em>lifting</em>) que nous avons évoqués précédemment sont génériques et ne peuvent être implémentée qu’une seule fois et être offerte par le module paramétré qui construit une monade.</p>
 <p>La capacité à paramétré une monade (via un module en OCaml, une classe de type en Haskell ou de l’héritage en programmation Orienté objets) est possible grâce au respect des lois monadiques.</p>
 <p>En tant que développeur, on n’est bien plus souvent amené à “utiliser des monades” existantes qu’à en “découvrir”. Généralement, la preuve minimale que l’on peut apporter à la découverte d’une monade est le respect des lois monadiques sur l’interface que l’on choisi d’implémenter.</p>
 <h2 id="syntaxes-et-notations">Syntaxes et notations</h2>
@@ -419,6 +419,7 @@ cartesian_product <span class="fu">=</span>
 <blockquote>
 <p><strong>NB… FINAL:</strong> Si vous voyez des coquilles, vous trouverez, entre les notes et les commentaires, un lien vers les sources du blog, et donc de cet article, n’hésitez pas à faire une PR ou à écrire un commentaire !</p>
 </blockquote>
+<p>Je remercie grandement Anne-Charlotte et Jules pour avoir relu (et fait remonter) pleins de petites coquilles !</p>
 <div class="footnotes">
 <hr />
 <ol>
