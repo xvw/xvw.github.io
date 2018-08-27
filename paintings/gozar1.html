@@ -7,12 +7,19 @@
   <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
   <link rel="stylesheet" href="../css/default.css" />
+  <script src="../js/player.js" type="application/javascript"></script>
   <title>xvw - Entre Lille et Bethune, avec Gozar</title>
 </head>
 
 <body>
-  <main class="article">
+  <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
+  <div id="resume-box"></div>
+  <div class="progress"><div id="progress-bar"></div></div>
+</div>
+
+<main class="article">
+
   <h1 class="main-title">Entre Lille et Bethune, avec Gozar</h1>
   <div class="date">Publié le 11 du 08 2018</div>
   <p>La <a href="./skatepark1.html">sortie précédente</a> m’a fait énormément plaisir, et Gozar à eu la sympathie de me proposer de remettre le couvert le week-end suivant. Non seulement le climat et le terrain étaient parfait, mais j’ai pu aussi redécouvrir le plaisir de peindre avec des gens cools ! (En plus ça commence à revenir !)</p>
@@ -32,6 +39,7 @@
 <img src="../images/goz4.jpg" title="goz4" alt="Fresque de Gozar" />
 <p class="caption">Fresque de Gozar</p>
 </div>
+  <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
@@ -56,12 +64,13 @@
 <script src="../js/hl.js"></script>
 <script>
   hljs.initHighlightingOnLoad();
+  __useResumable("/paintings/gozar1.html");
 </script>
 
   <footer>
     <div>
       <a href="http://webring.xxiivv.com/#random" target="_blank">
-        <img src="http://webring.xxiivv.com/icon.white.svg" />
+        <img src="../images/icon.white.svg" />
       </a>
     </div>
     <div>

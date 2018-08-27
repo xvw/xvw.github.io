@@ -7,12 +7,19 @@
   <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
   <link rel="stylesheet" href="../css/default.css" />
+  <script src="../js/player.js" type="application/javascript"></script>
   <title>xvw - Un article sur les monades en 2018</title>
 </head>
 
 <body>
-  <main class="article">
+  <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
+  <div id="resume-box"></div>
+  <div class="progress"><div id="progress-bar"></div></div>
+</div>
+
+<main class="article">
+
   <h1 class="main-title">Un article sur les monades en 2018</h1>
   <div class="date">Publié le 22 du 08 2018</div>
   <blockquote>
@@ -234,7 +241,9 @@
   y &gt;&gt;= <span class="kw">fun</span> b -&gt; pure (f a b)
 
 <span class="co">(* Pour les fonctions à trois paramètres *)</span>
-<span class="kw">val</span> liftM3 : ('a -&gt; 'b -&gt; 'c -&gt; 'd) -&gt; 'a t -&gt; 'b t -&gt; 'c t -&gt; 'd t
+<span class="kw">val</span> liftM3 :
+  ('a -&gt; 'b -&gt; 'c -&gt; 'd) -&gt; 'a t -&gt; 'b t -&gt; 'c t
+  -&gt; 'd t
 <span class="kw">let</span> liftM3 f x y =
   x &gt;&gt;= <span class="kw">fun</span> a -&gt;
   y &gt;&gt;= <span class="kw">fun</span> b -&gt;
@@ -370,7 +379,7 @@ Dans le cas des listes, je trouve qu’utiliser la première interface est plus 
 <p>De plus, elles permettent aussi de rendre explicite le flot d’un programme, d’une manière assez uniforme. Car même si, comme on l’a vu, le rôle de chaque monade diffère, le fait de partager une interface commune donne tout de même de bonnes informations sur le comportement général du calcul, de manière abstraite. Les monades amènent une notion de <strong>composition</strong> élégante et uniforme.</p>
 <h3 id="de-la-réutilisabilité">De la réutilisabilité</h3>
 <p>Même si dans les exemples précédents, nous n’avons utilisé des versions minimales de nos monades, en utilisant une interface (volontairement) limité, les monades exposent <a href="http://hackage.haskell.org/package/base-4.11.1.0/docs/Control-Monad.html">un grand nombre de fonctions complémentaires</a>. Ces fonctions ne nécessitent généralement que les fonctions exposées par notre interface minimaliste pour être implémentée, de ce fait, n’implémenter que 2 ou 3 fonctions peut suffire à construire une interface riche, et ce pour toutes les monades. Par exemple, les fonctions de promotion (<em>lifting</em>) que nous avons évoqués précédemment sont génériques et ne peuvent être implémentée qu’une seule fois et être offerte par le module paramétré qui construit une monade.</p>
-<p>La capacité à paramétré une monade (via un module en OCaml, une classe de type en Haskell ou de l’héritage en programmation Orienté objets) est possible grâce au respect des lois monadiques.</p>
+<p>La capacité à paramétrer une monade (via un module en OCaml, une classe de type en Haskell ou de l’héritage en programmation Orienté objets) est possible grâce au respect des lois monadiques.</p>
 <p>En tant que développeur, on n’est bien plus souvent amené à “utiliser des monades” existantes qu’à en “découvrir”. Généralement, la preuve minimale que l’on peut apporter à la découverte d’une monade est le respect des lois monadiques sur l’interface que l’on choisi d’implémenter.</p>
 <h2 id="syntaxes-et-notations">Syntaxes et notations</h2>
 <p>Bien que les opérateurs et fonctions exposées par les monades permettent de se représenter assez simplement les séquences de calcul, certains langages ont fait le choix de mettre en place des extensions de syntaxes pour offrir une notation plus commode pour le traitement des monades.</p>
@@ -383,9 +392,10 @@ cartesian_product <span class="fu">=</span> <span class="kw">do</span>
 <p>Plutôt que :</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">cartesian_product ::</span> [(<span class="dt">String</span>, <span class="dt">Int</span>)]
 cartesian_product <span class="fu">=</span>
-  [<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>, <span class="st">&quot;foobar&quot;</span>] <span class="fu">&gt;&gt;=</span> \x <span class="ot">-&gt;</span>
-  [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>] <span class="fu">&gt;&gt;=</span> \y <span class="ot">-&gt;</span> return (x, y)</code></pre></div>
-<p>L’avantage de cette notion est qu’elle permet d’appréhender certains concepts (comme par exemple la lecture/écriture de fichiers) sans se soucier de la notion de monade.</p>
+  [<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>, <span class="st">&quot;foobar&quot;</span>]
+  <span class="fu">&gt;&gt;=</span> \x <span class="ot">-&gt;</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>]
+  <span class="fu">&gt;&gt;=</span> \y <span class="ot">-&gt;</span> return (x, y)</code></pre></div>
+<p>L’avantage de cette notation est qu’elle permet d’appréhender certains concepts (comme par exemple la lecture/écriture de fichiers) sans se soucier de la notion de monade.</p>
 <p>Pour ma part, j’aime beaucoup le choix qu’a fait F#, ils offrent une <a href="https://docs.microsoft.com/fr-fr/dotnet/fsharp/language-reference/computation-expressions">syntaxe alternative</a> qui permet de généraliser l’écriture de <em>workflows</em> monadiques, mais pas <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/computation-zoo.pdf">uniquement</a>. C’est d’ailleurs sur base de ces constructeurs d’expressions que reposent leurs <em>workflows</em> asynchrones et leurs <em>workflows</em> de requêtage SQL.</p>
 <p>Scala, que je ne connais pas très bien, expose aussi <a href="https://docs.scala-lang.org/tutorials/FAQ/yield.html">une syntaxe</a>, qui repose sur celle des compréhensions.</p>
 <p>OCaml, actuellement, délègue à une <a href="https://github.com/janestreet/ppx_let">extension de syntaxe externe</a> l’alternative pour écrire de manière commode des <em>workflows</em> monadiques, cependant, <a href="https://github.com/ocaml/ocaml/pull/1947">des conversations ont actuellement lieu</a> pour aboutir à une généralisation proche de celle de F#.</p>
@@ -413,6 +423,7 @@ cartesian_product <span class="fu">=</span>
 <li id="fn1"><p>Ce n’est pas une moquerie ou une critique, même si le ton est un peu sarcastique, je comprends évidemment ce genre de raccourci.<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
+  <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
@@ -437,12 +448,13 @@ cartesian_product <span class="fu">=</span>
 <script src="../js/hl.js"></script>
 <script>
   hljs.initHighlightingOnLoad();
+  __useResumable("/posts/monad.html");
 </script>
 
   <footer>
     <div>
       <a href="http://webring.xxiivv.com/#random" target="_blank">
-        <img src="http://webring.xxiivv.com/icon.white.svg" />
+        <img src="../images/icon.white.svg" />
       </a>
     </div>
     <div>

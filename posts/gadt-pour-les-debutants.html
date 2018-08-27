@@ -7,12 +7,19 @@
   <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
   <link rel="stylesheet" href="../css/default.css" />
+  <script src="../js/player.js" type="application/javascript"></script>
   <title>xvw - Un cas d'école à l'utilisation des GADTs</title>
 </head>
 
 <body>
-  <main class="article">
+  <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
+  <div id="resume-box"></div>
+  <div class="progress"><div id="progress-bar"></div></div>
+</div>
+
+<main class="article">
+
   <h1 class="main-title">Un cas d'école à l'utilisation des GADTs</h1>
   <div class="date">Publié le 16 du 10 2017</div>
   <blockquote>
@@ -183,6 +190,7 @@
 <p>En Scala, le traitement des égalités entre type est trop fragile et pose parfois des soucis au compilateur. De ce fait, Scala ne possède pas de GADTs à proprement parlé, mais permet, via l’héritage, de répondre à certaines problématiques que les GADTs solutionnent aussi. Cependant, <a href="http://dotty.epfl.ch/">Dotty</a> (un compilateur expérimental pour le langage Scala, qui fait aussi office d’incubateur et qui a pour vocation de faire reposer Scala sur des bases plus formalisées) semble intégrer de véritables GADTs… <em>wait and see</em>.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>Comme beaucoup <em>d’usages avancés du système de type</em>, il est parfois difficile de trouver des cas d’usages où les GADTs sont essentiel. J’espère tout de même que cet article aura, pour certain, pu être une introduction abordable à leurs usages. Je remercie encore sincèrement Nicolas Rinaudo et Gabriel Scherer pour leurs apports techniques sur la question et tous les membres de la communauté <strong>LilleFP</strong> pour m’avoir forcé (voire oppressé) pour la mise en place d’un <em>blog</em> !</p>
+  <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
@@ -207,12 +215,13 @@
 <script src="../js/hl.js"></script>
 <script>
   hljs.initHighlightingOnLoad();
+  __useResumable("/posts/gadt-pour-les-debutants.html");
 </script>
 
   <footer>
     <div>
       <a href="http://webring.xxiivv.com/#random" target="_blank">
-        <img src="http://webring.xxiivv.com/icon.white.svg" />
+        <img src="../images/icon.white.svg" />
       </a>
     </div>
     <div>

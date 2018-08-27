@@ -7,12 +7,19 @@
   <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
   <link rel="stylesheet" href="../css/default.css" />
+  <script src="../js/player.js" type="application/javascript"></script>
   <title>xvw - Reprise après 2 ans d'interruption, seul</title>
 </head>
 
 <body>
-  <main class="article">
+  <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
+  <div id="resume-box"></div>
+  <div class="progress"><div id="progress-bar"></div></div>
+</div>
+
+<main class="article">
+
   <h1 class="main-title">Reprise après 2 ans d'interruption, seul</h1>
   <div class="date">Publié le 05 du 08 2018</div>
   <p>De retour de vacances, je me suis dit que ça faisait bien longtemps que je n’avais plus fait de peinture. Même si j’étais très rouillé (et que j’ai eu du mal à gérer la pressions des <em>spray’s</em>), c’était une après-midi très agréable au <a href="https://www.lille.fr/Nos-equipements/Halle-de-glisse">Hall de glisse</a>.</p>
@@ -20,6 +27,7 @@
 <img src="../images/skatepark1.jpg" title="skatepark1" alt="Rendu final" />
 <p class="caption">Rendu final</p>
 </div>
+  <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
@@ -44,12 +52,13 @@
 <script src="../js/hl.js"></script>
 <script>
   hljs.initHighlightingOnLoad();
+  __useResumable("/paintings/skatepark1.html");
 </script>
 
   <footer>
     <div>
       <a href="http://webring.xxiivv.com/#random" target="_blank">
-        <img src="http://webring.xxiivv.com/icon.white.svg" />
+        <img src="../images/icon.white.svg" />
       </a>
     </div>
     <div>

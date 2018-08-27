@@ -7,12 +7,19 @@
   <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
   <link rel="stylesheet" href="../css/default.css" />
+  <script src="../js/player.js" type="application/javascript"></script>
   <title>xvw - Voyager dans le temps avec un Zipper</title>
 </head>
 
 <body>
-  <main class="article">
+  <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
+  <div id="resume-box"></div>
+  <div class="progress"><div id="progress-bar"></div></div>
+</div>
+
+<main class="article">
+
   <h1 class="main-title">Voyager dans le temps avec un Zipper</h1>
   <div class="date">Publié le 20 du 11 2017</div>
   <blockquote>
@@ -165,6 +172,7 @@ push zipper newState =
 <h1 id="conclusion">Conclusion</h1>
 <p>Dans cet article (très court), nous avons vu l’utilisation d’une structure de données issue du monde de la programmation fonctionnelle. Sans vouloir faire de comparaisons capilotractées, connaître ces structures est, en analogie avec la programmation Orienté Objets, aussi important que la connaissance des <strong>motifs de conceptions</strong>.</p>
 <p>Je suis parfaitement conscient que sur beaucoup d’aspects, cet article est naïf, cependant, il est possible qu’il soit le premier d’une série, un peu plus technique, sur des usages concrets de structures de données fonctionnelles.</p>
+  <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
@@ -189,12 +197,13 @@ push zipper newState =
 <script src="../js/hl.js"></script>
 <script>
   hljs.initHighlightingOnLoad();
+  __useResumable("/posts/history.html");
 </script>
 
   <footer>
     <div>
       <a href="http://webring.xxiivv.com/#random" target="_blank">
-        <img src="http://webring.xxiivv.com/icon.white.svg" />
+        <img src="../images/icon.white.svg" />
       </a>
     </div>
     <div>

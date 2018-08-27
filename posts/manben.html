@@ -7,12 +7,19 @@
   <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
   <link rel="stylesheet" href="../css/default.css" />
+  <script src="../js/player.js" type="application/javascript"></script>
   <title>xvw - Konbini, Tac au tac et Manben</title>
 </head>
 
 <body>
-  <main class="article">
+  <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
+  <div id="resume-box"></div>
+  <div class="progress"><div id="progress-bar"></div></div>
+</div>
+
+<main class="article">
+
   <h1 class="main-title">Konbini, Tac au tac et Manben</h1>
   <div class="date">Publié le 19 du 08 2018</div>
   <blockquote>
@@ -42,6 +49,7 @@
 <h2 id="pour-conclure">Pour conclure</h2>
 <p>Je trouve ces deux émissions très intéressantes, semblables mais différentes. J’ai eu beaucoup de plaisir à en regarder un grand nombre d’épisodes !</p>
 <p>J’espère que si vous ne les connaissiez pas, cette brève vous aura peut être données envie de les regarder. N’hésitez pas, si vous en connaissez, à me partager, via <strong>Twitter</strong>, <strong>courriel</strong> ou par <strong>commentaires</strong> des émissions que vous trouvez intéressantes à regarder. Et bonne fin de vacances (pour ceux qui en ont !)</p>
+  <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
@@ -66,12 +74,13 @@
 <script src="../js/hl.js"></script>
 <script>
   hljs.initHighlightingOnLoad();
+  __useResumable("/posts/manben.html");
 </script>
 
   <footer>
     <div>
       <a href="http://webring.xxiivv.com/#random" target="_blank">
-        <img src="http://webring.xxiivv.com/icon.white.svg" />
+        <img src="../images/icon.white.svg" />
       </a>
     </div>
     <div>

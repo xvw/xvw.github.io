@@ -7,12 +7,19 @@
   <link rel="alternate" type="application/atom+xml" title="xvw blog" href="../atom.xml" />
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|Playfair+Display:400,700,900|Fira+Mono" rel="stylesheet">
   <link rel="stylesheet" href="../css/default.css" />
+  <script src="../js/player.js" type="application/javascript"></script>
   <title>xvw - Une application web moderne en Elm</title>
 </head>
 
 <body>
-  <main class="article">
+  <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
+  <div id="resume-box"></div>
+  <div class="progress"><div id="progress-bar"></div></div>
+</div>
+
+<main class="article">
+
   <h1 class="main-title">Une application web moderne en Elm</h1>
   <div class="date">Publié le 25 du 10 2017</div>
   <blockquote>
@@ -464,6 +471,7 @@ subscriptions model =
 <li id="fn1"><p>Attention, ce n’est évidemment pas une critique, mais une constatation en comparaison avec des langages comme OCaml ou Haskell. En aucun cas je considère ce manque d’expressivité comme une faiblesse sur tous les autres aspects. Je suis cependant conscient que la tournure de phrase peut être prise comme une critique virulente… d’où cette note en bas de page …<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
+  <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
 
@@ -488,12 +496,13 @@ subscriptions model =
 <script src="../js/hl.js"></script>
 <script>
   hljs.initHighlightingOnLoad();
+  __useResumable("/posts/elm-webapp.html");
 </script>
 
   <footer>
     <div>
       <a href="http://webring.xxiivv.com/#random" target="_blank">
-        <img src="http://webring.xxiivv.com/icon.white.svg" />
+        <img src="../images/icon.white.svg" />
       </a>
     </div>
     <div>
