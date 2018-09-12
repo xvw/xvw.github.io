@@ -15,7 +15,9 @@
   <div id="resume-reader" class="history-tooltip">
   <a href="../index.html">Revenir à l'accueil</a>
   <div id="resume-box"></div>
-  <div class="progress"><div id="progress-bar"></div></div>
+  <div class="progress">
+    <div id="progress-bar"></div>
+  </div>
 </div>
 
 <main class="article">
@@ -52,18 +54,16 @@
   <div id="eof-article"></div>
   <div class="article-footer">
     Cet article est terminé ! <br /> Si jamais vous avez des remarques, n'hésitez pas à écrire un <strong>commentaire</strong> ou à <a href="https://github.com/xvw/blog">contribuer</a>
-
     <div id="disqus_thread"></div>
     <script>
-      var disqus_config = function() {
-        this.page.url = "https://xvw.github.io/posts/manben.html"; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "posts/manben.org"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      var disqus_config = function () {
+      this.page.url = "https://xvw.github.io/posts/manben.html";
+      this.page.identifier = "posts/manben.org";
       };
-
       (function() { // DON'T EDIT BELOW THIS LINE
         var d = document,
           s = d.createElement('script');
-        s.src = 'https://xvw-blog.disqus.com/embed.js';
+        s.src = 'https://xvw-blog-1.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
       })();
