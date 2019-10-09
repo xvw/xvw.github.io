@@ -96,8 +96,8 @@
 <p>Sans rentrer dans les détails, un type fantôme est un type que l’on va passer en paramètre d’un autre type, et dont le seul intérêt d’encoder des informations statiques sur le type dont il est le paramètre.</p>
 <div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> ('a, 'b) t = 'b my_list</code></pre></div>
 <p>Dans cet exemple, <code class="sourceCode ocaml" rundoc-language="ocaml">'b</code> sera le type des données de la liste, et on utilisera <code class="sourceCode ocaml" rundoc-language="ocaml">'a</code> pour définir si la liste est vide ou non.</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> empty_t 
-<span class="kw">type</span> not_empty_t 
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> empty_t = Empty_t
+<span class="kw">type</span> not_empty_t = Not_empty_t
 
 <span class="kw">type</span> 'a my_list =
  | Empty
@@ -113,8 +113,8 @@
  <span class="co">(* on ne devrait jamais être ici grâce aux types *)</span>
  | Empty -&gt; <span class="kw">assert</span> <span class="kw">false</span></code></pre></div>
 <p>L’implémentation générale ne diffère pas réellement de ce que nous avions fait précédemment. les deux types <code class="sourceCode ocaml" rundoc-language="ocaml">empty_t</code> et <code class="sourceCode ocaml" rundoc-language="ocaml">not_empty_t</code> serviront uniquement à être le paramètre <code class="sourceCode ocaml" rundoc-language="ocaml">'a</code> de notre type <code class="sourceCode ocaml" rundoc-language="ocaml">('a, 'b) t</code>. C’est pour ça qu’ils n’ont pas de forme, la seule chose qui nous intéresse est leur nom. Nous allons pouvoir implémenter l’interface de notre module:</p>
-<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> empty_t
-<span class="kw">type</span> not_empty_t 
+<div class="sourceCode"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><span class="kw">type</span> empty_t = Empty_t
+<span class="kw">type</span> not_empty_t = Not_empty_t
 <span class="kw">type</span> ('a, 'b) t
 
 <span class="kw">val</span> empty : (empty_t, 'a) t
