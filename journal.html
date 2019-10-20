@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="author" content="Xavier Van de Woestyne">
+    
+    
+    <meta name="description" content="Planet, page personnelle de Xavier Van de Woestyne">
+    
+    <title>
+      xvw - Statistiques et suivi
+      
+    </title>
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/hl.css" />
+    <link rel="stylesheet" href="./css/default.css" />
+    <script src="./facade.bc.js" type="application/javascript"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div>
+          <div class="header-bar">
+            <h1>Xavier Van de Woestyne</h1>
+            
+            
+            <h2>Statistiques et suivi</h2>
+            
+            
+          </div>
+        </div>
+        <nav>
+          <a href="./">Accueil</a>
+          <a href="./location.html">Localisation</a>
+          <a href="./journal.html">Journal</a>
+        </nav>
+      </div>
+    </header>
+    <main role="main">
+      <div class="page-cover black-block small-refutable">
+  <div class="container">
+    <h2 class="classic-title">Activité</h2>
+    <div class="calendar-view"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="qexp-metadata" id="project-qexp-metadata">
+    <textarea data-planet-qexp="global-context">(:logs_counter 173) (:minuts_counter 23611)
+(:sectors_counters
+  (("visual" 3120) ("programming" 11945) ("maintenance" 950)
+    ("research" 4331) ("audio" 640) ("writing" 2625))) (:start_date #015H22)
+(:last_update #019J20)</textarea>
+  </div>
+
+  <div class="main-columns">
+    <div class="small-refutable">
+      <h2 class="classic-title">Statistiques globales</h2>
+      <div class="global-statistics"></div>
+    </div>
+    <div class="tier">
+      <h2 class="classic-title entries-title">Dernières entrées</h2>
+      <div class="logs-container"></div>
+    </div>
+  </div>
+  
+</div>
+<script type="application/javascript">
+  planet.suspend(function() {
+   let k =  planet.diary.boot({
+      context: document.querySelector(
+        "textarea[data-planet-qexp='global-context']"
+      ),
+     calendarBox: document.querySelector(".calendar-view"),
+     titleBox: document.querySelector(".entries-title"),
+     statisticBox: document.querySelector(".global-statistics"),
+     entryBox: document.querySelector(".logs-container"),
+     sectors: document.querySelectorAll(
+       "#planet-sectors-metadata > .sector-data"
+     )
+   });
+    console.log(k);
+  });
+</script>
+
+    </main>
+    <footer>
+      <div class="container">
+        <div class="left">
+          Cette page est construite avec
+          <a href="https://jaspervdj.be/hakyll/">Hakyll</a> et
+          <a href="./projects/planet.html">Planet</a>.
+          <br />
+          Le contenu est distribué sous licence
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a>.
+        </div>
+        <div class="center">
+          <a href="http://webring.xxiivv.com/#random" target="_blank">
+            <img class="pictogram" src="./picto/webring.black.svg" />
+          </a>
+        </div>
+        <div class="right">
+          <a href="./xavier.html">Xavier Van de Woestyne</a> ©<br />
+          2017-2019
+        </div>
+      </div>
+    </footer>
+    <div id="planet-sectors-metadata">
+      <span class="planet-metadata generation-id-data" data-uuid="b666519d-1e7e-d7de-fb42-b96881d326f6"><!-- Planet metadata --></span>
+
+      <span class="planet-metadata sector-data" data-name="programming" data-desc="Programmation (code) relative ou non à des projets" data-color="rgb(34, 34, 34)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="visual" data-desc="Dessin/Peinture/Design" data-color="rgb(68, 68, 68)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="audio" data-desc="Musique/Sound design" data-color="rgb(221, 221, 221)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="writing" data-desc="Ecriture d'articles, de livres, de notes" data-color="rgb(136, 136, 136)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="research" data-desc="Expériences variées liées à l'apprentissage" data-color="rgb(85, 85, 85)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="maintenance" data-desc="Correctif, maintenance d'infrastructures" data-color="rgb(204, 204, 204)"><!-- Planet metadata --></span>
+
+    </div>
+    <script type="application/javascript">
+      planet.start(
+        document.querySelector(
+          "#planet-sectors-metadata > .generation-id-data"
+        )
+      );
+    </script>
+  </body>
+</html>
