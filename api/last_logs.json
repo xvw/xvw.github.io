@@ -4,12 +4,12 @@
   {"uuid": "81fbbd28-a35c-055c-9e0d-633957f37ac2", "date": "019J20",
     "duration": 60, "sector": "visual", "project": "planet",
     "label": "Rendu, un peu pauvre, des pages mobiles"},
+  {"uuid": "e7c69553-5eeb-1ced-2c39-601911e91175", "date": "019J20",
+    "duration": 30, "sector": "visual", "project": "planet",
+    "label": "Modification de la page d'accueil et alignement des blocs"},
   {"uuid": "5477c557-c924-6539-48cc-aa86ca9d0006", "date": "019J19",
     "duration": 120, "sector": "visual", "project": null,
     "label": "Expériences avec Blender"},
   {"uuid": "3fa35daa-1f13-e97d-3c5f-9bf2b8b6aa1e", "date": "019J16",
     "duration": 30, "sector": "visual", "project": "planet",
-    "label": "Quelques modifications sur la page 'A propos'"},
-  {"uuid": "fee21698-f33f-549a-4bc7-5305729d2f77", "date": "019J16",
-    "duration": 10, "sector": "maintenance", "project": "planet",
-    "label": "Correction quotes/doublequotes"}]
+    "label": "Quelques modifications sur la page 'A propos'"}]
