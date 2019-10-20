@@ -11,7 +11,7 @@
     <meta name="description" content="Planet, page personnelle de Xavier Van de Woestyne">
     
     <title>
-      xvw - Localisation
+      xvw - Tentatives
       
     </title>
     <link rel="stylesheet" href="./css/fonts.css" />
@@ -27,7 +27,7 @@
             <h1>Xavier Van de Woestyne</h1>
             
             
-            <h2>Localisation</h2>
+            <h2>Tentatives</h2>
             
             
           </div>
@@ -43,18 +43,47 @@
     </header>
     <main>
       <div class="container">
-  <a class="std-button small-text" href="#current-location">En ce moment</a>
+  <div class="tile">
+    
 
-  <div class="location-box"></div>
+<a href="./longs/introduction_aux_monades.html" class="long-item">
+  <h3>Un article sur les monades en 2018</h3>
+  <span class="badge published">2018-08-22</span>
+  <span class="badge">programmation</span>
+  <p class="synopsis">Une introduction naïve aux monades en programmation fonctionnelle.</p>
+</a>
 
+
+
+<a href="./longs/konbini_tac_au_tac_manben.html" class="long-item">
+  <h3>Konbini, Tac au tac et Manben</h3>
+  <span class="badge published">2018-08-19</span>
+  <span class="badge">culture</span>
+  <p class="synopsis">L'article présente quelques émissions que je trouve cool !</p>
+</a>
+
+
+
+<a href="./longs/zipper_history.html" class="long-item">
+  <h3>Voyager dans le temps avec un Zipper</h3>
+  <span class="badge published">2017-11-20</span>
+  <span class="badge">programmation</span>
+  <p class="synopsis">Utilisation d'un Zipper pour l'implémentation d'un historique.</p>
+</a>
+
+
+
+<a href="./longs/introduction_gadt.html" class="long-item">
+  <h3>Un cas d'école à l'utilisation des GADTs</h3>
+  <span class="badge published">2017-10-16</span>
+  <span class="badge">programmation</span>
+  <p class="synopsis">Une brève introduction aux types algébriques généralisés avec OCaml.</p>
+</a>
+
+
+
+  </div>
 </div>
-<script>
-  planet.suspend(function() {
-    planet.location.boot({
-      locationBox: document.querySelector(".location-box")
-    });
-  });
-</script>
 
     </main>
     <footer>
