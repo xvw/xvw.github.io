@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>xvw - planet</title>
+    <link href="https://xvw.github.io/atom.xml" rel="self" />
+    <link href="https://xvw.github.io" />
+    <id>https://xvw.github.io/atom.xml</id>
+    <author>
+        <name>Xavier Van de Woestyne</name>
+        <email>xaviervdw@gmail.com</email>
+    </author>
+    <updated>2018-08-22T00:00:00Z</updated>
+    <entry>
+    <title>Un article sur les monades en 2018</title>
+    <link href="https://xvw.github.io/longs/introduction_aux_monades.html" />
+    <id>https://xvw.github.io/longs/introduction_aux_monades.html</id>
+    <published>2018-08-22T00:00:00Z</published>
+    <updated>2018-08-22T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Une introduction naïve aux monades en programmation fonctionnelle.]]></summary>
+</entry>
+<entry>
+    <title>Konbini, Tac au tac et Manben</title>
+    <link href="https://xvw.github.io/longs/konbini_tac_au_tac_manben.html" />
+    <id>https://xvw.github.io/longs/konbini_tac_au_tac_manben.html</id>
+    <published>2018-08-19T00:00:00Z</published>
+    <updated>2018-08-19T00:00:00Z</updated>
+    <summary type="html"><![CDATA[L'article présente quelques émissions que je trouve cool !]]></summary>
+</entry>
+<entry>
+    <title>Voyager dans le temps avec un Zipper</title>
+    <link href="https://xvw.github.io/longs/zipper_history.html" />
+    <id>https://xvw.github.io/longs/zipper_history.html</id>
+    <published>2017-11-20T00:00:00Z</published>
+    <updated>2017-11-20T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Utilisation d'un Zipper pour l'implémentation d'un historique.]]></summary>
+</entry>
+<entry>
+    <title>Un cas d'école à l'utilisation des GADTs</title>
+    <link href="https://xvw.github.io/longs/introduction_gadt.html" />
+    <id>https://xvw.github.io/longs/introduction_gadt.html</id>
+    <published>2017-10-16T00:00:00Z</published>
+    <updated>2017-10-16T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Une brève introduction aux types algébriques généralisés avec OCaml.]]></summary>
+</entry>
+
+</feed>
