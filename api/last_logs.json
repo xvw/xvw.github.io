@@ -1,6 +1,9 @@
-[{"uuid": "47ed7b89-f73e-67fc-704e-4688872d2b7a", "date": "019J20",
-   "duration": 120, "sector": "programming", "project": "planet",
-   "label": "Amélioration de ROE pour préserver le formattage babel de Org"},
+[{"uuid": "009e37e8-10f9-3f8a-1cf4-7c36e11c9b13", "date": "019J24",
+   "duration": 60, "sector": "visual", "project": "planet",
+   "label": "Amélioration du layout pour la reprise des articles"},
+  {"uuid": "47ed7b89-f73e-67fc-704e-4688872d2b7a", "date": "019J20",
+    "duration": 120, "sector": "programming", "project": "planet",
+    "label": "Amélioration de ROE pour préserver le formattage babel de Org"},
   {"uuid": "81fbbd28-a35c-055c-9e0d-633957f37ac2", "date": "019J20",
     "duration": 60, "sector": "visual", "project": "planet",
     "label": "Rendu, un peu pauvre, des pages mobiles"},
@@ -9,7 +12,4 @@
     "label": "Modification de la page d'accueil et alignement des blocs"},
   {"uuid": "548651cc-d170-c5a5-7139-a7ce4d21ae6e", "date": "019J20",
     "duration": 20, "sector": "programming", "project": "planet",
-    "label": "Ajout d'un fil de syndication Atom"},
-  {"uuid": "f9f85b6c-51f1-87f8-ff01-ae1f24335917", "date": "019J20",
-    "duration": 20, "sector": "programming", "project": "planet",
-    "label": "Ajout d'un module de chargement pour les widget plus lourds"}]
+    "label": "Ajout d'un fil de syndication Atom"}]
