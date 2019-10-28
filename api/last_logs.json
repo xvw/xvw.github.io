@@ -1,6 +1,9 @@
-[{"uuid": "009e37e8-10f9-3f8a-1cf4-7c36e11c9b13", "date": "019J24",
-   "duration": 60, "sector": "visual", "project": "planet",
-   "label": "Amélioration du layout pour la reprise des articles"},
+[{"uuid": "c3cb8fca-c0af-293a-0e91-2a35cf9ab073", "date": "019J27",
+   "duration": 200, "sector": "programming", "project": "rme",
+   "label": "Implémentation d'une boucle de feedback pour les erreurs"},
+  {"uuid": "009e37e8-10f9-3f8a-1cf4-7c36e11c9b13", "date": "019J24",
+    "duration": 60, "sector": "visual", "project": "planet",
+    "label": "Amélioration du layout pour la reprise des articles"},
   {"uuid": "929f79fa-7f15-462f-072a-a8a2795931b9", "date": "019J24",
     "duration": 20, "sector": "programming", "project": "planet",
     "label": "Liens des articles cliquables"},
@@ -9,7 +12,4 @@
     "label": "Amélioration de ROE pour préserver le formattage babel de Org"},
   {"uuid": "81fbbd28-a35c-055c-9e0d-633957f37ac2", "date": "019J20",
     "duration": 60, "sector": "visual", "project": "planet",
-    "label": "Rendu, un peu pauvre, des pages mobiles"},
-  {"uuid": "e7c69553-5eeb-1ced-2c39-601911e91175", "date": "019J20",
-    "duration": 30, "sector": "visual", "project": "planet",
-    "label": "Modification de la page d'accueil et alignement des blocs"}]
+    "label": "Rendu, un peu pauvre, des pages mobiles"}]
