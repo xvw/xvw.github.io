@@ -11,7 +11,7 @@
     <meta name="description" content="Planet, page personnelle de Xavier Van de Woestyne">
     
     <title>
-      xvw - Statistiques et suivi
+      xvw - Mises à jours de la platforme
       
     </title>
     <link rel="stylesheet" href="./css/fonts.css" />
@@ -28,7 +28,7 @@
             <h1>Xavier Van de Woestyne</h1>
             
             
-            <h2>Statistiques et suivi</h2>
+            <h2>Mises à jours de la platforme</h2>
             
             
           </div>
@@ -45,67 +45,33 @@
         </nav>
       </div>
       <div>
-        <div class="page-cover black-block small-refutable">
-  <div class="container">
-    <h2 class="classic-title">Activité</h2>
-    <div class="calendar-view">
-      <div class="loading">
-        <img src="./picto/loader.white.svg" alt="loading..." />
-      </div>
-    </div>
-    <nav>
-      <a href="./location.html">Localisation</a>
-    </nav>
-  </div>
-</div>
-
-<div class="container base-content">
-
-  <div class="qexp-metadata" id="project-qexp-metadata">
-    <textarea data-planet-qexp="global-context">(:logs_counter 188) (:minuts_counter 26981)
-(:sectors_counters
-  (("visual" 3210) ("programming" 12205) ("maintenance" 1010)
-    ("research" 6971) ("audio" 640) ("writing" 2945))) (:start_date #015H22)
-(:last_update #019K13)</textarea>
-  </div>
-
-  <div class="main-columns">
-    <div class="small-refutable">
-      <h2 class="classic-title">Statistiques globales</h2>
-      <div class="global-statistics">
-        <div class="loading">
-          <img src="./picto/loader.black.svg" alt="loading..." />
-        </div>
-      </div>
-    </div>
-    <div class="tier">
-      <h2 class="classic-title entries-title">Dernières entrées</h2>
-      <div class="logs-container">
-        <div class="loading">
-          <img src="./picto/loader.black.svg" alt="loading..." />
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="container base-content">
+  <ul class="shorts-list">
   
+  
+  <li>
+    <span class="date">2019-11-13</span>
+    <span class="title">Ajout des mises à jours sur la page d'accueil</span>
+  </li>
+  
+  
+  
+  <li>
+    <span class="date">2019-10-20</span>
+    <span class="title">Mise en ligne de la première version</span>
+  </li>
+  
+  
+  
+  <li>
+    <span class="date">2018-08-27</span>
+    <span class="title">Fonctionnalité de reprise de lecture</span>
+  </li>
+  
+  
+</ul>
+
 </div>
-<script>
-  planet.suspend(function() {
-   let k =  planet.diary.boot({
-      context: document.querySelector(
-        "textarea[data-planet-qexp='global-context']"
-      ),
-     calendarBox: document.querySelector(".calendar-view"),
-     titleBox: document.querySelector(".entries-title"),
-     statisticBox: document.querySelector(".global-statistics"),
-     entryBox: document.querySelector(".logs-container"),
-     sectors: document.querySelectorAll(
-       "#planet-sectors-metadata > .sector-data"
-     )
-   });
-    console.log(k);
-  });
-</script>
 
       </div>
     </main>
