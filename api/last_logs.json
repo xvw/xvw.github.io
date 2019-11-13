@@ -4,12 +4,12 @@
   {"uuid": "7cafbe25-12ef-aef2-22cc-5d4daa727a45", "date": "019K13",
     "duration": 60, "sector": "programming", "project": "planet",
     "label": "Ajout des mises à jours de la platforme"},
+  {"uuid": "269288a4-cce3-03b0-9475-fa3008ff5fb6", "date": "019K13",
+    "duration": 30, "sector": "visual", "project": "planet",
+    "label": "Légères modifications de l'UI"},
   {"uuid": "06b9c384-5335-ab90-a4ea-56fc2c63b733", "date": "019K10",
     "duration": 320, "sector": "research", "project": null,
     "label": "Expériences photographiques"},
   {"uuid": "fa9e1f44-7c17-c43b-7773-c271c98e013d", "date": "019K09",
     "duration": 320, "sector": "research", "project": null,
-    "label": "Expériences photographiques"},
-  {"uuid": "bf603dcc-d361-63a7-5dba-74cdf080f2cf", "date": "019K08",
-    "duration": 120, "sector": "writing", "project": "planet",
-    "label": "Ecriture de l'article sur le Kata du tennis appliqué à OCaml"}]
+    "label": "Expériences photographiques"}]
