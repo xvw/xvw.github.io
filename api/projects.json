@@ -29,7 +29,7 @@
     }, "releases": [], "status": "wip", "tags": ["library", "ocaml"],
     "picto": null, "indexed": true, "subprojects": []},
   {"name": "brainfocaml", "published": true, "title": "Brainfocaml",
-    "synopsis": "Boite à outils autours de l'interprétation/exécution de Brainfuck",
+    "synopsis": "Boite à outils autour de l'interprétation/exécution de Brainfuck",
     "repo": "https://github.com/xvw/brainfocaml", "license": "mit",
     "links": {"Liens": [{"name": "Brainfuck sur Wikipedia",
                           "uri": "https://fr.wikipedia.org/wiki/Brainfuck"},
