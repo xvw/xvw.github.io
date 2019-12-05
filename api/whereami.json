@@ -1,4 +1,7 @@
-[{"date": "019L04", "country": "france", "city": "lille"},
+[{"date": "019L12", "country": "france", "city": "lille"},
+  {"date": "019L09", "country": "france", "city": "paris"},
+  {"date": "019L07", "country": "belgique", "city": "bruxelles"},
+  {"date": "019L04", "country": "france", "city": "lille"},
   {"date": "019L02", "country": "france", "city": "paris"},
   {"date": "019K29", "country": "belgique", "city": "bruxelles"},
   {"date": "019K27", "country": "france", "city": "lille"},
