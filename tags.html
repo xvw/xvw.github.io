@@ -11,7 +11,7 @@
     <meta name="description" content="Planet, page personnelle de Xavier Van de Woestyne">
     
     <title>
-      xvw - Mises à jours de la platforme
+      xvw - Recherches et tags
       
     </title>
     <link rel="stylesheet" href="./css/fonts.css" />
@@ -28,7 +28,7 @@
             <h1>Xavier Van de Woestyne</h1>
             
             
-            <h2>Mises à jours de la platforme</h2>
+            <h2>Recherches et tags</h2>
             
             
           </div>
@@ -46,47 +46,29 @@
         </nav>
       </div>
       <div class="main-block">
-        <div class="container small-content uniq-content">
-  <ul class="shorts-list">
-  
-  
-  <li>
-    <span class="date">2019-12-14</span>
-    <span class="title">Intégration des tags interactifs</span>
-  </li>
-  
-  
-  
-  <li>
-    <span class="date">2019-11-16</span>
-    <span class="title">Ajout de canaux TWTXT</span>
-  </li>
-  
-  
-  
-  <li>
-    <span class="date">2019-11-13</span>
-    <span class="title">Ajout des mises à jours sur la page d'accueil</span>
-  </li>
-  
-  
-  
-  <li>
-    <span class="date">2019-10-20</span>
-    <span class="title">Mise en ligne de la première version</span>
-  </li>
-  
-  
-  
-  <li>
-    <span class="date">2018-08-27</span>
-    <span class="title">Fonctionnalité de reprise de lecture</span>
-  </li>
-  
-  
-</ul>
-
+        <div class="container base-content uniq-content">
+  <h2 class="classic-title">Recherche par tags</h2>
+  <div id="content-tags">
+    <div class="loading">
+      <img src="./picto/loader.black.svg" alt="loading..." />
+    </div>
+  </div>
+  <h2 class="classic-title">Contenu</h2>
+  <div id="content-pages">
+    <div class="loading">
+      <img src="./picto/loader.black.svg" alt="loading..." />
+    </div>
+  </div>
 </div>
+
+<script>
+  planet.suspend(function() {
+    planet.tags.boot({
+      tagsBox: document.getElementById('content-tags'),
+      contentBox: document.getElementById('content-pages')
+    });
+  });
+</script>
 
       </div>
     </main>

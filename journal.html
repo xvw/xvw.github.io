@@ -39,6 +39,7 @@
       <div class="navbar">
         <nav class="container">
           <a href="./">Accueil</a>
+          <a href="./tags.html">Tags</a>
           <a href="./longs.html">Articles</a>
           <a href="./projects.html">Projets</a>
           <a href="./journal.html">Suivi</a>
@@ -62,11 +63,11 @@
 <div class="container base-content uniq-content">
 
   <div class="qexp-metadata" id="project-qexp-metadata">
-    <textarea data-planet-qexp="global-context">(:logs_counter 203) (:minuts_counter 28221)
+    <textarea data-planet-qexp="global-context">(:logs_counter 205) (:minuts_counter 28491)
 (:sectors_counters
-  (("visual" 3650) ("programming" 12660) ("maintenance" 1050)
+  (("visual" 3650) ("programming" 12930) ("maintenance" 1050)
     ("research" 7271) ("audio" 640) ("writing" 2950))) (:start_date #015H22)
-(:last_update #019L13)</textarea>
+(:last_update #019L14)</textarea>
   </div>
 
   <div class="main-columns">
@@ -91,19 +92,18 @@
 </div>
 <script>
   planet.suspend(function() {
-   let k =  planet.diary.boot({
+    planet.diary.boot({
       context: document.querySelector(
         "textarea[data-planet-qexp='global-context']"
       ),
-     calendarBox: document.querySelector(".calendar-view"),
-     titleBox: document.querySelector(".entries-title"),
-     statisticBox: document.querySelector(".global-statistics"),
-     entryBox: document.querySelector(".logs-container"),
-     sectors: document.querySelectorAll(
-       "#planet-sectors-metadata > .sector-data"
-     )
-   });
-    console.log(k);
+      calendarBox: document.querySelector(".calendar-view"),
+      titleBox: document.querySelector(".entries-title"),
+      statisticBox: document.querySelector(".global-statistics"),
+      entryBox: document.querySelector(".logs-container"),
+      sectors: document.querySelectorAll(
+        "#planet-sectors-metadata > .sector-data"
+      )
+    });
   });
 </script>
 
