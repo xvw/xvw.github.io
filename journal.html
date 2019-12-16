@@ -63,9 +63,9 @@
 <div class="container base-content uniq-content">
 
   <div class="qexp-metadata" id="project-qexp-metadata">
-    <textarea data-planet-qexp="global-context">(:logs_counter 207) (:minuts_counter 28556)
+    <textarea data-planet-qexp="global-context">(:logs_counter 208) (:minuts_counter 28586)
 (:sectors_counters
-  (("visual" 3650) ("programming" 12995) ("maintenance" 1050)
+  (("visual" 3650) ("programming" 13025) ("maintenance" 1050)
     ("research" 7271) ("audio" 640) ("writing" 2950))) (:start_date #015H22)
 (:last_update #019L16)</textarea>
   </div>
@@ -112,6 +112,10 @@
     <footer>
       <div class="container">
         <div class="left">
+          <button id="random-page-btn" class="small-button-gray">
+            Page aléatoire
+          </button>
+          <br /><br />
           Cette page est construite avec
           <a href="https://jaspervdj.be/hakyll/">Hakyll</a> et
           <a href="./projects/planet.html">Planet</a>.
@@ -140,6 +144,11 @@
 
     </div>
     <script>
+      planet.suspend(function() {
+        planet.tags.random({
+          button: document.getElementById('random-page-btn')
+        });
+      });
       planet.start();
     </script>
   </body>

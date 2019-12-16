@@ -65,11 +65,11 @@
         ("Fira Mono" "https://mozilla.github.io/Fira/")
         ("Old Standard TT" "http://thessalonica.org.ru/en/fonts.html")))))
 (:releases ())</textarea>
-<textarea data-planet-qexp="project_timedata">(:name "planet") (:logs_counter 118) (:minuts_counter 10820)
+<textarea data-planet-qexp="project_timedata">(:name "planet") (:logs_counter 119) (:minuts_counter 10850)
 (:sectors_counters
-  (("programming" 6890) ("visual" 2155) ("maintenance" 370) ("research" 540)
+  (("programming" 6920) ("visual" 2155) ("maintenance" 370) ("research" 540)
     ("writing" 865))) (:start_date #019A06)
-(:last_update #019L14)</textarea>
+(:last_update #019L16)</textarea>
   </div>
   <div class="content-page">
     <div class="major-header">
@@ -163,6 +163,10 @@
     <footer>
       <div class="container">
         <div class="left">
+          <button id="random-page-btn" class="small-button-gray">
+            Page aléatoire
+          </button>
+          <br /><br />
           Cette page est construite avec
           <a href="https://jaspervdj.be/hakyll/">Hakyll</a> et
           <a href="../projects/planet.html">Planet</a>.
@@ -191,6 +195,11 @@
 
     </div>
     <script>
+      planet.suspend(function() {
+        planet.tags.random({
+          button: document.getElementById('random-page-btn')
+        });
+      });
       planet.start();
     </script>
   </body>

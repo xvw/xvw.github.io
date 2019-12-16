@@ -121,6 +121,10 @@
     <footer>
       <div class="container">
         <div class="left">
+          <button id="random-page-btn" class="small-button-gray">
+            Page aléatoire
+          </button>
+          <br /><br />
           Cette page est construite avec
           <a href="https://jaspervdj.be/hakyll/">Hakyll</a> et
           <a href="../projects/planet.html">Planet</a>.
@@ -149,6 +153,11 @@
 
     </div>
     <script>
+      planet.suspend(function() {
+        planet.tags.random({
+          button: document.getElementById('random-page-btn')
+        });
+      });
       planet.start();
     </script>
   </body>
