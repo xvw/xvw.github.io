@@ -1,6 +1,9 @@
 [{"uuid": "4d374625-4437-0fc1-1182-8483cc35b622", "date": "019L28",
    "duration": 5, "sector": "maintenance", "project": "planet",
    "label": "Mise à jours des dépendances"},
+  {"uuid": "29724761-929a-0b89-f668-4cf1fbfa5ed0", "date": "019L28",
+    "duration": 80, "sector": "programming", "project": "planet",
+    "label": "Progression dans la construction de tâches"},
   {"uuid": "0ad56ef5-e68c-b7c9-8609-092048d0aa0d", "date": "019L26",
     "duration": 200, "sector": "research", "project": null,
     "label": "Recherches sur l'analyse structurale du récit, lecture de 'Communication 8'"},
@@ -9,7 +12,4 @@
     "label": "Recherches sur l'analyse structurale du récit, lecture de 'Communication 8'"},
   {"uuid": "ce01d1b5-8d11-25cc-e4bb-9d95be693a36", "date": "019L24",
     "duration": 200, "sector": "research", "project": null,
-    "label": "Recherches sur l'analyse structurale du récit, lecture de 'Communication 8'"},
-  {"uuid": "a731574b-343b-b5df-edd0-f075e6b5c087", "date": "019L23",
-    "duration": 120, "sector": "research", "project": null,
     "label": "Recherches sur l'analyse structurale du récit, lecture de 'Communication 8'"}]
