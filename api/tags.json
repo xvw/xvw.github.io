@@ -6,7 +6,7 @@
               "programmation", "rme", "rpgmaker", "ruby", "structure",
               "typage", "télévision", "web", "zipper"],
   "contents": [{"title": "Planet", "section": "project", "id": "planet",
-                 "date": "019L30",
+                 "date": "020A01",
                  "description": "Une collection d'outils pour construire ma page personnelle",
                  "tags": ["log", "web", "ocaml", "journal", "blog", "hakyll"]},
                 {"title": "Brainfocaml", "section": "project",
