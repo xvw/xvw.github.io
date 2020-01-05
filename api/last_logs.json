@@ -1,6 +1,9 @@
-[{"uuid": "e9f9a870-e9f3-1c78-f97b-749c5a3865ef", "date": "020A01",
-   "duration": 200, "sector": "programming", "project": "planet",
-   "label": "Initiation des tâches de la todo-list"},
+[{"uuid": "714bd325-4365-5abc-3a86-ec3724538e92", "date": "020A05",
+   "duration": 120, "sector": "programming", "project": "planet",
+   "label": "Progrès sur le gestionnaire de tâches"},
+  {"uuid": "e9f9a870-e9f3-1c78-f97b-749c5a3865ef", "date": "020A01",
+    "duration": 200, "sector": "programming", "project": "planet",
+    "label": "Initiation des tâches de la todo-list"},
   {"uuid": "c37b5bab-adeb-65b5-a426-196893e03fb1", "date": "019L30",
     "duration": 200, "sector": "programming", "project": "planet",
     "label": "Mise à jours des tâches (création)"},
@@ -9,7 +12,4 @@
     "label": "Mise à jours des dépendances"},
   {"uuid": "29724761-929a-0b89-f668-4cf1fbfa5ed0", "date": "019L28",
     "duration": 80, "sector": "programming", "project": "planet",
-    "label": "Progression dans la construction de tâches"},
-  {"uuid": "0ad56ef5-e68c-b7c9-8609-092048d0aa0d", "date": "019L26",
-    "duration": 200, "sector": "research", "project": null,
-    "label": "Recherches sur l'analyse structurale du récit, lecture de 'Communication 8'"}]
+    "label": "Progression dans la construction de tâches"}]
