@@ -1,6 +1,9 @@
-[{"uuid": "33726ef3-2df0-8391-109a-31f5d0b039cc", "date": "020A06",
-   "duration": 300, "sector": "programming", "project": "planet",
-   "label": "Checklist de la todo-list modifiable"},
+[{"uuid": "26ed5b37-63d4-1e88-2fc1-62987bc3af36", "date": "020A08",
+   "duration": 120, "sector": "programming", "project": "planet",
+   "label": "Sérialisation des tâches en JSON et intégration dans la routine de construction"},
+  {"uuid": "33726ef3-2df0-8391-109a-31f5d0b039cc", "date": "020A06",
+    "duration": 300, "sector": "programming", "project": "planet",
+    "label": "Checklist de la todo-list modifiable"},
   {"uuid": "34ce642c-878b-0e3a-8462-39577fe46b1a", "date": "020A06",
     "duration": 30, "sector": "visual", "project": "planet",
     "label": "Légère réorganisation des pages (localisation/activité)"},
@@ -9,7 +12,4 @@
     "label": "Progrès sur le gestionnaire de tâches"},
   {"uuid": "a373582c-88f0-c9b0-dd2e-6ded2647b8d8", "date": "020A05",
     "duration": 320, "sector": "research", "project": null,
-    "label": "Réunion de matériel pour 'la chimère fragile'"},
-  {"uuid": "e9f9a870-e9f3-1c78-f97b-749c5a3865ef", "date": "020A01",
-    "duration": 200, "sector": "programming", "project": "planet",
-    "label": "Initiation des tâches de la todo-list"}]
+    "label": "Réunion de matériel pour 'la chimère fragile'"}]
