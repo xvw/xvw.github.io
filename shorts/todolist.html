@@ -8,17 +8,19 @@
     <meta name="author" content="Xavier Van de Woestyne">
     
     
-    <meta name="description" content="Planet, page personnelle de Xavier Van de Woestyne">
+    <meta name="description" content="Implémentation d'une TODO-liste: Ajout d'une liste de tâches">
     
     <title>
-      xvw - Statistiques et suivi
+      xvw - Implémentation d'une TODO-liste
+      
+      : Ajout d'une liste de tâches
       
     </title>
-    <link rel="stylesheet" href="./css/fonts.css" />
-    <link rel="stylesheet" href="./css/hl.css" />
-    <link rel="stylesheet" href="./css/default.css" />
-    <link rel="alternate" type="application/atom+xml" title="xvw-planet" href="./atom.xml" />
-    <script src="./facade.bc.js"></script>
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/hl.css" />
+    <link rel="stylesheet" href="../css/default.css" />
+    <link rel="alternate" type="application/atom+xml" title="xvw-planet" href="../atom.xml" />
+    <script src="../facade.bc.js"></script>
   </head>
   <body>
     <header>
@@ -27,9 +29,7 @@
           <div class="header-bar">
             <h1>Xavier Van de Woestyne</h1>
             
-            
-            <h2>Statistiques et suivi</h2>
-            
+            <h2>Tentative</h2>
             
           </div>
         </div>
@@ -38,74 +38,80 @@
     <main>
       <div class="navbar">
         <nav class="container">
-          <a href="./">Accueil</a>
-          <a href="./tags.html">Tags</a>
-          <a href="./longs.html">Articles</a>
-          <a href="./projects.html">Projets</a>
-          <a href="./journal.html">Activité</a>
+          <a href="../">Accueil</a>
+          <a href="../tags.html">Tags</a>
+          <a href="../longs.html">Articles</a>
+          <a href="../projects.html">Projets</a>
+          <a href="../journal.html">Activité</a>
         </nav>
       </div>
       <div class="main-block">
-        <div class="page-cover black-block small-refutable">
-  <div class="container">
-    <nav>
-  <a href="./journal.html">Suivi des logs</a>
-  <a href="./tasks.html">Tâches et engagements</a>
-</nav>
-
-    <h2 class="classic-title">Suivi des logs</h2>
-    <div class="calendar-view">
-      <div class="loading">
-        <img src="./picto/loader.white.svg" alt="loading..." />
-      </div>
-    </div>
-  </div>
-</div>
-
+        <div id="resume-details" class="page-small-cover black-block small-refutable"></div>
 <div class="container base-content uniq-content">
-
-  <div class="qexp-metadata" id="project-qexp-metadata">
-    <textarea data-planet-qexp="global-context">(:logs_counter 226) (:minuts_counter 31431)
-(:sectors_counters
-  (("visual" 4020) ("programming" 14335) ("maintenance" 1055)
-    ("research" 8431) ("audio" 640) ("writing" 2950))) (:start_date #015H22)
-(:last_update #020A09)</textarea>
+  <div class="qexp-metadata" id="story-qexp-metadata">
+    <textarea data-planet-qexp="story">(:permaname "todolist") (:title "Implémentation d'une TODO-liste")
+(:synopsis "Ajout d'une liste de tâches") (:links ())
+(:content "internal" #org "") (:published true) (:category "planet")
+(:tags ()) (:date #020A09)
+(:kind #short)</textarea>
   </div>
 
-  <div class="main-columns">
-    <div class="small-refutable">
-      <h2 class="classic-title">Statistiques globales</h2>
-      <div class="global-statistics">
-        <div class="loading">
-          <img src="./picto/loader.black.svg" alt="loading..." />
+  <div class="content-page">
+    <div class="major-header">
+      <div class="major-details">
+        <h1>Implémentation d'une TODO-liste</h1>
+        <span class="synopsis">
+          Ajout d'une liste de tâches
+        </span>
+        <div>
+          <span class="badge published">2020-01-09</span>
+          <span class="badge">planet</span>
         </div>
       </div>
     </div>
-    <div class="tier">
-      <h2 class="classic-title entries-title">Dernières entrées</h2>
-      <div class="logs-container">
-        <div class="loading">
-          <img src="./picto/loader.black.svg" alt="loading..." />
+    <div class="major-content">
+      <div class="long-text structured-text" id="roe-container">
+        
+        <div id="eof-page"></div>
+      </div>
+      <div class="content-rightbar">
+        <div id="major-content-right" class="small-refutable">
+          <div class="loading">
+            <img src="../picto/loader.black.svg" alt="loading..." />
+          </div>
         </div>
       </div>
     </div>
   </div>
-  
+  <div id="major-content-bottom">
+    <div class="loading">
+      <img src="../picto/loader.black.svg" alt="loading..." />
+    </div>
+  </div>
 </div>
 <script>
   planet.suspend(function() {
-    planet.diary.boot({
-      context: document.querySelector(
-        "textarea[data-planet-qexp='global-context']"
+    planet.story.boot({
+      path: "/shorts/todolist.html",
+      eof: document.getElementById("eof-page"),
+      story: document.querySelector(
+        "textarea[data-planet-qexp='story']"
       ),
-      calendarBox: document.querySelector(".calendar-view"),
-      titleBox: document.querySelector(".entries-title"),
-      statisticBox: document.querySelector(".global-statistics"),
-      entryBox: document.querySelector(".logs-container"),
-      sectors: document.querySelectorAll(
-        "#planet-sectors-metadata > .sector-data"
+      rightContainer: document.getElementById(
+        "major-content-right"
+      ),
+      bottomContainer: document.getElementById(
+        "major-content-bottom"
+      ),
+      resumeDetails: document.getElementById(
+        "resume-details"
       )
     });
+  });
+  planet.suspend(function() {
+    planet.roe.mount(
+      document.getElementById("roe-container")
+    );
   });
 </script>
 
@@ -120,18 +126,18 @@
           <br /><br />
           Cette page est construite avec
           <a href="https://jaspervdj.be/hakyll/">Hakyll</a> et
-          <a href="./projects/planet.html">Planet</a>.
+          <a href="../projects/planet.html">Planet</a>.
           <br />
           Le contenu est distribué sous licence
           <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a>.
         </div>
         <div class="center">
           <a href="http://webring.xxiivv.com/#random" target="_blank">
-            <img class="pictogram" src="./picto/webring.black.svg" alt="webring-logo" />
+            <img class="pictogram" src="../picto/webring.black.svg" alt="webring-logo" />
           </a>
         </div>
         <div class="right">
-          <a href="./xavier.html">Xavier Van de Woestyne</a> ©<br />
+          <a href="../xavier.html">Xavier Van de Woestyne</a> ©<br />
           2017-2020
         </div>
       </div>
