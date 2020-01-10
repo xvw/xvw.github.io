@@ -17,17 +17,17 @@
    "releases": [], "status": "unceasing",
    "tags": ["log", "web", "ocaml", "journal", "blog", "hakyll"],
    "picto": "planet", "indexed": true, "subprojects": []},
-  {"name": "preface", "published": false, "title": "Preface",
-    "synopsis": "Une bibliothèque OCaml qui permet la manipulation d'objets théoriques de la programmation fonctionnelle",
-    "repo": "https://github.com/xvw/preface", "license": "mit", "links": {
-    }, "releases": [], "status": "wip", "tags": ["library", "ocaml"],
-    "picto": null, "indexed": true, "subprojects": []},
   {"name": "rme", "published": false, "title": "RME",
     "synopsis": "Un DSL pour faciliter le développement de jeux avec RPG Maker VXAce",
     "repo": "https://github.com/rmex/rme", "license": "mit", "links": {
     }, "releases": [], "status": "unceasing",
     "tags": ["game", "rpgmaker", "rme", "vxace", "ruby"], "picto": null,
     "indexed": true, "subprojects": []},
+  {"name": "preface", "published": false, "title": "Preface",
+    "synopsis": "Une bibliothèque OCaml qui permet la manipulation d'objets théoriques de la programmation fonctionnelle",
+    "repo": "https://github.com/xvw/preface", "license": "mit", "links": {
+    }, "releases": [], "status": "wip", "tags": ["library", "ocaml"],
+    "picto": null, "indexed": true, "subprojects": []},
   {"name": "brainfocaml", "published": true, "title": "Brainfocaml",
     "synopsis": "Boite à outils autour de l'interprétation/exécution de Brainfuck",
     "repo": "https://github.com/xvw/brainfocaml", "license": "mit",
