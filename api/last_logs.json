@@ -1,6 +1,9 @@
-[{"uuid": "fef35b9e-9851-4d79-cf73-9c894801865b", "date": "020A09",
-   "duration": 340, "sector": "visual", "project": "planet",
-   "label": "Interface graphique (et implémentation) de l'affichage des tâches"},
+[{"uuid": "d9c3a14f-fa9f-a7d5-33c6-917c095e09c0", "date": "020A10",
+   "duration": 15, "sector": "programming", "project": "planet",
+   "label": "Ajout du projet dans la liste des tâches"},
+  {"uuid": "fef35b9e-9851-4d79-cf73-9c894801865b", "date": "020A09",
+    "duration": 340, "sector": "visual", "project": "planet",
+    "label": "Interface graphique (et implémentation) de l'affichage des tâches"},
   {"uuid": "26ed5b37-63d4-1e88-2fc1-62987bc3af36", "date": "020A08",
     "duration": 120, "sector": "programming", "project": "planet",
     "label": "Sérialisation des tâches en JSON et intégration dans la routine de construction"},
@@ -9,7 +12,4 @@
     "label": "Checklist de la todo-list modifiable"},
   {"uuid": "34ce642c-878b-0e3a-8462-39577fe46b1a", "date": "020A06",
     "duration": 30, "sector": "visual", "project": "planet",
-    "label": "Légère réorganisation des pages (localisation/activité)"},
-  {"uuid": "714bd325-4365-5abc-3a86-ec3724538e92", "date": "020A05",
-    "duration": 120, "sector": "programming", "project": "planet",
-    "label": "Progrès sur le gestionnaire de tâches"}]
+    "label": "Légère réorganisation des pages (localisation/activité)"}]

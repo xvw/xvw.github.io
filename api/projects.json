@@ -112,4 +112,9 @@
     "repo": "https://github.com/xvw/rutsch", "license": "mit", "links": {
     }, "releases": [], "status": "wip",
     "tags": ["slides", "mvp", "web", "talk", "presentation"], "picto": null,
+    "indexed": true, "subprojects": []},
+  {"name": "cooketery", "published": false, "title": "Cooketery",
+    "synopsis": "Un langage de programmation pour exprimer des recettes de cuisines",
+    "repo": null, "license": "mit", "links": {}, "releases": [],
+    "status": "wip", "tags": ["language", "cooking"], "picto": null,
     "indexed": true, "subprojects": []}]
