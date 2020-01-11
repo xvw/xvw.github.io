@@ -1,6 +1,9 @@
-[{"uuid": "d9c3a14f-fa9f-a7d5-33c6-917c095e09c0", "date": "020A10",
-   "duration": 15, "sector": "programming", "project": "planet",
-   "label": "Ajout du projet dans la liste des tâches"},
+[{"uuid": "7c18368e-415a-a552-77fe-667de00f77ec", "date": "020A11",
+   "duration": 300, "sector": "programming", "project": "rme",
+   "label": "Implémentation de commandes pour la version 2.1.0"},
+  {"uuid": "d9c3a14f-fa9f-a7d5-33c6-917c095e09c0", "date": "020A10",
+    "duration": 15, "sector": "programming", "project": "planet",
+    "label": "Ajout du projet dans la liste des tâches"},
   {"uuid": "e6768506-123c-04c9-2fba-50644f033de2", "date": "020A10",
     "duration": 30, "sector": "maintenance", "project": "rme",
     "label": "Choix des fonctionnalités à implémenter pour la version 2.1.0 de RME"},
@@ -9,7 +12,4 @@
     "label": "Interface graphique (et implémentation) de l'affichage des tâches"},
   {"uuid": "26ed5b37-63d4-1e88-2fc1-62987bc3af36", "date": "020A08",
     "duration": 120, "sector": "programming", "project": "planet",
-    "label": "Sérialisation des tâches en JSON et intégration dans la routine de construction"},
-  {"uuid": "33726ef3-2df0-8391-109a-31f5d0b039cc", "date": "020A06",
-    "duration": 300, "sector": "programming", "project": "planet",
-    "label": "Checklist de la todo-list modifiable"}]
+    "label": "Sérialisation des tâches en JSON et intégration dans la routine de construction"}]
