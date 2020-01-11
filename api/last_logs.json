@@ -4,12 +4,12 @@
   {"uuid": "ff8c4c4d-d3c0-88b6-f840-a82d9664c7f0", "date": "020A11",
     "duration": 200, "sector": "maintenance", "project": "rme",
     "label": "Correctifs de bogues sur RME 2.1.0"},
+  {"uuid": "4bf434df-8499-2532-cd9a-c283cfa23810", "date": "020A11",
+    "duration": 120, "sector": "programming", "project": "rme",
+    "label": "Implémentation des boucles dans le DSL"},
   {"uuid": "d9c3a14f-fa9f-a7d5-33c6-917c095e09c0", "date": "020A10",
     "duration": 15, "sector": "programming", "project": "planet",
     "label": "Ajout du projet dans la liste des tâches"},
   {"uuid": "e6768506-123c-04c9-2fba-50644f033de2", "date": "020A10",
     "duration": 30, "sector": "maintenance", "project": "rme",
-    "label": "Choix des fonctionnalités à implémenter pour la version 2.1.0 de RME"},
-  {"uuid": "fef35b9e-9851-4d79-cf73-9c894801865b", "date": "020A09",
-    "duration": 340, "sector": "visual", "project": "planet",
-    "label": "Interface graphique (et implémentation) de l'affichage des tâches"}]
+    "label": "Choix des fonctionnalités à implémenter pour la version 2.1.0 de RME"}]
