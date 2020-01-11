@@ -93,7 +93,7 @@
                                "description": "Finaliser l'implémentation de la version 2.1.0 de RME et en faire une release",
                                "checklist": [{"checked": true,
                                                "label": "Choisir les nouveautés"},
-                                              {"checked": false,
+                                              {"checked": true,
                                                 "label": "Implémenter les nouveautés"},
                                               {"checked": false,
                                                 "label": "Créer une release"},
