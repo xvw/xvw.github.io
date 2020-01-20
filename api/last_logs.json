@@ -1,6 +1,9 @@
-[{"uuid": "f5ad590c-5adc-36bf-952f-fa17cb3e83d4", "date": "020A17",
-   "duration": 10, "sector": "visual", "project": "rme",
-   "label": "Création du Pictogramme"},
+[{"uuid": "f3d81d05-01e4-a8f9-0cc6-23378eaaff42", "date": "020A20",
+   "duration": 120, "sector": "programming", "project": "preface",
+   "label": "Implémentation des traversables"},
+  {"uuid": "f5ad590c-5adc-36bf-952f-fa17cb3e83d4", "date": "020A17",
+    "duration": 10, "sector": "visual", "project": "rme",
+    "label": "Création du Pictogramme"},
   {"uuid": "b9e75f1a-3d0c-9f73-7b6d-4dac2ab5bb96", "date": "020A17",
     "duration": 120, "sector": "writing", "project": "rme",
     "label": "Rédaction de la présentation"},
@@ -9,7 +12,4 @@
     "label": "Correction pour l'implémentation des boucles et amélioration des retours d'erreur"},
   {"uuid": "7c18368e-415a-a552-77fe-667de00f77ec", "date": "020A11",
     "duration": 300, "sector": "programming", "project": "rme",
-    "label": "Implémentation de commandes pour la version 2.1.0"},
-  {"uuid": "ff8c4c4d-d3c0-88b6-f840-a82d9664c7f0", "date": "020A11",
-    "duration": 200, "sector": "maintenance", "project": "rme",
-    "label": "Correctifs de bogues sur RME 2.1.0"}]
+    "label": "Implémentation de commandes pour la version 2.1.0"}]
