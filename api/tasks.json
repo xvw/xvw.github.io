@@ -78,7 +78,7 @@
                                              {"checked": true, "label": "Try"},
                                              {"checked": true,
                                                "label": "Validation"},
-                                             {"checked": false,
+                                             {"checked": true,
                                                "label": "Documentation"},
                                              {"checked": true,
                                                "label": "Tests"},
