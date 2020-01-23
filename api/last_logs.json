@@ -1,6 +1,9 @@
-[{"uuid": "e7902b13-bb47-8bae-c93c-096a4ad6afeb", "date": "020A22",
+[{"uuid": "28f6566c-12a5-f952-8405-33ecaec363d8", "date": "020A23",
    "duration": 120, "sector": "programming", "project": "preface",
-   "label": "Implémentation des modules Try et Validation et amélioration des tests"},
+   "label": "Documentation et test pour Validation et Try"},
+  {"uuid": "e7902b13-bb47-8bae-c93c-096a4ad6afeb", "date": "020A22",
+    "duration": 120, "sector": "programming", "project": "preface",
+    "label": "Implémentation des modules Try et Validation et amélioration des tests"},
   {"uuid": "e98243ca-5a13-a32b-1551-37e13b870daf", "date": "020A22",
     "duration": 180, "sector": "programming", "project": "preface",
     "label": "Documentation et test pour Traversable, List, Try et Validation"},
@@ -9,7 +12,4 @@
     "label": "Légère modification des couleurs et de l'UI"},
   {"uuid": "f3d81d05-01e4-a8f9-0cc6-23378eaaff42", "date": "020A20",
     "duration": 120, "sector": "programming", "project": "preface",
-    "label": "Implémentation des traversables"},
-  {"uuid": "f5ad590c-5adc-36bf-952f-fa17cb3e83d4", "date": "020A17",
-    "duration": 10, "sector": "visual", "project": "rme",
-    "label": "Création du Pictogramme"}]
+    "label": "Implémentation des traversables"}]
