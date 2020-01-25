@@ -1,6 +1,9 @@
 [{"uuid": "4f1a97e8-8d34-f2f9-826f-e532f77d2bcd", "date": "020A25",
    "duration": 30, "sector": "programming", "project": "planet",
    "label": "Initialisation du modèle des images pour les galeries"},
+  {"uuid": "f76de290-bb4c-531f-5b2c-e17ef5d0703f", "date": "020A25",
+    "duration": 60, "sector": "programming", "project": "planet",
+    "label": "Implémentation des galeries"},
   {"uuid": "58e02b83-9fb1-c8a3-9f6c-993a65abee04", "date": "020A24",
     "duration": 120, "sector": "visual", "project": null,
     "label": "Quelques croquis en noir et blanc (non conservés pour la majeure partie...)"},
@@ -9,7 +12,4 @@
     "label": "Documentation et test pour Validation et Try"},
   {"uuid": "e7902b13-bb47-8bae-c93c-096a4ad6afeb", "date": "020A22",
     "duration": 120, "sector": "programming", "project": "preface",
-    "label": "Implémentation des modules Try et Validation et amélioration des tests"},
-  {"uuid": "e98243ca-5a13-a32b-1551-37e13b870daf", "date": "020A22",
-    "duration": 180, "sector": "programming", "project": "preface",
-    "label": "Documentation et test pour Traversable, List, Try et Validation"}]
+    "label": "Implémentation des modules Try et Validation et amélioration des tests"}]
