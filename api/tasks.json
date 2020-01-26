@@ -117,7 +117,7 @@
                                                 "label": "Modèle pour les galeries"},
                                               {"checked": true,
                                                 "label": "Upload des images via Hakyll"},
-                                              {"checked": false,
+                                              {"checked": true,
                                                 "label": "Création du binaire pour construire les galeries"},
                                               {"checked": false,
                                                 "label": "Intégration des galeries dans le processus de build"}],
