@@ -42,31 +42,81 @@
           <a href="../../tags.html">Tags</a>
           <a href="../../longs.html">Articles</a>
           <a href="../../projects.html">Projets</a>
+          <a href="../../galleries.html">Galeries</a>
           <a href="../../journal.html">Activité</a>
         </nav>
       </div>
       <div class="main-block">
-        <p>Description de Brouillard à Lille</p>
-
-<div class="qexp-metadata" id="gallery-qexp-metadata">
-  <textarea data-planet-qexp="gallery">(:name "Brouillard à Lille") (:permalink "mist-lille")
+        <div class="container base-content uniq-content">
+  <div class="qexp-metadata" id="gallery-qexp-metadata">
+    <textarea data-planet-qexp="gallery">(:name "Brouillard à Lille") (:permalink "mist-lille")
 (:content ("external" #org "./galleries/mist-lille.org"))
 (:description "Quelques photos prises un soir de brouillard à Lille")
 (:updated_at "020A26") (:tags ("photo" "brouillard")) (:kind "photography")
 (:pictures
   (((:name "Brouillard 4") (:description "Une soirée brumeuse à Lille")
      (:date "020A21") (:tools ()) (:tags ("brouillard"))
-     (:place ("france" "lille")) (:image "./images/photographs/mist-4.png"))
+     (:place ("france" "lille")) (:image "/images/photographs/mist-4.png"))
     ((:name "Brouillard 3") (:description "Une soirée brumeuse à Lille")
       (:date "020A21") (:tools ()) (:tags ("brouillard"))
-      (:place ("france" "lille")) (:image "./images/photographs/mist-3.png"))
+      (:place ("france" "lille")) (:image "/images/photographs/mist-3.png"))
     ((:name "Brouillard 2") (:description "Une soirée brumeuse à Lille")
       (:date "020A21") (:tools ()) (:tags ("brouillard"))
-      (:place ("france" "lille")) (:image "./images/photographs/mist-2.png"))
+      (:place ("france" "lille")) (:image "/images/photographs/mist-2.png"))
     ((:name "Brouillard 1") (:description "Une soirée brumeuse à Lille")
       (:date "020A21") (:tools ()) (:tags ("brouillard"))
-      (:place ("france" "lille")) (:image "./images/photographs/mist-1.png"))))</textarea>
+      (:place ("france" "lille")) (:image "/images/photographs/mist-1.png"))))</textarea>
+  </div>
+  <div class="content-page">
+    <div class="major-header">
+      <div class="major-details">
+        <h1>Brouillard à Lille</h1>
+        <span class="synopsis">
+          Quelques photos prises un soir de brouillard à Lille
+        </span>
+        <div class="project-badges">
+          <span class="badge updated">2020-01-26</span>
+          <span class="badge counter">4</span>
+        </div>
+      </div>
+    </div>
+    <div class="major-content">
+      <div class="long-text structured-text" id="roe-container">
+        <p>Description de Brouillard à Lille</p>
+        <div class="list-images-gallery">
+          <h3>Images</h3>
+          <div id="gallery-container">
+            <div class="loading">
+              <img src="../../picto/loader.black.svg" alt="loading..." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-rightbar">
+        <div id="major-content-right" class="small-refutable">
+          <div class="loading">
+            <img src="../../picto/loader.black.svg" alt="loading..." />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<script>
+  planet.suspend(function() {
+    planet.gallery.boot({
+      gallery: document.querySelector(
+        "textarea[data-planet-qexp='gallery']"
+      ),
+      container: document.getElementById(
+        'gallery-container'
+      ),
+      rightContainer: document.getElementById(
+        "major-content-right"
+      )
+    });
+  });
+</script>
 
       </div>
     </main>
