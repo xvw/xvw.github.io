@@ -1,6 +1,9 @@
 [{"uuid": "4c807cd4-ffe5-e416-f1c8-0a0874afcc0c", "date": "020A31",
    "duration": 120, "sector": "visual", "project": "planet",
    "label": "Intégration des galeries dans l'application web"},
+  {"uuid": "4e434e59-ed41-96be-bb87-152369a42076", "date": "020A31",
+    "duration": 30, "sector": "programming", "project": "planet",
+    "label": "Intégration des galeries dans les tags"},
   {"uuid": "057f63f7-12e3-17f9-1545-119fb3818367", "date": "020A30",
     "duration": 20, "sector": "maintenance", "project": "planet",
     "label": "Correctif du build Hakyll"},
@@ -9,7 +12,4 @@
     "label": "Légère modification visuelle pour les tags"},
   {"uuid": "8e78b66e-89a9-b8ca-7c68-e868fe84af4d", "date": "020A29",
     "duration": 60, "sector": "programming", "project": "planet",
-    "label": "Intégration des galeries dans le processus de compilation"},
-  {"uuid": "f09ba1d3-f69f-7ccc-7222-a89797211447", "date": "020A28",
-    "duration": 10, "sector": "programming", "project": "preface",
-    "label": "Correctif pour les Traversables"}]
+    "label": "Intégration des galeries dans le processus de compilation"}]
