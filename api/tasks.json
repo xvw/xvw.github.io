@@ -18,7 +18,7 @@
                                            "label": "Documenter"}],
                           "tags": ["cooking", "language"], "date": "020A10",
                           "openingDate": null, "closingDate": null,
-                          "engagementDate": "020D01"}]},
+                          "engagementDate": null}]},
   "opened": {"total": 5,
               "tasks": [{"state": "opened", "uuid": "TASK-12",
                           "project": "planet",
