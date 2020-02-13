@@ -1,6 +1,9 @@
-[{"uuid": "767e65ac-86f1-9a84-56dc-33980fd1837f", "date": "020B12",
-   "duration": 60, "sector": "maintenance", "project": "planet",
-   "label": "Amélioration de la définition de l'état par défaut des tâches"},
+[{"uuid": "a37c5396-0103-dac2-00b4-b227f2e2b7f4", "date": "020B13",
+   "duration": 120, "sector": "maintenance", "project": null,
+   "label": "Maintenance des paquets jsoo_storage et jsoo_broadcastchannel"},
+  {"uuid": "767e65ac-86f1-9a84-56dc-33980fd1837f", "date": "020B12",
+    "duration": 60, "sector": "maintenance", "project": "planet",
+    "label": "Amélioration de la définition de l'état par défaut des tâches"},
   {"uuid": "f5db755d-9b1e-3a49-fa03-2873330ec2bc", "date": "020B10",
     "duration": 200, "sector": "writing", "project": null,
     "label": "Progression de l'écriture du talk sur les effets"},
@@ -9,7 +12,4 @@
     "label": "Rédaction du script de la présentation sur les effets"},
   {"uuid": "4c807cd4-ffe5-e416-f1c8-0a0874afcc0c", "date": "020A31",
     "duration": 120, "sector": "visual", "project": "planet",
-    "label": "Intégration des galeries dans l'application web"},
-  {"uuid": "4e434e59-ed41-96be-bb87-152369a42076", "date": "020A31",
-    "duration": 30, "sector": "programming", "project": "planet",
-    "label": "Intégration des galeries dans les tags"}]
+    "label": "Intégration des galeries dans l'application web"}]
