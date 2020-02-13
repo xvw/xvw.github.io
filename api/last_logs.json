@@ -4,12 +4,12 @@
   {"uuid": "63b724d7-ae90-16b8-41b4-7eb0eda3fd52", "date": "020B13",
     "duration": 60, "sector": "visual", "project": null,
     "label": "Illustrations variées (et ratées)"},
+  {"uuid": "bc38dda4-2807-5680-8881-bd7443e36004", "date": "020B13",
+    "duration": 60, "sector": "maintenance", "project": null,
+    "label": "Correctif des dépendances de jsoo_broadcastchannel et jsoo_storage"},
   {"uuid": "767e65ac-86f1-9a84-56dc-33980fd1837f", "date": "020B12",
     "duration": 60, "sector": "maintenance", "project": "planet",
     "label": "Amélioration de la définition de l'état par défaut des tâches"},
   {"uuid": "f5db755d-9b1e-3a49-fa03-2873330ec2bc", "date": "020B10",
     "duration": 200, "sector": "writing", "project": null,
-    "label": "Progression de l'écriture du talk sur les effets"},
-  {"uuid": "e91e0bb9-9b15-0c5e-c46d-32ad0883f2f2", "date": "020B09",
-    "duration": 320, "sector": "writing", "project": null,
-    "label": "Rédaction du script de la présentation sur les effets"}]
+    "label": "Progression de l'écriture du talk sur les effets"}]
