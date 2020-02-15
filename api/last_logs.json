@@ -1,6 +1,9 @@
-[{"uuid": "a37c5396-0103-dac2-00b4-b227f2e2b7f4", "date": "020B13",
-   "duration": 120, "sector": "maintenance", "project": null,
-   "label": "Maintenance des paquets jsoo_storage et jsoo_broadcastchannel"},
+[{"uuid": "9a74d2eb-f803-7b02-6292-9c923f0bcc26", "date": "020B15",
+   "duration": 320, "sector": "programming", "project": "diarium",
+   "label": "Initiation du projet et organisation du dépôt"},
+  {"uuid": "a37c5396-0103-dac2-00b4-b227f2e2b7f4", "date": "020B13",
+    "duration": 120, "sector": "maintenance", "project": null,
+    "label": "Maintenance des paquets jsoo_storage et jsoo_broadcastchannel"},
   {"uuid": "63b724d7-ae90-16b8-41b4-7eb0eda3fd52", "date": "020B13",
     "duration": 60, "sector": "visual", "project": null,
     "label": "Illustrations variées (et ratées)"},
@@ -9,7 +12,4 @@
     "label": "Correctif des dépendances de jsoo_broadcastchannel et jsoo_storage"},
   {"uuid": "767e65ac-86f1-9a84-56dc-33980fd1837f", "date": "020B12",
     "duration": 60, "sector": "maintenance", "project": "planet",
-    "label": "Amélioration de la définition de l'état par défaut des tâches"},
-  {"uuid": "f5db755d-9b1e-3a49-fa03-2873330ec2bc", "date": "020B10",
-    "duration": 200, "sector": "writing", "project": null,
-    "label": "Progression de l'écriture du talk sur les effets"}]
+    "label": "Amélioration de la définition de l'état par défaut des tâches"}]
