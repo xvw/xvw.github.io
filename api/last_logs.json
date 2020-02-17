@@ -1,6 +1,9 @@
-[{"uuid": "9a74d2eb-f803-7b02-6292-9c923f0bcc26", "date": "020B15",
-   "duration": 320, "sector": "programming", "project": "diarium",
-   "label": "Initiation du projet et organisation du dépôt"},
+[{"uuid": "58eb909e-b1a4-29ab-59c9-05d7643d6d6a", "date": "020B17",
+   "duration": 600, "sector": "research", "project": null,
+   "label": "Recherches et expérimentations variées sur les modules, les effets et les flèches"},
+  {"uuid": "9a74d2eb-f803-7b02-6292-9c923f0bcc26", "date": "020B15",
+    "duration": 320, "sector": "programming", "project": "diarium",
+    "label": "Initiation du projet et organisation du dépôt"},
   {"uuid": "3d3b8c8b-ddbc-bc58-eec5-6005eeac9753", "date": "020B15",
     "duration": 45, "sector": "maintenance", "project": "preface",
     "label": "Utilisation des actions Github OCaml"},
@@ -9,7 +12,4 @@
     "label": "Initiation du module Unix"},
   {"uuid": "a37c5396-0103-dac2-00b4-b227f2e2b7f4", "date": "020B13",
     "duration": 120, "sector": "maintenance", "project": null,
-    "label": "Maintenance des paquets jsoo_storage et jsoo_broadcastchannel"},
-  {"uuid": "63b724d7-ae90-16b8-41b4-7eb0eda3fd52", "date": "020B13",
-    "duration": 60, "sector": "visual", "project": null,
-    "label": "Illustrations variées (et ratées)"}]
+    "label": "Maintenance des paquets jsoo_storage et jsoo_broadcastchannel"}]
