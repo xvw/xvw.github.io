@@ -7,7 +7,7 @@
               "rme", "rpgmaker", "ruby", "structure", "typage",
               "télévision", "vxace", "web", "zipper"],
   "contents": [{"title": "Planet", "section": "project", "id": "planet",
-                 "date": "020B12",
+                 "date": "020B28",
                  "description": "Une collection d'outils pour construire ma page personnelle",
                  "tags": ["log", "web", "ocaml", "journal", "blog", "hakyll"]},
                 {"title": "Brouillard à Lille", "section": "photography",
