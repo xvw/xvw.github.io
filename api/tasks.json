@@ -98,7 +98,7 @@
                                              {"checked": true, "label": "GDG"},
                                              {"checked": false,
                                                "label": "DevoxxFR"},
-                                             {"checked": true,
+                                             {"checked": false,
                                                "label": "Mixit"}],
                               "tags": ["talk", "programming", "effect",
                                         "functional"], "date": "020A06",
