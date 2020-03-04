@@ -1,6 +1,9 @@
-[{"uuid": "954a2b88-1b2d-cfc4-0270-805415fbec83", "date": "020B28",
-   "duration": 120, "sector": "writing", "project": "planet",
-   "label": "Initialisation d'un article sur les effets algébriques"},
+[{"uuid": "1b457823-905c-3e38-a5ba-89436cc44040", "date": "020C02",
+   "duration": 320, "sector": "writing", "project": "planet",
+   "label": "Rédaction d'un article sur les effets et leurs gestionnaires"},
+  {"uuid": "954a2b88-1b2d-cfc4-0270-805415fbec83", "date": "020B28",
+    "duration": 120, "sector": "writing", "project": "planet",
+    "label": "Initialisation d'un article sur les effets algébriques"},
   {"uuid": "80ad9b1e-c9a9-3cf5-3e44-4202c8d4c5a9", "date": "020B27",
     "duration": 320, "sector": "writing", "project": null,
     "label": "Finalisation du talk sur les effets pour le GDG"},
@@ -9,7 +12,4 @@
     "label": "Préparation du talk sur les effets pour le GDG"},
   {"uuid": "0a619fc2-174e-4f1e-ae01-6f2c8b9541a9", "date": "020B25",
     "duration": 600, "sector": "writing", "project": null,
-    "label": "Ecriture du talk sur les effets pour le GDG"},
-  {"uuid": "f19ab90e-9347-b0ff-63b3-d026dda715a1", "date": "020B24",
-    "duration": 320, "sector": "writing", "project": null,
-    "label": "Ecriture du talk sur les gestionnaires d'effets en programmation fonctionnelle"}]
+    "label": "Ecriture du talk sur les effets pour le GDG"}]
