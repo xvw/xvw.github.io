@@ -8,16 +8,8 @@
         <name>Xavier Van de Woestyne</name>
         <email>xaviervdw@gmail.com</email>
     </author>
-    <updated>2020-03-05T00:00:00Z</updated>
+    <updated>2018-08-22T00:00:00Z</updated>
     <entry>
-    <title>Tests unitaires de fonctions impures</title>
-    <link href="https://xvw.github.io/longs/introduction_algebraic_effects.html" />
-    <id>https://xvw.github.io/longs/introduction_algebraic_effects.html</id>
-    <published>2020-03-05T00:00:00Z</published>
-    <updated>2020-03-05T00:00:00Z</updated>
-    <summary type="html"><![CDATA[Une introduction aux effets algébriques par le biais des tests unitaires.]]></summary>
-</entry>
-<entry>
     <title>Un article sur les monades en 2018</title>
     <link href="https://xvw.github.io/longs/introduction_aux_monades.html" />
     <id>https://xvw.github.io/longs/introduction_aux_monades.html</id>
