@@ -14,7 +14,7 @@
                  "tags": ["log", "web", "ocaml", "journal", "blog", "hakyll"]},
                 {"title": "Tests unitaires de fonctions impures",
                   "section": "long", "id": "introduction_algebraic_effects",
-                  "date": "020C05",
+                  "date": "020C10",
                   "description": "Une introduction aux effets algébriques par le biais des tests unitaires.",
                   "tags": ["programmation", "fonctionnelle", "pure",
                             "effets algébriques", "test unitaire", "koka",
