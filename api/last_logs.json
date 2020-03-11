@@ -1,6 +1,9 @@
-[{"uuid": "0e330f29-3a3b-0466-93e3-87967b803357", "date": "020C10",
-   "duration": 220, "sector": "writing", "project": "planet",
-   "label": "Progression sur l'article à propos des effets algébriques"},
+[{"uuid": "a9592aa2-0027-7e64-5e18-6ea2467f2625", "date": "020C11",
+   "duration": 60, "sector": "maintenance", "project": "planet",
+   "label": "Correction et remerciements de l'article sur les effets"},
+  {"uuid": "0e330f29-3a3b-0466-93e3-87967b803357", "date": "020C10",
+    "duration": 220, "sector": "writing", "project": "planet",
+    "label": "Progression sur l'article à propos des effets algébriques"},
   {"uuid": "a7b9b955-49bc-ec0a-1722-8896cf1ad688", "date": "020C09",
     "duration": 320, "sector": "writing", "project": "planet",
     "label": "Avancées sur l'articles à propos des effets algébriques"},
@@ -9,7 +12,4 @@
     "label": "Effets algébriques et leurs gestionnaires, expériences avec Koka"},
   {"uuid": "b3e12b8e-2649-2a67-199d-a19a6111d4ff", "date": "020C06",
     "duration": 300, "sector": "writing", "project": "planet",
-    "label": "Avancée sur l'article des effets algébriques"},
-  {"uuid": "91aa66df-8a6f-2e22-f0f2-e26aed44d84c", "date": "020C05",
-    "duration": 320, "sector": "writing", "project": "planet",
-    "label": "Articles sur les effets algébriques et les tests unitaires"}]
+    "label": "Avancée sur l'article des effets algébriques"}]
