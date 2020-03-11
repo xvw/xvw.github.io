@@ -1,6 +1,9 @@
 [{"uuid": "a9592aa2-0027-7e64-5e18-6ea2467f2625", "date": "020C11",
    "duration": 60, "sector": "maintenance", "project": "planet",
    "label": "Correction et remerciements de l'article sur les effets"},
+  {"uuid": "d453e17a-aa56-9d94-a1df-efdf0253f2b6", "date": "020C11",
+    "duration": 60, "sector": "research", "project": null,
+    "label": "Expériences avec Eff"},
   {"uuid": "0e330f29-3a3b-0466-93e3-87967b803357", "date": "020C10",
     "duration": 220, "sector": "writing", "project": "planet",
     "label": "Progression sur l'article à propos des effets algébriques"},
@@ -9,7 +12,4 @@
     "label": "Avancées sur l'articles à propos des effets algébriques"},
   {"uuid": "ff39e8ba-4d91-df29-054d-ea5bbeb1334b", "date": "020C08",
     "duration": 200, "sector": "research", "project": "planet",
-    "label": "Effets algébriques et leurs gestionnaires, expériences avec Koka"},
-  {"uuid": "b3e12b8e-2649-2a67-199d-a19a6111d4ff", "date": "020C06",
-    "duration": 300, "sector": "writing", "project": "planet",
-    "label": "Avancée sur l'article des effets algébriques"}]
+    "label": "Effets algébriques et leurs gestionnaires, expériences avec Koka"}]
