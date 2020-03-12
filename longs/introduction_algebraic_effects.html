@@ -400,7 +400,7 @@
 <p>La fonction n’est pas exécutable car Koka ne sait pas comment interpréter notre effet <code class="sourceCode ocaml">grumble</code>. Il faut donc lui fournir un gestionnaire.</p>
 <h3 id="notre-premier-gestionnaire">Notre premier gestionnaire</h3>
 <p>Maintenant que nous avons déclaré notre premier effet, nous allons l’interpréter ! Pour ça, Koka offre une construction syntaxique : <code class="sourceCode ocaml">my_handler_for_mumble{mumbling()</code>}</p>
-<p>Pour laquelle il faudra fournir une valeur pour <code class="sourceCode ocaml">my_handler_for_mumble</code>. L’inteprétation d’un effet est assez simple, il suffit de traiter les branches possibles de l’effet. Ici, c’est assez simple, nous n’en avons qu’une seule :</p>
+<p>Pour laquelle il faudra fournir une valeur pour <code class="sourceCode ocaml">my_handler_for_mumble</code>. L’inteprétation d’un effet est assez simple, il suffit de traiter les branches possibles de l’effet. Ici nous n’en avons qu’une seule :</p>
 <div class="sourceCode" id="cb24" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="9"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">val</span> mumble_handler = handler {</a>
 <a class="sourceLine" id="cb24-2" title="2">  grumble(message) -&gt; println(message)</a>
 <a class="sourceLine" id="cb24-3" title="3">}</a>
@@ -408,7 +408,7 @@
 <a class="sourceLine" id="cb24-5" title="5">// On peut maintenant exécuter notre programme à effet !</a>
 <a class="sourceLine" id="cb24-6" title="6">mumble_handler{ mumbling() }</a>
 <a class="sourceLine" id="cb24-7" title="7">// Affichera sur la sortie standard <span class="st">&quot;Hello World!&quot;</span></a></code></pre></div>
-<p>Concrètement, on défini une variable qui va, pour chaque effet possible, proposer <strong>une réaction à l’émission d’un effet</strong>. L’application de notre gestionnaire n’est pas pure, par contre, la description de notre programme l’est entièrement. Par contre, si dans mon gestionnaire, j’avais propagé un effet n’ayant pas de gestionnaire, j’aurais dû fournir un gestionnaire à mon gestionnaire ! Un peu à la manière de Haskell, utilisé <em>normalement</em>, l’écriture d’un gestionnaire implique de <strong>réduire un effet jusqu’a arriver</strong> <strong>à un effet attaché à un gestionnaire</strong>.</p>
+<p>Concrètement, on défini une variable qui va, pour chaque effet possible, proposer <strong>une réaction à l’émission d’un effet</strong>. L’application de notre gestionnaire n’est pas pure, par contre, la description de notre programme l’est entièrement. Si dans mon gestionnaire, j’avais propagé un effet n’ayant pas de gestionnaire, j’aurais dû fournir un gestionnaire à mon gestionnaire ! Un peu à la manière de Haskell, utilisé <em>normalement</em>, l’écriture d’un gestionnaire implique de <strong>réduire un effet jusqu’a arriver</strong> <strong>à un effet attaché à un gestionnaire</strong>.</p>
 <p>Essayons de voir si notre propagation/gestion d’effets est supérieur à ce que l’on avait écrit à base d’exceptions en émettant, dans notre fonction, deux fois l’effet <code class="sourceCode ocaml">grumble</code> :</p>
 <div class="sourceCode" id="cb25" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb25-1" title="1">effect mumble {</a>
 <a class="sourceLine" id="cb25-2" title="2">  <span class="kw">fun</span> grumble(message: <span class="dt">string</span>) : ()</a>
@@ -435,7 +435,7 @@
 <a class="sourceLine" id="cb26-4" title="4">     resume(()) // Reprend le calcul où l'effet a été émis</a>
 <a class="sourceLine" id="cb26-5" title="5">  }</a>
 <a class="sourceLine" id="cb26-6" title="6">}</a></code></pre></div>
-<p>Ce qui nous amène à une définition des effets algébriques relativement accessibles, ce sont <strong>des exceptions <em>resumables</em></strong>. Concrètement, quand on inteprète la description d’un programme au moyen d’un gestionnaire, ce gestionnaire peut continuer l’interprétation du calcul, ou l’interrompre.</p>
+<p>Ce qui nous amène à une définition des effets algébriques relativement accessibles, ce sont <strong>des exceptions <em>resumables</em></strong>. Concrètement, quand on inteprète la description d’un programme au moyen d’un gestionnaire, ce dernier peut décider de continuer l’interprétation du calcul, ou l’interrompre.</p>
 <p>Reprenons notre exemple initial, le programme qui demande le nom et qui affiche ensuite <code class="sourceCode ocaml"><span class="st">&quot;Hello $nom&quot;</span></code> et essayons de l’implémenter avec les effets algébriques de Koka. Premièrement, on défini les effets du programme :</p>
 <div class="sourceCode" id="cb27" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb27-1" title="1">effect interaction {</a>
 <a class="sourceLine" id="cb27-2" title="2">  <span class="kw">fun</span> show(message: <span class="dt">string</span>) : ()</a>
@@ -462,7 +462,7 @@
 <li><p>si le programme propage un <code class="sourceCode ocaml">show</code>, on affiche le message transporté par l’exécution de l’effet <code class="sourceCode ocaml">show</code> et on <strong>continue le programme</strong> en lui donnant <code class="sourceCode ocaml"><span class="dt">unit</span></code> ;</p></li>
 <li><p>si le programme propage un <code class="sourceCode ocaml">ask</code>, on utilise la primitive <code class="sourceCode ocaml">question</code> (qui existe dans la bibliothèque standard de Koka) et on <strong>continue le programme</strong> en lui passant le résultat de la lecture !</p></li>
 </ul>
-<p>Attention, si par mégarde, j’avais oublié de gérer un des cas, le compilateur aurait <strong>refusé de compiler</strong> mon programme, par exemple, cet intepréteur :</p>
+<p>Attention, si par mégarde, j’avais oublié de gérer un des cas, le compilateur aurait <strong>refusé de compiler</strong> mon programme. Par exemple, cet intepréteur :</p>
 <div class="sourceCode" id="cb30" data-roe-kind="code" data-pellet="Koka"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">val</span> hello_handler = handler {</a>
 <a class="sourceLine" id="cb30-2" title="2">  ask(message) -&gt; {</a>
 <a class="sourceLine" id="cb30-3" title="3">    <span class="kw">val</span> name = question(message)</a>
