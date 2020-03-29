@@ -1,6 +1,9 @@
-[{"uuid": "e8d3d58f-e106-27d4-0c9f-431ef6de57e7", "date": "020C27",
-   "duration": 30, "sector": "maintenance", "project": "preface",
-   "label": "Quelques petits correctifs (typo et nommage)"},
+[{"uuid": "80c29e73-6074-6ae1-86d9-53f7b5108b81", "date": "020C29",
+   "duration": 85, "sector": "visual", "project": "planet",
+   "label": "Legers correctifs temporaires sur la version responsive"},
+  {"uuid": "e8d3d58f-e106-27d4-0c9f-431ef6de57e7", "date": "020C27",
+    "duration": 30, "sector": "maintenance", "project": "preface",
+    "label": "Quelques petits correctifs (typo et nommage)"},
   {"uuid": "3373f5f5-f641-b732-a9ca-c1a36e6ba8f4", "date": "020C24",
     "duration": 120, "sector": "programming", "project": "preface",
     "label": "Expérimentation d'une nouvelle organisation"},
@@ -9,7 +12,4 @@
     "label": "Revue de Continuation"},
   {"uuid": "ff0510ac-6547-0392-92ae-b55322316a4e", "date": "020C15",
     "duration": 20, "sector": "maintenance", "project": "planet",
-    "label": "Correctif de l'article sur les effets"},
-  {"uuid": "03ca2dc1-39c9-848b-e954-95b62372d9c6", "date": "020C12",
-    "duration": 60, "sector": "maintenance", "project": "planet",
-    "label": "Corrections et précisions de l'article sur les effets"}]
+    "label": "Correctif de l'article sur les effets"}]

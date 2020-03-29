@@ -208,25 +208,29 @@
 <li>on propose <strong><code class="sourceCode haskell">Γ ⊢ e <span class="fu">:</span> τ</code></strong> soit “<em>une variable dans l’environnement</em> <em><code class="sourceCode haskell">Γ</code>, une expression <code class="sourceCode haskell">e</code> à le type <code class="sourceCode haskell">τ</code></em>”.</li>
 <li>on voudrait <strong><code class="sourceCode haskell">Γ ⊢ e <span class="fu">:</span> τ <span class="fu">&amp;</span> effects</code></strong> soit “<em>une variable dans</em> <em>l’environnement <code class="sourceCode haskell">Γ</code>, une expression <code class="sourceCode haskell">e</code> à le</em> <em>type <code class="sourceCode haskell">τ</code> et produit les effets <code class="sourceCode haskell">effects</code></em>”.</li>
 </ul>
-<p>Ce qui donnerait, par exemple, pour une fonction dont le rôle serait d’écrire sur la sortie standard un message et qui a généralement le type <code class="sourceCode ocaml"><span class="kw">val</span> <span class="dt">print_string</span> : <span class="dt">string</span> -&gt; <span class="dt">unit</span></code>, nous aurions plutôt cette signature <code class="sourceCode ocaml"><span class="kw">val</span> <span class="dt">print_string</span> : <span class="dt">string</span> -&gt; <span class="dt">unit</span> &amp; <span class="dt">output</span></code>, ce qui correspond à dire, au travers de la signature de type que même si la fonction ne renvoie rien, elle écrit aussi sur la sortie standard.</p>
+<p>Ce qui donnerait, par exemple, pour une fonction dont le rôle serait d’écrire sur la sortie standard un message et qui a généralement le type :</p>
+<div class="sourceCode" id="cb6" data-roe-kind="code"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">val</span> <span class="dt">print_string</span> : <span class="dt">string</span> -&gt; <span class="dt">unit</span></a></code></pre></div>
+<p>Nous aurions plutôt cette signature :</p>
+<div class="sourceCode" id="cb7" data-roe-kind="code"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">val</span> <span class="dt">print_string</span> : <span class="dt">string</span> -&gt; <span class="dt">unit</span> &amp; <span class="dt">output</span></a></code></pre></div>
+<p>ce qui correspond à dire, au travers de la signature de type que même si la fonction ne renvoie rien, elle écrit aussi sur la sortie standard.</p>
 <p>Pour résumer, un effet de bord est un effet qui n’est pas mis en lumière dans le programme, qui arrive donc de manière non contrôlé et que l’on voudrait éviter (dans la mesure du possible, il existe des effets que l’on ne peut pas du tout contrôler dans le programme, par exemple, si l’ordinateur qui l’exécute n’a plus assez de mémoire pour exécuter le programme). Une manière d’informer l’utilisateur ou l’utilisatrice qu’une fonction produit un effet serait de faire refléter les effets produits par une fonction dans sa signature de type. Les systèmes d’effets répondent en grande partie à ce genre problèmes et c’est ce que nous tâcherons de découvrir dans les rubriques suivantes !</p>
 <h2 id="transformation-de-fonctions-impures-en-fonctions-pures">Transformation de fonctions impures en fonctions pures</h2>
 <p>Maintenant que nous avons une idée globale de ce qu’est un effet, de ce que sont les fonctions pures et impures, nous allons pouvoir observer une première technique de “contrôle des effets” qui consiste <em>simplement</em> à transformer une fonction impure en fonction pure.</p>
 <p>Lorsque nous avons tâché de définir une fonction pure, nous avons évoqué le fait qu’une fonction devait être <strong>totale</strong>, soit que pour tout paramètre, elle doit avoir un résultat. Comme toute fonction qui n’est pas pure est impure, une fonction qui n’est pas totale est impure, donc on pourrait considérer que la non-totalité d’une fonction est un effet. De ce fait, prendre une fonction non-totale et la rendre totale serait une forme de gestion d’effets. Prenons par exemple la fonction OCaml <code class="sourceCode ocaml"><span class="dt">List</span>.hd</code> qui prend une liste et renvoie sa tête (son premier élément) et dont le type serait <code class="sourceCode ocaml"><span class="kw">val</span> hd : 'a <span class="dt">list</span> -&gt; 'a</code> :</p>
-<div class="sourceCode" id="cb6" data-roe-kind="code" data-pellet="OCaml" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">let</span> hd <span class="dt">list</span> = </a>
-<a class="sourceLine" id="cb6-2" title="2">  <span class="kw">match</span> <span class="dt">list</span> <span class="kw">with</span> </a>
-<a class="sourceLine" id="cb6-3" title="3">  | [] -&gt; <span class="dt">failwith</span> <span class="st">&quot;List.hd empty list&quot;</span></a>
-<a class="sourceLine" id="cb6-4" title="4">  | x :: _ -&gt; x</a></code></pre></div>
+<div class="sourceCode" id="cb8" data-roe-kind="code" data-pellet="OCaml" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">let</span> hd <span class="dt">list</span> = </a>
+<a class="sourceLine" id="cb8-2" title="2">  <span class="kw">match</span> <span class="dt">list</span> <span class="kw">with</span> </a>
+<a class="sourceLine" id="cb8-3" title="3">  | [] -&gt; <span class="dt">failwith</span> <span class="st">&quot;List.hd empty list&quot;</span></a>
+<a class="sourceLine" id="cb8-4" title="4">  | x :: _ -&gt; x</a></code></pre></div>
 <p>Concrètement, le type de cette fonction nous dit <em><strong>pour une liste de</strong></em> <em><strong><code class="sourceCode ocaml">'a</code> (donc de “quelque chose”), je renvoie un élément <code class="sourceCode ocaml">'a</code></strong></em>. Cette fonction n’est pas totale car il existe, ici, un cas pour lequel il n’existe pas de valeur possible. Le cas où la liste est vide, et qui engendre le lancement d’une exception.</p>
 <p>Pour rendre cette fonction totale, il suffit de trouver un nouveau type capable de représenter l’ensemble des valeurs possibles. Les langages fonctionnels statiquement typés ont popularisé l’utilisation d’un type spécifique qui permet de représenter la disjonction entre la présence de valeur ou son absence :</p>
-<div class="sourceCode" id="cb7" data-roe-kind="code" data-pellet="OCaml" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">type</span> 'a <span class="dt">option</span> = </a>
-<a class="sourceLine" id="cb7-2" title="2">  | <span class="dt">Some</span> <span class="kw">of</span> 'a </a>
-<a class="sourceLine" id="cb7-3" title="3">  | <span class="dt">None</span></a>
-<a class="sourceLine" id="cb7-4" title="4"></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="kw">let</span> hd <span class="dt">list</span> = </a>
-<a class="sourceLine" id="cb7-6" title="6">  <span class="kw">match</span> <span class="dt">list</span> <span class="kw">with</span> </a>
-<a class="sourceLine" id="cb7-7" title="7">  | [] -&gt; <span class="dt">None</span></a>
-<a class="sourceLine" id="cb7-8" title="8">  | x :: _ -&gt; <span class="dt">Some</span> x</a></code></pre></div>
+<div class="sourceCode" id="cb9" data-roe-kind="code" data-pellet="OCaml" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">type</span> 'a <span class="dt">option</span> = </a>
+<a class="sourceLine" id="cb9-2" title="2">  | <span class="dt">Some</span> <span class="kw">of</span> 'a </a>
+<a class="sourceLine" id="cb9-3" title="3">  | <span class="dt">None</span></a>
+<a class="sourceLine" id="cb9-4" title="4"></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="kw">let</span> hd <span class="dt">list</span> = </a>
+<a class="sourceLine" id="cb9-6" title="6">  <span class="kw">match</span> <span class="dt">list</span> <span class="kw">with</span> </a>
+<a class="sourceLine" id="cb9-7" title="7">  | [] -&gt; <span class="dt">None</span></a>
+<a class="sourceLine" id="cb9-8" title="8">  | x :: _ -&gt; <span class="dt">Some</span> x</a></code></pre></div>
 <p>Concrètement, le type <code class="sourceCode ocaml">'a <span class="dt">option</span></code> (qui exprime “<em>une option de quelque chose</em>”) est défini par deux constructeurs :</p>
 <ul>
 <li><code class="sourceCode ocaml"><span class="dt">Some</span> x</code> pour représenter la présence d’une valeur ;</li>
@@ -235,18 +239,18 @@
 <p>L’utilisation du type <code class="sourceCode ocaml"><span class="dt">option</span></code> altère le type de notre fonction, qui devient : <code class="sourceCode ocaml"><span class="kw">val</span> hd : 'a <span class="dt">list</span> -&gt; 'a <span class="dt">option</span></code> et rend notre fonction <strong>totale</strong>.</p>
 <p>Même si cette modification semble anodine, nous avons transformé une fonction impure en fonction pure. Cependant, le changement de type change sensiblement la sémantique de la fonction <code class="sourceCode ocaml">hd</code>. De ce fait, si l’on veut exécuter un programme qui utilise notre nouvelle fonction <code class="sourceCode ocaml">hd</code>, il faudra <strong>gérer manuellement le cas où nous n’avons pas de valeur</strong>.</p>
 <p>Construisons un programme qui affiche, sur la sortie standard, un message de bienvenue au premier prénom d’une liste de prénoms :</p>
-<div class="sourceCode" id="cb8" data-roe-kind="code" data-pellet="OCaml" data-line-number="true" data-line-start="9"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">let</span> () = </a>
-<a class="sourceLine" id="cb8-2" title="2">  <span class="kw">match</span> hd [<span class="st">&quot;Xavier&quot;</span>; <span class="st">&quot;Nicolas&quot;</span>] <span class="kw">with</span> </a>
-<a class="sourceLine" id="cb8-3" title="3">  | <span class="dt">None</span> -&gt; <span class="dt">Format</span>.printf <span class="st">&quot;Hello anonymous !&quot;</span></a>
-<a class="sourceLine" id="cb8-4" title="4">  | <span class="dt">Some</span> user -&gt; <span class="dt">Format</span>.printf <span class="st">&quot;Hello %s !&quot;</span> user</a></code></pre></div>
+<div class="sourceCode" id="cb10" data-roe-kind="code" data-pellet="OCaml" data-line-number="true" data-line-start="9"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">let</span> () = </a>
+<a class="sourceLine" id="cb10-2" title="2">  <span class="kw">match</span> hd [<span class="st">&quot;Xavier&quot;</span>; <span class="st">&quot;Nicolas&quot;</span>] <span class="kw">with</span> </a>
+<a class="sourceLine" id="cb10-3" title="3">  | <span class="dt">None</span> -&gt; <span class="dt">Format</span>.printf <span class="st">&quot;Hello anonymous !&quot;</span></a>
+<a class="sourceLine" id="cb10-4" title="4">  | <span class="dt">Some</span> user -&gt; <span class="dt">Format</span>.printf <span class="st">&quot;Hello %s !&quot;</span> user</a></code></pre></div>
 <p>A ce stade, notre fonction <code class="sourceCode ocaml">hd</code> a beau être pure, notre exécution ne l’est pas. Cependant, cela se rapproche de ce que l’on a esquissé en début d’article, la séparation entre <strong>la partie pure</strong> et <strong>la partie impure</strong>. Concrètement, on a <strong>un programme</strong>, dont le rôle est de décrire les opérations, et un <strong>gestionnaire de programme</strong> dont le rôle est d’exécuter la description du programme.</p>
 <p>C’est typiquement ce genre de transformation qu’utilise le langage <strong>Haskell</strong> pour ne permettre la manipulation que de fonctions pures.</p>
 <h3 id="aparté-sur-haskell">Aparté sur Haskell</h3>
 <p>Quand on se rend sur le <a href="https://haskell.org">site web de Haskell</a>, on peut y lire que Haskell est un langage de programmation fonctionnelle pure avancé.</p>
 <p>Haskell est l’archétype du langage fonctionnel pur, qui fait intensivement usage de la technique présentée dans la rubrique précédente, visant à transformer les effets en valeurs. Cependant, contrairement à l’exemple que nous avons présenté, le langage interdit les effets de bords, y comprit dans la fonction qui va <strong>interpréter</strong> une fonction produisant un effet. Pour comprendre où la magie opère, observons un “Hello World” en Haskell.</p>
-<div class="sourceCode" id="cb9" data-roe-kind="code" data-pellet="Haskell" data-line-number="true"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb9-1" title="1"><span class="ot">main ::</span> <span class="dt">IO</span> ()</a>
-<a class="sourceLine" id="cb9-2" title="2">main <span class="fu">=</span> </a>
-<a class="sourceLine" id="cb9-3" title="3">  <span class="fu">putStrLn</span> <span class="st">&quot;Hello World!&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb11" data-roe-kind="code" data-pellet="Haskell" data-line-number="true"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb11-1" title="1"><span class="ot">main ::</span> <span class="dt">IO</span> ()</a>
+<a class="sourceLine" id="cb11-2" title="2">main <span class="fu">=</span> </a>
+<a class="sourceLine" id="cb11-3" title="3">  <span class="fu">putStrLn</span> <span class="st">&quot;Hello World!&quot;</span></a></code></pre></div>
 <p>Ici, <code class="sourceCode haskell">main</code> est une valeur de type <code class="sourceCode haskell"><span class="dt">IO</span> ()</code>, on peut donc deviner le type de la fonction <code class="sourceCode haskell"><span class="fu">putStrLn</span></code> : <code class="sourceCode haskell"><span class="fu">putStrLn</span><span class="ot"> ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</code>. En fait, <code class="sourceCode haskell">main</code> est une fonction qui ne produit aucun effet, il s’agit simplement d’une variable de type <code class="sourceCode haskell"><span class="dt">IO</span> ()</code> ne <strong>faisant rien</strong>, comme l’indique le site web de Haskell sur sa page d’accueil (rubrique <strong>Purely functional</strong>) :</p>
 <div class="roe" data-roe-kind="quote" data-where="https://haskell.org">
 <p>Every function in Haskell is a function in the <strong>mathematical</strong> sense (i.e., “pure”). Even side-effecting IO operations are but a <strong>description</strong> of what to do, produced by <strong>pure</strong> code. There are no statements or instructions, only expressions which cannot mutate variables (local or global) nor access state like time or random numbers.</p>
@@ -279,92 +283,92 @@
 <li>un interpréteur capable d’effectuer une action concrète pour un effet donné (le fameux gestionnaire).</li>
 </ul>
 <p>Il serait possible de faire une projection très naïve de cette approche en Java, au moyen d’exceptions. Premièrement, on déclare les effets d’un programme :</p>
-<div class="sourceCode" id="cb10" data-roe-kind="code" data-pellet="Java" data-line-number="true" data-file="description des effets"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">public</span> <span class="kw">interface</span> MyEffects {} <span class="co">// Si seulement nous avions des familles</span></a>
-<a class="sourceLine" id="cb10-2" title="2">                              <span class="co">// scellées !</span></a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="kw">public</span> <span class="kw">class</span> MyFirstEffect <span class="kw">extends</span> <span class="bu">Exception</span> <span class="kw">implements</span> MyEffects {</a>
-<a class="sourceLine" id="cb10-5" title="5">  <span class="kw">public</span> <span class="fu">MyFirstEffect</span>(<span class="bu">String</span> message) {</a>
-<a class="sourceLine" id="cb10-6" title="6">    <span class="kw">super</span>(message);</a>
-<a class="sourceLine" id="cb10-7" title="7">  }</a>
-<a class="sourceLine" id="cb10-8" title="8">}</a>
-<a class="sourceLine" id="cb10-9" title="9"><span class="kw">public</span> <span class="kw">class</span> MySecondEffect <span class="kw">extends</span> <span class="bu">Exception</span> <span class="kw">implements</span> MyEffects {</a>
-<a class="sourceLine" id="cb10-10" title="10">  <span class="kw">public</span> <span class="fu">MySecondEffect</span>(<span class="bu">String</span> message) {</a>
-<a class="sourceLine" id="cb10-11" title="11">    <span class="kw">super</span>(message);</a>
-<a class="sourceLine" id="cb10-12" title="12">  }</a>
-<a class="sourceLine" id="cb10-13" title="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb12" data-roe-kind="code" data-pellet="Java" data-line-number="true" data-file="description des effets"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">public</span> <span class="kw">interface</span> MyEffects {} <span class="co">// Si seulement nous avions des familles</span></a>
+<a class="sourceLine" id="cb12-2" title="2">                              <span class="co">// scellées !</span></a>
+<a class="sourceLine" id="cb12-3" title="3"></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="kw">public</span> <span class="kw">class</span> MyFirstEffect <span class="kw">extends</span> <span class="bu">Exception</span> <span class="kw">implements</span> MyEffects {</a>
+<a class="sourceLine" id="cb12-5" title="5">  <span class="kw">public</span> <span class="fu">MyFirstEffect</span>(<span class="bu">String</span> message) {</a>
+<a class="sourceLine" id="cb12-6" title="6">    <span class="kw">super</span>(message);</a>
+<a class="sourceLine" id="cb12-7" title="7">  }</a>
+<a class="sourceLine" id="cb12-8" title="8">}</a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="kw">public</span> <span class="kw">class</span> MySecondEffect <span class="kw">extends</span> <span class="bu">Exception</span> <span class="kw">implements</span> MyEffects {</a>
+<a class="sourceLine" id="cb12-10" title="10">  <span class="kw">public</span> <span class="fu">MySecondEffect</span>(<span class="bu">String</span> message) {</a>
+<a class="sourceLine" id="cb12-11" title="11">    <span class="kw">super</span>(message);</a>
+<a class="sourceLine" id="cb12-12" title="12">  }</a>
+<a class="sourceLine" id="cb12-13" title="13">}</a></code></pre></div>
 <p>Ensuite on décrit notre programme, et chaque fois qu’il doit exécuter un effet, il lance une exception :</p>
-<div class="sourceCode" id="cb11" data-roe-kind="code" data-pellet="Java" data-line-number="true" data-line-start="14" data-file="description du programme"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">myProgram</span>(a: <span class="dt">int</span>) <span class="kw">throws</span> MyEffects {</a>
-<a class="sourceLine" id="cb11-2" title="2">   <span class="kw">if</span>(a == <span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb11-3" title="3">     <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MyFirstEffect</span>(<span class="st">&quot;a first effect&quot;</span>);</a>
-<a class="sourceLine" id="cb11-4" title="4">   } <span class="kw">else</span> {</a>
-<a class="sourceLine" id="cb11-5" title="5">     <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MySecondEffect</span>(<span class="st">&quot;a second effect&quot;</span>);</a>
-<a class="sourceLine" id="cb11-6" title="6">   }</a>
-<a class="sourceLine" id="cb11-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb13" data-roe-kind="code" data-pellet="Java" data-line-number="true" data-line-start="14" data-file="description du programme"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">myProgram</span>(a: <span class="dt">int</span>) <span class="kw">throws</span> MyEffects {</a>
+<a class="sourceLine" id="cb13-2" title="2">   <span class="kw">if</span>(a == <span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb13-3" title="3">     <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MyFirstEffect</span>(<span class="st">&quot;a first effect&quot;</span>);</a>
+<a class="sourceLine" id="cb13-4" title="4">   } <span class="kw">else</span> {</a>
+<a class="sourceLine" id="cb13-5" title="5">     <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MySecondEffect</span>(<span class="st">&quot;a second effect&quot;</span>);</a>
+<a class="sourceLine" id="cb13-6" title="6">   }</a>
+<a class="sourceLine" id="cb13-7" title="7">}</a></code></pre></div>
 <p>Et une fois que notre programme est décrit, on peut facilement en écrire son interpréteur, qui ici, ne consiste qu’en une succession de captures d’exception.</p>
-<div class="sourceCode" id="cb12" data-roe-kind="code" data-pellet="Java" data-line-number="true" data-line-start="21" data-file="interprétation du programme"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">main</span>() {</a>
-<a class="sourceLine" id="cb12-2" title="2">  <span class="kw">try</span> {</a>
-<a class="sourceLine" id="cb12-3" title="3">    <span class="fu">myProgram</span>();</a>
-<a class="sourceLine" id="cb12-4" title="4">  } <span class="kw">catch</span>(effect: MyFirstEffect) {</a>
-<a class="sourceLine" id="cb12-5" title="5">    <span class="co">// Do something with my first effect</span></a>
-<a class="sourceLine" id="cb12-6" title="6">  } <span class="kw">catch</span>(effect: MySecondEffect) {</a>
-<a class="sourceLine" id="cb12-7" title="7">   <span class="co">// Do something with my second effect</span></a>
-<a class="sourceLine" id="cb12-8" title="8">  }</a>
-<a class="sourceLine" id="cb12-9" title="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb14" data-roe-kind="code" data-pellet="Java" data-line-number="true" data-line-start="21" data-file="interprétation du programme"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">main</span>() {</a>
+<a class="sourceLine" id="cb14-2" title="2">  <span class="kw">try</span> {</a>
+<a class="sourceLine" id="cb14-3" title="3">    <span class="fu">myProgram</span>();</a>
+<a class="sourceLine" id="cb14-4" title="4">  } <span class="kw">catch</span>(effect: MyFirstEffect) {</a>
+<a class="sourceLine" id="cb14-5" title="5">    <span class="co">// Do something with my first effect</span></a>
+<a class="sourceLine" id="cb14-6" title="6">  } <span class="kw">catch</span>(effect: MySecondEffect) {</a>
+<a class="sourceLine" id="cb14-7" title="7">   <span class="co">// Do something with my second effect</span></a>
+<a class="sourceLine" id="cb14-8" title="8">  }</a>
+<a class="sourceLine" id="cb14-9" title="9">}</a></code></pre></div>
 <p>Ce programme à l’air de respecter les objectifs que nous avons posés car il reflète, dans sa signature, l’effet exécuté par le programme (au moyen de <code class="sourceCode java"><span class="kw">throws</span></code>) et on interpréte, ici dans <code class="sourceCode java">main</code> la description du programme, ce qui permettrait assez facilement de le tester unitairement.</p>
 <p>Malheureusement (et de manière assez prévisible), notre exemple fonctionne plus ou moins uniquement parce que l’exemple est incroyablement biaisé. L’expression <code class="sourceCode java"><span class="kw">throw</span> <span class="kw">new</span> ...</code> interrompt la fonction et remonte jusqu’a un gestionnaire qui prend en charge l’exception émise par l’appel de <code class="sourceCode java"><span class="kw">throw</span></code>. De ce fait, nous ne pouvons pas utiliser les exceptions pour exprimer l’exécution d’effets séquentiels, de cette manière :</p>
-<div class="sourceCode" id="cb13" data-roe-kind="code" data-pellet="Java" data-line-number="true"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">myProgram</span>(a: <span class="dt">int</span>) <span class="kw">throws</span> MyEffects {</a>
-<a class="sourceLine" id="cb13-2" title="2">  <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MyFirstEffect</span>(<span class="st">&quot;a first effect&quot;</span>);</a>
-<a class="sourceLine" id="cb13-3" title="3">  <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MySecondEffect</span>(<span class="st">&quot;a second effect&quot;</span>);</a>
-<a class="sourceLine" id="cb13-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb15" data-roe-kind="code" data-pellet="Java" data-line-number="true"><pre class="sourceCode java"><code class="sourceCode java"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">public</span> <span class="dt">void</span> <span class="fu">myProgram</span>(a: <span class="dt">int</span>) <span class="kw">throws</span> MyEffects {</a>
+<a class="sourceLine" id="cb15-2" title="2">  <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MyFirstEffect</span>(<span class="st">&quot;a first effect&quot;</span>);</a>
+<a class="sourceLine" id="cb15-3" title="3">  <span class="kw">throw</span> <span class="kw">new</span> <span class="fu">MySecondEffect</span>(<span class="st">&quot;a second effect&quot;</span>);</a>
+<a class="sourceLine" id="cb15-4" title="4">}</a></code></pre></div>
 <p>Dans cet exemple, l’exécution du second effet n’aura jamais lieu, parce que la capture de l’effet ne permet jamais de revenir à l’endroit où l’effet a été exécuté. Cela s’explique parce que la primitive <code class="sourceCode java"><span class="kw">throw</span></code> ne <strong>capture pas la continuation qui représente la suite du calcul</strong>. Rassurez-vous, les effets algébriques, eux, le font !</p>
 <p>Mais concrètement, qu’est ce qu’une continuation ? Informellement, la continuation d’un programme (ou d’une fonction) correspond à ce qu’il reste à évaluer. Par exemple :</p>
-<div class="sourceCode" id="cb14" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true" data-hl="3;4"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">fun</span> <span class="fu">f</span>() {</a>
-<a class="sourceLine" id="cb14-2" title="2">   println(<span class="st">&quot;Hello&quot;</span>)</a>
-<a class="sourceLine" id="cb14-3" title="3">   println(<span class="st">&quot;World&quot;</span>)</a>
-<a class="sourceLine" id="cb14-4" title="4">   println(<span class="st">&quot;How are you?&quot;</span>)</a>
-<a class="sourceLine" id="cb14-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb16" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true" data-hl="3;4"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">fun</span> <span class="fu">f</span>() {</a>
+<a class="sourceLine" id="cb16-2" title="2">   println(<span class="st">&quot;Hello&quot;</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3">   println(<span class="st">&quot;World&quot;</span>)</a>
+<a class="sourceLine" id="cb16-4" title="4">   println(<span class="st">&quot;How are you?&quot;</span>)</a>
+<a class="sourceLine" id="cb16-5" title="5">}</a></code></pre></div>
 <p>Après avoir exécuté la première ligne de la fonction, et avoir affiché <code class="sourceCode java"><span class="st">&quot;Hello World&quot;</span></code>, la continuation correspond aux deux lignes suivantes. Dans certains langages, comme <strong>JavaScript</strong>, il est parfois nécéssaire d’abuser des continuations pour synchroniser un programme. En effet, comme chaque appel de fonction est exécuté de manière asynchrone, une pratique courante à vu le jour, le passage de <strong><em>callbacks</em></strong>, qui n’est, au final, qu’un autre nom pour <strong>continuation</strong>, par exemple :</p>
-<div class="sourceCode" id="cb15" data-roe-kind="code" data-pellet="JavaScript" data-line-number="true"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb15-1" title="1"><span class="at">performAsyncComputation</span>(x<span class="op">,</span> <span class="kw">function</span>(result) <span class="op">{</span></a>
-<a class="sourceLine" id="cb15-2" title="2">   <span class="cf">return</span> <span class="at">performAnotherAsyncComputation</span>(result<span class="op">,</span> <span class="kw">function</span>(newResult) <span class="op">{</span></a>
-<a class="sourceLine" id="cb15-3" title="3">      <span class="va">console</span>.<span class="at">log</span>(newResult)<span class="op">;</span></a>
-<a class="sourceLine" id="cb15-4" title="4">   <span class="op">}</span>)<span class="op">;</span></a>
-<a class="sourceLine" id="cb15-5" title="5"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
+<div class="sourceCode" id="cb17" data-roe-kind="code" data-pellet="JavaScript" data-line-number="true"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb17-1" title="1"><span class="at">performAsyncComputation</span>(x<span class="op">,</span> <span class="kw">function</span>(result) <span class="op">{</span></a>
+<a class="sourceLine" id="cb17-2" title="2">   <span class="cf">return</span> <span class="at">performAnotherAsyncComputation</span>(result<span class="op">,</span> <span class="kw">function</span>(newResult) <span class="op">{</span></a>
+<a class="sourceLine" id="cb17-3" title="3">      <span class="va">console</span>.<span class="at">log</span>(newResult)<span class="op">;</span></a>
+<a class="sourceLine" id="cb17-4" title="4">   <span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="op">}</span>)<span class="op">;</span></a></code></pre></div>
 <p>Dans cet exemple, on spécifie explicitement les continuations au moyen du passage de fonction par argument. Comme chaque étape d’un calcul par continuation engendre généralement un niveau d’indentation pouvant vite devenir illisible (le fameux <em>callback hell</em>), il existe des techniques d’encodages pour éviter cet ajout de niveau à chaque étape. Dans certains langages, cela se fait au moyen d’opérateurs, en JavaScript, c’est généralement au moyen d’une méthode <code class="sourceCode javascript"><span class="at">then</span>(callback)</code>. Oui, les promesses sont une forme spécifique de continuation.</p>
 <p>Observons maintenant l’utilisation concrète des effets algébriques au moyen d’un petit programme à effets, a priori compliqué à tester !</p>
 <h3 id="un-petit-programme-à-effets">Un petit programme à effets</h3>
 <p>Prenons un premier programme, assez simple à implémenter, mais autrement plus compliqué à rendre pur :</p>
-<div class="sourceCode" id="cb16" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">fun</span> <span class="fu">sayHello</span>() {</a>
-<a class="sourceLine" id="cb16-2" title="2">  println(<span class="st">&quot;What is your name?&quot;</span>)</a>
-<a class="sourceLine" id="cb16-3" title="3">  <span class="kw">val</span> <span class="va">name</span> = readLine()!!</a>
-<a class="sourceLine" id="cb16-4" title="4">  println(<span class="st">&quot;Hello $name&quot;</span>)</a>
-<a class="sourceLine" id="cb16-5" title="5">}</a>
-<a class="sourceLine" id="cb16-6" title="6"></a>
-<a class="sourceLine" id="cb16-7" title="7"><span class="kw">fun</span> <span class="fu">main</span>() {</a>
-<a class="sourceLine" id="cb16-8" title="8">  sayHello()</a>
-<a class="sourceLine" id="cb16-9" title="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb18" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">fun</span> <span class="fu">sayHello</span>() {</a>
+<a class="sourceLine" id="cb18-2" title="2">  println(<span class="st">&quot;What is your name?&quot;</span>)</a>
+<a class="sourceLine" id="cb18-3" title="3">  <span class="kw">val</span> <span class="va">name</span> = readLine()!!</a>
+<a class="sourceLine" id="cb18-4" title="4">  println(<span class="st">&quot;Hello $name&quot;</span>)</a>
+<a class="sourceLine" id="cb18-5" title="5">}</a>
+<a class="sourceLine" id="cb18-6" title="6"></a>
+<a class="sourceLine" id="cb18-7" title="7"><span class="kw">fun</span> <span class="fu">main</span>() {</a>
+<a class="sourceLine" id="cb18-8" title="8">  sayHello()</a>
+<a class="sourceLine" id="cb18-9" title="9">}</a></code></pre></div>
 <p>Le programme se contente de demander à l’utilisateur de saisir son nom et ensuite affiche un message de bienvenue !</p>
 <p>Pour tâcher de transformer ce programme en une description que nous interpréterons dans le <code class="sourceCode kotlin">main()</code> nous pourrions tenter de le transformer en une liste d’actions (qui décrirons nos effets). Par exemple :</p>
-<div class="sourceCode" id="cb17" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">sealed</span> <span class="kw">class</span> Effect</a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw">data</span> <span class="kw">class</span> Print(<span class="kw">val</span> <span class="va">message</span>: <span class="dt">String</span>) : <span class="dt">Effect</span>()</a>
-<a class="sourceLine" id="cb17-3" title="3"><span class="kw">data</span> <span class="kw">class</span> Ask() : <span class="dt">Effect</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb19" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">sealed</span> <span class="kw">class</span> Effect</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">data</span> <span class="kw">class</span> Print(<span class="kw">val</span> <span class="va">message</span>: <span class="dt">String</span>) : <span class="dt">Effect</span>()</a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="kw">data</span> <span class="kw">class</span> Ask() : <span class="dt">Effect</span>()</a></code></pre></div>
 <p>Ensuite, nous pouvons décrire notre programme au moyen d’une liste :</p>
-<div class="sourceCode" id="cb18" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true" data-line-start="4"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">val</span> <span class="va">program</span> : List&lt;Effect&gt; = listOf(</a>
-<a class="sourceLine" id="cb18-2" title="2">   Print(<span class="st">&quot;What is your name&quot;</span>)</a>
-<a class="sourceLine" id="cb18-3" title="3">,  Ask()</a>
-<a class="sourceLine" id="cb18-4" title="4">,  Print(<span class="st">&quot;Hello you&quot;</span>)</a>
-<a class="sourceLine" id="cb18-5" title="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb20" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true" data-line-start="4"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">val</span> <span class="va">program</span> : List&lt;Effect&gt; = listOf(</a>
+<a class="sourceLine" id="cb20-2" title="2">   Print(<span class="st">&quot;What is your name&quot;</span>)</a>
+<a class="sourceLine" id="cb20-3" title="3">,  Ask()</a>
+<a class="sourceLine" id="cb20-4" title="4">,  Print(<span class="st">&quot;Hello you&quot;</span>)</a>
+<a class="sourceLine" id="cb20-5" title="5">)</a></code></pre></div>
 <p>Et il ne nous reste plus qu’a interpréter notre programme :</p>
-<div class="sourceCode" id="cb19" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true" data-line-start="9"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">fun</span> <span class="fu">run</span>(<span class="va">e</span>: <span class="dt">Effect</span>) {</a>
-<a class="sourceLine" id="cb19-2" title="2">  <span class="cf">when</span> (e) {</a>
-<a class="sourceLine" id="cb19-3" title="3">    <span class="kw">is</span> Print -&gt; println(e.message)</a>
-<a class="sourceLine" id="cb19-4" title="4">    <span class="kw">is</span> Ask   -&gt; {</a>
-<a class="sourceLine" id="cb19-5" title="5">       <span class="kw">val</span> <span class="va">name</span> = readLine()!!</a>
-<a class="sourceLine" id="cb19-6" title="6">       println(name)</a>
-<a class="sourceLine" id="cb19-7" title="7">    } </a>
-<a class="sourceLine" id="cb19-8" title="8">  }</a>
-<a class="sourceLine" id="cb19-9" title="9">}</a>
-<a class="sourceLine" id="cb19-10" title="10"></a>
-<a class="sourceLine" id="cb19-11" title="11"><span class="kw">fun</span> <span class="fu">List</span>&lt;<span class="dt">Effect</span>&gt;.<span class="fu">run</span>() = forEach { run(it) }</a></code></pre></div>
+<div class="sourceCode" id="cb21" data-roe-kind="code" data-pellet="Kotlin" data-line-number="true" data-line-start="9"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">fun</span> <span class="fu">run</span>(<span class="va">e</span>: <span class="dt">Effect</span>) {</a>
+<a class="sourceLine" id="cb21-2" title="2">  <span class="cf">when</span> (e) {</a>
+<a class="sourceLine" id="cb21-3" title="3">    <span class="kw">is</span> Print -&gt; println(e.message)</a>
+<a class="sourceLine" id="cb21-4" title="4">    <span class="kw">is</span> Ask   -&gt; {</a>
+<a class="sourceLine" id="cb21-5" title="5">       <span class="kw">val</span> <span class="va">name</span> = readLine()!!</a>
+<a class="sourceLine" id="cb21-6" title="6">       println(name)</a>
+<a class="sourceLine" id="cb21-7" title="7">    } </a>
+<a class="sourceLine" id="cb21-8" title="8">  }</a>
+<a class="sourceLine" id="cb21-9" title="9">}</a>
+<a class="sourceLine" id="cb21-10" title="10"></a>
+<a class="sourceLine" id="cb21-11" title="11"><span class="kw">fun</span> <span class="fu">List</span>&lt;<span class="dt">Effect</span>&gt;.<span class="fu">run</span>() = forEach { run(it) }</a></code></pre></div>
 <p>Même si notre programme semble à peu près correct, il diffère tout de même du programme présenté en exemple. Comme chaque état à effet est interprété de manière indépendante, je ne peux pas transmettre le résultat de <code class="sourceCode kotlin">Ask()</code> à <code class="sourceCode kotlin">Print(x)</code>.</p>
 <p>Il existe plusieurs manières de transformer ces séquences d’instructions en une séquence chainée. Les deux plus populaires, dans le monde de la programmation fonctionnelle sont <strong>les monades libres</strong> et les <strong>transformations de monades</strong>. Les deux approches proposent des avantages et des inconvénients. Heureusement, il existe une approche qui, selon moi, a le mérite d’être claire et facile à appréhender : <strong>les effets algébriques</strong> et leurs <strong>gestionnaires</strong>.</p>
 <h2 id="a-la-découverte-de-koka">A la découverte de Koka</h2>
@@ -376,106 +380,105 @@
 <li>l’ensemble des effets que produit la fonction.</li>
 </ul>
 <p>Par exemple, la fonction <code class="koka">hello(name)</code>, implémentée de la sorte :</p>
-<div class="sourceCode" id="cb20" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">fun</span> hello(name) {</a>
-<a class="sourceLine" id="cb20-2" title="2">  println(<span class="st">&quot;Hello &quot;</span> + name + <span class="st">&quot;!&quot;</span>)</a>
-<a class="sourceLine" id="cb20-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb22" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">fun</span> hello(name) {</a>
+<a class="sourceLine" id="cb22-2" title="2">  println(<span class="st">&quot;Hello &quot;</span> + name + <span class="st">&quot;!&quot;</span>)</a>
+<a class="sourceLine" id="cb22-3" title="3">}</a></code></pre></div>
 <p>Aura le type <code class="sourceCode ocaml">(name: <span class="dt">string</span>) -&gt; console ()</code>. Ici <code class="sourceCode ocaml">console ()</code> indique que la fonction ne renvoie rien (<code class="sourceCode ocaml">()</code>) mais qu’elle produit l’effet <code class="sourceCode ocaml">console</code> (un effet capable d’interagir avec la console).</p>
 <p>La fonction <code class="sourceCode ocaml">hello</code> est exécutable par Koka car la bibliothèque standard du langage offre un gestionnaire pour l’effet <code class="sourceCode ocaml">console</code>. Quand on tente d’exécuter une fonction qui exécute des effets, le compilateur va d’abord vérifier s’il existe un gestionnaire pour l’effet que l’on essaie d’exécuter. Si aucun gestionnaire n’est trouvé, le programme ne compilera pas. Si par contre il existe un gestionnaire, Koka s’en servira pour exécuter un programme. Ne vous en faites pas, nous allons tout de suite montrer un exemple.</p>
 <h3 id="notre-premier-effet">Notre premier effet</h3>
 <p>Un premier effet assez simple à modeliser est l’effet qui dit d’afficher un message. Koka offre une construction pour modeliser un ensemble d’effets attaché à un même type. On peut voir cette construction comme une interface. Par exemple :</p>
-<div class="sourceCode" id="cb21" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb21-1" title="1">effect mumble {</a>
-<a class="sourceLine" id="cb21-2" title="2">  <span class="kw">fun</span> grumble(message: <span class="dt">string</span>) : ()</a>
-<a class="sourceLine" id="cb21-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb23" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb23-1" title="1">effect mumble {</a>
+<a class="sourceLine" id="cb23-2" title="2">  <span class="kw">fun</span> grumble(message: <span class="dt">string</span>) : ()</a>
+<a class="sourceLine" id="cb23-3" title="3">}</a></code></pre></div>
 <p>On déclare un effet <strong>grumble(message)</strong> qui propagera le type <strong>mumble</strong>. Je peux maintenant utiliser la fonction <code class="sourceCode ocaml">grumble</code> dans une fonction, qui deviendra alors la description d’un programme :</p>
-<div class="sourceCode" id="cb22" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="4"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">fun</span> mumbling() : mumble () {</a>
-<a class="sourceLine" id="cb22-2" title="2">  // A noter que la spécification du <span class="kw">type</span> est assez </a>
-<a class="sourceLine" id="cb22-3" title="3">  // inutile, Koka est capable d'inférer le <span class="kw">type</span> de la fonction</a>
-<a class="sourceLine" id="cb22-4" title="4">  grumble(<span class="st">&quot;Hello World!&quot;</span>)</a>
-<a class="sourceLine" id="cb22-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb24" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="4"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">fun</span> mumbling() : mumble () {</a>
+<a class="sourceLine" id="cb24-2" title="2">  // A noter que la spécification du <span class="kw">type</span> est assez </a>
+<a class="sourceLine" id="cb24-3" title="3">  // inutile, Koka est capable d'inférer le <span class="kw">type</span> de la fonction</a>
+<a class="sourceLine" id="cb24-4" title="4">  grumble(<span class="st">&quot;Hello World!&quot;</span>)</a>
+<a class="sourceLine" id="cb24-5" title="5">}</a></code></pre></div>
 <p>Notre fonction a le type <code class="sourceCode ocaml">() -&gt; mumble ()</code>, c’est-à-dire qu’elle ne prend aucun argument, ne renvoie aucune valeur mais son exécution propagera l’effet <code class="sourceCode ocaml">mumble</code>. Que se passe-t-il si j’essaie d’exécuter cette fonction ?</p>
-<pre class="raw" data-roe-kind="code" data-pellet="Koka"><code>(1, 0): error: there are unhandled effects for the main expression
-  inferred effect: test/mumble
-  hint           : wrap the main function in a handler
-</code></pre>
+<div class="sourceCode" id="cb25" data-roe-kind="code" data-pellet="Koka"><pre class="sourceCode kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb25-1" title="1">(<span class="dv">1</span>, <span class="dv">0</span>): error: there are unhandled effects <span class="cf">for</span> the main expression</a>
+<a class="sourceLine" id="cb25-2" title="2">  inferred effect: test/mumble</a>
+<a class="sourceLine" id="cb25-3" title="3">  hint           : wrap the main function <span class="kw">in</span> a handler</a></code></pre></div>
 <p>La fonction n’est pas exécutable car Koka ne sait pas comment interpréter notre effet <code class="sourceCode ocaml">grumble</code>. Il faut donc lui fournir un gestionnaire.</p>
 <h3 id="notre-premier-gestionnaire">Notre premier gestionnaire</h3>
 <p>Maintenant que nous avons déclaré notre premier effet, nous allons l’interpréter ! Pour ça, Koka offre une construction syntaxique : <code class="sourceCode ocaml">my_handler_for_mumble{mumbling()</code>}</p>
 <p>Pour laquelle il faudra fournir une valeur pour <code class="sourceCode ocaml">my_handler_for_mumble</code>. L’inteprétation d’un effet est assez simple, il suffit de traiter les branches possibles de l’effet. Ici nous n’en avons qu’une seule :</p>
-<div class="sourceCode" id="cb24" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="9"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">val</span> mumble_handler = handler {</a>
-<a class="sourceLine" id="cb24-2" title="2">  grumble(message) -&gt; println(message)</a>
-<a class="sourceLine" id="cb24-3" title="3">}</a>
-<a class="sourceLine" id="cb24-4" title="4"></a>
-<a class="sourceLine" id="cb24-5" title="5">// On peut maintenant exécuter notre programme à effet !</a>
-<a class="sourceLine" id="cb24-6" title="6">mumble_handler{ mumbling() }</a>
-<a class="sourceLine" id="cb24-7" title="7">// Affichera sur la sortie standard <span class="st">&quot;Hello World!&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb26" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="9"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">val</span> mumble_handler = handler {</a>
+<a class="sourceLine" id="cb26-2" title="2">  grumble(message) -&gt; println(message)</a>
+<a class="sourceLine" id="cb26-3" title="3">}</a>
+<a class="sourceLine" id="cb26-4" title="4"></a>
+<a class="sourceLine" id="cb26-5" title="5">// On peut maintenant exécuter notre programme à effet !</a>
+<a class="sourceLine" id="cb26-6" title="6">mumble_handler{ mumbling() }</a>
+<a class="sourceLine" id="cb26-7" title="7">// Affichera sur la sortie standard <span class="st">&quot;Hello World!&quot;</span></a></code></pre></div>
 <p>Concrètement, on définit une variable qui va, pour chaque effet possible, proposer <strong>une réaction à l’émission d’un effet</strong>. L’application de notre gestionnaire n’est pas pure, par contre, la description de notre programme l’est entièrement. Si dans mon gestionnaire, j’avais propagé un effet n’ayant pas de gestionnaire, j’aurais dû fournir un gestionnaire à mon gestionnaire ! Un peu à la manière de Haskell, utilisé <em>normalement</em>, l’écriture d’un gestionnaire implique de <strong>réduire un effet jusqu’a arriver</strong> <strong>à un effet attaché à un gestionnaire</strong>.</p>
 <p>Essayons de voir si notre propagation/gestion d’effets est supérieure à ce que l’on avait écrit à base d’exceptions en émettant, dans notre fonction, deux fois l’effet <code class="sourceCode ocaml">grumble</code> :</p>
-<div class="sourceCode" id="cb25" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb25-1" title="1">effect mumble {</a>
-<a class="sourceLine" id="cb25-2" title="2">  <span class="kw">fun</span> grumble(message: <span class="dt">string</span>) : ()</a>
-<a class="sourceLine" id="cb25-3" title="3">}</a>
-<a class="sourceLine" id="cb25-4" title="4"></a>
-<a class="sourceLine" id="cb25-5" title="5"><span class="kw">fun</span> mumbling() : mumble () {</a>
-<a class="sourceLine" id="cb25-6" title="6">  grumble(<span class="st">&quot;Hello World!&quot;</span>)</a>
-<a class="sourceLine" id="cb25-7" title="7">  grumble(<span class="st">&quot;Good bye World!&quot;</span>)</a>
-<a class="sourceLine" id="cb25-8" title="8">}</a>
-<a class="sourceLine" id="cb25-9" title="9"></a>
-<a class="sourceLine" id="cb25-10" title="10"><span class="kw">val</span> mumble_handler = handler {</a>
-<a class="sourceLine" id="cb25-11" title="11">  grumble(message) -&gt; println(message)</a>
-<a class="sourceLine" id="cb25-12" title="12">}</a>
-<a class="sourceLine" id="cb25-13" title="13"></a>
-<a class="sourceLine" id="cb25-14" title="14"><span class="kw">fun</span> main() {</a>
-<a class="sourceLine" id="cb25-15" title="15">   mumble_handler{ mumbling() }</a>
-<a class="sourceLine" id="cb25-16" title="16">}</a>
-<a class="sourceLine" id="cb25-17" title="17"></a></code></pre></div>
+<div class="sourceCode" id="cb27" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb27-1" title="1">effect mumble {</a>
+<a class="sourceLine" id="cb27-2" title="2">  <span class="kw">fun</span> grumble(message: <span class="dt">string</span>) : ()</a>
+<a class="sourceLine" id="cb27-3" title="3">}</a>
+<a class="sourceLine" id="cb27-4" title="4"></a>
+<a class="sourceLine" id="cb27-5" title="5"><span class="kw">fun</span> mumbling() : mumble () {</a>
+<a class="sourceLine" id="cb27-6" title="6">  grumble(<span class="st">&quot;Hello World!&quot;</span>)</a>
+<a class="sourceLine" id="cb27-7" title="7">  grumble(<span class="st">&quot;Good bye World!&quot;</span>)</a>
+<a class="sourceLine" id="cb27-8" title="8">}</a>
+<a class="sourceLine" id="cb27-9" title="9"></a>
+<a class="sourceLine" id="cb27-10" title="10"><span class="kw">val</span> mumble_handler = handler {</a>
+<a class="sourceLine" id="cb27-11" title="11">  grumble(message) -&gt; println(message)</a>
+<a class="sourceLine" id="cb27-12" title="12">}</a>
+<a class="sourceLine" id="cb27-13" title="13"></a>
+<a class="sourceLine" id="cb27-14" title="14"><span class="kw">fun</span> main() {</a>
+<a class="sourceLine" id="cb27-15" title="15">   mumble_handler{ mumbling() }</a>
+<a class="sourceLine" id="cb27-16" title="16">}</a>
+<a class="sourceLine" id="cb27-17" title="17"></a></code></pre></div>
 <p>Ici, le résultat attendu serait que d’abord, le programme affiche <code class="sourceCode ocaml"><span class="st">&quot;Hello World!&quot;</span></code> et qu’ensuite, il affiche à la ligne <code class="sourceCode ocaml"><span class="st">&quot;Good bye World!&quot;</span></code>… malheureusement, ce n’est pas le cas, l’inteprétation de <code class="sourceCode ocaml">mumbling()</code> se contente de n’afficher que <code class="sourceCode ocaml"><span class="st">&quot;Hello World!&quot;</span></code>.</p>
 <p>Concrètement, ce qu’il se passe ici, c’est qu’on gère l’effet, et on arrête le programme. Vu comme ça, les effets algébrique semblent assez proche des exceptions. Heureusement, adjoint à la gestion des effets via les gestionnaires, les effets algébriques proposent une fonctionnalité complémentaire : <strong>la capture de la continuation</strong>. En Koka, dans chaque branche de la gestion d’un effet dans un gestionnaire, il existe une fonction <em>ad-hoc</em> qui offre la possibilité de <strong>reprendre</strong> l’interprétation du programme. Contrairement à beaucoup de langages, l’encodage de la continuation est implicite, il n’est pas nécessaire de séquencer des <em>callback</em> ou des successions de <code class="sourceCode javascript">then</code>. Démonstration :</p>
-<div class="sourceCode" id="cb26" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-hl="13" data-line-start="10"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">val</span> mumble_handler = handler {</a>
-<a class="sourceLine" id="cb26-2" title="2">  grumble(message) -&gt; {</a>
-<a class="sourceLine" id="cb26-3" title="3">     println(message)</a>
-<a class="sourceLine" id="cb26-4" title="4">     resume(()) // Reprend le calcul où l'effet a été émis</a>
-<a class="sourceLine" id="cb26-5" title="5">  }</a>
-<a class="sourceLine" id="cb26-6" title="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb28" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-hl="13" data-line-start="10"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">val</span> mumble_handler = handler {</a>
+<a class="sourceLine" id="cb28-2" title="2">  grumble(message) -&gt; {</a>
+<a class="sourceLine" id="cb28-3" title="3">     println(message)</a>
+<a class="sourceLine" id="cb28-4" title="4">     resume(()) // Reprend le calcul où l'effet a été émis</a>
+<a class="sourceLine" id="cb28-5" title="5">  }</a>
+<a class="sourceLine" id="cb28-6" title="6">}</a></code></pre></div>
 <p>Ce qui nous amène à une définition des effets algébriques relativement accessibles, ce sont <strong>des exceptions <em>resumables</em></strong>. Concrètement, quand on inteprète la description d’un programme au moyen d’un gestionnaire, ce dernier peut décider de continuer l’interprétation du calcul, ou l’interrompre.</p>
 <p>Reprenons notre exemple initial, le programme qui demande le nom et qui affiche ensuite <code class="sourceCode ocaml"><span class="st">&quot;Hello $nom&quot;</span></code> et essayons de l’implémenter avec les effets algébriques de Koka. Premièrement, on défini les effets du programme :</p>
-<div class="sourceCode" id="cb27" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb27-1" title="1">effect interaction {</a>
-<a class="sourceLine" id="cb27-2" title="2">  <span class="kw">fun</span> show(message: <span class="dt">string</span>) : ()</a>
-<a class="sourceLine" id="cb27-3" title="3">  <span class="kw">fun</span> ask(message: <span class="dt">string</span>) : <span class="dt">string</span></a>
-<a class="sourceLine" id="cb27-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb29" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb29-1" title="1">effect interaction {</a>
+<a class="sourceLine" id="cb29-2" title="2">  <span class="kw">fun</span> show(message: <span class="dt">string</span>) : ()</a>
+<a class="sourceLine" id="cb29-3" title="3">  <span class="kw">fun</span> ask(message: <span class="dt">string</span>) : <span class="dt">string</span></a>
+<a class="sourceLine" id="cb29-4" title="4">}</a></code></pre></div>
 <p>Maintenant, la description du programme devient assez facile à écrire :</p>
-<div class="sourceCode" id="cb28" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="5"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">fun</span> program() : interaction () {</a>
-<a class="sourceLine" id="cb28-2" title="2">  <span class="kw">val</span> name = ask(<span class="st">&quot;What's your name? &quot;</span>)</a>
-<a class="sourceLine" id="cb28-3" title="3">  show(<span class="st">&quot;Hello &quot;</span> + name)</a>
-<a class="sourceLine" id="cb28-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb30" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="5"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">fun</span> program() : interaction () {</a>
+<a class="sourceLine" id="cb30-2" title="2">  <span class="kw">val</span> name = ask(<span class="st">&quot;What's your name? &quot;</span>)</a>
+<a class="sourceLine" id="cb30-3" title="3">  show(<span class="st">&quot;Hello &quot;</span> + name)</a>
+<a class="sourceLine" id="cb30-4" title="4">}</a></code></pre></div>
 <p>Et il ne nous reste plus qu’à écrire un interpréteur !</p>
-<div class="sourceCode" id="cb29" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="9"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">val</span> hello_handler = handler {</a>
-<a class="sourceLine" id="cb29-2" title="2">  ask(message) -&gt; {</a>
-<a class="sourceLine" id="cb29-3" title="3">    <span class="kw">val</span> name = question(message)</a>
-<a class="sourceLine" id="cb29-4" title="4">    resume(name)</a>
-<a class="sourceLine" id="cb29-5" title="5">  }</a>
-<a class="sourceLine" id="cb29-6" title="6">  show(message) -&gt; {</a>
-<a class="sourceLine" id="cb29-7" title="7">    println(message)</a>
-<a class="sourceLine" id="cb29-8" title="8">    resume(())</a>
-<a class="sourceLine" id="cb29-9" title="9">  }</a>
-<a class="sourceLine" id="cb29-10" title="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb31" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="9"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">val</span> hello_handler = handler {</a>
+<a class="sourceLine" id="cb31-2" title="2">  ask(message) -&gt; {</a>
+<a class="sourceLine" id="cb31-3" title="3">    <span class="kw">val</span> name = question(message)</a>
+<a class="sourceLine" id="cb31-4" title="4">    resume(name)</a>
+<a class="sourceLine" id="cb31-5" title="5">  }</a>
+<a class="sourceLine" id="cb31-6" title="6">  show(message) -&gt; {</a>
+<a class="sourceLine" id="cb31-7" title="7">    println(message)</a>
+<a class="sourceLine" id="cb31-8" title="8">    resume(())</a>
+<a class="sourceLine" id="cb31-9" title="9">  }</a>
+<a class="sourceLine" id="cb31-10" title="10">}</a></code></pre></div>
 <p>Concrètement :</p>
 <ul>
 <li><p>si le programme propage un <code class="sourceCode ocaml">show</code>, on affiche le message transporté par l’exécution de l’effet <code class="sourceCode ocaml">show</code> et on <strong>continue le programme</strong> en lui donnant <code class="sourceCode ocaml"><span class="dt">unit</span></code> ;</p></li>
 <li><p>si le programme propage un <code class="sourceCode ocaml">ask</code>, on utilise la primitive <code class="sourceCode ocaml">question</code> (qui existe dans la bibliothèque standard de Koka) et on <strong>continue le programme</strong> en lui passant le résultat de la lecture !</p></li>
 </ul>
 <p>Attention, si par mégarde, j’avais oublié de gérer un des cas, le compilateur aurait <strong>refusé de compiler</strong> mon programme. Par exemple, cet intepréteur :</p>
-<div class="sourceCode" id="cb30" data-roe-kind="code" data-pellet="Koka"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">val</span> hello_handler = handler {</a>
-<a class="sourceLine" id="cb30-2" title="2">  ask(message) -&gt; {</a>
-<a class="sourceLine" id="cb30-3" title="3">    <span class="kw">val</span> name = question(message)</a>
-<a class="sourceLine" id="cb30-4" title="4">    resume(name)</a>
-<a class="sourceLine" id="cb30-5" title="5">  }</a>
-<a class="sourceLine" id="cb30-6" title="6">}</a>
-<a class="sourceLine" id="cb30-7" title="7"></a>
-<a class="sourceLine" id="cb30-8" title="8">// Aurait généré cette erreur :</a>
-<a class="sourceLine" id="cb30-9" title="9">test.kk(<span class="dv">13</span>,<span class="dv">21</span>): error: operator show is <span class="dt">not</span> handled</a></code></pre></div>
+<div class="sourceCode" id="cb32" data-roe-kind="code" data-pellet="Koka"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">val</span> hello_handler = handler {</a>
+<a class="sourceLine" id="cb32-2" title="2">  ask(message) -&gt; {</a>
+<a class="sourceLine" id="cb32-3" title="3">    <span class="kw">val</span> name = question(message)</a>
+<a class="sourceLine" id="cb32-4" title="4">    resume(name)</a>
+<a class="sourceLine" id="cb32-5" title="5">  }</a>
+<a class="sourceLine" id="cb32-6" title="6">}</a>
+<a class="sourceLine" id="cb32-7" title="7"></a>
+<a class="sourceLine" id="cb32-8" title="8">// Aurait généré cette erreur :</a>
+<a class="sourceLine" id="cb32-9" title="9">test.kk(<span class="dv">13</span>,<span class="dv">21</span>): error: operator show is <span class="dt">not</span> handled</a></code></pre></div>
 <p>Il ne reste plus qu’a interpréter notre programme !</p>
-<div class="sourceCode" id="cb31" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="19"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">fun</span> main() {</a>
-<a class="sourceLine" id="cb31-2" title="2">  hello_handler{ program() }</a>
-<a class="sourceLine" id="cb31-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb33" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="19"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">fun</span> main() {</a>
+<a class="sourceLine" id="cb33-2" title="2">  hello_handler{ program() }</a>
+<a class="sourceLine" id="cb33-3" title="3">}</a></code></pre></div>
 <p>Nous avons exactement ce que nous désirions au début de l’article :</p>
 <ul>
 <li><p>la séparation du programme entre sa partie pure et sa partie impure est explicite. Les déclarations de programmes sont pures et les gestionnaires de programmes sont impurs ;</p></li>
@@ -485,67 +488,69 @@
 <h3 id="tester-un-programme">Tester un programme</h3>
 <p>Comme notre programme n’est plus qu’une description, on peut donc très facilement le tester. En effet, il suffit de lui implémenter un interpréteur de test ! Par exemple, une manière <em>naïve</em> de tester ce programme serait simplement de lui demander de stocker toutes les étapes dans une chaîne de caractères (il existe des manières autrement plus pertinentes, mais le but de l’exemple n’est pas de trop alourdir le code).</p>
 <p>Comme la mutation de données est aussi un calcul à effet, je vous propose de commencer par implémenter un effet <code class="sourceCode ocaml">State</code> pour manipuler un état mutable :</p>
-<div class="sourceCode" id="cb32" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb32-1" title="1">effect state&lt;s&gt; {</a>
-<a class="sourceLine" id="cb32-2" title="2">  <span class="kw">fun</span> get()    : s</a>
-<a class="sourceLine" id="cb32-3" title="3">  <span class="kw">fun</span> set(i:s) : ()</a>
-<a class="sourceLine" id="cb32-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb34" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb34-1" title="1">effect state&lt;s&gt; {</a>
+<a class="sourceLine" id="cb34-2" title="2">  <span class="kw">fun</span> get()    : s</a>
+<a class="sourceLine" id="cb34-3" title="3">  <span class="kw">fun</span> set(i:s) : ()</a>
+<a class="sourceLine" id="cb34-4" title="4">}</a></code></pre></div>
 <p><code class="sourceCode ocaml">state&lt;s&gt;</code> est un état mutable, il est paramétré par le type qu’il va stocker. Dans notre cas, ce sera une chaîne de caractères. Maintenant que nous avons les briques pour faire des mutations, nous allons construire un interpréteur pour notre programme originel :</p>
-<div class="sourceCode" id="cb33" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="5"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">val</span> test_handler = handler {</a>
-<a class="sourceLine" id="cb33-2" title="2">  ask(_) -&gt; {</a>
-<a class="sourceLine" id="cb33-3" title="3">    <span class="kw">val</span> accumulator = get()</a>
-<a class="sourceLine" id="cb33-4" title="4">    set(accumulator + <span class="st">&quot;;Xavier&quot;</span>)</a>
-<a class="sourceLine" id="cb33-5" title="5">    resume(<span class="st">&quot;Xavier&quot;</span>)</a>
-<a class="sourceLine" id="cb33-6" title="6">  }</a>
-<a class="sourceLine" id="cb33-7" title="7">  show(message) -&gt; {</a>
-<a class="sourceLine" id="cb33-8" title="8">    <span class="kw">val</span> accumulator = get()</a>
-<a class="sourceLine" id="cb33-9" title="9">    set(accumulator + <span class="st">&quot;;&quot;</span> + message)</a>
-<a class="sourceLine" id="cb33-10" title="10">    resume(())</a>
-<a class="sourceLine" id="cb33-11" title="11">  }</a>
-<a class="sourceLine" id="cb33-12" title="12">}</a></code></pre></div>
-<p>Concrètement, cet interpréteur va <em>hooker</em> l’effet <code class="sourceCode ocaml">ask</code> pour toujours renvoyer <code class="sourceCode ocaml"><span class="st">&quot;Xavier&quot;</span></code>, et il va le concaténer à notre état courant. Le gestionnaire pour <code class="sourceCode ocaml">show</code>, lui, va simplement concaténer le message à notre état courant. Notre gestionnaire aura donc le type <code class="sourceCode ocaml"> (() -&gt; &lt;interaction, state&lt;<span class="dt">string</span>&gt;&gt; ()) -&gt; state&lt;<span class="dt">string</span>&gt; ()</code>. Soit que le gestionnaire s’applique à une fonction qui ne renvoie rien mais peut exécuter des effets de type <code class="sourceCode ocaml">interaction</code> et <code class="sourceCode ocaml">state&lt;<span class="dt">string</span>&gt;</code>. Et que ce gestionnaire, une fois appliqué, ne renvoie rien mais peut exécuter l’effet <code class="sourceCode ocaml">state&lt;<span class="dt">string</span>&gt;</code>. Il faudra donc l’éliminer via un gestionnaire destiné à implémenter notre état mutable.</p>
+<div class="sourceCode" id="cb35" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="5"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">val</span> test_handler = handler {</a>
+<a class="sourceLine" id="cb35-2" title="2">  ask(_) -&gt; {</a>
+<a class="sourceLine" id="cb35-3" title="3">    <span class="kw">val</span> accumulator = get()</a>
+<a class="sourceLine" id="cb35-4" title="4">    set(accumulator + <span class="st">&quot;;Xavier&quot;</span>)</a>
+<a class="sourceLine" id="cb35-5" title="5">    resume(<span class="st">&quot;Xavier&quot;</span>)</a>
+<a class="sourceLine" id="cb35-6" title="6">  }</a>
+<a class="sourceLine" id="cb35-7" title="7">  show(message) -&gt; {</a>
+<a class="sourceLine" id="cb35-8" title="8">    <span class="kw">val</span> accumulator = get()</a>
+<a class="sourceLine" id="cb35-9" title="9">    set(accumulator + <span class="st">&quot;;&quot;</span> + message)</a>
+<a class="sourceLine" id="cb35-10" title="10">    resume(())</a>
+<a class="sourceLine" id="cb35-11" title="11">  }</a>
+<a class="sourceLine" id="cb35-12" title="12">}</a></code></pre></div>
+<p>Concrètement, cet interpréteur va <em>hooker</em> l’effet <code class="sourceCode ocaml">ask</code> pour toujours renvoyer <code class="sourceCode ocaml"><span class="st">&quot;Xavier&quot;</span></code>, et il va le concaténer à notre état courant. Le gestionnaire pour <code class="sourceCode ocaml">show</code>, lui, va simplement concaténer le message à notre état courant. Notre gestionnaire aura donc le type :</p>
+<div class="sourceCode" id="cb36" data-roe-kind="code"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb36-1" title="1">(() -&gt; &lt;interaction, state&lt;<span class="dt">string</span>&gt;&gt; ()) -&gt; state&lt;<span class="dt">string</span>&gt; () </a></code></pre></div>
+<p>Soit que le gestionnaire s’applique à une fonction qui ne renvoie rien mais peut exécuter des effets de type <code class="sourceCode ocaml">interaction</code> et <code class="sourceCode ocaml">state&lt;<span class="dt">string</span>&gt;</code>. Et que ce gestionnaire, une fois appliqué, ne renvoie rien mais peut exécuter l’effet <code class="sourceCode ocaml">state&lt;<span class="dt">string</span>&gt;</code>. Il faudra donc l’éliminer via un gestionnaire destiné à implémenter notre état mutable.</p>
 <p>(Cet interpréteur donne un exemple de la manière dont Koka compose des programmes qui émettent plusieurs types d’effets, une fonction peut donc exécuter plusieurs types d’effets, il suffit juste de donner plusieurs interpréteurs pour éliminer les effets non-gérés.)</p>
 <p>On peut donc implémenter un petit interpréteur dont le rôle sera uniquement de maintenir un état mutable :</p>
-<div class="sourceCode" id="cb34" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="17"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">val</span> state_handler = handler(state) {</a>
-<a class="sourceLine" id="cb34-2" title="2">  return x -&gt; state + <span class="st">&quot;;end&quot;</span></a>
-<a class="sourceLine" id="cb34-3" title="3">  get()  -&gt; resume(state, state)</a>
-<a class="sourceLine" id="cb34-4" title="4">  set(j) -&gt; resume((), j)</a>
-<a class="sourceLine" id="cb34-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb37" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="17"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">val</span> state_handler = handler(state) {</a>
+<a class="sourceLine" id="cb37-2" title="2">  return x -&gt; state + <span class="st">&quot;;end&quot;</span></a>
+<a class="sourceLine" id="cb37-3" title="3">  get()  -&gt; resume(state, state)</a>
+<a class="sourceLine" id="cb37-4" title="4">  set(j) -&gt; resume((), j)</a>
+<a class="sourceLine" id="cb37-5" title="5">}</a></code></pre></div>
 <p>La branche <code class="sourceCode ocaml">return x</code> applique une dernière transformation une fois que le programme est terminé. Ici, on lui demande simplement de renvoyer l’état final, auquel on concatène la chaine <code class="sourceCode ocaml"><span class="st">&quot;;end&quot;</span></code>. Maintenant que c’est fait, il suffit d’appliquer nos deux interpréteurs à notre programme (qui n’a pas changé) et de calculer son résultat final :</p>
-<div class="sourceCode" id="cb35" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="22"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">fun</span> test() {</a>
-<a class="sourceLine" id="cb35-2" title="2">  <span class="kw">val</span> result = state_handler(<span class="st">&quot;start&quot;</span>){</a>
-<a class="sourceLine" id="cb35-3" title="3">    test_handler{ </a>
-<a class="sourceLine" id="cb35-4" title="4">       program() </a>
-<a class="sourceLine" id="cb35-5" title="5">    }</a>
-<a class="sourceLine" id="cb35-6" title="6">  }</a>
-<a class="sourceLine" id="cb35-7" title="7">  <span class="kw">assert</span>(</a>
-<a class="sourceLine" id="cb35-8" title="8">    <span class="st">&quot;String should be equals&quot;</span>, </a>
-<a class="sourceLine" id="cb35-9" title="9">    result == <span class="st">&quot;start;Xavier;Hello Xavier;end&quot;</span>)</a>
-<a class="sourceLine" id="cb35-10" title="10">         // Au final, voici à quoi devrait ressembler notre</a>
-<a class="sourceLine" id="cb35-11" title="11">         // résultat accumulé</a>
-<a class="sourceLine" id="cb35-12" title="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb38" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="22"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">fun</span> test() {</a>
+<a class="sourceLine" id="cb38-2" title="2">  <span class="kw">val</span> result = state_handler(<span class="st">&quot;start&quot;</span>){</a>
+<a class="sourceLine" id="cb38-3" title="3">    test_handler{ </a>
+<a class="sourceLine" id="cb38-4" title="4">       program() </a>
+<a class="sourceLine" id="cb38-5" title="5">    }</a>
+<a class="sourceLine" id="cb38-6" title="6">  }</a>
+<a class="sourceLine" id="cb38-7" title="7">  <span class="kw">assert</span>(</a>
+<a class="sourceLine" id="cb38-8" title="8">    <span class="st">&quot;String should be equals&quot;</span>, </a>
+<a class="sourceLine" id="cb38-9" title="9">    result == <span class="st">&quot;start;Xavier;Hello Xavier;end&quot;</span>)</a>
+<a class="sourceLine" id="cb38-10" title="10">         // Au final, voici à quoi devrait ressembler notre</a>
+<a class="sourceLine" id="cb38-11" title="11">         // résultat accumulé</a>
+<a class="sourceLine" id="cb38-12" title="12">}</a></code></pre></div>
 <p>Comme notre programme est une fonction pure, il est assez simple de la tester unitairement. C’est une des grande force des effets algébriques, ils séparent systématiquement la partie pure de la partie impure d’un programme !</p>
 <h2 id="notes-complémentaires-sur-le-contrôle-du-flot-du-programme">Notes complémentaires sur le contrôle du flot du programme</h2>
 <p>Nous avons, au moyen des effets algébriques, une manière systématique de séparer un programme en une description (une fonction qui propage des effets) et son interpréteur (un gestionnaire). Nous pouvons donc facilement tester nos fonctions impures en les transformant “<em>simplement</em>” en fonctions pures ! Cependant, la force des effets algébriques ne réside pas uniquement dans cette séparation et dans le reflet, dans le système de types, des effets propagés par une fonction. Le fait de pouvoir contrôler le flot du programme offre aussi beaucoup de possibilités. Notamment le fait de pouvoir modifier la sémantique opérationnelle du programme. Imaginons ce scénario :</p>
-<div class="sourceCode" id="cb36" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-hl="7"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">val</span> hello_handler_reversed = handler {</a>
-<a class="sourceLine" id="cb36-2" title="2">  ask(message) -&gt; {</a>
-<a class="sourceLine" id="cb36-3" title="3">    <span class="kw">val</span> name = question(message)</a>
-<a class="sourceLine" id="cb36-4" title="4">    resume(name)</a>
-<a class="sourceLine" id="cb36-5" title="5">  }</a>
-<a class="sourceLine" id="cb36-6" title="6">  show(message) -&gt; {</a>
-<a class="sourceLine" id="cb36-7" title="7">    resume(())</a>
-<a class="sourceLine" id="cb36-8" title="8">    println(message)</a>
-<a class="sourceLine" id="cb36-9" title="9">  }</a>
-<a class="sourceLine" id="cb36-10" title="10">}</a>
-<a class="sourceLine" id="cb36-11" title="11"></a>
-<a class="sourceLine" id="cb36-12" title="12"><span class="kw">fun</span> program() {</a>
-<a class="sourceLine" id="cb36-13" title="13">  show(<span class="st">&quot;Hello World&quot;</span>)</a>
-<a class="sourceLine" id="cb36-14" title="14">  <span class="kw">val</span> x = ask(<span class="st">&quot;What is your name?&quot;</span>)</a>
-<a class="sourceLine" id="cb36-15" title="15">  show(<span class="st">&quot;Hello &quot;</span> + x)</a>
-<a class="sourceLine" id="cb36-16" title="16">}</a></code></pre></div>
+<div class="sourceCode" id="cb39" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-hl="7"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">val</span> hello_handler_reversed = handler {</a>
+<a class="sourceLine" id="cb39-2" title="2">  ask(message) -&gt; {</a>
+<a class="sourceLine" id="cb39-3" title="3">    <span class="kw">val</span> name = question(message)</a>
+<a class="sourceLine" id="cb39-4" title="4">    resume(name)</a>
+<a class="sourceLine" id="cb39-5" title="5">  }</a>
+<a class="sourceLine" id="cb39-6" title="6">  show(message) -&gt; {</a>
+<a class="sourceLine" id="cb39-7" title="7">    resume(())</a>
+<a class="sourceLine" id="cb39-8" title="8">    println(message)</a>
+<a class="sourceLine" id="cb39-9" title="9">  }</a>
+<a class="sourceLine" id="cb39-10" title="10">}</a>
+<a class="sourceLine" id="cb39-11" title="11"></a>
+<a class="sourceLine" id="cb39-12" title="12"><span class="kw">fun</span> program() {</a>
+<a class="sourceLine" id="cb39-13" title="13">  show(<span class="st">&quot;Hello World&quot;</span>)</a>
+<a class="sourceLine" id="cb39-14" title="14">  <span class="kw">val</span> x = ask(<span class="st">&quot;What is your name?&quot;</span>)</a>
+<a class="sourceLine" id="cb39-15" title="15">  show(<span class="st">&quot;Hello &quot;</span> + x)</a>
+<a class="sourceLine" id="cb39-16" title="16">}</a></code></pre></div>
 <p>On demande d’exécuter la continuation capturée avant d’exécuter la gestion de l’effet. Ça a pour effet d’inverser le flot du programme.</p>
-<div class="sourceCode" id="cb37" data-roe-kind="code"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb37-1" title="1"><span class="ex">What</span> is your name? <span class="op">&lt;</span>input<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="ex">Hello</span> <span class="op">&lt;</span>input<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="ex">Hello</span> World</a></code></pre></div>
+<div class="sourceCode" id="cb40" data-roe-kind="code"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb40-1" title="1"><span class="ex">What</span> is your name? <span class="op">&lt;</span>input<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="ex">Hello</span> <span class="op">&lt;</span>input<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="ex">Hello</span> World</a></code></pre></div>
 <p>De même que l’interprétation concrète d’un programme vise à fournir, pour chaque effet propagé, un interpréteur, il est possible de choisir dans quel ordre on veut appliquer des interpréteurs. De ce fait, pour une fonction de type <code class="sourceCode kotlin">() -&gt; &lt;effectA, effectB&gt; a</code>, il serait possible :</p>
 <ul>
 <li>d’appliquer <code class="koka">handler_for_a</code>{<code class="koka">handler_for_b</code>{program}} ;</li>
@@ -554,35 +559,35 @@
 <p>Cette grande liberté sur la manière et l’ordre d’interprétation permet, par exemple, d’enrichir un programme.</p>
 <h3 id="enrichissement-de-programmes">Enrichissement de programmes</h3>
 <p>Dans <a href="./introduction_aux_monades.html">l’article sur les monades</a>, nous avions évoqué que l’un des bienfaits de leur utilisation était la séparation systématique entre l’algorithme et son outillage. Soit, une séparation entre l’algorithme et la plomberie nécéssaire à l’utilisation de cet algorithme. Les effets algébriques et leurs gestionnaires proposent une manière encore plus explicite de greffer des fonctionnalités à un programme. Par exemple, imaginons ce programme naïf :</p>
-<div class="sourceCode" id="cb38" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb38-1" title="1">effect user_database {</a>
-<a class="sourceLine" id="cb38-2" title="2">  <span class="kw">fun</span> create_user(username: <span class="dt">string</span>) : ()</a>
-<a class="sourceLine" id="cb38-3" title="3">  <span class="kw">fun</span> update_user(old_username: <span class="dt">string</span>, new_username: <span class="dt">string</span>) : ()</a>
-<a class="sourceLine" id="cb38-4" title="4">  <span class="kw">fun</span> drop_user(username: <span class="dt">string</span>) : ()</a>
-<a class="sourceLine" id="cb38-5" title="5">}</a>
-<a class="sourceLine" id="cb38-6" title="6"></a>
-<a class="sourceLine" id="cb38-7" title="7"><span class="kw">fun</span> program() {</a>
-<a class="sourceLine" id="cb38-8" title="8">  create_user(<span class="st">&quot;xavier&quot;</span>)</a>
-<a class="sourceLine" id="cb38-9" title="9">  update_user(<span class="st">&quot;xavier&quot;</span>, <span class="st">&quot;xvw&quot;</span>)</a>
-<a class="sourceLine" id="cb38-10" title="10">  drop_user(<span class="st">&quot;xvw&quot;</span>)</a>
-<a class="sourceLine" id="cb38-11" title="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb41" data-roe-kind="code" data-pellet="Koka" data-line-number="true"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb41-1" title="1">effect user_database {</a>
+<a class="sourceLine" id="cb41-2" title="2">  <span class="kw">fun</span> create_user(username: <span class="dt">string</span>) : ()</a>
+<a class="sourceLine" id="cb41-3" title="3">  <span class="kw">fun</span> update_user(old_username: <span class="dt">string</span>, new_username: <span class="dt">string</span>) : ()</a>
+<a class="sourceLine" id="cb41-4" title="4">  <span class="kw">fun</span> drop_user(username: <span class="dt">string</span>) : ()</a>
+<a class="sourceLine" id="cb41-5" title="5">}</a>
+<a class="sourceLine" id="cb41-6" title="6"></a>
+<a class="sourceLine" id="cb41-7" title="7"><span class="kw">fun</span> program() {</a>
+<a class="sourceLine" id="cb41-8" title="8">  create_user(<span class="st">&quot;xavier&quot;</span>)</a>
+<a class="sourceLine" id="cb41-9" title="9">  update_user(<span class="st">&quot;xavier&quot;</span>, <span class="st">&quot;xvw&quot;</span>)</a>
+<a class="sourceLine" id="cb41-10" title="10">  drop_user(<span class="st">&quot;xvw&quot;</span>)</a>
+<a class="sourceLine" id="cb41-11" title="11">}</a></code></pre></div>
 <p>Le type de <code class="sourceCode ocaml">program()</code> est : <code class="sourceCode ocaml">() -&gt; user_database ()</code>, je peux très facilement fournir un gestionnaire dont le rôle sera de <em>logger</em> chaque action effectuée. Utiliser un gestionnaire permet d’éviter de changer le programme originel, tout en lui greffant des fonctionnalités :</p>
-<div class="sourceCode" id="cb39" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="12"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">val</span> logger_user_handler = handler {</a>
-<a class="sourceLine" id="cb39-2" title="2">  create_user(username) -&gt; {</a>
-<a class="sourceLine" id="cb39-3" title="3">    println(<span class="st">&quot;LOG: create_user [&quot;</span> + username + <span class="st">&quot;]&quot;</span>)</a>
-<a class="sourceLine" id="cb39-4" title="4">    create_user(username)</a>
-<a class="sourceLine" id="cb39-5" title="5">    resume(())</a>
-<a class="sourceLine" id="cb39-6" title="6">  }</a>
-<a class="sourceLine" id="cb39-7" title="7">  update_user(old, <span class="kw">new</span>) -&gt; {</a>
-<a class="sourceLine" id="cb39-8" title="8">    println(<span class="st">&quot;LOG: update_user [&quot;</span> + old + <span class="st">&quot;] by [&quot;</span>+ <span class="kw">new</span> +<span class="st">&quot;]&quot;</span>)</a>
-<a class="sourceLine" id="cb39-9" title="9">    update_user(old, <span class="kw">new</span>)</a>
-<a class="sourceLine" id="cb39-10" title="10">    resume(())</a>
-<a class="sourceLine" id="cb39-11" title="11">  }</a>
-<a class="sourceLine" id="cb39-12" title="12">  drop_user(username) -&gt; {</a>
-<a class="sourceLine" id="cb39-13" title="13">    println(<span class="st">&quot;LOG: drop_user [&quot;</span> + username + <span class="st">&quot;]&quot;</span>)</a>
-<a class="sourceLine" id="cb39-14" title="14">    drop_user(username)</a>
-<a class="sourceLine" id="cb39-15" title="15">    resume(())</a>
-<a class="sourceLine" id="cb39-16" title="16">  }</a>
-<a class="sourceLine" id="cb39-17" title="17">}</a></code></pre></div>
+<div class="sourceCode" id="cb42" data-roe-kind="code" data-pellet="Koka" data-line-number="true" data-line-start="12"><pre class="sourceCode ocaml"><code class="sourceCode ocaml"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">val</span> logger_user_handler = handler {</a>
+<a class="sourceLine" id="cb42-2" title="2">  create_user(username) -&gt; {</a>
+<a class="sourceLine" id="cb42-3" title="3">    println(<span class="st">&quot;LOG: create_user [&quot;</span> + username + <span class="st">&quot;]&quot;</span>)</a>
+<a class="sourceLine" id="cb42-4" title="4">    create_user(username)</a>
+<a class="sourceLine" id="cb42-5" title="5">    resume(())</a>
+<a class="sourceLine" id="cb42-6" title="6">  }</a>
+<a class="sourceLine" id="cb42-7" title="7">  update_user(old, <span class="kw">new</span>) -&gt; {</a>
+<a class="sourceLine" id="cb42-8" title="8">    println(<span class="st">&quot;LOG: update_user [&quot;</span> + old + <span class="st">&quot;] by [&quot;</span>+ <span class="kw">new</span> +<span class="st">&quot;]&quot;</span>)</a>
+<a class="sourceLine" id="cb42-9" title="9">    update_user(old, <span class="kw">new</span>)</a>
+<a class="sourceLine" id="cb42-10" title="10">    resume(())</a>
+<a class="sourceLine" id="cb42-11" title="11">  }</a>
+<a class="sourceLine" id="cb42-12" title="12">  drop_user(username) -&gt; {</a>
+<a class="sourceLine" id="cb42-13" title="13">    println(<span class="st">&quot;LOG: drop_user [&quot;</span> + username + <span class="st">&quot;]&quot;</span>)</a>
+<a class="sourceLine" id="cb42-14" title="14">    drop_user(username)</a>
+<a class="sourceLine" id="cb42-15" title="15">    resume(())</a>
+<a class="sourceLine" id="cb42-16" title="16">  }</a>
+<a class="sourceLine" id="cb42-17" title="17">}</a></code></pre></div>
 <p>Comme ce gestionnaire re-propage les effets qu’il capture, on ne devra pas modifier le code du gestionnaire qui s’occupe de réellement gérer nos utilisateurs. Cette approche est très proche d’une <strong>Monade Writer</strong>. En utilisant cette approche, nos descriptions de programmes peuvent se <strong>contenter d’exprimer ce qu’ils font</strong> et les gestionnaires <strong>ajoutent des capacités supplémentaires</strong> pour l’exécution du programme.</p>
 <h3 id="une-base-pour-des-constructions-plus-complexes">Une base pour des constructions plus complexes</h3>
 <p>Un peu à l’instar des fonctions d’ordre supérieur, qui permettent de modéliser des encodages, par exemple <code class="sourceCode javascript"><span class="cf">for</span> <span class="kw">const</span> x <span class="kw">of</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>] <span class="op">{</span> <span class="at">f</span>(x) </code>} qui pourrait être exprimé comme <code class="sourceCode javascript">[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>].<span class="at">forEach</span>(f)</code> et donc réduire la taille de la grammaire du langage, les effets algébriques (et leurs gestionnaires) permettent d’exprimer des constructions complexes, qu’il serait difficile d’exprimer sans et que l’on considère généralement comme des éléments du langage. Par exemple :</p>
