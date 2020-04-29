@@ -233,7 +233,7 @@
 <li><code class="sourceCode kotlin">element_neutre.combine(x)</code> est égal à <code class="sourceCode kotlin">x</code></li>
 <li><code class="sourceCode kotlin">x.combine(element_neutre)</code> est égal à <code class="sourceCode kotlin">x</code></li>
 </ul>
-<p>C’est lois permettent l’implémentation de combinateurs qui exploitent l’opération <code class="sourceCode kotlin">combine</code>. Il est par exemple possible de définir un monoïde sur les entiers pour qui l’opérateur <code class="sourceCode kotlin">combine</code> est simplement l’addition et l’élément neutre est … logiquement, <code class="sourceCode kotlin">zéro</code>. Ou alors un monoïde, lui aussi sur les entiers, mais où cette fois, l’élément neutre est <code class="sourceCode kotlin">un</code>. Un dernier exemple serait une monoïde sur les chaines de caractéres pour lesquels l’opérateur <code class="sourceCode kotlin">combine</code> serait la concatènation.</p>
+<p>C’est lois permettent l’implémentation de combinateurs qui exploitent l’opération <code class="sourceCode kotlin">combine</code>. Il est par exemple possible de définir un monoïde sur les entiers pour qui l’opérateur <code class="sourceCode kotlin">combine</code> est simplement l’addition et l’élément neutre est … logiquement, <code class="sourceCode kotlin">zéro</code>. Ou alors un monoïde, lui aussi sur les entiers, mais où cette fois l’opérateur <code class="sourceCode kotlin">combine</code>, est la multiplication, donc l’élément neutre est <code class="sourceCode kotlin">un</code>. Un dernier exemple serait une monoïde sur les chaines de caractéres pour lesquels l’opérateur <code class="sourceCode kotlin">combine</code> serait la concatènation.</p>
 <p>Quand on possède un monoïde, on possède aussi, <em>de facto</em> une fonction <code class="sourceCode kotlin">reduce</code> qui transforme un ensemble de valeur de notre monoïde en une seule. Dans le cas du monoïde des entiers adjoints à l’addition, le résultat serait la somme de tous les éléments.</p>
 <p>Pour définir cette génériquement on voudrait pouvoir l’exprimer de cette manière :</p>
 <div class="sourceCode" id="cb15" data-roe-kind="code" data-line-number="true"><pre class="sourceCode Kotlin"><code class="sourceCode kotlin"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">fun</span> &lt;<span class="dt">T</span>&gt; <span class="fu">Collection</span>&lt;<span class="dt">Monoid</span>&lt;<span class="dt">T</span>&gt;&gt;.<span class="fu">reduce</span>() = </a>
@@ -242,7 +242,7 @@
 <a class="sourceLine" id="cb15-4" title="4">  }</a></code></pre></div>
 <p>Même si au survol, cette “implémentation” semble valide, elle pose tout de même plusieurs soucis :</p>
 <ul>
-<li>premièrement, elle n’est pas implémentable … (à cause du <code class="sourceCode kotlin">T.neutral_element</code>)</li>
+<li>premièrement, elle n’est pas implémentable … (à cause du <code class="sourceCode kotlin">T.neutralElement</code>)</li>
 <li>ensuite, elle considère que tout ce qui implémente <code class="sourceCode kotlin">Monoid</code> est “valide”, donc le monoïde des entiers sur l’addition serait compatible avec le monoïde des entiers sur le produit</li>
 <li>il ne serait pas possible de “convertir” un type existant en monoïde (ou alors il faudrait <em>wrapper</em> le type dans une classe qui implémenterait l’interface <code class="sourceCode kotlin">Monoid</code>.</li>
 </ul>
