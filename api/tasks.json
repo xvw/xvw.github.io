@@ -218,7 +218,7 @@
                                           {"checked": true,
                                             "label": "Ecriture du support"},
                                           {"checked": true, "label": "GDG"},
-                                          {"checked": false,
+                                          {"checked": true,
                                             "label": "LambdaLille Remote 2"}],
                            "tags": ["talk", "programming", "effect",
                                      "functional"], "date": "020A06",
