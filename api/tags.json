@@ -9,7 +9,7 @@
               "test unitaire", "typage", "types", "télévision", "vxace",
               "web", "zipper"],
   "contents": [{"title": "RME", "section": "project", "id": "rme",
-                 "date": "020E17",
+                 "date": "020E31",
                  "description": "Une extension pour le logiciel RPGMaker VXAce",
                  "tags": ["game", "rpgmaker", "rme", "vxace", "ruby"]},
                 {"title": "Planet", "section": "project", "id": "planet",
