@@ -1,6 +1,9 @@
-[{"uuid": "d32994be-4eb0-f39d-d906-a37fe9b58c74", "date": "020F15",
-   "duration": 30, "sector": "research", "project": "preface",
-   "label": "Revue de la branche sur les Arrows"},
+[{"uuid": "0a6d5951-10d1-3f92-1bb8-b59c2aad19e1", "date": "020F17",
+   "duration": 200, "sector": "writing", "project": null,
+   "label": "Traduction francophone pour un épisode de FP-tower"},
+  {"uuid": "d32994be-4eb0-f39d-d906-a37fe9b58c74", "date": "020F15",
+    "duration": 30, "sector": "research", "project": "preface",
+    "label": "Revue de la branche sur les Arrows"},
   {"uuid": "401d7701-d5a2-9c05-8c80-cd52e7ee8378", "date": "020F14",
     "duration": 100, "sector": "programming", "project": null,
     "label": "Amélioration des astuces d'aide à la compilation pour OCaml"},
@@ -9,7 +12,4 @@
     "label": "Implémentation d'astuces, aide à la compilation, dans le compilateur d'OCaml pour les modules, modules types et types de classes"},
   {"uuid": "39c567f5-cba0-9304-1fa6-41d666643c0b", "date": "020F12",
     "duration": 100, "sector": "maintenance", "project": null,
-    "label": "Mise en place d'un environnement de développement pour des contributions potentielles à OCaml"},
-  {"uuid": "f59d2f14-1932-5c55-7978-ed964b459fd0", "date": "020F11",
-    "duration": 300, "sector": "programming", "project": "preface",
-    "label": "Revue et expériences d'utilisation de la bibliothèque"}]
+    "label": "Mise en place d'un environnement de développement pour des contributions potentielles à OCaml"}]
