@@ -73,7 +73,7 @@
           "https://arxiv.org/pdf/1807.05923.pdf")
         ("An Introduction to Algebraic Effects and Handlers"
           "http://www.eff-lang.org/handlers-tutorial.pdf")
-        ("Programming and Reasoning with Algebraic Effects and Dependent Types (pdf)"
+        ("Programming and Reasoning with Algebraic Effects and Dependent Types"
           "https://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf")))))
 (:content "external" #org "content/posts/algebraic-effects.org")
 (:published true) (:category "programmation")
@@ -322,7 +322,7 @@
 <a class="sourceLine" id="cb16-3" title="3">   println(<span class="st">&quot;World&quot;</span>)</a>
 <a class="sourceLine" id="cb16-4" title="4">   println(<span class="st">&quot;How are you?&quot;</span>)</a>
 <a class="sourceLine" id="cb16-5" title="5">}</a></code></pre></div>
-<p>Après avoir exécuté la première ligne de la fonction, et avoir affiché <code class="sourceCode java"><span class="st">&quot;Hello World&quot;</span></code>, la continuation correspond aux deux lignes suivantes. Dans certains langages, comme <strong>JavaScript</strong>, il est parfois nécéssaire d’abuser des continuations pour synchroniser un programme. En effet, comme chaque appel de fonction est exécuté de manière asynchrone, une pratique courante à vu le jour, le passage de <strong><em>callbacks</em></strong>, qui n’est, au final, qu’un autre nom pour <strong>continuation</strong>, par exemple :</p>
+<p>Après avoir exécuté la première ligne de la fonction, et avoir affiché <code class="sourceCode java"><span class="st">&quot;Hello&quot;</span></code>, la continuation correspond aux deux lignes suivantes. Dans certains langages, comme <strong>JavaScript</strong>, il est parfois nécéssaire d’abuser des continuations pour synchroniser un programme. En effet, comme chaque appel de fonction est exécuté de manière asynchrone, une pratique courante à vu le jour, le passage de <strong><em>callbacks</em></strong>, qui n’est, au final, qu’un autre nom pour <strong>continuation</strong>, par exemple :</p>
 <div class="sourceCode" id="cb17" data-roe-kind="code" data-pellet="JavaScript" data-line-number="true"><pre class="sourceCode javascript"><code class="sourceCode javascript"><a class="sourceLine" id="cb17-1" title="1"><span class="at">performAsyncComputation</span>(x<span class="op">,</span> <span class="kw">function</span>(result) <span class="op">{</span></a>
 <a class="sourceLine" id="cb17-2" title="2">   <span class="cf">return</span> <span class="at">performAnotherAsyncComputation</span>(result<span class="op">,</span> <span class="kw">function</span>(newResult) <span class="op">{</span></a>
 <a class="sourceLine" id="cb17-3" title="3">      <span class="va">console</span>.<span class="at">log</span>(newResult)<span class="op">;</span></a>
