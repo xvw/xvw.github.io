@@ -89,7 +89,7 @@
                     "date": "020A11"},
                   {"name": "v2.1.1",
                     "uri": "https://github.com/RMEx/RME/releases/tag/v2.1.1",
-                    "date": "020A15"}], "status": "unceasing",
+                    "date": "020A15"}], "status": "done",
     "tags": ["game", "rpgmaker", "rme", "vxace", "ruby"], "picto": "rme",
     "indexed": true, "subprojects": []},
   {"name": "diarium", "published": false, "title": "Diarium",
