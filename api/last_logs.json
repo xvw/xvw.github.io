@@ -4,12 +4,12 @@
   {"uuid": "6cb47ebc-5fd1-9048-6c95-296b6c3742e4", "date": "020H11",
     "duration": 30, "sector": "programming", "project": "preface",
     "label": "Correctif sur les alternatives"},
+  {"uuid": "9e10eda5-f06f-f7b1-789c-98072ebd1de5", "date": "020H11",
+    "duration": 60, "sector": "programming", "project": "planet",
+    "label": "Légère modification du graphique de tracking"},
   {"uuid": "8d06b64b-7d4e-735e-5765-82d75b041581", "date": "020H10",
     "duration": 60, "sector": "maintenance", "project": "planet",
     "label": "Saisie de données et modifications de status"},
   {"uuid": "3079f272-01cd-5c5f-db27-9a810ad63ca5", "date": "020H10",
     "duration": 100, "sector": "programming", "project": "preface",
-    "label": "Implémentation des alternatives"},
-  {"uuid": "3f631687-0b63-64a3-9f50-d1e8e1ae6e2a", "date": "020G26",
-    "duration": 450, "sector": "audio", "project": null,
-    "label": "Expériences avec Sunvox"}]
+    "label": "Implémentation des alternatives"}]
