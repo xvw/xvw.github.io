@@ -44,37 +44,6 @@
       <div class="main-block">
         <div id="resume-details" class="page-small-cover black-block small-refutable"></div>
 <div class="container base-content uniq-content">
-  <div class="qexp-metadata" id="story-qexp-metadata">
-    <textarea data-planet-qexp="story">(:permaname "introduction_aux_monades")
-(:title "Un article sur les monades en 2018")
-(:synopsis "Une introduction aux monades en programmation fonctionnelle.")
-(:links
-  (("Autres ressources"
-     (("Don't fear the Monad (vidéo)"
-        "https://www.youtube.com/watch?v=ZhuHCtR3xq8")
-       ("Arrow, the monad tutorial"
-         "https://arrow-kt.io/docs/patterns/monads/")))
-    ("Syntaxes"
-      (("La do-notation" "https://en.wikibooks.org/wiki/Haskell/do_notation")
-        ("Expression de Calcul en F#"
-          "https://docs.microsoft.com/fr-fr/dotnet/fsharp/language-reference/computation-expressions")
-        ("OCaml has some new shiny syntax"
-          "http://jobjo.github.io/2019/04/24/ocaml-has-some-new-shiny-syntax.html")
-        ("Scala comprehension"
-          "https://docs.scala-lang.org/tour/for-comprehensions.html")))
-    ("Papiers relatifs"
-      (("Monad for functional programming"
-         "https://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf")
-        ("F# Computation expression Zoo"
-          "https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/computation-zoo.pdf")
-        ("Notions of computation and monads"
-          "https://core.ac.uk/download/pdf/21173011.pdf")))))
-(:content "external" #org "content/posts/monad.org") (:published true)
-(:category "programmation")
-(:tags ("programmation" "fonctionnelle" "monade" "introduction"))
-(:date #018H22)
-(:kind #long)</textarea>
-  </div>
 
   <div class="content-page">
     <div class="major-header">
@@ -534,17 +503,15 @@ Dans le cas des listes, je trouve qu’utiliser la première interface est plus 
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">4</span></h3><ul><li><a href="../tags.html#programmation">programmation</a></li><li><a href="../tags.html#fonctionnelle">fonctionnelle</a></li><li><a href="../tags.html#monade">monade</a></li><li><a href="../tags.html#introduction">introduction</a></li></ul></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>Autres ressources</span></h3><ul><li><a href="https://www.youtube.com/watch?v=ZhuHCtR3xq8">Don't fear the Monad (vidéo)</a></li><li><a href="https://arrow-kt.io/docs/patterns/monads/">Arrow, the monad tutorial</a></li></ul></div><div class="project-block link-list"><h3><span>Syntaxes</span></h3><ul><li><a href="https://en.wikibooks.org/wiki/Haskell/do_notation">La do-notation</a></li><li><a href="https://docs.microsoft.com/fr-fr/dotnet/fsharp/language-reference/computation-expressions">Expression de Calcul en F#</a></li><li><a href="http://jobjo.github.io/2019/04/24/ocaml-has-some-new-shiny-syntax.html">OCaml has some new shiny syntax</a></li><li><a href="https://docs.scala-lang.org/tour/for-comprehensions.html">Scala comprehension</a></li></ul></div><div class="project-block link-list"><h3><span>Papiers relatifs</span></h3><ul><li><a href="https://homepages.inf.ed.ac.uk/wadler/papers/marktoberdorf/baastad.pdf">Monad for functional programming</a></li><li><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/computation-zoo.pdf">F# Computation expression Zoo</a></li><li><a href="https://core.ac.uk/download/pdf/21173011.pdf">Notions of computation and monads</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -552,14 +519,8 @@ Dans le cas des listes, je trouve qu’utiliser la première interface est plus 
     planet.story.boot({
       path: "/longs/introduction_aux_monades.html",
       eof: document.getElementById("eof-page"),
-      story: document.querySelector(
-        "textarea[data-planet-qexp='story']"
-      ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       resumeDetails: document.getElementById(
         "resume-details"

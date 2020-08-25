@@ -107,17 +107,19 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
+            <div class="loading">
+              <img src="../picto/loader.black.svg" alt="loading..." />
+            </div>
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">5</span></h3><ul><li><a href="../tags.html#brainfuck">brainfuck</a></li><li><a href="../tags.html#ocaml">ocaml</a></li><li><a href="../tags.html#parser">parser</a></li><li><a href="../tags.html#interpreter">interpreter</a></li><li><a href="../tags.html#compilation">compilation</a></li></ul></div>
+          <div class="project-block release-list"><h3><span>Releases</span><span class="label">1</span></h3><ul><li><span class="date">2019-04-26</span><a href="https://github.com/xvw/brainfocaml/releases/tag/1.0.0">v1.0.0</a></li></ul><a class="view-releases" href="https://github.com/xvw/brainfocaml/releases">Toutes les releases</a></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>github</span></h3><ul><li><a href="https://github.com/xvw/brainfocaml">Page du projet</a></li><li><a href="https://github.com/xvw/brainfocaml/issues">Bug tracker</a></li><li><a href="https://github.com/xvw/brainfocaml/graphs/contributors">Contributeurs</a></li></ul></div><div class="project-block link-list"><h3><span>Liens</span></h3><ul><li><a href="https://fr.wikipedia.org/wiki/Brainfuck">Brainfuck sur Wikipedia</a></li><li><a href="https://esolangs.org/wiki/Main_Page">Esolang</a></li><li><a href="https://esolangs.org/wiki/Urban_M%C3%BCller">Page de Urban Müller sur Esolang</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -130,10 +132,7 @@
         "textarea[data-planet-qexp='project']"
       ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       sectors: document.querySelectorAll(
         "#planet-sectors-metadata > .sector-data"

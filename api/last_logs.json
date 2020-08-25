@@ -1,6 +1,9 @@
 [{"uuid": "cb7cd8b7-803f-2ee0-5b1e-fe5cfca3fbc4", "date": "020H25",
    "duration": 30, "sector": "programming", "project": "preface",
    "label": "Ajout de test pour les Alternatives"},
+  {"uuid": "aa5fb06f-4f3c-87f9-6c36-9456a8a30186", "date": "020H25",
+    "duration": 200, "sector": "programming", "project": "planet",
+    "label": "Réduction de la génération de données à la volée"},
   {"uuid": "246359f0-116e-2f82-1ac4-5f470b38984b", "date": "020H19",
     "duration": 300, "sector": "writing", "project": null,
     "label": "Traduction FR pour FP-tower"},
@@ -9,7 +12,4 @@
     "label": "Traduction FR pour FP-tower"},
   {"uuid": "beb1c6de-8178-aa20-493b-c3dcd98ba539", "date": "020H17",
     "duration": 150, "sector": "writing", "project": null,
-    "label": "Traduction FR pour FP-tower"},
-  {"uuid": "9ef52d15-7907-f976-ddb3-1189f73a9e40", "date": "020H11",
-    "duration": 200, "sector": "programming", "project": "preface",
-    "label": "Finalisation et test des Alternatives"}]
+    "label": "Traduction FR pour FP-tower"}]

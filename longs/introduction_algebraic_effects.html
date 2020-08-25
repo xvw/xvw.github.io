@@ -44,44 +44,6 @@
       <div class="main-block">
         <div id="resume-details" class="page-small-cover black-block small-refutable"></div>
 <div class="container base-content uniq-content">
-  <div class="qexp-metadata" id="story-qexp-metadata">
-    <textarea data-planet-qexp="story">(:permaname "introduction_algebraic_effects")
-(:title "Tests unitaires de fonctions impures")
-(:synopsis
-  "Une introduction aux effets algébriques par le biais des tests unitaires.")
-(:links
-  (("Langages"
-     (("Koka" "https://koka-lang.github.io/koka/doc/kokaspec.html")
-       ("Eff" "https://www.eff-lang.org/")
-       ("Links" "https://links-lang.org/") ("F*" "https://fstar-lang.org")
-       ("Frank" "https://github.com/frank-lang/frank")
-       ("Helium" "https://bitbucket.org/pl-uwr/helium/src/master/")
-       ("Idris" "https://www.idris-lang.org/")
-       ("OCaml multicore"
-         "https://github.com/ocaml-multicore/ocaml-multicore/wiki")
-       ("Shonky" "https://github.com/pigworker/shonky")))
-    ("Bibliothèques intéressantes"
-      (("Polysemy (Haskell)" "https://github.com/polysemy-research/polysemy")
-        ("Fused effects (Haskell)"
-          "https://github.com/fused-effects/fused-effects")
-        ("Eff in F#" "https://github.com/palladin/Eff")
-        ("Arrow Fx (Kotlin)" "https://arrow-kt.io/docs/fx/")))
-    ("Bibliographie"
-      (("Une bibliographie sur les effets"
-         "https://github.com/yallop/effects-bibliography")
-        ("What is algebraic about algebraic effects and handlers?"
-          "https://arxiv.org/pdf/1807.05923.pdf")
-        ("An Introduction to Algebraic Effects and Handlers"
-          "http://www.eff-lang.org/handlers-tutorial.pdf")
-        ("Programming and Reasoning with Algebraic Effects and Dependent Types"
-          "https://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf")))))
-(:content "external" #org "content/posts/algebraic-effects.org")
-(:published true) (:category "programmation")
-(:tags
-  ("programmation" "fonctionnelle" "pure" "effets algébriques"
-    "test unitaire" "koka" "kotlin")) (:date #020C10)
-(:kind #long)</textarea>
-  </div>
 
   <div class="content-page">
     <div class="major-header">
@@ -631,17 +593,15 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">7</span></h3><ul><li><a href="../tags.html#programmation">programmation</a></li><li><a href="../tags.html#fonctionnelle">fonctionnelle</a></li><li><a href="../tags.html#pure">pure</a></li><li><a href="../tags.html#effets algébriques">effets algébriques</a></li><li><a href="../tags.html#test unitaire">test unitaire</a></li><li><a href="../tags.html#koka">koka</a></li><li><a href="../tags.html#kotlin">kotlin</a></li></ul></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>Langages</span></h3><ul><li><a href="https://koka-lang.github.io/koka/doc/kokaspec.html">Koka</a></li><li><a href="https://www.eff-lang.org/">Eff</a></li><li><a href="https://links-lang.org/">Links</a></li><li><a href="https://fstar-lang.org">F*</a></li><li><a href="https://github.com/frank-lang/frank">Frank</a></li><li><a href="https://bitbucket.org/pl-uwr/helium/src/master/">Helium</a></li><li><a href="https://www.idris-lang.org/">Idris</a></li><li><a href="https://github.com/ocaml-multicore/ocaml-multicore/wiki">OCaml multicore</a></li><li><a href="https://github.com/pigworker/shonky">Shonky</a></li></ul></div><div class="project-block link-list"><h3><span>Bibliothèques intéressantes</span></h3><ul><li><a href="https://github.com/polysemy-research/polysemy">Polysemy (Haskell)</a></li><li><a href="https://github.com/fused-effects/fused-effects">Fused effects (Haskell)</a></li><li><a href="https://github.com/palladin/Eff">Eff in F#</a></li><li><a href="https://arrow-kt.io/docs/fx/">Arrow Fx (Kotlin)</a></li></ul></div><div class="project-block link-list"><h3><span>Bibliographie</span></h3><ul><li><a href="https://github.com/yallop/effects-bibliography">Une bibliographie sur les effets</a></li><li><a href="https://arxiv.org/pdf/1807.05923.pdf">What is algebraic about algebraic effects and handlers?</a></li><li><a href="http://www.eff-lang.org/handlers-tutorial.pdf">An Introduction to Algebraic Effects and Handlers</a></li><li><a href="https://eb.host.cs.st-andrews.ac.uk/drafts/effects.pdf">Programming and Reasoning with Algebraic Effects and Dependent Types</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -649,14 +609,8 @@
     planet.story.boot({
       path: "/longs/introduction_algebraic_effects.html",
       eof: document.getElementById("eof-page"),
-      story: document.querySelector(
-        "textarea[data-planet-qexp='story']"
-      ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       resumeDetails: document.getElementById(
         "resume-details"

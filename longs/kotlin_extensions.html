@@ -44,23 +44,6 @@
       <div class="main-block">
         <div id="resume-details" class="page-small-cover black-block small-refutable"></div>
 <div class="container base-content uniq-content">
-  <div class="qexp-metadata" id="story-qexp-metadata">
-    <textarea data-planet-qexp="story">(:permaname "kotlin_extensions")
-(:title "Kotlin, extensions et génériques")
-(:synopsis "Quelques encodages farfelus avec les extensions.")
-(:links
-  (("Kotlin"
-     (("Site officiel" "https://kotlinlang.org")
-       ("Les extensions en Kotlin"
-         "https://kotlinlang.org/docs/reference/extensions.html")))
-    ("Les classes de types en Kotlin"
-      (("Arrow-kt" "https://arrow-kt.io/")
-        ("KEEP sur les typeclasses" "https://github.com/Kotlin/KEEP/pull/87")))))
-(:content "external" #org "content/posts/kotlin-extension.org")
-(:published true) (:category "programmation")
-(:tags ("programmation" "kotlin" "extension" "types")) (:date #020D29)
-(:kind #long)</textarea>
-  </div>
 
   <div class="content-page">
     <div class="major-header">
@@ -295,17 +278,15 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">4</span></h3><ul><li><a href="../tags.html#programmation">programmation</a></li><li><a href="../tags.html#kotlin">kotlin</a></li><li><a href="../tags.html#extension">extension</a></li><li><a href="../tags.html#types">types</a></li></ul></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>Kotlin</span></h3><ul><li><a href="https://kotlinlang.org">Site officiel</a></li><li><a href="https://kotlinlang.org/docs/reference/extensions.html">Les extensions en Kotlin</a></li></ul></div><div class="project-block link-list"><h3><span>Les classes de types en Kotlin</span></h3><ul><li><a href="https://arrow-kt.io/">Arrow-kt</a></li><li><a href="https://github.com/Kotlin/KEEP/pull/87">KEEP sur les typeclasses</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -313,14 +294,8 @@
     planet.story.boot({
       path: "/longs/kotlin_extensions.html",
       eof: document.getElementById("eof-page"),
-      story: document.querySelector(
-        "textarea[data-planet-qexp='story']"
-      ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       resumeDetails: document.getElementById(
         "resume-details"

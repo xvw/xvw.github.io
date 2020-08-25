@@ -108,17 +108,19 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
+            <div class="loading">
+              <img src="../picto/loader.black.svg" alt="loading..." />
+            </div>
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">6</span></h3><ul><li><a href="../tags.html#file">file</a></li><li><a href="../tags.html#explorer">explorer</a></li><li><a href="../tags.html#mvp">mvp</a></li><li><a href="../tags.html#minimalist">minimalist</a></li><li><a href="../tags.html#elm">elm</a></li><li><a href="../tags.html#electron">electron</a></li></ul></div>
+          <div class="project-block release-list"><h3><span>Releases</span><span class="label">6</span></h3><ul><li><span class="date">2017-11-27</span><a href="https://github.com/xvw/qian/releases/tag/v1.0">v1.0.0</a></li><li><span class="date">2017-12-13</span><a href="https://github.com/xvw/qian/releases/tag/v1.2.0">v1.2.0</a></li><li><span class="date">2017-12-14</span><a href="https://github.com/xvw/qian/releases/tag/v1.2.1">v1.2.1</a></li></ul><a class="view-releases" href="https://github.com/xvw/qian/releases">Toutes les releases</a></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>github</span></h3><ul><li><a href="https://github.com/xvw/qian">Page du projet</a></li><li><a href="https://github.com/xvw/qian/issues">Bug tracker</a></li><li><a href="https://github.com/xvw/qian/graphs/contributors">Contributeurs</a></li></ul></div><div class="project-block link-list"><h3><span>Liens</span></h3><ul><li><a href="https://www.producthunt.com/posts/qian">Product Hunt</a></li></ul></div><div class="project-block link-list"><h3><span>langages</span></h3><ul><li><a href="https://elm-lang.org/">Elm</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li></ul></div><div class="project-block link-list"><h3><span>outils</span></h3><ul><li><a href="https://electronjs.org/">ElectronJS</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -131,10 +133,7 @@
         "textarea[data-planet-qexp='project']"
       ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       sectors: document.querySelectorAll(
         "#planet-sectors-metadata > .sector-data"

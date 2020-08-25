@@ -122,17 +122,19 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
+            <div class="loading">
+              <img src="../picto/loader.black.svg" alt="loading..." />
+            </div>
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">6</span></h3><ul><li><a href="../tags.html#game">game</a></li><li><a href="../tags.html#rpgmaker">rpgmaker</a></li><li><a href="../tags.html#rme">rme</a></li><li><a href="../tags.html#ruby">ruby</a></li><li><a href="../tags.html#jam">jam</a></li><li><a href="../tags.html#ludum dare">ludum dare</a></li></ul></div>
+          <div class="project-block release-list"><h3><span>Releases</span><span class="label">1</span></h3><ul><li><span class="date">2019-08-24</span><a href="https://github.com/RMEx/AlmostHeroic/releases/tag/v1.0.0">v1.0.0</a></li></ul><a class="view-releases" href="https://github.com/rmex/almostheroic/releases">Toutes les releases</a></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>github</span></h3><ul><li><a href="https://github.com/rmex/almostheroic">Page du projet</a></li><li><a href="https://github.com/rmex/almostheroic/issues">Bug tracker</a></li><li><a href="https://github.com/rmex/almostheroic/graphs/contributors">Contributeurs</a></li></ul></div><div class="project-block link-list"><h3><span>Partenaires</span></h3><ul><li><a href="https://biloumaster.itch.io/">Joke</a></li><li><a href="https://github.com/bastienduplessier">Zangther</a></li></ul></div><div class="project-block link-list"><h3><span>Liens</span></h3><ul><li><a href="https://biloumaster.itch.io/free-rpg-asset">Ressources visuelles</a></li><li><a href="https://xvw.itch.io/almost-heroic">Page itch.io</a></li><li><a href="http://ludumdare.com/compo/ludum-dare-33/?action=preview&amp;uid=57278">Page Ludum Dare</a></li><li><a href="http://luminatis-rm.blogspot.com/2016/06/almost-heroic-le-classicisme-de-rpg.html">Test par Yuko</a></li></ul></div><div class="project-block link-list"><h3><span>outils</span></h3><ul><li><a href="http://www.rpgmakerweb.com/products/programs/rpg-maker-vx-ace">RPG Maker VXAce</a></li><li><a href="https://rmex.github.io">RME</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -145,10 +147,7 @@
         "textarea[data-planet-qexp='project']"
       ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       sectors: document.querySelectorAll(
         "#planet-sectors-metadata > .sector-data"

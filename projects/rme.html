@@ -118,17 +118,19 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
+            <div class="loading">
+              <img src="../picto/loader.black.svg" alt="loading..." />
+            </div>
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">5</span></h3><ul><li><a href="../tags.html#game">game</a></li><li><a href="../tags.html#rpgmaker">rpgmaker</a></li><li><a href="../tags.html#rme">rme</a></li><li><a href="../tags.html#vxace">vxace</a></li><li><a href="../tags.html#ruby">ruby</a></li></ul></div>
+          <div class="project-block release-list"><h3><span>Releases</span><span class="label">8</span></h3><ul><li><span class="date">2017-10-06</span><a href="https://github.com/RMEx/RME/releases/tag/v1.1.0">v1.1.0</a></li><li><span class="date">2018-01-02</span><a href="https://github.com/RMEx/RME/releases/tag/v1.2.0">v1.2.0</a></li><li><span class="date">2018-03-18</span><a href="https://github.com/RMEx/RME/releases/tag/v1.3.0">v1.3.0</a></li></ul><a class="view-releases" href="https://github.com/rmex/rme/releases">Toutes les releases</a></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>github</span></h3><ul><li><a href="https://github.com/rmex/rme">Page du projet</a></li><li><a href="https://github.com/rmex/rme/issues">Bug tracker</a></li><li><a href="https://github.com/rmex/rme/graphs/contributors">Contributeurs</a></li></ul></div><div class="project-block link-list"><h3><span>Documentation</span></h3><ul><li><a href="https://github.com/RMEx">Ensemble des projets</a></li><li><a href="https://github.com/RMEx/RME/wiki">Wiki</a></li><li><a href="http://rmex.github.io/RMEDoc/">Documentation des commandes</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -141,10 +143,7 @@
         "textarea[data-planet-qexp='project']"
       ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       sectors: document.querySelectorAll(
         "#planet-sectors-metadata > .sector-data"

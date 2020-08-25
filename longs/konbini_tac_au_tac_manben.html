@@ -44,23 +44,6 @@
       <div class="main-block">
         <div id="resume-details" class="page-small-cover black-block small-refutable"></div>
 <div class="container base-content uniq-content">
-  <div class="qexp-metadata" id="story-qexp-metadata">
-    <textarea data-planet-qexp="story">(:permaname "konbini_tac_au_tac_manben")
-(:title "Konbini, Tac au tac et Manben")
-(:synopsis "Découverte de trois émissions.")
-(:links
-  (("Liens"
-     (("Playlist des interviews Papier-crayon"
-        "https://www.youtube.com/watch?v=RQnfhnm7tAo&list=PL6yqY0TQJgwfVR-APTNdj5NPRXxhp8BY2")
-       ("Site amateur regroupant les saisons de Manben"
-         "http://www.naokiurasawa.com/")
-       ("Tac au tac sur BDGest"
-         "https://www.bdgest.com/news-608-BD-tac-au-tac.html")))))
-(:content "external" #org "content/posts/manben.org") (:published true)
-(:category "culture") (:tags ("télévision" "dessin" "bandes dessinées"))
-(:date #018H19)
-(:kind #long)</textarea>
-  </div>
 
   <div class="content-page">
     <div class="major-header">
@@ -111,17 +94,15 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">3</span></h3><ul><li><a href="../tags.html#télévision">télévision</a></li><li><a href="../tags.html#dessin">dessin</a></li><li><a href="../tags.html#bandes dessinées">bandes dessinées</a></li></ul></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>Liens</span></h3><ul><li><a href="https://www.youtube.com/watch?v=RQnfhnm7tAo&amp;list=PL6yqY0TQJgwfVR-APTNdj5NPRXxhp8BY2">Playlist des interviews Papier-crayon</a></li><li><a href="http://www.naokiurasawa.com/">Site amateur regroupant les saisons de Manben</a></li><li><a href="https://www.bdgest.com/news-608-BD-tac-au-tac.html">Tac au tac sur BDGest</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -129,14 +110,8 @@
     planet.story.boot({
       path: "/longs/konbini_tac_au_tac_manben.html",
       eof: document.getElementById("eof-page"),
-      story: document.querySelector(
-        "textarea[data-planet-qexp='story']"
-      ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       resumeDetails: document.getElementById(
         "resume-details"

@@ -44,15 +44,6 @@
       <div class="main-block">
         <div id="resume-details" class="page-small-cover black-block small-refutable"></div>
 <div class="container base-content uniq-content">
-  <div class="qexp-metadata" id="story-qexp-metadata">
-    <textarea data-planet-qexp="story">(:permaname "zipper_history") (:title "Voyager dans le temps avec un Zipper")
-(:synopsis "Utilisation d'un Zipper pour l'implémentation d'un historique.")
-(:links ()) (:content "external" #org "content/posts/history.org")
-(:published true) (:category "programmation")
-(:tags ("programmation" "fonctionnelle" "zipper" "structure" "donnée"))
-(:date #017K20)
-(:kind #long)</textarea>
-  </div>
 
   <div class="content-page">
     <div class="major-header">
@@ -207,17 +198,15 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">5</span></h3><ul><li><a href="../tags.html#programmation">programmation</a></li><li><a href="../tags.html#fonctionnelle">fonctionnelle</a></li><li><a href="../tags.html#zipper">zipper</a></li><li><a href="../tags.html#structure">structure</a></li><li><a href="../tags.html#donnée">donnée</a></li></ul></div>
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    
   </div>
 </div>
 <script>
@@ -225,14 +214,8 @@
     planet.story.boot({
       path: "/longs/zipper_history.html",
       eof: document.getElementById("eof-page"),
-      story: document.querySelector(
-        "textarea[data-planet-qexp='story']"
-      ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       resumeDetails: document.getElementById(
         "resume-details"

@@ -61,11 +61,11 @@
         ("Fira Mono" "https://mozilla.github.io/Fira/")
         ("Old Standard TT" "http://thessalonica.org.ru/en/fonts.html")))))
 (:releases ())</textarea>
-<textarea data-planet-qexp="project_timedata">(:name "planet") (:logs_counter 166) (:minuts_counter 16575)
+<textarea data-planet-qexp="project_timedata">(:name "planet") (:logs_counter 167) (:minuts_counter 16775)
 (:sectors_counters
-  (("programming" 9155) ("visual" 2780) ("maintenance" 795) ("research" 860)
+  (("programming" 9355) ("visual" 2780) ("maintenance" 795) ("research" 860)
     ("writing" 2985))) (:start_date #019A06)
-(:last_update #020H11)</textarea>
+(:last_update #020H25)</textarea>
   </div>
   <div class="content-page">
     <div class="major-header">
@@ -113,17 +113,19 @@
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
-          <div class="loading">
-            <img src="../picto/loader.black.svg" alt="loading..." />
+          <div id="dynamic-right">
+            <div class="loading">
+              <img src="../picto/loader.black.svg" alt="loading..." />
+            </div>
           </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">6</span></h3><ul><li><a href="../tags.html#log">log</a></li><li><a href="../tags.html#web">web</a></li><li><a href="../tags.html#ocaml">ocaml</a></li><li><a href="../tags.html#journal">journal</a></li><li><a href="../tags.html#blog">blog</a></li><li><a href="../tags.html#hakyll">hakyll</a></li></ul></div>
+          
         </div>
       </div>
     </div>
   </div>
   <div id="major-content-bottom">
-    <div class="loading">
-      <img src="../picto/loader.black.svg" alt="loading..." />
-    </div>
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>github</span></h3><ul><li><a href="https://github.com/xvw/planet">Page du projet</a></li><li><a href="https://github.com/xvw/planet/issues">Bug tracker</a></li><li><a href="https://github.com/xvw/planet/graphs/contributors">Contributeurs</a></li></ul></div><div class="project-block link-list"><h3><span>langages</span></h3><ul><li><a href="https://ocaml.org">OCaml</a></li><li><a href="https://www.haskell.org/">Haskell</a></li></ul></div><div class="project-block link-list"><h3><span>outils</span></h3><ul><li><a href="https://ocsigen.org/js_of_ocaml">Js_of_ocaml</a></li><li><a href="https://jaspervdj.be/hakyll/">Hakyll</a></li></ul></div><div class="project-block link-list"><h3><span>typographies</span></h3><ul><li><a href="https://rsms.me/inter/">Inter</a></li><li><a href="https://mozilla.github.io/Fira/">Fira Mono</a></li><li><a href="http://thessalonica.org.ru/en/fonts.html">Old Standard TT</a></li></ul></div></div>
   </div>
 </div>
 <script>
@@ -136,10 +138,7 @@
         "textarea[data-planet-qexp='project']"
       ),
       rightContainer: document.getElementById(
-        "major-content-right"
-      ),
-      bottomContainer: document.getElementById(
-        "major-content-bottom"
+        "dynamic-right"
       ),
       sectors: document.querySelectorAll(
         "#planet-sectors-metadata > .sector-data"
