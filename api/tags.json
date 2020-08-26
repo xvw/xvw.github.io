@@ -9,7 +9,7 @@
               "test unitaire", "typage", "types", "télévision", "vxace",
               "web", "zipper"],
   "contents": [{"title": "Planet", "section": "project", "id": "planet",
-                 "date": "020H25",
+                 "date": "020H26",
                  "description": "Une collection d'outils pour construire ma page personnelle",
                  "tags": ["log", "web", "ocaml", "journal", "blog", "hakyll"]},
                 {"title": "Qian", "section": "project", "id": "qian",
