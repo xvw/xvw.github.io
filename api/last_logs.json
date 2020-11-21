@@ -1,6 +1,9 @@
 [{"uuid": "78b53a89-d0e6-1aac-2fa6-567fcd6e25b3", "date": "020K21",
    "duration": 300, "sector": "maintenance", "project": null,
    "label": "Configuration ArchLinux"},
+  {"uuid": "ab680c60-b2e1-0de9-510d-de674ed5daa6", "date": "020K21",
+    "duration": 350, "sector": "programming", "project": null,
+    "label": "Hacking avec Xmonad"},
   {"uuid": "842c7549-7c25-3e43-fa5f-2e9a4d3070ef", "date": "020K20",
     "duration": 450, "sector": "maintenance", "project": null,
     "label": "Configuration de ArchLinux"},
@@ -9,7 +12,4 @@
     "label": "Configuration de ArchLinux"},
   {"uuid": "74f56202-8257-4806-7453-cc10b70b96c5", "date": "020K18",
     "duration": 280, "sector": "maintenance", "project": null,
-    "label": "Configuration ArchLinux"},
-  {"uuid": "6387d8c1-268d-17c8-fbe9-cc6a88ee5dec", "date": "020K17",
-    "duration": 300, "sector": "maintenance", "project": null,
-    "label": "Installation de ArchLinux sur ma machine personnelle"}]
+    "label": "Configuration ArchLinux"}]
