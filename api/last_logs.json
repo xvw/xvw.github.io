@@ -1,6 +1,9 @@
-[{"uuid": "78b53a89-d0e6-1aac-2fa6-567fcd6e25b3", "date": "020K21",
-   "duration": 300, "sector": "maintenance", "project": null,
-   "label": "Configuration ArchLinux"},
+[{"uuid": "c971e0df-ad03-e43f-e762-1c1e4bd635e2", "date": "020K22",
+   "duration": 25, "sector": "programming", "project": "preface",
+   "label": "Mise à jour des Free Applicative et Free Selective"},
+  {"uuid": "78b53a89-d0e6-1aac-2fa6-567fcd6e25b3", "date": "020K21",
+    "duration": 300, "sector": "maintenance", "project": null,
+    "label": "Configuration ArchLinux"},
   {"uuid": "ab680c60-b2e1-0de9-510d-de674ed5daa6", "date": "020K21",
     "duration": 350, "sector": "programming", "project": null,
     "label": "Hacking avec Xmonad"},
@@ -9,7 +12,4 @@
     "label": "Configuration de ArchLinux"},
   {"uuid": "f3b2979b-59a2-51ca-a52c-e16871b915c9", "date": "020K19",
     "duration": 300, "sector": "maintenance", "project": null,
-    "label": "Configuration de ArchLinux"},
-  {"uuid": "74f56202-8257-4806-7453-cc10b70b96c5", "date": "020K18",
-    "duration": 280, "sector": "maintenance", "project": null,
-    "label": "Configuration ArchLinux"}]
+    "label": "Configuration de ArchLinux"}]
