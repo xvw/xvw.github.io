@@ -1,6 +1,9 @@
-[{"uuid": "afe76d8b-8cfa-ad1e-0d76-a0df07d0c1d4", "date": "020K29",
-   "duration": 500, "sector": "programming", "project": "orion",
-   "label": "Amélioration de l'infrastructure de test pour tester correctemment l'IO"},
+[{"uuid": "ab96373c-5d17-cde0-9a3b-ee4719eff0b1", "date": "020K30",
+   "duration": 200, "sector": "programming", "project": "orion",
+   "label": "Implémentation de Brick"},
+  {"uuid": "afe76d8b-8cfa-ad1e-0d76-a0df07d0c1d4", "date": "020K29",
+    "duration": 500, "sector": "programming", "project": "orion",
+    "label": "Amélioration de l'infrastructure de test pour tester correctemment l'IO"},
   {"uuid": "b49c2de8-fb60-9bfc-2648-e18ec4c34e00", "date": "020K28",
     "duration": 300, "sector": "programming", "project": "orion",
     "label": "Démarrage de la bibliothèque nécessaire á l'écriture des services"},
@@ -9,7 +12,4 @@
     "label": "Expériences avec Dmlenu"},
   {"uuid": "2e024898-73db-a0f5-d482-37f6a7468ed6", "date": "020K27",
     "duration": 320, "sector": "programming", "project": "orion",
-    "label": "Expérimentations sur les formats de serialisation"},
-  {"uuid": "1062382c-bb91-8302-66bb-6242208ee4cd", "date": "020K26",
-    "duration": 25, "sector": "programming", "project": null,
-    "label": "Expériences avec Dmlenu"}]
+    "label": "Expérimentations sur les formats de serialisation"}]
