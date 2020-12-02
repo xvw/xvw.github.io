@@ -1,6 +1,9 @@
-[{"uuid": "5d5bae06-45f9-b2dc-e6bc-e5cfd8ac1a5a", "date": "020L01",
-   "duration": 250, "sector": "writing", "project": null,
-   "label": "Préparation du Talk sur les Binding pour Cuuti"},
+[{"uuid": "a82046e1-cd9e-72ff-f931-1b3a08f47e0f", "date": "020L02",
+   "duration": 120, "sector": "programming", "project": "preface",
+   "label": "Expériences autour du regroupement de modules"},
+  {"uuid": "5d5bae06-45f9-b2dc-e6bc-e5cfd8ac1a5a", "date": "020L01",
+    "duration": 250, "sector": "writing", "project": null,
+    "label": "Préparation du Talk sur les Binding pour Cuuti"},
   {"uuid": "ab96373c-5d17-cde0-9a3b-ee4719eff0b1", "date": "020K30",
     "duration": 200, "sector": "programming", "project": "orion",
     "label": "Implémentation de Brick"},
@@ -9,7 +12,4 @@
     "label": "Amélioration de l'infrastructure de test pour tester correctemment l'IO"},
   {"uuid": "b49c2de8-fb60-9bfc-2648-e18ec4c34e00", "date": "020K28",
     "duration": 300, "sector": "programming", "project": "orion",
-    "label": "Démarrage de la bibliothèque nécessaire á l'écriture des services"},
-  {"uuid": "fa010b7a-ae23-b5ed-a0c3-e079c08697bd", "date": "020K27",
-    "duration": 20, "sector": "programming", "project": null,
-    "label": "Expériences avec Dmlenu"}]
+    "label": "Démarrage de la bibliothèque nécessaire á l'écriture des services"}]
