@@ -1,6 +1,9 @@
-[{"uuid": "a82046e1-cd9e-72ff-f931-1b3a08f47e0f", "date": "020L02",
+[{"uuid": "fefff1bc-cb0c-01e4-e907-8315a80ceb53", "date": "020L03",
    "duration": 120, "sector": "programming", "project": "preface",
-   "label": "Expériences autour du regroupement de modules"},
+   "label": "Remplacement typographique (eq -> equal) et utilisation du paquet Either pour simplifier la définition de Selectives"},
+  {"uuid": "a82046e1-cd9e-72ff-f931-1b3a08f47e0f", "date": "020L02",
+    "duration": 120, "sector": "programming", "project": "preface",
+    "label": "Expériences autour du regroupement de modules"},
   {"uuid": "5d5bae06-45f9-b2dc-e6bc-e5cfd8ac1a5a", "date": "020L01",
     "duration": 250, "sector": "writing", "project": null,
     "label": "Préparation du Talk sur les Binding pour Cuuti"},
@@ -9,7 +12,4 @@
     "label": "Implémentation de Brick"},
   {"uuid": "afe76d8b-8cfa-ad1e-0d76-a0df07d0c1d4", "date": "020K29",
     "duration": 500, "sector": "programming", "project": "orion",
-    "label": "Amélioration de l'infrastructure de test pour tester correctemment l'IO"},
-  {"uuid": "b49c2de8-fb60-9bfc-2648-e18ec4c34e00", "date": "020K28",
-    "duration": 300, "sector": "programming", "project": "orion",
-    "label": "Démarrage de la bibliothèque nécessaire á l'écriture des services"}]
+    "label": "Amélioration de l'infrastructure de test pour tester correctemment l'IO"}]
