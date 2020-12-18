@@ -8,9 +8,9 @@
     <meta name="author" content="Xavier Van de Woestyne">
     
     
-    <meta name="description" content="Implémentation d'une TODO-liste - Ajout d'une liste de tâches">
+    <meta name="description" content="Notes sur le café - Retour sur mon initiation au plaisir du café.">
     
-    <title>Implémentation d'une TODO-liste - Ajout d'une liste de tâches </title>
+    <title>Notes sur le café - Retour sur mon initiation au plaisir du café. </title>
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/hl.css" />
     <link rel="stylesheet" href="../css/default.css" />
@@ -34,6 +34,7 @@
       <div class="navbar">
         <nav class="container">
           <a href="../">Accueil</a>
+          <a href="../tags.html">Tags</a>
           <a href="../longs.html">Articles</a>
           <a href="../projects.html">Projets</a>
           <a href="../galleries.html">Galeries</a>
@@ -47,26 +48,33 @@
   <div class="content-page">
     <div class="major-header">
       <div class="major-details">
-        <h1>Implémentation d'une TODO-liste</h1>
+        <h1>Notes sur le café</h1>
         <span class="synopsis">
-          Ajout d'une liste de tâches
+          Retour sur mon initiation au plaisir du café.
         </span>
         <div>
-          <span class="badge published">2020-01-09</span>
-          <span class="badge">planet</span>
+          <span class="badge published">2020-12-15</span>
+          <span class="badge">aléatoire</span>
         </div>
       </div>
     </div>
     <div class="major-content">
       <div class="long-text structured-text" id="roe-container">
-        
+        <blockquote>
+<p>Il y a deux ans (à l’époque où j’écris cet article), j’ai pris la décision de changer la manière dont je consommais mon café. Depuis, bien qu’étant encore bien peu expérimenté, j’ai découvert un nouveau monde, goûtu, agréable au nez, riche et diversifié. Principalement parce que je ne suis pas particulièrement prolifique dans l’exercice de la rédaction, que mon article sur les émissions de télévision en rapport á la bande dessinée est, au doigt mouillé (je ne collecte pas de données sur mes potentiels lecteurs), le plus populaire de ce site internet et que le sujet m’intéresse (tout de même !), je m’inspire de <a href="https://yannickschutz.com/pause-cafe/">Yannick</a> pour vous faire part de ma modeste expérience avec le café.</p>
+<p>En complément de l’envie de “faire part” des raisons qui m’ont poussé à augmenter mon exigence par rapport au café, j’essaierai, dans cet article, de présenter un très bref résumé (un peu naïf) des astuces qui, selon moi, permettent de démarrer, et d’un peu de vocabulaire pour faciliter la sélection de son café.</p>
+<p>Par contre, n’accordons pas à cet article plus d’ambition qu’il n’en prétend, je pense qu’il existe suffisament de ressources pour retracer l’histoire du café, géographiquement et socialement, sur le net ou dans des livres. Voyons plutôt cet article comme un retour d’expérience.</p>
+</blockquote>
+<p>Alors que je n’ai absolument aucun souvenir de ma première bière ou de mon premier verre de vin, j’ai un très net souvenir de ma toute première tasse de café. Est-ce parce que, en toute honnêteté, ce fût une expérience traumatisante ? Quoi qu’il en soit, en 1998, alors âgé de 9 ans, à l’occasion de la Saint-Nicolas (une fête d’une importance capitale pour les Belges), je demande fièrement à mon grand-père maternelle une tasse de café ! Après avoir consulté mes parents, il accède à ma requête, à la condition que je m’engage à terminer la tasse qu’il me servirait… j’accepte, pour mon plus grand malheur ! La boisson est amère et je suis incapable de la terminer. Armé de courage, de sucre et de lait, je me souviens très précisement m’être battu contre mon palais, mes papilles et mon estomac pour venir à bout de la boisson maron (et oui, l’abus de lait) en me promettant de ne plus jamais m’aventurer dans les méandres du café, la boisson était visiblement incompatible avec mes goûts.</p>
+<p>Le café mis de côté, ce n’est que bien plus tard, quand je commencerai à programmer de nuit que je renouerai avec le café, pour le meilleur et, dans un premier temps, pour le pire.</p>
+<h3 id="voyage-avec-pour-premier-aboutissement-la-monstruosité-du-café-instantané">Voyage avec pour premier aboutissement la monstruosité du café instantané</h3>
         <div id="eof-page"></div>
       </div>
       <div class="content-rightbar">
         <div id="major-content-right" class="small-refutable">
           <div id="dynamic-right">
           </div>
-          
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">2</span></h3><ul><li><a href="../tags.html#café">café</a></li><li><a href="../tags.html#découverte">découverte</a></li></ul></div>
         </div>
       </div>
     </div>
@@ -78,7 +86,7 @@
 <script>
   planet.suspend(function() {
     planet.story.boot({
-      path: "/shorts/todolist.html",
+      path: "/longs/cafe.html",
       eof: document.getElementById("eof-page"),
       rightContainer: document.getElementById(
         "major-content-right"
@@ -100,10 +108,9 @@
     <footer>
       <div class="container">
         <div class="left">
-          <a id="random-page-btn" class="small-button-gray">
+          <button id="random-page-btn" class="small-button-gray">
             Page aléatoire
           </button>
-           <a href="../tags.html" class="small-button-gray">Tags</a>
           <br /><br />
           Cette page est construite avec
           <a href="https://jaspervdj.be/hakyll/">Hakyll</a> et
