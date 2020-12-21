@@ -1,6 +1,9 @@
-[{"uuid": "0ba4b7ea-7bbd-bc0f-092c-26757e5ff42d", "date": "020L20",
-   "duration": 300, "sector": "programming", "project": null,
-   "label": "Etats d'âmes : implémentation du générateur de documents en OCaml"},
+[{"uuid": "5369312c-ca16-5808-57b2-172462a23902", "date": "020L21",
+   "duration": 450, "sector": "writing", "project": null,
+   "label": "Etats d'âmes: intégration de nouvelles entrevues"},
+  {"uuid": "0ba4b7ea-7bbd-bc0f-092c-26757e5ff42d", "date": "020L20",
+    "duration": 300, "sector": "programming", "project": null,
+    "label": "Etats d'âmes : implémentation du générateur de documents en OCaml"},
   {"uuid": "c89c7b22-846a-35f1-41a5-8675e5aa597a", "date": "020L19",
     "duration": 230, "sector": "programming", "project": "orion",
     "label": "Ajout des objets dans Brick"},
@@ -9,7 +12,4 @@
     "label": "Écriture de l'article sur le café"},
   {"uuid": "11570f69-8da3-4f90-7d07-eab185f2ccd2", "date": "020L18",
     "duration": 20, "sector": "visual", "project": "planet",
-    "label": "Petites transformations visuelles"},
-  {"uuid": "e4e660e3-5c63-8e80-f51d-95e8de053735", "date": "020L17",
-    "duration": 350, "sector": "programming", "project": null,
-    "label": "Expériences avec les modules OCaml et la recursion de modules"}]
+    "label": "Petites transformations visuelles"}]
