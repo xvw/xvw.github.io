@@ -1,6 +1,9 @@
-[{"uuid": "b0343dba-c22e-67db-16f3-03c71c999a4c", "date": "021A19",
-   "duration": 200, "sector": "maintenance", "project": null,
-   "label": "Suppression de LightDM"},
+[{"uuid": "9041c6fe-c146-938d-cfb6-3add8f883da8", "date": "021A20",
+   "duration": 250, "sector": "maintenance", "project": null,
+   "label": "Maintenance des logiciels et correctif clavier/son"},
+  {"uuid": "b0343dba-c22e-67db-16f3-03c71c999a4c", "date": "021A19",
+    "duration": 200, "sector": "maintenance", "project": null,
+    "label": "Suppression de LightDM"},
   {"uuid": "7cb28082-c1a3-6dd7-185c-1f80534e23c8", "date": "021A18",
     "duration": 180, "sector": "maintenance", "project": null,
     "label": "Maintenance ArchLinux"},
@@ -9,7 +12,4 @@
     "label": "Finalisation du premier batch des Etats d'ame"},
   {"uuid": "ec77d438-8268-b017-a0dd-f5fa9c2db411", "date": "021A13",
     "duration": 450, "sector": "writing", "project": null,
-    "label": "Complétude des Etats d'ames"},
-  {"uuid": "416fac40-b7cd-3adb-27e0-d7a7549ff1b3", "date": "021A10",
-    "duration": 200, "sector": "programming", "project": "preface",
-    "label": "Test de propriétés pour les Comonades et pour les Streams"}]
+    "label": "Complétude des Etats d'ames"}]
