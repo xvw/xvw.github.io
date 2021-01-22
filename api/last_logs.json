@@ -1,6 +1,9 @@
 [{"uuid": "bcd2d16b-4c3c-7cfa-1a9d-a471a778c911", "date": "021A22",
    "duration": 500, "sector": "programming", "project": "orion",
    "label": "Réécriture du parser du langage Brick"},
+  {"uuid": "3fe0b78e-a16e-a67a-c28e-5b626a2dbfc2", "date": "021A22",
+    "duration": 250, "sector": "programming", "project": "orion",
+    "label": "Initialisation de la CLI"},
   {"uuid": "c3dc45d9-ae70-535b-e776-eda9db9feb35", "date": "021A21",
     "duration": 350, "sector": "programming", "project": "orion",
     "label": "Expériences avec des Parsers combinators pour améliorer la désérialisation de petits langages"},
@@ -9,7 +12,4 @@
     "label": "Maintenance des logiciels et correctif clavier/son"},
   {"uuid": "ff8b746e-2b38-6ba1-9ccd-1c5f19b3817d", "date": "021A20",
     "duration": 350, "sector": "programming", "project": "orion",
-    "label": "Implémentation de Brick, le langage de sérialisation"},
-  {"uuid": "b0343dba-c22e-67db-16f3-03c71c999a4c", "date": "021A19",
-    "duration": 200, "sector": "maintenance", "project": null,
-    "label": "Suppression de LightDM"}]
+    "label": "Implémentation de Brick, le langage de sérialisation"}]
