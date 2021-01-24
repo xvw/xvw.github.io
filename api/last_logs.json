@@ -1,6 +1,9 @@
-[{"uuid": "b5ff280a-ba25-8a61-4570-8e76cf253011", "date": "021A23",
+[{"uuid": "05436ca7-aee8-275c-8923-4e294b8413a5", "date": "021A24",
    "duration": 280, "sector": "programming", "project": "orion",
-   "label": "Implémentation de programmes en CLI avec un gestionnaire d'effets (Preface)"},
+   "label": "Amélioration du programme [init]"},
+  {"uuid": "b5ff280a-ba25-8a61-4570-8e76cf253011", "date": "021A23",
+    "duration": 280, "sector": "programming", "project": "orion",
+    "label": "Implémentation de programmes en CLI avec un gestionnaire d'effets (Preface)"},
   {"uuid": "bcd2d16b-4c3c-7cfa-1a9d-a471a778c911", "date": "021A22",
     "duration": 500, "sector": "programming", "project": "orion",
     "label": "Réécriture du parser du langage Brick"},
@@ -9,7 +12,4 @@
     "label": "Initialisation de la CLI"},
   {"uuid": "686c6c8b-759e-73e6-b453-2c89ad70ed58", "date": "021A22",
     "duration": 250, "sector": "programming", "project": "orion",
-    "label": "Expériences autours de la déclaration de programme a effets"},
-  {"uuid": "c3dc45d9-ae70-535b-e776-eda9db9feb35", "date": "021A21",
-    "duration": 350, "sector": "programming", "project": "orion",
-    "label": "Expériences avec des Parsers combinators pour améliorer la désérialisation de petits langages"}]
+    "label": "Expériences autours de la déclaration de programme a effets"}]
