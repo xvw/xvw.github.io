@@ -1,6 +1,9 @@
 [{"uuid": "05436ca7-aee8-275c-8923-4e294b8413a5", "date": "021A24",
    "duration": 280, "sector": "programming", "project": "orion",
    "label": "Amélioration du programme [init]"},
+  {"uuid": "6da8a0e4-392b-0b64-7f46-ec1c6182c7f0", "date": "021A24",
+    "duration": 80, "sector": "programming", "project": "preface",
+    "label": "Revue des implémentation de Traversable"},
   {"uuid": "b5ff280a-ba25-8a61-4570-8e76cf253011", "date": "021A23",
     "duration": 280, "sector": "programming", "project": "orion",
     "label": "Implémentation de programmes en CLI avec un gestionnaire d'effets (Preface)"},
@@ -9,7 +12,4 @@
     "label": "Réécriture du parser du langage Brick"},
   {"uuid": "3fe0b78e-a16e-a67a-c28e-5b626a2dbfc2", "date": "021A22",
     "duration": 250, "sector": "programming", "project": "orion",
-    "label": "Initialisation de la CLI"},
-  {"uuid": "686c6c8b-759e-73e6-b453-2c89ad70ed58", "date": "021A22",
-    "duration": 250, "sector": "programming", "project": "orion",
-    "label": "Expériences autours de la déclaration de programme a effets"}]
+    "label": "Initialisation de la CLI"}]
