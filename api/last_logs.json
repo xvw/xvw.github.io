@@ -1,6 +1,9 @@
 [{"uuid": "9a04cc9b-6c2b-4996-e518-5b40189b1435", "date": "021A28",
    "duration": 280, "sector": "programming", "project": "orion",
    "label": "Introduction du programme de Logging"},
+  {"uuid": "7847108f-2e3e-f4ee-8cc4-7acd7ac5bdbe", "date": "021A28",
+    "duration": 120, "sector": "programming", "project": "orion",
+    "label": "Implémentation de combinateurs ANSI"},
   {"uuid": "b0e451db-4949-8ca8-c791-9475c413f864", "date": "021A27",
     "duration": 15, "sector": "maintenance", "project": "planet",
     "label": "Mise à jour de la liste des présentations"},
@@ -9,7 +12,4 @@
     "label": "Ajout de tests dirigés par les propriétés pour le programme Init"},
   {"uuid": "9fc83147-3313-36eb-6b7d-cb540cf6b393", "date": "021A25",
     "duration": 320, "sector": "programming", "project": "orion",
-    "label": "Amélioration de l'infrastructure de tests pour les programmes à effets"},
-  {"uuid": "eec6fda1-73a9-8a07-1172-13f18323d8f8", "date": "021A25",
-    "duration": 30, "sector": "programming", "project": "orion",
-    "label": "Amélioration des artefacts de tests en vue de faire du PBT sur les actions"}]
+    "label": "Amélioration de l'infrastructure de tests pour les programmes à effets"}]
