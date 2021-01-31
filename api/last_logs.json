@@ -1,6 +1,9 @@
-[{"uuid": "9a04cc9b-6c2b-4996-e518-5b40189b1435", "date": "021A28",
-   "duration": 280, "sector": "programming", "project": "orion",
-   "label": "Introduction du programme de Logging"},
+[{"uuid": "d298e22f-7be1-d02a-5b7f-586f2817b0a7", "date": "021A31",
+   "duration": 45, "sector": "writing", "project": "preface",
+   "label": "Documentation des limitations de Freer_monad "},
+  {"uuid": "9a04cc9b-6c2b-4996-e518-5b40189b1435", "date": "021A28",
+    "duration": 280, "sector": "programming", "project": "orion",
+    "label": "Introduction du programme de Logging"},
   {"uuid": "7847108f-2e3e-f4ee-8cc4-7acd7ac5bdbe", "date": "021A28",
     "duration": 120, "sector": "programming", "project": "orion",
     "label": "Implémentation de combinateurs ANSI"},
@@ -9,7 +12,4 @@
     "label": "Mise à jour de la liste des présentations"},
   {"uuid": "9bd4bf0b-c27c-8238-a608-2bcd56f3093a", "date": "021A26",
     "duration": 35, "sector": "programming", "project": "orion",
-    "label": "Ajout de tests dirigés par les propriétés pour le programme Init"},
-  {"uuid": "9fc83147-3313-36eb-6b7d-cb540cf6b393", "date": "021A25",
-    "duration": 320, "sector": "programming", "project": "orion",
-    "label": "Amélioration de l'infrastructure de tests pour les programmes à effets"}]
+    "label": "Ajout de tests dirigés par les propriétés pour le programme Init"}]
