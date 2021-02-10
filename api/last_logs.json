@@ -1,6 +1,9 @@
-[{"uuid": "251e6816-da51-164f-590a-848585da10cc", "date": "021B08",
-   "duration": 80, "sector": "writing", "project": null,
-   "label": "Traduction de l'introduction du cours Foundation pour FP-tower"},
+[{"uuid": "46e31e50-8482-a587-f5f5-5f4991c7f86b", "date": "021B10",
+   "duration": 450, "sector": "maintenance", "project": "preface",
+   "label": "Amélioration des tests dirigés par les propriétés"},
+  {"uuid": "251e6816-da51-164f-590a-848585da10cc", "date": "021B08",
+    "duration": 80, "sector": "writing", "project": null,
+    "label": "Traduction de l'introduction du cours Foundation pour FP-tower"},
   {"uuid": "0263c63f-923a-f80f-1220-2b959401fa92", "date": "021B07",
     "duration": 200, "sector": "programming", "project": "orion",
     "label": "Tentative d'amélioration de la représentation des chemins"},
@@ -9,7 +12,4 @@
     "label": "Concrétisation du premier programme, init"},
   {"uuid": "eaf4f91e-4915-9298-c599-f7ffcade7754", "date": "021B05",
     "duration": 120, "sector": "programming", "project": "orion",
-    "label": "Amélioration des Chemins de fichiers"},
-  {"uuid": "ff859a49-1216-11e0-1a95-8d63883a75de", "date": "021B04",
-    "duration": 120, "sector": "programming", "project": "orion",
-    "label": "Migration des effets de Freer a Free (en attendant de trouver un correctif pour Freer)"}]
+    "label": "Amélioration des Chemins de fichiers"}]
