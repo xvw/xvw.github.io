@@ -1,6 +1,9 @@
-[{"uuid": "ca05dba8-9c7e-12a2-b7d4-1a07e3c22a3f", "date": "021B14",
-   "duration": 450, "sector": "programming", "project": "preface",
-   "label": "Amélioration des tests unitaires et des tests dirigés par les propriétés"},
+[{"uuid": "53a634c0-ef88-fb33-56cb-ffee4bb4eba1", "date": "021B15",
+   "duration": 230, "sector": "programming", "project": "preface",
+   "label": "Finalisation de la réorganisation des tests unitaires et de propriétés"},
+  {"uuid": "ca05dba8-9c7e-12a2-b7d4-1a07e3c22a3f", "date": "021B14",
+    "duration": 450, "sector": "programming", "project": "preface",
+    "label": "Amélioration des tests unitaires et des tests dirigés par les propriétés"},
   {"uuid": "b8df00c4-9007-56fc-e368-4a34c55b1bca", "date": "021B13",
     "duration": 200, "sector": "programming", "project": "preface",
     "label": "Ajout de tests dirigés par les propriétés"},
@@ -9,7 +12,4 @@
     "label": "Amélioration des tests dirigés par les propriétés"},
   {"uuid": "251e6816-da51-164f-590a-848585da10cc", "date": "021B08",
     "duration": 80, "sector": "writing", "project": null,
-    "label": "Traduction de l'introduction du cours Foundation pour FP-tower"},
-  {"uuid": "0263c63f-923a-f80f-1220-2b959401fa92", "date": "021B07",
-    "duration": 200, "sector": "programming", "project": "orion",
-    "label": "Tentative d'amélioration de la représentation des chemins"}]
+    "label": "Traduction de l'introduction du cours Foundation pour FP-tower"}]
