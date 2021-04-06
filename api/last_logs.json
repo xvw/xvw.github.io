@@ -1,6 +1,9 @@
-[{"uuid": "31658588-2a04-2470-9189-7b38430889d3", "date": "021D05",
-   "duration": 500, "sector": "writing", "project": "preface",
-   "label": "Relecture et standardisation de la documentation (sur les specifications)"},
+[{"uuid": "142ccf7d-af91-63fb-ebf0-b42985871361", "date": "021D06",
+   "duration": 235, "sector": "writing", "project": "preface",
+   "label": "Relecture et reformulation de la documentation des spécifications"},
+  {"uuid": "31658588-2a04-2470-9189-7b38430889d3", "date": "021D05",
+    "duration": 500, "sector": "writing", "project": "preface",
+    "label": "Relecture et standardisation de la documentation (sur les specifications)"},
   {"uuid": "32c6ad94-48b0-b827-e40d-2b73aeceef95", "date": "021D04",
     "duration": 485, "sector": "writing", "project": "preface",
     "label": "Relecture et standardisation de la documentation"},
@@ -9,7 +12,4 @@
     "label": "Premier jet du README"},
   {"uuid": "e24ff1ca-739a-29aa-2bef-6a096789ddb4", "date": "021D02",
     "duration": 125, "sector": "programming", "project": "preface",
-    "label": "Revues de PR (Free Applicatives, Free Selectives et transformations de Reader, Writer et State)"},
-  {"uuid": "3ce6898e-6df0-a35c-b5a1-a643064dba95", "date": "021D02",
-    "duration": 245, "sector": "writing", "project": "preface",
-    "label": "Travaux 'meta' en vue de la pre-release"}]
+    "label": "Revues de PR (Free Applicatives, Free Selectives et transformations de Reader, Writer et State)"}]
