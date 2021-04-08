@@ -1,6 +1,9 @@
-[{"uuid": "5324ba77-1111-4b3f-80d1-14b4bec3415a", "date": "021D07",
-   "duration": 450, "sector": "writing", "project": "preface",
-   "label": "Revue et réecriture de la documentation de Preface.Make"},
+[{"uuid": "9f9d9fec-cdd4-6e2a-4cbb-3a28ed56725d", "date": "021D08",
+   "duration": 650, "sector": "writing", "project": "preface",
+   "label": "Relecture/Reecriture de la documentation"},
+  {"uuid": "5324ba77-1111-4b3f-80d1-14b4bec3415a", "date": "021D07",
+    "duration": 450, "sector": "writing", "project": "preface",
+    "label": "Revue et réecriture de la documentation de Preface.Make"},
   {"uuid": "142ccf7d-af91-63fb-ebf0-b42985871361", "date": "021D06",
     "duration": 235, "sector": "writing", "project": "preface",
     "label": "Relecture et reformulation de la documentation des spécifications"},
@@ -9,7 +12,4 @@
     "label": "Relecture et standardisation de la documentation (sur les specifications)"},
   {"uuid": "32c6ad94-48b0-b827-e40d-2b73aeceef95", "date": "021D04",
     "duration": 485, "sector": "writing", "project": "preface",
-    "label": "Relecture et standardisation de la documentation"},
-  {"uuid": "40bc3a0d-3140-40e2-71fd-5678c150a9d7", "date": "021D03",
-    "duration": 250, "sector": "writing", "project": "preface",
-    "label": "Premier jet du README"}]
+    "label": "Relecture et standardisation de la documentation"}]
