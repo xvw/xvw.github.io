@@ -1,6 +1,9 @@
-[{"uuid": "6f968da9-cabf-79fd-c66a-8d57cf3f3e52", "date": "021D24",
-   "duration": 350, "sector": "programming", "project": "deform",
-   "label": "Initialisation de la bibliothèque"},
+[{"uuid": "da1df345-ae32-7cb0-5519-2bf893ecf562", "date": "021D27",
+   "duration": 320, "sector": "programming", "project": null,
+   "label": "Expériences avec Win32API et Ruby (le retour)"},
+  {"uuid": "6f968da9-cabf-79fd-c66a-8d57cf3f3e52", "date": "021D24",
+    "duration": 350, "sector": "programming", "project": "deform",
+    "label": "Initialisation de la bibliothèque"},
   {"uuid": "48d84681-b95a-8181-daa3-3239eca88d20", "date": "021D23",
     "duration": 350, "sector": "writing", "project": "planet",
     "label": "Article Applicative-Monad"},
@@ -9,7 +12,4 @@
     "label": "Suppression de l'article Applicative/Monad et re-reflexion d'un nouvel article"},
   {"uuid": "941ec364-6349-3b4d-19ec-20c9cf7cd402", "date": "021D22",
     "duration": 450, "sector": "writing", "project": "planet",
-    "label": "Reformulation et changement de direction pour l'article sur la gestion d'erreur, Description d'une différence fondamentale entre Applicative et Monad"},
-  {"uuid": "91af3c14-d4ab-df59-7f28-acb42b43e225", "date": "021D21",
-    "duration": 450, "sector": "writing", "project": "planet",
-    "label": "Ecriture d'un article sur Validation et Result"}]
+    "label": "Reformulation et changement de direction pour l'article sur la gestion d'erreur, Description d'une différence fondamentale entre Applicative et Monad"}]
