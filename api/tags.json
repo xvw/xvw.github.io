@@ -10,7 +10,7 @@
               "test unitaire", "typage", "types", "télévision", "vxace",
               "web", "zipper"],
   "contents": [{"title": "Preface", "section": "project", "id": "preface",
-                 "date": "021D29",
+                 "date": "021D30",
                  "description": "Une bibliothèque OCaml pour la programmation fonctionnelle",
                  "tags": ["library", "ocaml", "category"]},
                 {"title": "Planet", "section": "project", "id": "planet",
