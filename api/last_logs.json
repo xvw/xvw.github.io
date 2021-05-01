@@ -1,6 +1,9 @@
-[{"uuid": "e5c88991-220c-69b9-d2fc-5aa8d9aedc33", "date": "021E01",
-   "duration": 350, "sector": "programming", "project": "orion",
-   "label": "Implémentation de la description des repositories distants"},
+[{"uuid": "7e46a18e-df6e-6a96-09c0-627d553b3676", "date": "021E02",
+   "duration": 250, "sector": "programming", "project": "orion",
+   "label": "Ajout d'objets sérialisables"},
+  {"uuid": "e5c88991-220c-69b9-d2fc-5aa8d9aedc33", "date": "021E01",
+    "duration": 350, "sector": "programming", "project": "orion",
+    "label": "Implémentation de la description des repositories distants"},
   {"uuid": "9cba3d85-7143-5abd-1b14-fa8906f16cbd", "date": "021E01",
     "duration": 350, "sector": "programming", "project": "orion",
     "label": "Ajout d'archétypes sérialisables"},
@@ -9,7 +12,4 @@
     "label": "Passage a Doom Emacs, apprentissage de Evil"},
   {"uuid": "c8c75807-9a7a-8c22-a1ea-e8870bc3166e", "date": "021D30",
     "duration": 150, "sector": "writing", "project": "preface",
-    "label": "Tentative d'écriture d'un papier expliquant les démarches derrière Preface"},
-  {"uuid": "6a1ccaf8-0b84-8b78-cb33-6efb29b20c45", "date": "021D30",
-    "duration": 350, "sector": "programming", "project": "orion",
-    "label": "Initialisation de la bibliothèque Objects, décrivant les structures concrètes. Implémentation de la description d'un repository git remote (pour caractériser un projet externe)"}]
+    "label": "Tentative d'écriture d'un papier expliquant les démarches derrière Preface"}]
