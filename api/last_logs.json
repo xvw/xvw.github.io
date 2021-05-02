@@ -1,6 +1,9 @@
 [{"uuid": "7e46a18e-df6e-6a96-09c0-627d553b3676", "date": "021E02",
    "duration": 250, "sector": "programming", "project": "orion",
    "label": "Ajout d'objets sérialisables"},
+  {"uuid": "48d17050-aff3-714d-d349-8e628fbc51dc", "date": "021E02",
+    "duration": 65, "sector": "visual", "project": null,
+    "label": "Réinterprétation de lieux décrits dans un vieux carnet"},
   {"uuid": "e5c88991-220c-69b9-d2fc-5aa8d9aedc33", "date": "021E01",
     "duration": 350, "sector": "programming", "project": "orion",
     "label": "Implémentation de la description des repositories distants"},
@@ -9,7 +12,4 @@
     "label": "Ajout d'archétypes sérialisables"},
   {"uuid": "e91eff46-6212-4b7b-e18b-c3aa9d225c0f", "date": "021D30",
     "duration": 350, "sector": "maintenance", "project": null,
-    "label": "Passage a Doom Emacs, apprentissage de Evil"},
-  {"uuid": "c8c75807-9a7a-8c22-a1ea-e8870bc3166e", "date": "021D30",
-    "duration": 150, "sector": "writing", "project": "preface",
-    "label": "Tentative d'écriture d'un papier expliquant les démarches derrière Preface"}]
+    "label": "Passage a Doom Emacs, apprentissage de Evil"}]
