@@ -1,6 +1,9 @@
-[{"uuid": "7e46a18e-df6e-6a96-09c0-627d553b3676", "date": "021E02",
-   "duration": 250, "sector": "programming", "project": "orion",
-   "label": "Ajout d'objets sérialisables"},
+[{"uuid": "357d93f6-b4b0-8611-02e6-183dd717e196", "date": "021E03",
+   "duration": 350, "sector": "programming", "project": "bladwyzer",
+   "label": "Initialisation du projet"},
+  {"uuid": "7e46a18e-df6e-6a96-09c0-627d553b3676", "date": "021E02",
+    "duration": 250, "sector": "programming", "project": "orion",
+    "label": "Ajout d'objets sérialisables"},
   {"uuid": "48d17050-aff3-714d-d349-8e628fbc51dc", "date": "021E02",
     "duration": 65, "sector": "visual", "project": null,
     "label": "Réinterprétation de lieux décrits dans un vieux carnet"},
@@ -9,7 +12,4 @@
     "label": "Implémentation de la description des repositories distants"},
   {"uuid": "9cba3d85-7143-5abd-1b14-fa8906f16cbd", "date": "021E01",
     "duration": 350, "sector": "programming", "project": "orion",
-    "label": "Ajout d'archétypes sérialisables"},
-  {"uuid": "e91eff46-6212-4b7b-e18b-c3aa9d225c0f", "date": "021D30",
-    "duration": 350, "sector": "maintenance", "project": null,
-    "label": "Passage a Doom Emacs, apprentissage de Evil"}]
+    "label": "Ajout d'archétypes sérialisables"}]
