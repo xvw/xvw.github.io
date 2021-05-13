@@ -1,6 +1,9 @@
-[{"uuid": "2b3a40cb-4091-7cff-6bdb-2c94d23ffe37", "date": "021E06",
-   "duration": 60, "sector": "programming", "project": "preface",
-   "label": "Exporte les transformations naturelles dans une signature"},
+[{"uuid": "b5bfe380-114d-0f94-7510-abb6ebe5aae6", "date": "021E13",
+   "duration": 230, "sector": "programming", "project": "bladwyzer",
+   "label": "Mise à jour de Preface et uniformisation de l'API de validation"},
+  {"uuid": "2b3a40cb-4091-7cff-6bdb-2c94d23ffe37", "date": "021E06",
+    "duration": 60, "sector": "programming", "project": "preface",
+    "label": "Exporte les transformations naturelles dans une signature"},
   {"uuid": "357d93f6-b4b0-8611-02e6-183dd717e196", "date": "021E03",
     "duration": 350, "sector": "programming", "project": "bladwyzer",
     "label": "Initialisation du projet"},
@@ -9,7 +12,4 @@
     "label": "Ajout d'objets sérialisables"},
   {"uuid": "48d17050-aff3-714d-d349-8e628fbc51dc", "date": "021E02",
     "duration": 65, "sector": "visual", "project": null,
-    "label": "Réinterprétation de lieux décrits dans un vieux carnet"},
-  {"uuid": "e5c88991-220c-69b9-d2fc-5aa8d9aedc33", "date": "021E01",
-    "duration": 350, "sector": "programming", "project": "orion",
-    "label": "Implémentation de la description des repositories distants"}]
+    "label": "Réinterprétation de lieux décrits dans un vieux carnet"}]
