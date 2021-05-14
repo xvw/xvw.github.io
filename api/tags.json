@@ -10,7 +10,7 @@
               "saint-nazaire", "structure", "test unitaire", "troubles",
               "typage", "types", "télévision", "vxace", "web", "zipper"],
   "contents": [{"title": "Preface", "section": "project", "id": "preface",
-                 "date": "021E06",
+                 "date": "021E14",
                  "description": "Une bibliothèque OCaml pour la programmation fonctionnelle",
                  "tags": ["library", "ocaml", "category"]},
                 {"title": "Troubles", "section": "illustration",
