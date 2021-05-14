@@ -7,9 +7,9 @@
   {"uuid": "7d01d4db-9e2c-d24d-01c5-bd87ed18dac4", "date": "021E14",
     "duration": 120, "sector": "programming", "project": "lambdalille",
     "label": "Initiation d'une application web pour le suivi"},
+  {"uuid": "d059e4ea-f4b4-5ed9-ff4f-c50ad4ea8a9f", "date": "021E14",
+    "duration": 120, "sector": "maintenance", "project": "planet",
+    "label": "Mise a jour de rubriques et maintenance de projets"},
   {"uuid": "b5bfe380-114d-0f94-7510-abb6ebe5aae6", "date": "021E13",
     "duration": 230, "sector": "programming", "project": "bladwyzer",
-    "label": "Mise à jour de Preface et uniformisation de l'API de validation"},
-  {"uuid": "2b3a40cb-4091-7cff-6bdb-2c94d23ffe37", "date": "021E06",
-    "duration": 60, "sector": "programming", "project": "preface",
-    "label": "Exporte les transformations naturelles dans une signature"}]
+    "label": "Mise à jour de Preface et uniformisation de l'API de validation"}]
