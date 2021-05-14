@@ -46,8 +46,8 @@
                                           {"name": "OCaml",
                                             "uri": "https://ocaml.org/"}]},
     "releases": [], "status": "unceasing",
-    "tags": ["library", "ocaml", "category"], "picto": null, "indexed": true,
-    "subprojects": []},
+    "tags": ["library", "ocaml", "category"], "picto": "preface",
+    "indexed": true, "subprojects": []},
   {"name": "bladwyzer", "published": false, "title": "Bladwyzer",
     "synopsis": "to be done", "repo": null, "license": "mit", "links": {
     }, "releases": [], "status": "wip", "tags": ["web"], "picto": null,
