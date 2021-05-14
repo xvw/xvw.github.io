@@ -122,7 +122,7 @@
                     "date": "017L18"},
                   {"name": "v1.3.2",
                     "uri": "https://github.com/xvw/qian/releases/tag/v1.3.2",
-                    "date": "018A23"}], "status": "wip",
+                    "date": "018A23"}], "status": "done",
     "tags": ["file", "explorer", "mvp", "minimalist", "elm", "electron"],
     "picto": "qian", "indexed": true, "subprojects": []},
   {"name": "rme", "published": true, "title": "RME",
