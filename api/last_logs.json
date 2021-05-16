@@ -1,6 +1,9 @@
 [{"uuid": "8cc3911c-2b57-22db-eb3e-1716b258f8ad", "date": "021E16",
    "duration": 60, "sector": "programming", "project": null,
    "label": "Modification du générateur de documents pour Etats d'âmes"},
+  {"uuid": "7db6f7ea-b270-dd17-e74e-c71cbb4aa306", "date": "021E16",
+    "duration": 200, "sector": "programming", "project": null,
+    "label": "Expériences avec les dépendances dynamiques de xhtmboi/wordpress"},
   {"uuid": "5b98cfe3-56d8-749b-9f37-57559c1f38d1", "date": "021E15",
     "duration": 200, "sector": "maintenance", "project": null,
     "label": "Intégration des nouveaux Etats d'âmes"},
@@ -9,7 +12,4 @@
     "label": "Rédaction du support"},
   {"uuid": "53f8b3c7-2b6c-587f-78af-506d735fa39c", "date": "021E14",
     "duration": 35, "sector": "maintenance", "project": "lambdalille",
-    "label": "Suivi des talks manquants et tenue de l'historique"},
-  {"uuid": "7d01d4db-9e2c-d24d-01c5-bd87ed18dac4", "date": "021E14",
-    "duration": 120, "sector": "programming", "project": "lambdalille",
-    "label": "Initiation d'une application web pour le suivi"}]
+    "label": "Suivi des talks manquants et tenue de l'historique"}]
