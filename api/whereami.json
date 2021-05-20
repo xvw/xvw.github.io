@@ -1,4 +1,7 @@
-[{"date": "021E21", "country": "belgique", "city": "bruxelles"},
+[{"date": "021E22", "country": "belgique", "city": "bruxelles"},
+  {"date": "021E21", "country": "belgique", "city": "knokke"},
+  {"date": "021E20", "country": "belgique", "city": "bruges"},
+  {"date": "021E20", "country": "belgique", "city": "damme"},
   {"date": "021E19", "country": "belgique", "city": "knokke"},
   {"date": "021E18", "country": "pays-bas", "city": "groede"},
   {"date": "021E18", "country": "pays-bas", "city": "sluis"},
