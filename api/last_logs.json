@@ -1,6 +1,9 @@
-[{"uuid": "693931ac-6cfa-80d1-3428-766c134e8f40", "date": "021F02",
-   "duration": 120, "sector": "programming", "project": "preface",
-   "label": "Ajouts divers et correctifs"},
+[{"uuid": "f1398da8-b8ba-57aa-1219-da2032431ae0", "date": "021F12",
+   "duration": 120, "sector": "visual", "project": null,
+   "label": "Visuels pour Troubles"},
+  {"uuid": "693931ac-6cfa-80d1-3428-766c134e8f40", "date": "021F02",
+    "duration": 120, "sector": "programming", "project": "preface",
+    "label": "Ajouts divers et correctifs"},
   {"uuid": "8cc3911c-2b57-22db-eb3e-1716b258f8ad", "date": "021E16",
     "duration": 60, "sector": "programming", "project": null,
     "label": "Modification du générateur de documents pour Etats d'âmes"},
@@ -9,7 +12,4 @@
     "label": "Expériences avec les dépendances dynamiques de xhtmboi/wordpress"},
   {"uuid": "5b98cfe3-56d8-749b-9f37-57559c1f38d1", "date": "021E15",
     "duration": 200, "sector": "maintenance", "project": null,
-    "label": "Intégration des nouveaux Etats d'âmes"},
-  {"uuid": "68a4a856-5e3c-2af5-962d-bf490c1e5737", "date": "021E14",
-    "duration": 200, "sector": "writing", "project": "preface",
-    "label": "Rédaction du support"}]
+    "label": "Intégration des nouveaux Etats d'âmes"}]
