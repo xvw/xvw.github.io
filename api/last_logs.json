@@ -1,6 +1,9 @@
-[{"uuid": "f1398da8-b8ba-57aa-1219-da2032431ae0", "date": "021F12",
-   "duration": 120, "sector": "visual", "project": null,
-   "label": "Visuels pour Troubles"},
+[{"uuid": "1f1bcec9-58ef-71ae-2eff-3cec9f1f3856", "date": "021F13",
+   "duration": 65, "sector": "programming", "project": "planet",
+   "label": "Légère modifications dans le CSS des galeries"},
+  {"uuid": "f1398da8-b8ba-57aa-1219-da2032431ae0", "date": "021F12",
+    "duration": 120, "sector": "visual", "project": null,
+    "label": "Visuels pour Troubles"},
   {"uuid": "409e7e27-bba0-11b3-eae4-998053f977c5", "date": "021F12",
     "duration": 20, "sector": "programming", "project": "planet",
     "label": "Images cliquables"},
@@ -9,7 +12,4 @@
     "label": "Ajouts divers et correctifs"},
   {"uuid": "8cc3911c-2b57-22db-eb3e-1716b258f8ad", "date": "021E16",
     "duration": 60, "sector": "programming", "project": null,
-    "label": "Modification du générateur de documents pour Etats d'âmes"},
-  {"uuid": "7db6f7ea-b270-dd17-e74e-c71cbb4aa306", "date": "021E16",
-    "duration": 200, "sector": "programming", "project": null,
-    "label": "Expériences avec les dépendances dynamiques de xhtmboi/wordpress"}]
+    "label": "Modification du générateur de documents pour Etats d'âmes"}]
