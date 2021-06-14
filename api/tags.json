@@ -11,7 +11,7 @@
               "troubles", "typage", "types", "télévision", "vxace", "web",
               "zipper"],
   "contents": [{"title": "Planet", "section": "project", "id": "planet",
-                 "date": "021F13",
+                 "date": "021F14",
                  "description": "Une collection d'outils pour construire ma page personnelle",
                  "tags": ["log", "web", "ocaml", "journal", "blog", "hakyll"]},
                 {"title": "Troubles", "section": "illustration",
