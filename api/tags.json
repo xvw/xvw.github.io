@@ -11,7 +11,7 @@
               "troubles", "typage", "types", "télévision", "vxace", "web",
               "zipper"],
   "contents": [{"title": "Preface", "section": "project", "id": "preface",
-                 "date": "021F29",
+                 "date": "021G09",
                  "description": "Une bibliothèque OCaml pour la programmation fonctionnelle",
                  "tags": ["library", "ocaml", "category"]},
                 {"title": "Planet", "section": "project", "id": "planet",
