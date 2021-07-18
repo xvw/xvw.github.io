@@ -1,6 +1,9 @@
-[{"uuid": "395cd999-e5ae-2674-79b2-ae2a444af8c5", "date": "021G10",
-   "duration": 350, "sector": "programming", "project": "preface",
-   "label": "Addition d'une bibliothèque pour générer les lois"},
+[{"uuid": "ec205752-6745-210b-014a-3a6aa1556556", "date": "021G18",
+   "duration": 300, "sector": "programming", "project": "preface",
+   "label": "Séparation des lois et des tests"},
+  {"uuid": "395cd999-e5ae-2674-79b2-ae2a444af8c5", "date": "021G10",
+    "duration": 350, "sector": "programming", "project": "preface",
+    "label": "Addition d'une bibliothèque pour générer les lois"},
   {"uuid": "228ed596-9492-7774-1790-e47d4c179e88", "date": "021G09",
     "duration": 280, "sector": "programming", "project": "preface",
     "label": "Ajout de Divisible (Applicative contravariant) et expérience autours des tests (encore...)"},
@@ -9,7 +12,4 @@
     "label": "Expérience avec des Arbres de Merkle"},
   {"uuid": "b1eb99d3-9999-7914-ff24-316c88a87905", "date": "021F29",
     "duration": 200, "sector": "programming", "project": "preface",
-    "label": "Enrichissement de l'API des foncteurs contravariants"},
-  {"uuid": "a9d5716e-cb49-2df9-7194-ff0ac203fea8", "date": "021F26",
-    "duration": 200, "sector": "programming", "project": "preface",
-    "label": "Amélioration de l'API des Selectives"}]
+    "label": "Enrichissement de l'API des foncteurs contravariants"}]
