@@ -1,6 +1,9 @@
-[{"uuid": "ec205752-6745-210b-014a-3a6aa1556556", "date": "021G18",
-   "duration": 300, "sector": "programming", "project": "preface",
-   "label": "Séparation des lois et des tests"},
+[{"uuid": "5efe9d0a-51af-f368-537e-3f061271e3dd", "date": "021H01",
+   "duration": 650, "sector": "programming", "project": null,
+   "label": "Etats d'Âmes: implémentation d'un générateur de documents Word et re-structuration des documents"},
+  {"uuid": "ec205752-6745-210b-014a-3a6aa1556556", "date": "021G18",
+    "duration": 300, "sector": "programming", "project": "preface",
+    "label": "Séparation des lois et des tests"},
   {"uuid": "9775a95b-8b36-03e1-2b17-c5508b1a1d6a", "date": "021G18",
     "duration": 45, "sector": "maintenance", "project": null,
     "label": "Maintenance de mes paquets"},
@@ -9,7 +12,4 @@
     "label": "Addition d'une bibliothèque pour générer les lois"},
   {"uuid": "228ed596-9492-7774-1790-e47d4c179e88", "date": "021G09",
     "duration": 280, "sector": "programming", "project": "preface",
-    "label": "Ajout de Divisible (Applicative contravariant) et expérience autours des tests (encore...)"},
-  {"uuid": "9de4e8e5-aede-f272-c8cb-c18c6948d00f", "date": "021G04",
-    "duration": 120, "sector": "programming", "project": null,
-    "label": "Expérience avec des Arbres de Merkle"}]
+    "label": "Ajout de Divisible (Applicative contravariant) et expérience autours des tests (encore...)"}]
