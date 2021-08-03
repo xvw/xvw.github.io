@@ -1,6 +1,9 @@
 [{"uuid": "ae4ce9a2-5b67-4073-4960-ec39df1140e0", "date": "021H03",
    "duration": 120, "sector": "maintenance", "project": null,
    "label": "Quelques modifications sur les Etats d'âmes"},
+  {"uuid": "78a7df60-ab5a-95eb-38a4-53c58f4eda9d", "date": "021H03",
+    "duration": 120, "sector": "programming", "project": null,
+    "label": "Irmin et YOCaml"},
   {"uuid": "5efe9d0a-51af-f368-537e-3f061271e3dd", "date": "021H01",
     "duration": 650, "sector": "programming", "project": null,
     "label": "Etats d'Âmes: implémentation d'un générateur de documents Word et re-structuration des documents"},
@@ -9,7 +12,4 @@
     "label": "Séparation des lois et des tests"},
   {"uuid": "9775a95b-8b36-03e1-2b17-c5508b1a1d6a", "date": "021G18",
     "duration": 45, "sector": "maintenance", "project": null,
-    "label": "Maintenance de mes paquets"},
-  {"uuid": "395cd999-e5ae-2674-79b2-ae2a444af8c5", "date": "021G10",
-    "duration": 350, "sector": "programming", "project": "preface",
-    "label": "Addition d'une bibliothèque pour générer les lois"}]
+    "label": "Maintenance de mes paquets"}]
