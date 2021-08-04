@@ -1,6 +1,9 @@
-[{"uuid": "ae4ce9a2-5b67-4073-4960-ec39df1140e0", "date": "021H03",
-   "duration": 120, "sector": "maintenance", "project": null,
-   "label": "Quelques modifications sur les Etats d'âmes"},
+[{"uuid": "6c49d3e8-9fa4-6274-55fc-d664f7d5e486", "date": "021H04",
+   "duration": 200, "sector": "programming", "project": null,
+   "label": "YOCaml: modification du runtime "},
+  {"uuid": "ae4ce9a2-5b67-4073-4960-ec39df1140e0", "date": "021H03",
+    "duration": 120, "sector": "maintenance", "project": null,
+    "label": "Quelques modifications sur les Etats d'âmes"},
   {"uuid": "78a7df60-ab5a-95eb-38a4-53c58f4eda9d", "date": "021H03",
     "duration": 120, "sector": "programming", "project": null,
     "label": "Irmin et YOCaml"},
@@ -9,7 +12,4 @@
     "label": "Etats d'Âmes: implémentation d'un générateur de documents Word et re-structuration des documents"},
   {"uuid": "ec205752-6745-210b-014a-3a6aa1556556", "date": "021G18",
     "duration": 300, "sector": "programming", "project": "preface",
-    "label": "Séparation des lois et des tests"},
-  {"uuid": "9775a95b-8b36-03e1-2b17-c5508b1a1d6a", "date": "021G18",
-    "duration": 45, "sector": "maintenance", "project": null,
-    "label": "Maintenance de mes paquets"}]
+    "label": "Séparation des lois et des tests"}]
