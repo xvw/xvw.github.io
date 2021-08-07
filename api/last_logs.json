@@ -1,6 +1,9 @@
-[{"uuid": "b979034f-8db3-33de-bb3a-6a83e0aad28a", "date": "021H07",
-   "duration": 200, "sector": "programming", "project": null,
-   "label": "YOCaml et Irmin"},
+[{"uuid": "52e7c926-02b0-70f2-70c7-f7d789d1b3e8", "date": "021H08",
+   "duration": 60, "sector": "programming", "project": null,
+   "label": "YOCaml: yocaml_irmin agnostique de Unix"},
+  {"uuid": "b979034f-8db3-33de-bb3a-6a83e0aad28a", "date": "021H07",
+    "duration": 200, "sector": "programming", "project": null,
+    "label": "YOCaml et Irmin"},
   {"uuid": "8e7e4d49-8516-369f-1d9b-b352e3b4373f", "date": "021H06",
     "duration": 60, "sector": "programming", "project": null,
     "label": "YOCaml et Irmin"},
@@ -9,7 +12,4 @@
     "label": "Publication du paquet sur OPAM"},
   {"uuid": "6c49d3e8-9fa4-6274-55fc-d664f7d5e486", "date": "021H04",
     "duration": 200, "sector": "programming", "project": null,
-    "label": "YOCaml: modification du runtime "},
-  {"uuid": "ae4ce9a2-5b67-4073-4960-ec39df1140e0", "date": "021H03",
-    "duration": 120, "sector": "maintenance", "project": null,
-    "label": "Quelques modifications sur les Etats d'âmes"}]
+    "label": "YOCaml: modification du runtime "}]
