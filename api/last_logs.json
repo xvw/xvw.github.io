@@ -1,6 +1,9 @@
 [{"uuid": "f805f440-ee96-fe35-9878-d586c7db5bd5", "date": "021H17",
    "duration": 200, "sector": "research", "project": "planet",
    "label": "Formation Notion"},
+  {"uuid": "0aeb147f-db50-4f0f-0ef3-0e5b8a512883", "date": "021H17",
+    "duration": 200, "sector": "programming", "project": "planet",
+    "label": "Migration des localisation dans Notion"},
   {"uuid": "f294073a-dd54-7f80-7948-a77fb6a89d0b", "date": "021H16",
     "duration": 200, "sector": "research", "project": "planet",
     "label": "Formation Notion"},
@@ -9,7 +12,4 @@
     "label": "Formation Notion"},
   {"uuid": "a6b82d8d-f842-3198-e7a2-ead201f13818", "date": "021H14",
     "duration": 200, "sector": "research", "project": "planet",
-    "label": "Formation Notion"},
-  {"uuid": "d3a46e18-7113-a525-60a3-550755336dbf", "date": "021H13",
-    "duration": 150, "sector": "research", "project": "planet",
     "label": "Formation Notion"}]
