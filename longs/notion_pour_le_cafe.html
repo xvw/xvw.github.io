@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="author" content="Xavier Van de Woestyne">
+    
+    
+    <meta name="description" content="Mon utilisation de Notion pour le café - Présentation de mon utilisation de Notion.so pour ma consommation de café.">
+    
+    <title>Mon utilisation de Notion pour le café - Présentation de mon utilisation de Notion.so pour ma consommation de café. </title>
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/hl.css" />
+    <link rel="stylesheet" href="../css/default.css" />
+    <link rel="alternate" type="application/atom+xml" title="xvw-planet" href="../atom.xml" />
+    <script src="../facade.bc.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div>
+          <div class="header-bar">
+            <h1>Xavier Van de Woestyne</h1>
+            
+            <h2>Tentative</h2>
+            
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="navbar">
+        <nav class="container">
+          <a href="../">Accueil</a>
+          <a href="../longs.html">Articles</a>
+          <a href="../projects.html">Projets</a>
+          <a href="../galleries.html">Galeries</a>
+          <a href="../journal.html">Activité</a>
+        </nav>
+      </div>
+      <div class="main-block">
+        <div id="resume-details" class="page-small-cover black-block small-refutable"></div>
+<div class="container base-content uniq-content">
+
+  <div class="content-page">
+    <div class="major-header">
+      <div class="major-details">
+        <h1>Mon utilisation de Notion pour le café</h1>
+        <span class="synopsis">
+          Présentation de mon utilisation de Notion.so pour ma consommation de café.
+        </span>
+        <div>
+          <span class="badge published">2021-09-12</span>
+          <span class="badge">programmation</span>
+        </div>
+      </div>
+    </div>
+    <div class="major-content">
+      <div class="long-text structured-text" id="roe-container">
+        <blockquote>
+<p>J’avais déjà entendu parlé de <a href="https://www.notion.so/product">Notion.so</a> il y a quelques temps, mais je ne m’étais jamais réllement penché sur l’outil. Ce n’est que très récemment, dans un débat sur l’innénarrable Slack de <a href="https://twitter.com/lambdalille">LambdaLille</a> qui portait sur la pertinence et l’utilité du <a href="https://www.youtube.com/watch?v=v_aYChED5lA">NoCode</a> que je m’y suis réintéressé.</p>
+<p>Même si mon utilisation de l’outil est encore assez naïve, je suis très loin de <a href="https://www.shubham-sharma.fr/">Shubham Sharma</a> ou de <a href="https://jonathanlefevre.com/outils/notion/">Jonathan Lefèvre</a> qui l’utilisent comme un véritable exocortex, j’ai décidé de vous présenter un usage <strong>très spécifique</strong> que je fais de Notion: “l’amélioration de ma compréhension du café”. Soit comprendre les variétés, les types de torréfaction que j’aime et améliorer ma capacité à anticiper le niveau d’appréciation que je peux avoir pour des cafés par leur description.</p>
+<p>Il est important de souligner que d’autres outils (voir même des outils fait mains) auraient pu me permettre d’atteindre les mêmes résultats mais Notion semble parfaitement convenir pour ce cas d’usage spécifique, dispose d’un <a href="https://www.notion.so/pricing">programme gratuit</a> (ce qui est parfait pour se faire une idée) et m’a permis de gagner beaucoup de temps.</p>
+<p>Vous noterez avec quel manque de honte je me remet à écrire sur mon blog, plus d’un an après le dernier article… et, en plus, avec un article non technique.</p>
+</blockquote>
+<p>Actuellement, mon site web est “<em>un peu plus qu’un site web</em>”. En effet, ce que vous voyez n’est que la génération de pages HTML basée sur une base de données hiérarchisée qui supporte plusieurs agrégats (des articles, des projets, des galeries, mais aussi des <em>timetrackers</em>, des liste de tâches et beaucoup d’autres). L’avantage de cette séparation entre la représentation du contenu (ici, les pages HTML) et sa description, c’est que je peux calculer des métriques et construire des pages plus complexes. Par exemple, les pages qui affichent des projets forment une relation entre un <em>timetracker</em> et un projet, l’identifiant du projet faisant office de filtre pour le <em>timetracker</em>.</p>
+<p>Donc, le logiciel qui permet, entre autre, le déploiemment de mon site web n’est pas <strong>juste</strong> un générateur de site statique mais c’est aussi un outil qui me permet, notamment, de construire et de requêter des collections. En raisonnant de cette manière, je pourrais parfaitement étendre ce logiciel pour le rendre capable de prendre en charge mes collections de livres et le suivi de ma consommation de café. <strong>Le problème, c’est le temps à investir pour chaque nouvel agrégat</strong>.</p>
+<h2 id="workflow-actuel-dajout-dagrégat"><em>Workflow</em> actuel d’ajout d’agrégat</h2>
+<p>Actuellement, pour ajouter une nouvelle collection, je dois définir, manuellement, plusieurs types et fonctions. En général je fournis ces composants :</p>
+<ul>
+<li><code class="sourceCode ocaml"><span class="kw">type</span> t</code> un type qui décrit la structure de mon objet de collection</li>
+<li><code class="sourceCode ocaml">equal</code> et <code class="sourceCode ocaml"><span class="dt">compare</span></code> des fonctions qui agissent sur deux valeurs de type <code class="sourceCode ocaml">t</code> pour respectivement vérifier leurs équivalence et faciliter l’ordonnancement</li>
+<li><code class="sourceCode ocaml">to_qube</code> et <code class="sourceCode ocaml">from_qube</code>, <strong>qube</strong> est le nom que j’ai donné au langage de description que j’utilise. Il ressemble très fort à des <a href="https://en.wikipedia.org/wiki/S-expression">S-expressions</a>, mais portant un peu plus d’informations sémantiques (par exemple le support des chaines de caractères)</li>
+<li>créer une <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> (si nécéssaire).</li>
+</ul>
+<p>Comme mon format de sérialisation à été défini génériquement, je peux facilement transformer un type arbitraire dans ce format et je peux délèguer à cette bibliothèque la projection d’une chaine de caractères dans ce format. Par contre, je dois ensuite valider chaque champ (en utilisant des <a href="https://github.com/xvw/preface/blob/master/guides/error_handling.md#parallel-validation">validateurs applicatifs</a>).</p>
+<p>Même si ça ne prend pas tant de temps que ça, pour peu que l’on y soit habitué il y a tout de même des pistes d’amélioration.</p>
+<h3 id="améliorations-possibles">Améliorations possibles</h3>
+<p>Comme pour beaucoup de systèmes développés pendant <em>longtemps</em> il existe des pistes d’améliorations triviales. En voici quelques-unes que je n’ai pas encore mise en place (premièrement parce que je suis en train de réecrire tout mon système de publication… parce que c’est très rigolo de sans cesse réinventer la roue et ensuite parce que le temps passé à l’amélioration du système bloque potentiellement l’utilisation de ce système. Il est donc probable qu’à terme, je n’utilise plus du tout Notion et que je mette, enfin, en place ces améliorations).</p>
+<ol>
+<li><p><strong>Dérivation des fonctions d’égalité, de comparaison et de projection</strong></p>
+<p>En OCaml, il est possible de dériver des implémentations <em>mécanisables</em> au moyen du préprocesseur interne (<strong>PPX</strong>). En général, c’est un des cas d’usage pour lequel utiliser un préprocesseur est recommandé. Il existe déjà <a href="https://github.com/janestreet/ppx_compare"><code class="sourceCode ocaml">ppx_compare</code></a> qui permet de dériver des fonctions d’égalité et de comparaison. Décrire un dérivateur de projection dans le format <strong>qube</strong> est aussi relativement trivial à implémenter.</p></li>
+<li><p><strong>Utiliser la fonction de validation pour générer la CLI</strong></p>
+<p>Pour construire des CLIs, j’utilise l’excellente bibliothèque <a href="http://opam.ocaml.org/packages/cmdliner/">Cmdliner</a> qui permet de déclarativement décrire une CLI. Comme la validation de ma donnée utilise le foncteur applicatif <em>Validation</em> et que la description de la CLI, avec Cmdliner utilise une représentation applicative, <strong>je pourrais décrire mes validations</strong> <strong>dans un <a href="https://arxiv.org/pdf/1403.0749.pdf">Free Applicative</a></strong> et fournir deux transformations naturelles vers la validation concrète et vers la description de la CLI, exactement comme décrit dans <a href="https://github.com/xvw/preface/blob/master/guides/error_handling.md#lets-go-further-derive-a-canonical-representation-of-validable-data">ce guide</a>.</p></li>
+<li><p><strong>Générer une UI via la fonction de validation</strong></p>
+<p>Le procédé est exactement le même que celui décrit dans la génération de la CLI si ce n’est qu’au lieu de transformer vers un autre foncteur applicatif, <strong>on transforme vers un monoïde</strong>, ce qui est assez pratique car cela rend les UI définies par des transformations composables.</p>
+<p>Un point intéressant (qui pourrait me motiver, plus tard, à mettre en place ces propositions d’améliorations) est que les abstractions requises sont présentes dans <a href="https://github.com/xvw/preface">Preface</a>.</p></li>
+</ol>
+<h2 id="sur-le-café">Sur le café</h2>
+<p>Maintenant que nous avons vu le fonctionnement général (et les améliorations possibles) de mon système de collecte d’informations, nous allons nous intéresser au café et surtout, en quoi Notion pallie facilement une grande partie du travail que j’ai décrit dans la section précédente.</p>
+<p>Il y a approximativement deux ans, j’ai décidé de radicalement changer mes habitudes de consommation concernant le café. Alors que historiquement, je buvais du café mécaniquement, sans réellement me soucier du café ou de la préparation (je buvais même du café instantané, <em>c’est dire</em>), j’ai décidé, grâce au <a href="https://en.wikipedia.org/wiki/The_Book_of_Tea">Livre du thé</a> (amusant non ? Un livre sur le thé m’a donné envie de boire du bon café), de m’intéresser sérieusement au café.</p>
+<p>Un peu à la manière du vin, identifier les critères qui font que l’on aime plus ou moins certains cafés (et certaines préparations) peut être assez complexe au début. Pour ma part, j’ai eu la très naïve impression d’être devenu un expert en vin quand j’ai été capable de dire : “<em>j’aime bien</em> <em>le vin tanique</em>”. C’est très léger, je vous l’accorde. Comme pour le vin, il faut goûter, goûter beaucoup et consigner (dans son esprit ou dans une base de données) les critères/les caractéristiques qui varient pour être, à terme, capable d’anticiper l’appréciation générale d’un café.</p>
+<p>Note en apparté, dès lors que l’on décide de s’intéresser sérieusement au café (de mon point de vue), il est impératif d’avoir des outils <strong>pouvant rendre chaque préparation réplicable</strong>, ça implique généralement d’avoir du bon matériel : un moulin réglable (pour moudre <em>à la demande</em>), une balance et de quoi contrôler la température de son eau, en complément, diminuer le <a href="https://en.wikipedia.org/wiki/PH">potentiel hydrogène</a> de l’eau (j’utilise une carafe Brita).</p>
+<h3 id="de-larbre-à-la-tasse">De l’arbre à la tasse</h3>
+<p>Pour comprendre quels sont les critères <strong>que j’ai décidé de consigner</strong>, voici une description assez sommaire du mouvement du café jusqu’à sa préparation. Il est probable que ma sélection de critères soit trop faible et qu’elle change dans le temps, cependant, actuellement elle me convient.</p>
+<p>Dans les grandes lignes, les étapes se découpent en 6 grandes parties, dont une qui n’a pas toujours lieu (ou du moins, explicitement: la fermentation) et deux qui ne sont pas, à mon sens, porteuse de critères, ou alors peuvent être résumées par “le torréfacteur” comme un critère de sélection.</p>
+<p><img src="../images/coffee-tree-cup.png" /></p>
+<ol>
+<li><p><strong>La récolte</strong></p>
+<p>Cette étape essentielle met en lumière plusieurs caractéristiques: <strong>la région</strong> (et par extension le pays), <strong>la variété</strong> (et par extension l’espèce), <strong>le producteur</strong>, <strong>l’altitude</strong>, des informations relatives <strong>aux dates de récoltes</strong>.</p></li>
+<li><p><strong>Le sèchage</strong></p>
+<p>Cette étape est souvent réalisée par le producteur et la méthode de sèchage a une grande incidence sur le goût final du café. Le critère extrait est donc logiquement cette dernière que l’on peut résumer au <strong>processus</strong>.</p></li>
+<li><p><strong>La fermentation</strong></p>
+<p>Tous les cafés ne sont pas fermentés, mais il arrive que certains le sois, après le sèchage, ce qui peu amener des arômes totalement différent. La fermentation peut être de différent types et de différentes durées. On peut donc extraire un <strong>type de fermentation</strong> ainsi qu’une <strong>durée de fermentation</strong>.</p></li>
+<li><p><strong>La torréfaction</strong></p>
+<p>Un autre rôle essentiel dans le traitement du café est d’adapter la torréfaction, grossièrement <em>la cuisson</em>, des grains verts pour en révéler les arômes. Il va aussi en établir un profil aromatique. De nos jours, certains torréfacteurs choisissent aussi les producteurs et les grains verts avec lesquels ils veulent travailler. Ce qui nous permet d’extraire les critères suivants: <strong>le torréfacteur</strong> (on peut aimer <em>la méthode générale</em> d’un torréfacteur), <strong>le niveau</strong> <strong>de torréfaction</strong> (la couleur du grain torréfié), et <strong>le profil</strong> <strong>aromatique</strong> du café.</p></li>
+</ol>
+<h2 id="organisation-et-modélisation-dans-notion">Organisation et modélisation dans Notion</h2>
+<p>Maintenant que nous avons quelques éléments nous permettant de construire un modèle, rendons-nous dans Notion. Résumer Notion est un exercice compliqué. En effet, l’outil peut servir énormément de cas d’usages.</p>
+<h3 id="comment-décrire-sommairement-notion">Comment décrire sommairement Notion</h3>
+<p>Je pense que l’on pourrait résumer Notion à un genre de Wiki personnel (pouvant aussi être collaboratif). Concrètement, on peut créer des pages, ainsi que des pages dans des pages et ces pages peuvent accueillir des blocs, pouvant être du texte, des titres, des éléments multimédias. Une page peut aussi avoir un template attaché ou peut être une base de données. Ces bases de données (qui sont en fait des <strong>tables</strong>) peuvent entretenir des relations avec d’autres tables et avoir plusieurs vues (qui filtrent différemment les données, qui peut aussi les ordonner différemment). On peut ajouter dans une page régulière un bloc qui est une base de données auquel on a attribué une vue spécifique. La possibilité de spécifier des vues (qui embarquent uniquement certains champs de la table, et qui appliquent des filtres et des stratégies d’ordonnancement spécifiques) permet de décrire des prismes de sources de données et de construire de véritables <em>dashboards</em>.</p>
+<p>Pour garder mon espace de travail correctement ordonné, j’ai regroupé toutes mes pages qui correspondent au café dans une page… sobrement appelée <code class="sourceCode gnuassembler">coffee</code> (avec un petit <em>emoji</em> <code class="sourceCode gnuassembler"><span class="kw">:coffee:</span></code>, parce que je suis moderne). Et dans cette <strong>rubrique</strong> j’ai une page appelée <code class="sourceCode gnuassembler">backend</code> dans lequel je placerai toutes mes tables qui seront injectées dans des pages situées au même niveau que <code class="sourceCode gnuassembler">backend</code>.</p>
+<h3 id="description-des-points-géographiques">Description des points géographiques</h3>
+<p>Pouvoir définir des espaces géographiques est important pour décrire la région, le terroir, d’où provient le café mais aussi pour caractériser la ville où se trouve le torréfacteur. Je n’ai pas été très original, dans mon répertoire <code class="sourceCode gnuassembler">backend</code> j’ai créé plusieurs tables respectant ce modèle:</p>
+<p><img src="../images/country-relation.png" /></p>
+<p>La découpe est assez naïve. <code class="sourceCode gnuassembler">Regions</code> est une appellation volontairement générique parce que tous les torréfacteurs n’ont pas le même niveau de précisions quand ils décrivent la région de récolte du café. Le champ <code class="sourceCode gnuassembler">country</code> dans <code class="sourceCode gnuassembler">cities</code> est un <strong>rollUp</strong>, soit un champ virtual calculé en fonction d’une <strong>relation</strong> (ici, sur la relation <code class="sourceCode gnuassembler">region</code>).</p>
+<p>Il serait possible de très facilement améliorer le modèle général en ajoutant deux champs pour décrire les latitudes et longitudes pour le coin <code class="sourceCode gnuassembler">haut_gauche</code> et <code class="sourceCode gnuassembler">bas_droit</code> d’une table ce qui permettrait de générer une carte, mais ce n’est pas vraiment l’objectif de l’article.</p>
+<h3 id="description-des-torréfacteurs">Description des torréfacteurs</h3>
+<p>Maintenant que nous avons décrit une <code class="sourceCode gnuassembler">ville</code>, on peut facilement décrire un torréfacteur :</p>
+<p><img src="../images/roaster-relation.png" /></p>
+<p>La représentation d’un torréfacteur est assez simple et n’est “que” relié aux villes. Le champ <code class="sourceCode gnuassembler">state</code> est une énumération (unique), ce qui veut dire que l’on ne peut sélectionner qu’une seule des valeurs possibles. Le gros avantage de ces champs c’est qu’ils permettent de faire office de clé de regroupement dans une <a href="https://en.wikipedia.org/wiki/Kanban_board">vue Kanban</a>, c’est d’ailleurs de cette manière dont je m’en sers dans la vue spécifique (en dehors de <code class="sourceCode gnuassembler">backend</code>) aux torréfacteurs :</p>
+<p><img src="../images/kanban-roaster.png" /></p>
+<p>Cette vue a l’avantage de me pousser à essayer des torréfacteurs dont j’ai entendu parlé mais que je n’ai pas encore eu l’occasion d’expérimenter. Elle incite, implicitement, à diversifier mes expériences.</p>
+<h3 id="descriptions-des-variétés">Descriptions des variétés</h3>
+<p>Même si c’est plus subtil que ça, on peut attacher chaque variété de café à deux caféïers différents : <em>Coffea arabica</em> et <em>Coffea canephora</em>, donnant respectivement de <strong>l’Arabica</strong> et du <strong>Robusta</strong>. Cependant, comme jusqu’à présent, je n’ai consommé que des café de variétés issues d’Arabica, je n’ai pas (encore) fait reflété l’arbre dans la description de la variété :</p>
+<p><img src="../images/variety-relation.png" /></p>
+<p>Le champ <code class="sourceCode gnuassembler">Link</code> me permet, quand il existe, de référencer la variété vers l’excellent <a href="https://varieties.worldcoffeeresearch.org/">Catalogue des variété de World Coffee Research</a> et le <code class="sourceCode gnuassembler">Alternative Name</code> me permet de donner une liste de noms alternatifs (Notion ne gérant pas les listes de chaines, j’utilise une seule chaine de caractères et je sépare les différents noms par des virgules, rendant le tout facile à <em>parser</em>) par exemple, la variété <em>Villa Sarchi</em> est aussi appelée <em>Villalobos</em>.</p>
+<p>Comme certaines variétés sont issues <strong>de la mutation génétique</strong> d’une variété (artificielle ou naturelle), le <em>Bourbon Rose</em> est, par exemple, une mutation naturelle du <em>Bourbon</em>, ou de <strong>la composition</strong> de plusieurs variétés, comme par exemple le <em>Mundo Novo</em> qui est issu d’une mutation entre le <em>Typica</em> (probablement l’espèce originale du café) et du <em>Bourbon</em>, le champ <code class="sourceCode gnuassembler">Derived from</code> me permet de <em>tracker</em> les variétés duquel est issu la variété courante. C’est possible grâce à une relation sur la table <code class="sourceCode gnuassembler">varieties</code> (elle même).</p>
+<p>Ce qui me permet, enfin, de décrire les différents grains de café que j’ai pu acheter.</p>
+<h3 id="description-des-grains">Description des grains</h3>
+<p>Il s’agit de la table la plus touffue du système, en effet, elle forme la conjonction de toutes les autres. Pour des raisons de lisibilité, j’ai pris la liberté de définir les <em>multi-select</em> (des énumérations pour lesquelles on peut sélectionner plusieurs valeurs) dans des boites différentes :</p>
+<p><img src="../images/bean-relation.png" /></p>
+<p>Certains champs comme <code class="sourceCode gnuassembler">name</code>, <code class="sourceCode gnuassembler">roaster</code>, <code class="sourceCode gnuassembler">region</code> et <code class="sourceCode gnuassembler">varieties</code> ne demandent pas d’attention particulières. Comme précédemment, le champ <code class="sourceCode gnuassembler">country</code> est un <strong>rollUp</strong> depuis <code class="sourceCode gnuassembler">region</code>. Ces champs (excepté le nom) peuvent être multiples car un café peut être un <strong>blend</strong> (soit un mélange non génétique de plusieurs variétés, de provenance différentes et potentiellement la collaboration de torréfacteurs différent).</p>
+<p>Par contre le niveau de torréfaction est, à ma connaissance, toujours homogène (pour harmoniser les arômes), d’où le fait que le champs soit un sélecteur unique.</p>
+<p>Certains champs, eux, méritent quelques compléments d’information.</p>
+<ol>
+<li><p><code class="sourceCode gnuassembler">Personnal score</code> :</p>
+<p>Un score personnel que j’ai attribué au café après l’avoir essayé de plusieurs maières. La note est <strong>purement objective</strong> (et pour être plus exact, je devrais probablement tenir un journal de dégustation où je noterais chaque café par préparation, avec des métriques plus précises). En ce moment, le score personnel est à prendre comme une appréciation globale.</p></li>
+<li><p><code class="sourceCode gnuassembler">Flavours</code> :</p>
+<p>Les arômes du café sont souvent décrit sur le paquet, de manière un peu subjective, par le torréfacteur. Cependant, comme ces derniers utilisent généralement la même grille d’arômes, je les consignes en utilisant un sélecteur multiple et à chaque nouvel arôme, je l’ajoute à l’enumération.</p></li>
+<li><p><code class="sourceCode gnuassembler">tested</code> :</p>
+<p>Ce champ est une <strong>formule</strong> qui vaut <code class="sourceCode ocaml"><span class="kw">true</span></code> si un score à été attribué et <code class="sourceCode ocaml"><span class="kw">false</span></code> si ce n’est pas encore le cas. Ce champ est utile pour faire rapidement remonter les café à essayer, un peu à la manière de la table <code class="sourceCode gnuassembler">roasters</code>.</p></li>
+<li><p>Manques</p>
+<p>On déplorera l’absence de plusieurs champs, par exemple <strong>l’altitude</strong> à la récolte. C’est essentiellement parce que généralement la variété et la région de provenance du café donnent une indication relativement précise de l’altitude (et que dans le cas des <em>blend</em>, c’est une information qui est complexe à décrire).</p>
+<p>L’absence de la <strong>durée de fermentation</strong> est aussi à déplorer, mais c’est une donnée qui est rarement donnée (et seulement une minorité des café que j’ai pu testé sont fermenté (<em>anaérobics</em>)).</p></li>
+</ol>
+<h3 id="tableaux-de-bords">Tableaux de bords</h3>
+<p>Comme pour la table <code class="sourceCode gnuassembler">roasters</code>, il est possible de décrire des vues spécialisées qui servent des intérêts variés. Pour ma part, j’ai deux vues spécifiques :</p>
+<ol>
+<li><p>Les cafés à essayer</p>
+<p>Exactement pour les torréfacteurs, j’ai une vue (sous forme de liste) pour les café que je dois essayer, soit que j’ai acquis mais pour lesquels je n’ai pas encore attribué de score.</p>
+<p><img src="../images/coffee-to-test.png" /></p></li>
+<li><p>Une vue Kanban des cafés par processus de séchage</p>
+<p>De mon expérience (personnelle), les deux facteurs qui influencent le plus les arômes sont <strong>le niveau de torréfaction</strong> et <strong>le processus de séchage</strong>. Comme une grande partie des cafés que j’essaie sont de torréfaction <em>robe-de-moine</em> (<code class="sourceCode gnuassembler">middle</code>) j’ai ajouté une vue Kanban par processus (où les cafés sont ordonnés, dans chaque colonne par score personnel).</p>
+<p><img src="../images/coffee-board.png" /></p>
+<p>Ce tableau indique clairement que je dois goûter plus de café <em>semi-lavés</em> (<code class="sourceCode gnuassembler">honey</code>) pour améliorer ma compréhension de l’influence des processus sur le goût du café.</p></li>
+</ol>
+<h2 id="tirer-parti-des-récursions-mutuelles">Tirer parti des récursions mutuelles</h2>
+<p>Quand une table <code class="sourceCode gnuassembler">A</code> défini une relation sur une table <code class="sourceCode gnuassembler">B</code>, un champ implicite <code class="sourceCode gnuassembler">Related to A</code> est créé dans la table <code class="sourceCode gnuassembler">B</code>. Il est donc possible de calculer des agrégation. Par exemple dans la table <code class="sourceCode ada">roasters</code>, <strong>je voudrais ajouter un champ <code class="sourceCode ada">score</code></strong> qui correspondrait à la moyenne des scores des <code class="sourceCode ada">beans</code> de “<em>ce torréfacteur</em>”. Rien de plus simple, il suffit d’ajouter un <strong>rollUp</strong> sur la relation <code class="sourceCode gnuassembler">Related to beans (Roasters)</code> et de choisir le champ <code class="sourceCode ada">Personnal Score</code> et comme fonction de calcul <code class="sourceCode ada">average</code>.</p>
+<h2 id="aller-plus-loin-sauvegarder-des-recettes">Aller plus loin : sauvegarder des recettes</h2>
+<p>Un aspect génial (et aussi ennuyeux) de Notion, c’est qu’une entrée dans une table peut être attachée à un document, en d’autres mots, il est possible d’embarquer, dans une entrée de table, une page complète. (L’aspect ennuyeux de cette fonctionnalité est que ça limite énormément les capacités de requêtage, ce qui rend les tables Notion moins libre dans l’écriture de requêtes que des tables SQL).</p>
+<p>La liberté de rédaction dans le “<em>corps d’une entrée</em>” est très pratique pour décrire les préparations. En effet, il n’est pas nécéssaire de trouver une représentation normalisée (et générique), on peut se contenter de ne structurer, au moyen de champs, que les éléments récurrents d’une recette, par exemple, le type de machine à café, les différentes pesées et une estimation du temps, ensuite on peut utiliser le corps de l’entrée de la recette pour décrire toutes les étapes, en ajoutant, pourquoi pas, des tables <em>inlines</em>, directement dans le corps de l’entrée.</p>
+<p><img src="../images/recipe-relation.png" /></p>
+<p>Concrètement, cette modélisation permet de décrire statiquement une recette avec les mesures définie par la recette originale. Comme je possède le moulin <a href="https://www.comandantegrinder.com/">Comandante C40</a> et qu’il est assez courant de l’utiliser comme référence pour décrire la granulométrie de la mouture, je considère le nombre de cliques nécéssaires comme référence (plutôt que d’utiliser des adjectifs flous). Et j’ai une relation concrète qui expérimente une recette, pour un grain enregistré, avec la possibilité de changer les paramètres utilisés (par exemple si je décide de faire plus de café que les mesures préconnisées par la recette originale).</p>
+<p>En complément, je propose de stocker la date de torréfaction et la date de préparation pour avoir une idée assez précises de l’impacte de la fraicheur de la torréfaction sur la recette (qui a beaucoup d’importance quand on utilise des recettes <em>qui se rapproche de l’Espresso</em> comme avec une cafetière italienne ou une <a href="https://aeropress.com/">Aeropress</a>).</p>
+<p>Comme expliqué dans la section sur <strong>les récursions mutuelles</strong>, on peut utiliser la même technique pour faire remonter le score général au niveau de la définition de la recette. Et exactement de la même manière que pour les recettes, on peut se servir de la page embarquée dans une entrée pour documenter certaines variations, ajouter un commentaire.</p>
+<h2 id="pour-conclure">Pour conclure</h2>
+<p>Vous avez pu voir de quelle manière j’utilise Notion pour capturer mes préférences et donc, mieux comprendre mes goûts, dans le monde du café. Le modèle est loin d’être parfait et complet (en effet, j’aimerais indexer les <em>Coffee shops</em> qui me plaisent). Par contre, je pense que l’article aura le mérite de donner un aperçu de ce qu’il est possible de faire avec Notion.</p>
+<p>Pour toute personne ayant déjà construit des bases de données en SQL, l’ensemble des propos de cet article semblera surement naïf, mais pour ma part, j’ai été assez satisfait de reprendre la rédaction de mon blog avec un article non-technique.</p>
+<p>Concernant Notion, j’ai l’intuition que les avis sur l’outil sont assez clivants, certains détestent, d’autres adorent. Pour ma part, je suis assez bluffé par l’ergonomie de l’outil. Si je devais résumer ses avantages, je dirais que:</p>
+<ul>
+<li>il permet de rapidement construire des tables</li>
+<li>l’expérience utilisateur est (de mon point de vue) agréable</li>
+<li>même si les tables sont moins puissantes que des tables SQL, avec les <strong>formules</strong>, les <strong>relations</strong> et les <strong>rollUps</strong> (et les récursions mutuelles) il est possible de décrire énormément de scénario</li>
+<li>le fait qu’il soit possible d’embarquer des pages dans des entrées permet de construire des documents auquel <strong>on attache des metadonnéees</strong></li>
+<li>les vues sont un outil puissant pour construire des tableaux de bords personnalisés adaptés à des besoins spécifiques</li>
+<li>les données sont exportables (en CSV ou via une API)</li>
+<li>la migration de données (et l’évolution du modèle) est facile</li>
+<li>Notion offre des <em>interfaces graphique for free</em>.</li>
+</ul>
+<p>Étant néophyte en Notion, je suis passé à côté de beaucoup de fonctionnalités intéressantes (comme, par exemple, les <strong>templates</strong> et l’<strong>API</strong>) mais je suis <strong>très satisfait</strong> des fonctionnalités que j’ai pu utiliser. Mêmes’il est moralement plus cool d’insister pour que chacun réecrive son outil (en diffusant le code librement) et que, en tant que programmeur, certaines choses me manquaient, Notion m’a permis de gagner énormément de temps et je pense progressivement m’en servir de plus en plus. <em>Well done NoCode, well done</em>.</p>
+<p>Pour conclure, n’hésitez pas à boire du bon café, à laisser tomber les machines Nespresso, et à arrêter d’acheter du café trop fortement torréfié (à la <em>Carte Noir</em> ou <em>Grand mère</em>) en grande surface et laissez-vous tenter par les plaisirs du café de spécialité, cultivé, récolté, séché, et torréfié avec savoir, <strong>c’est largement meilleur</strong>. Promis.</p>
+        <div id="eof-page"></div>
+      </div>
+      <div class="content-rightbar">
+        <div id="major-content-right" class="small-refutable">
+          <div id="dynamic-right">
+          </div>
+          <div class="project-block tag-list"><h3><span>Tags</span><span class="label">4</span></h3><ul><li><a href="../tags.html#programmation">programmation</a></li><li><a href="../tags.html#nocode">nocode</a></li><li><a href="../tags.html#notion">notion</a></li><li><a href="../tags.html#café">café</a></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="major-content-bottom">
+    <div class="list-of-links"><div class="project-block link-list"><h3><span>Apprendre Notion</span></h3><ul><li><a href="https://www.notionfacile.fr/">Devenez productif avec Notion</a></li><li><a href="https://jonathanlefevre.com/outils/notion/">Gérer une base de connaissances</a></li><li><a href="https://www.youtube.com/channel/UCLKx4-_XO5sR0AO0j8ye7zQ">Chaine de Shubham Sharma</a></li><li><a href="https://jonathanlefevre.com/outils/raccourcis-clavier-notion/">Raccourcis clavier de Notion</a></li></ul></div><div class="project-block link-list"><h3><span>Boire un bon café à Bruxelles</span></h3><ul><li><a href="https://mokcoffee.be/">Mok</a></li><li><a href="https://corica.be/fr/">Corica</a></li></ul></div><div class="project-block link-list"><h3><span>Boire un bon café à Lille</span></h3><ul><li><a href="https://coffeemakers.fr/">Coffee Makers</a></li><li><a href="https://www.cafesmuda.fr/">Cafés Muda</a></li></ul></div><div class="project-block link-list"><h3><span>Boire un bon café à Nantes</span></h3><ul><li><a href="https://www.cime-cafe.fr/">Cime torrefacteur</a></li><li><a href="https://www.instagram.com/kultivar_cafe_nantes/">Kultivar</a></li></ul></div></div>
+  </div>
+</div>
+<script>
+  planet.suspend(function() {
+    planet.story.boot({
+      path: "/longs/notion_pour_le_cafe.html",
+      eof: document.getElementById("eof-page"),
+      rightContainer: document.getElementById(
+        "major-content-right"
+      ),
+      resumeDetails: document.getElementById(
+        "resume-details"
+      )
+    });
+  });
+  planet.suspend(function() {
+    planet.roe.mount(
+      document.getElementById("roe-container")
+    );
+  });
+</script>
+
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        <div class="left">
+          <a id="random-page-btn" class="small-button-gray">
+            Page aléatoire
+          </a>
+           <a href="../tags.html" class="small-button-gray">Tags</a>
+          <br /><br />
+          Cette page est construite avec
+          <a href="https://jaspervdj.be/hakyll/">Hakyll</a> et
+          <a href="../projects/planet.html">Planet</a>.
+          <br />
+          Le contenu est distribué sous licence
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a>.
+        </div>
+        <div class="center">
+          <a href="http://webring.xxiivv.com/#random" target="_blank">
+            <img class="pictogram" src="../picto/webring.black.svg" alt="webring-logo" />
+          </a>
+        </div>
+        <div class="right">
+          <a href="../xavier.html">Xavier Van de Woestyne</a> ©<br />
+          2017-2021
+        </div>
+      </div>
+    </footer>
+    <div id="planet-sectors-metadata">
+      <span class="planet-metadata sector-data" data-name="programming" data-desc="Programmation (code) relative ou non à des projets" data-color="rgb(34, 34, 34)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="visual" data-desc="Dessin/Peinture/Design" data-color="rgb(68, 68, 68)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="audio" data-desc="Musique/Sound design" data-color="rgb(221, 221, 221)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="writing" data-desc="Ecriture d'articles, de livres, de notes" data-color="rgb(136, 136, 136)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="research" data-desc="Expériences variées liées à l'apprentissage" data-color="rgb(85, 85, 85)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="maintenance" data-desc="Correctif, maintenance d'infrastructures" data-color="rgb(204, 204, 204)"><!-- Planet metadata --></span>
+<span class="planet-metadata sector-data" data-name="reading" data-desc="Activité liées à la lecture" data-color="rgb(192, 192, 192)"><!-- Planet metadata --></span>
+
+    </div>
+    <script>
+      planet.suspend(function() {
+        planet.tags.random({
+          button: document.getElementById('random-page-btn')
+        });
+      });
+      planet.start();
+    </script>
+  </body>
+</html>

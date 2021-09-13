@@ -8,8 +8,16 @@
         <name>Xavier Van de Woestyne</name>
         <email>xaviervdw@gmail.com</email>
     </author>
-    <updated>2020-04-29T00:00:00Z</updated>
+    <updated>2021-09-12T00:00:00Z</updated>
     <entry>
+    <title>Mon utilisation de Notion pour le café</title>
+    <link href="https://xvw.github.io/longs/notion_pour_le_cafe.html" />
+    <id>https://xvw.github.io/longs/notion_pour_le_cafe.html</id>
+    <published>2021-09-12T00:00:00Z</published>
+    <updated>2021-09-12T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Présentation de mon utilisation de Notion.so pour ma consommation de café.]]></summary>
+</entry>
+<entry>
     <title>Kotlin, extensions et génériques</title>
     <link href="https://xvw.github.io/longs/kotlin_extensions.html" />
     <id>https://xvw.github.io/longs/kotlin_extensions.html</id>
