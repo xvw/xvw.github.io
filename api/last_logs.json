@@ -1,6 +1,9 @@
-[{"uuid": "3021eb49-e630-fa1f-bf2c-e7d7c404bae8", "date": "021I13",
-   "duration": 300, "sector": "writing", "project": "planet",
-   "label": "Écriture de l'article sur Notion et le café"},
+[{"uuid": "6bdb3567-9d5b-6a93-02ae-4f8db578a4a2", "date": "021I14",
+   "duration": 300, "sector": "writing", "project": null,
+   "label": "Préparation d'un talk dont je n'ai, hélas, pas encore le nom"},
+  {"uuid": "3021eb49-e630-fa1f-bf2c-e7d7c404bae8", "date": "021I13",
+    "duration": 300, "sector": "writing", "project": "planet",
+    "label": "Écriture de l'article sur Notion et le café"},
   {"uuid": "7ff2d712-37e5-db20-ef82-e6511cfae51a", "date": "021I12",
     "duration": 250, "sector": "writing", "project": "planet",
     "label": "Article: mon utilisation de Notion pour le café"},
@@ -9,7 +12,4 @@
     "label": "Apprentissage sérieux de Coq (enfin)"},
   {"uuid": "eea7282a-b4de-79ea-5ecd-f1a6cf02af68", "date": "021I11",
     "duration": 200, "sector": "writing", "project": "planet",
-    "label": "Intégration des recettes dans Notion"},
-  {"uuid": "6c4411dd-a303-eda9-3b91-cccd862bd69c", "date": "021I10",
-    "duration": 300, "sector": "research", "project": null,
-    "label": "Apprentissage sérieux de Coq (enfin)"}]
+    "label": "Intégration des recettes dans Notion"}]
