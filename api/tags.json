@@ -11,7 +11,7 @@
               "test unitaire", "troubles", "typage", "types", "télévision",
               "vxace", "web", "zipper"],
   "contents": [{"title": "Planet", "section": "project", "id": "planet",
-                 "date": "021I13",
+                 "date": "021I15",
                  "description": "Une collection d'outils pour construire ma page personnelle",
                  "tags": ["log", "web", "ocaml", "journal", "blog", "hakyll"]},
                 {"title": "Mon utilisation de Notion pour le café",
