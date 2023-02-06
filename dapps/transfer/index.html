@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>xvw - Transfer</title>
+    <meta name="description" content="Une simple dApp pour transférer des Tez">
+    <meta name="keywords" content="capsule, tezos, ligo">
+    <meta name="author" content="Xavier Van de Woestyne">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/hl.css">
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule.js"></script>
+  </head>
+  <body>
+
+    <main class="container"><section class="header">
+  <nav class="breadcrumb">
+    <ol>
+      <li>
+        <a href="/">Accueil</a>
+      </li><li>
+        <a href="/dapps.html">Catalogue de DApps</a>
+      </li></ol>
+  </nav>
+
+  <h1>Transfer</h1></section><section class="synopsis"><p>Une toute petite <em>dApp</em> qui ne sert qu'à expérimenter le <em>binding</em> de la bibliothèque <a href="https://www.walletbeacon.io/">Beacon Wallet</a> et l'implémentation du <em>framework</em> <a href="https://tezos.com">Tezos</a>.</p>
+</section>
+
+<section class="dapp" id="current-dapp"><div id="dapp dapp-transfer-container" class="standard-dapp">
+    <div id="dapp-transfer">Lancement de la dApp...<div>
+</div>
+<script>
+ capsule.suspend(function() {
+     capsule.dapps.transfer.mount({
+         containerId: "dapp-transfer"
+     });
+ });
+</script>
+</section>
+
+
+<article><p><strong>Transfer</strong> n'est pas une <em>dApp</em> très intéressante. Elle ne permet que de
+transférer un certains montant à une adresse donnée.</p>
+<ul>
+<li>Connectez votre <em>Wallet</em> en appuyant sur le bouton <code>Connecter son Wallet</code>.
+</li>
+<li>Saisissez l'adresse du <em>bénéficiaire</em> dans le formulaire prévu à cet effet.
+</li>
+<li>Choisissez <em>le montant</em> à transférer dans le formulaire prévu à cet effet.
+</li>
+<li>Appuyez sur le bouton <code>Effectuer le transfert</code>.
+</li>
+<li>Confirmez l'opération depuis votre <em>Wallet</em>.
+</li>
+<li>Attendez.
+</li>
+</ul>
+</article>
+</main>
+    <footer>
+      <div class="container">
+        <p>
+          Diffusé sous licence
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <strong>CC BY-SA</strong>
+          </a>
+        </p>
+        <p>
+          Honteuseument généré par
+          <a href="https://github.com/xhtmlboi/yocaml">
+            <strong>YOCaml</strong>
+          </a>
+        </p>
+      </div>
+    </footer>
+    <script>capsule.mount();</script>
+  </body>
+</html>
