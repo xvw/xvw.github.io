@@ -538,27 +538,27 @@ plus) entre 0 et 6 cases qui seront bloquées (sur lesquelles nous ne pourront
 pas jouer de cartes). Comme on ne peut retirer que, au maximum, 6 espaces, il y
 aura toujours, logiquement assez d'espace pour jouer toutes les cartes.</p>
 <p>Voici trois exemples de plateaux pouvant être générés. Le premier n'a généré
-aucun bloc bloquant, le second en a généré 3 et le dernier en a généré 6.</p>
+aucun obstacle, le second en a généré <code>3</code> et le dernier en a généré <code>6</code>.</p>
 <p><img src="/images/tetra-board.png" alt="" class="centered-fig" /></p>
 <p>Même si, en introduction de cet article, j'ai un peu râlé sur l'excès
 d'aléatoire, ici, je trouve que les légères variations de terrains sont une
-<strong>très bonne idée</strong> et qu'elle permette d'échaffauder des <em>stratégies
+<strong>très bonne idée</strong> et qu'elles permettent d'échaffauder des <em>stratégies
 complémentaires</em>. Par exemple dans le troisième exemple, l'emplacement isolé,
 sans aucune case libre adjacente, permet de placer une carte plus faible, qui ne
 sera jamais prenable, bloquant ainsi la défaite <em>parfaite</em> et garantissant,
 dans le pire des cas, la perte d'une seule carte.</p>
 <h4 id="prise-de-cartes-simple">Prise de cartes simple</h4>
-<p>Nous avions vu, dans le manuel, que pour prendre une carte, il faut qu'une carte
-soit placée et toutes les cartes pointées par les flèches de la carte seront
-gagnées. Dans cet exemple, la carte noire gagne trois cartes ciblées.</p>
+<p>Nous avions vu dans le manuel que pour prendre une carte, il suffit qu'une
+carte soit placée et toutes les cartes pointées par ses flèches seront gagnées.
+Dans cet exemple, la carte noire gagne trois cartes ciblées.</p>
 <p><img src="/images/tetra-basic-4.png" alt="" class="centered-fig" /></p>
-<p>Par contre, pour que les flèches soient effectives, <strong>il faut que la carte
-vienne d'être placée</strong>. Par exemple, dans ce schéma, la carte grise n'affecte
-pas la carte noire, qui vient d'être jouée :</p>
+<p>En revanche, pour que les flèches soient effectives, <strong>il faut que la carte
+vienne d'être placée</strong>. Dans ce schéma, la carte grise n'affecte pas la carte
+noire, qui vient d'être jouée :</p>
 <p><img src="/images/tetra-basic-5.png" alt="" class="centered-fig" /></p>
-<p>Parce qu'une carte jouée est <strong>offensive</strong> et une fois qu'elle a été placée, elle
-passe en mode <strong>défensif</strong>. La seule manière qu'une carte déjà placée en gagne
-une autre est dans une situation de <strong>bataille</strong> et/ou de <strong>combo</strong>, que nous
+<p>Parce qu'une carte jouée est <strong>offensive</strong> et une fois qu'elle a été placée,
+elle passe en mode <strong>défensif</strong>. Pour qu'une carte déjà placée en gagne une
+autre il faut une situation de <strong>bataille</strong> et/ou de <strong>combo</strong>, que nous
 détaillerons dans les sections suivantes.</p>
 <h4 id="bataille">Bataille</h4>
 <p>A ce stade de la lecture de l'article, vous devriez vous dire que j'ai largement
@@ -566,35 +566,34 @@ exagéré la complexité du jeu et que, même si les informations du manuel
 n'étaient pas complètes, quelques parties devraient suffire à comprendre
 l'ensemble des mécaniques de jeu ! Rassurez-vous, dans cette section, nous
 allons rapidement comprendre pourquoi, en jouant au Tetra Master, sans
-comprendre certaines informations liées aux statistiques des cartes (que l'on
-peut observer dans une situation de bataille), on est sans arrêt écrasé par une
+comprendre certaines informations liées aux statistiques des cartes — que l'on
+peut observer dans une situation de bataille — on est sans arrêt écrasé par une
 anxiété latente, ne comprenant pas toujours pourquoi est-ce que l'on gagne... ou
 pire, pourquoi l'on perd.</p>
 <p>Pour rappel, quand on place une carte adjacente à une autre carte de couleur
 différente, on se retrouve face à plusieurs cas de figures :</p>
 <ul>
-<li>la carte placée pointe une (ou plusieurs autres cartes) opposante(s), sans
+<li>la carte placée pointe une ou plusieurs autres cartes adverses, sans
 opposition de flèches, elle gagne toutes les cartes ciblées ;
 </li>
 <li>la carte placée ne pointe pas d'autres cartes, et même si elle est pointée par
 une flèche d'une carte déjà positionnée, aucune carte n'est gagnée ;
 </li>
-<li>la carte placée pointe une (ou plusieurs autres cartes) oppposante(s), on
+<li>la carte placée pointe une ou plusieurs autres cartes adverses, on
 entre en situation de <strong>bataille</strong> et la carte placée est <strong>offensive</strong> et la
 carte ciblée est <strong>défensive</strong>.
 </li>
 </ul>
-<p>La situation de bataille est décrite, visuellement, par ce schéma :</p>
 <p><img src="/images/tetra-basic-2.png" alt="" class="centered-fig" /></p>
-<p>Nous avions aussi lu, une fois de plus dans le manuel, qu'en situation de
-bataille, c'est <em>la carte avec le plus grand nombre qui gagne</em>. Et ce qui est
-génial... c'est que avant de lire les règles, et le document obscure et un peu
-de tentative de <em>reverse engineering</em> du code du jeu, j'étais <strong>absolument
-incapable</strong> de comprendre comment <em>ce nombre</em> était défini. Accrochez-vous bien,
-je pense que c'est à partir de ce moment que les concepteurs du Tetra Master (et
-aussi les gens qui ont validés le <em>Game Design Document</em>) sont devenus fous
-parce que de mon point de vue, <strong>même en jouant des milliers de parties, il est
-impossible de comprendre comment est défini ce <em>score</em></strong>.</p>
+<p>Nous avions aussi lu, qu'en situation de bataille, c'est <em>la carte avec le plus
+grand nombre qui gagne</em>. Et ce qui est génial... c'est que avant de lire les
+règles, et le document obscur et quelques de tentatives de <em>reverse
+engineering</em>, j'étais <strong>absolument incapable</strong> de comprendre comment <em>ce nombre</em>
+était défini. Accrochez-vous bien, je pense que c'est à partir de ce moment que
+les concepteurs du Tetra Master — et aussi les gens qui ont validé le <em>Game
+Design Document</em> — sont devenus fous parce que de mon point de vue, <strong>même en
+jouant des milliers de parties, il est impossible de comprendre comment est
+défini ce <em>nombre</em></strong>.</p>
 <h5 id="batailles-multiples">Batailles multiples</h5>
 <p>Bien que nous n'ayons pas encore décrit formellement l'anatomie d'une carte,
 nous avons spéculé qu'une carte pouvait avoir un nombre multiple de flèches,
