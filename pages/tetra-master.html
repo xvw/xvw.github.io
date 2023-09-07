@@ -596,10 +596,9 @@ Design Document</em> — sont devenus fous parce que de mon point de vue, <stron
 jouant des milliers de parties, il est impossible de comprendre comment est
 défini ce <em>nombre</em></strong>.</p>
 <h5 id="batailles-multiples">Batailles multiples</h5>
-<p>Bien que nous n'ayons pas encore décrit formellement l'anatomie d'une carte,
-nous avons spéculé qu'une carte pouvait avoir un nombre multiple de flèches,
-pointant potentiellement plusieurs cartes différentes. Par exemple dans cette
-situation :</p>
+<p>Bien que nous n'ayons pas encore décrit réellement l'anatomie d'une carte, nous
+avons spéculé qu'une carte pouvait avoir un nombre multiple de flèches, pointant
+potentiellement plusieurs cartes différentes. Par exemple dans cette situation :</p>
 <p><img src="/images/tetra-multiple-battle.png" alt="" class="centered-fig" /></p>
 <p>Dans cette situation, on peut voir que la carte jouée est en <strong>situation de
 bataille</strong> avec les deux cartes. Alors que généralement, le jeu décide de
@@ -623,7 +622,7 @@ le schéma d'une carte pouvant attaquer dans toutes les directions, avec comme
 <em>identifiant</em> : <code>1P23</code> :</p>
 <p><img src="/images/tetra-card-template.png" alt="" class="centered-fig" /></p>
 <p>Nous avons, je le pense, relativement bien compris la mécanique des flèches, et
-leur rôles, on peut donc spéculer sur le fait que l'identifiant sert à décrire
+leur rôle, on peut donc spéculer sur le fait que l'identifiant sert à décrire
 les statistiques d'une carte, et permettent de calculer le <em>nombre</em> servant à
 faire une <em>bataille</em>. C'est tout à fait ça, mais nous allons voir qu'il y a
 énormément <em>d'implicites</em> rendant la compréhension de ces nombres <strong>très
@@ -634,17 +633,17 @@ relation entre ce fameux <em>identifiant</em> (dans notre exemple, le fameux <co
 je vais être très explicite, il nous donne quatre informations sur la carte, de
 cette manière : <code>PTDM </code> où :</p>
 <ul>
-<li><code>P</code> la <strong>puissance offensive</strong> de la carte (exprimée... en <strong>hexadécimal</strong>, de
-<code>0</code> à <code>F</code>, dans notre exemple: <code>1</code>) ;
+<li><code>P</code> la <strong>puissance offensive</strong> de la carte, exprimée... en <strong>hexadécimal</strong>, de
+<code>0</code> à <code>F</code>, dans notre exemple: <code>1</code> ;
 </li>
 <li><code>T</code> le <strong>type de la carte</strong>, pouvant prendre les valeurs <code>P</code>, <code>M</code>, <code>X</code> où <code>A</code>,
 dans notre exemple <code>P</code>
 </li>
-<li><code>D</code> la <strong>défense physique</strong> de la carte (exprimée elle aussi en
-<strong>hexadécimal</strong>, de <code>0</code> à <code>F</code>, dans notre exemple <code>2</code>) ;
+<li><code>D</code> la <strong>défense physique</strong> de la carte, exprimée elle aussi en
+<strong>hexadécimal</strong>, de <code>0</code> à <code>F</code>, dans notre exemple <code>2</code> ;
 </li>
-<li><code>M</code> la <strong>défense magique</strong> de la carte (exprimée elle aussi en
-<strong>hexadécimal</strong>, de <code>0</code> à <code>F</code>, dans notre exemple <code>3</code>).
+<li><code>M</code> la <strong>défense magique</strong> de la carte, exprimée elle aussi en
+<strong>hexadécimal</strong>, de <code>0</code> à <code>F</code>, dans notre exemple <code>3</code>.
 </li>
 </ul>
 <p>Je vous assure que le fait que les <em>digits</em> exprimés en hexadécimal peuvent
