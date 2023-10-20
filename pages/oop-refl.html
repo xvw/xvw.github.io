@@ -277,8 +277,8 @@ que deux types <em>syntaxiquement différents</em> sont en fait égaux.</p>
 </code></pre>
 <p>Pour donner un type à <code>flatten</code>, ou voudrait imposer que <code>'a</code> (le paramètre de
 type de la classe <code>obj_list</code>) soit une liste. En d'autre mot, nous voudrions
-<strong>une preuve que <code>'a</code> est de type <code>'b list</code></strong>. Soit garantir que <code>'a</code> et <code>'b list</code>, bien que syntaxiquement différents, soient égaux. Rien de plus simple,
-il suffit de demander d'en fournir une valeur de type <code>('a, 'b list) eq</code> :</p>
+<strong>une preuve que <code>'a</code> est de type <code>'b list</code></strong>. Soit garantir que <code>'a</code> et <code>'b list</code>, bien que syntaxiquement différents, soient égaux. Rien de plus simple, il
+suffit de demander d'en fournir une valeur de type <code>('a, 'b list) eq</code> :</p>
 <pre><code class="language-ocaml">method flatten : ('a, 'b list) eq -&gt; 'b list
 </code></pre>
 <p>Maintenant que nous avons une interface qui décrit une liste avec une méthode
