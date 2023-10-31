@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xvw - OCaml, modules et schémas d&apos;importation</title>
+    <meta name="description" content="Utilisation du langage de modules et des ouvertures pour reproduire des schémas d&apos;importations usuels dans d&apos;autres langages." />
+    <meta name="keywords" content="capsule, programmation, ocaml, modules" />
+    <meta name="author" content="Xavier Van de Woestyne" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/hl.css" />
+    <link rel="stylesheet" href="/css/default.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/journal.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/addresses.xml" />
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule.js"></script>
+  </head>
+  <body>
+    <main class="container"><section class="header">
+  <nav class="breadcrumb">
+    <ol>
+      <li>
+        <a href="/">Accueil</a>
+      </li><li>
+        <a href="/programming.html">Programmation</a>
+      </li><li>
+        <a href="/programming.html#index-bribes--encodages">Bribes &amp; Encodages</a>
+      </li></ol>
+  </nav>
+
+  <h1>OCaml, modules et schémas d&apos;importation</h1><time class="published-at" datetime="2023-10-31">
+    2023-10-31
+  </time></section><section class="synopsis"><p>Le langage de modules de <a href="https://ocaml.org">OCaml</a> peut être intimidant, et il implique généralement l'utilisation de beaucoup de mots-clés, par exemple <code>open</code> et <code>include</code> qui  permettent d'importer des définitions dans un module. Depuis la version <code>4.08</code> du langage, la primitive <code>open</code> a été <em>généralisée</em> pour permettre l'ouverture <strong>d'expression de module arbitraire</strong>. Dans cet article, nous allons observer comment utiliser cette généralisation pour reproduire une pratique commune dans d'autres langages, que j'appelle, <em>un peu pompeusement</em>, des stratégies d'importation, décrivant, par exemple, ce genre de d'importation <code>import {a, b as c} from K</code> sans dépendre d'un langage dédié à l'importation.</p>
+</section><section class="table-of-contents"><ul>
+<li><ul>
+<li><a href="#importation-de-composants-de-modules">Importation de composants de modules</a>
+<ul>
+<li><a href="#ouverture-de-modules">Ouverture de modules</a>
+<ul>
+<li><a href="#ouverture-locale-de-modules">Ouverture locale de modules</a>
+</li>
+</ul>
+</li>
+<li><a href="#inclusion-de-modules">Inclusion de modules</a>
+</li>
+<li><a href="#ouverture-vs-inclusion-avant-ocaml-408">Ouverture VS inclusion avant OCaml <code>4.08</code></a>
+</li>
+<li><a href="#un-premier-bnfice">Un premier bénéfice</a>
+</li>
+</ul>
+</li>
+<li><a href="#schmas-dimportation">Schémas d'importation</a>
+<ul>
+<li><a href="#importation-non-qualifie">Importation non-qualifiée</a>
+</li>
+<li><a href="#qualification-renomme">Qualification renommée</a>
+<ul>
+<li><a href="#prsence-du-module-renomm">Présence du module renommé</a>
+</li>
+<li><a href="#renommage-imbriqu">Renommage imbriqué</a>
+</li>
+</ul>
+</li>
+<li><a href="#importation-slective">Importation sélective</a>
+<ul>
+<li><a href="#importation-slective-avec-renommage">Importation sélective avec renommage</a>
+</li>
+</ul>
+</li>
+<li><a href="#importation-par-exclusion">Importation par exclusion</a>
+<ul>
+<li><a href="#le-type-somme-vide">Le type somme vide</a>
+</li>
+<li><a href="#suppression-de-fonctions">Suppression de fonctions</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+</li>
+</ul>
+</li>
+</ul>
+</section><article><p>La généralisation des ouvertures a été documentée dans le papier <a href="https://www.cl.cam.ac.uk/~jdy22/papers/extending-ocamls-open.pdf">&quot;<em>Extending
+OCaml's</em>
+<code>open</code>&quot;</a>,
+présenté au <a href="https://ocaml.org/workshops/ocaml-users-and-developers-workshop-2017">OCaml Workshp
+2017</a>, et
+implémenté — pour la version <code>4.08</code> de OCaml — via les soumissions
+<a href="https://github.com/ocaml/ocaml/pull/1506"><code>#1506</code></a> et
+<a href="https://github.com/ocaml/ocaml/pull/2147"><code>#2147</code></a> (adjoint, probablement, de
+quelques correctifs suivant la fusion de l'implémentation). Cette généralisation
+augmente grandement la flexibilité du terme <code>open</code>, rendant possible la mise en
+place de quelques astuces pour contrôler finement l'importation de <em>composants
+de modules</em> dans un autre module.</p>
+<blockquote>
+<p>Certaines des astuces présentées sont reprises telles qu'elles du papier qui,
+en plus de présenter les stratégies d'implémentations, présente quelques cas
+d'usages (dont certains n'étant pas pertinents dans le cadre de cet article
+car ils ne concernent pas les stratégies d'importations).</p>
+</blockquote>
+<p>Il est probable qu'une grande partie des <em>astuces</em> présentées ne deviennent pas
+<em>idiomatiques</em> dans les bases de code OCaml. Selon moi, leur présentation met
+essentiellement en lumière l'accroissement de flexibilité de la primitive <code>open</code>
+sans devoir se reposer sur une <strong>extension gramaticale spécifique</strong> dédiée à
+l'importation de composants, tout en présentant quelques encodages un peu
+<em>capilotractés</em> ... pour le plaisir de la démonstration.</p>
+<h2 id="importation-de-composants-de-modules">Importation de composants de modules</h2>
+<p>Quand on décrit un programme OCaml, on construit des collections de modules qui
+exportent des composants (des types, des <em>sous-modules</em>, des exceptions et des
+fonctions). Il est donc crucial de contrôler finement leurs accessibilités
+depuis d'autres modules, pour cela, on dispose de deux primitives — <code>open</code> et
+<code>include</code> — dont la différence est subtile. Pour décrire correctement les
+différences entre les deux primitive, nous allons nous baser sur ce module
+(un peu artificiel) que nous utiliserons dans les exemples qui suivent :</p>
+<div class="md-multicols">
+<pre><code class="language-ocaml">module A = struct
+  type a = T_a
+  let a_a = 1
+  let a_b = T_a
+  module B = struct
+    type b = T_b
+    let b_a = T_b
+    let b_b = T_a
+  end
+end
+</code></pre>
+<pre><code class="language-ocaml">module A : sig
+  type a = T_a
+  val a_a : int
+  val a_b : a
+  module B : sig
+    type b = T_b
+    val b_a : b
+    val b_b : a
+  end
+end
+</code></pre>
+</div>
+<p>Comme vous pouvez le remarquer, l'implémentation — et <em>de facto</em>, la signature —
+du module n'est pas très intéressant, il ne servira qu'a illustrer mon propos.
+Ce que l'on voudra, c'est utiliser, dans un fichier <code>c.ml</code> (qui dénotera le
+module <code>C</code>), les composants décrits dans <code>A</code>.</p>
+<p>La première approche, et la plus évidente, est d'utiliser leurs noms complets
+(un appel <strong>totalement qualifié</strong>) en utilisant le <strong>chemin</strong> du module. Par
+exemple, créons un couple de <code>int</code> et de <code>A.a</code> :</p>
+<pre><code class="language-ocaml">let c_a = (A.a_a, A.B.b_b)
+</code></pre>
+<p>Par contre, il arrive que le fait d'utilisé les chemins complets puisse être
+<em>rébarbatif</em> (voire totalement illisible). C'est pour ça que nous allons voir
+comment <strong>importer les composants du module <code>A</code> dans le module <code>C</code></strong>. Cependant,
+comme le but de l'article n'est pas d'être un didacticiel sur l'ouverture et
+l'inclusion, mais d'explorer les ouvertures généralisées pour décrire des
+schémas d'importations, nous ne nous étendrons pas sur ces deux fonctionnalités
+qui sont déjà fortemment décrites dans le <a href="https://v2.ocaml.org/releases/5.1/htmlman/index.html">manuel du
+langage</a> — dans les
+sections dédiées <a href="https://v2.ocaml.org/releases/5.1/htmlman/moduleexamples.html">aux
+modules</a>, <a href="https://v2.ocaml.org/releases/5.1/htmlman/overridingopen.html">à la
+surcharge liée aux
+ouvertures</a> et
+<a href="https://v2.ocaml.org/releases/5.1/htmlman/generalizedopens.html">aux ouvertures
+généralisées</a>.</p>
+<h3 id="ouverture-de-modules">Ouverture de modules</h3>
+<p>La primitive <code>open</code> permet <em>d'importer</em> les composants d'un module dans un autre
+module, <strong>sans re-exporter</strong> ces dernières dans le module courant. Par exemple,
+utilisons <code>open</code> pour réécrire la fonction <code>c_a</code> :</p>
+<div class="md-multicols">
+<pre><code class="language-ocaml">open A
+
+let c_a = (a_a, B.b_b)
+</code></pre>
+<pre><code class="language-ocaml">val c_a : int * A.a
+</code></pre>
+</div>
+<p>Comme on peut le voir dans la signature (inférée), <strong>n'exporte pas</strong> les
+<em>composants</em> du module <code>A</code> et référence le type <code>a</code> par son chemin complet. Il
+serait aussi possible d'ouvrir <code>A.B</code> en utilisant <code>open A.B</code> ou encore <code>open B</code>
+(car <code>A</code> est déjà ouvert).</p>
+<p>De la même manière qu'il est possible d'ouvrir des modules dans
+<em>l'implémentation</em>, il est aussi possible d'ouvrir des modules dans <em>la
+signature</em>, permettant de réduire le chemin pour décrire des types (ou des
+modules).</p>
+<h4 id="ouverture-locale-de-modules">Ouverture locale de modules</h4>
+<p>Les cas d'ouvertures que nous avons observés précédemment étaient <strong>globales</strong>
+au module dans lequelle elles étaient invoquées, ce qui peut être un peu
+contraignant quand on veut ouvrir plusieurs modules — exposant, par exemple, des
+opérateurs arithmétiques. Heureusement, il est possible d'ouvrir <strong>au niveau de
+l'expression</strong>, de deux manières différentes :</p>
+<ul>
+<li>
+<p><code>let open Module in ...</code> où dans l'expression suivant ce bloc — donc
+lexicalement borné — <code>Module</code> sera ouvert <em>localement</em>. Ce qui est très utile
+pour n'ouvrir un module que dans une fonction ;</p>
+</li>
+<li>
+<p><code>Module.(...)</code> où <code>Module</code> ne sera ouvert — lexicalement borné aussi —
+uniquement entre les parenthèses. Ce qui est très utile pour n'ouvrir un
+module que dans une expression, par exemple, imaginons que le module <code>Float</code>
+expose un module <code>Infix</code>, exposant les opérateurs arithmétiques usuels pour
+l'arithmétique, il serait possible de décrire une opération entre des
+flottants de cette manière :<br />
+<code>let x = Float.Infix.(1.2 + 3.14 + 1.68)</code>.</p>
+</li>
+</ul>
+<p>L'absence d'ouverture locale peut être très handicapant. Par exemple, le langage
+<a href="https://fsharp.org/"><code>F#</code></a> ne permet que des <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/import-declarations-the-open-keyword">ouvertures
+globales</a>
+ce qui rend la définition d'opérateurs dans un module dédié laborieuse,
+préconisant l'utilisation de <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading">surcharge
+d'opérateurs</a>
+(ou encore de <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/generics/statically-resolved-type-parameters">Statically Resolved Type
+Parameters</a>)
+engendrant parfois beaucoup de complexité.</p>
+<h3 id="inclusion-de-modules">Inclusion de modules</h3>
+<p>La primitive <code>include</code> ressemble très fort à la primitive <code>open</code> sauf qu'elle —
+comme son <em>nom</em> l'indique — inclus le contenu du module ciblé dans le corps du
+module où elle est appelée. Par exemple, si nous avions utilisé <code>include</code> au
+lieu de <code>open</code> dans notre exemple précédent, observons l'incidence sur la
+signature inférée :</p>
+<div class="md-multicols">
+<pre><code class="language-ocaml">include A
+
+let c_a = (a_a, B.b_b)
+</code></pre>
+<pre><code class="language-ocaml">type a = A.a = T_a
+val a_a : int
+val a_b : a
+module B = A.B
+val c_a : int * A.a
+</code></pre>
+</div>
+<p>Même si la signature <em>varie légèrement</em> de celle que nous avions définie en
+introduction — il y a quelques subtilités concernant les propagations
+<strong>d'égalités de types et de modules</strong>, décrites dans la section <a href="https://v2.ocaml.org/releases/5.1/htmlman/moduletypeof.html">&quot;Recovering the
+type of a module&quot;</a>,
+liées au
+<a href="https://discuss.ocaml.org/t/extend-existing-module/1389/7">renforcement</a> — on
+peut observer que le contenu du module <code>A</code> a été <em>inclus</em>, <em>ajouté</em> au module
+<code>C</code>. Au contraire de l'ouverture, il n'est <strong>pas possible de faire de
+l'inclusion locale</strong>, ce qui est parfaitement logique parce que <strong>de l'inclusion
+au niveau local aurait exactement le même effet qu'une ouverture</strong>.</p>
+<p>De mon expérience personnelle, je retire généralement deux cas d'usages
+spécfiques à l'utilisation de <code>include</code> :</p>
+<ul>
+<li>
+<p>l'extension d'un module existant (par exemple, ajouter une fonction au module
+<code>List</code> dans le cadre de mon projet, ou pour faire une extension à la
+bibliothèque standard) ;</p>
+</li>
+<li>
+<p>l'inclusion de sous-modules dans un module parent. Par exemple, il est assez
+courant que dans un module, on retrouve des opérateurs (où des <a href="https://v2.ocaml.org/releases/5.1/htmlman/bindingops.html#start-section">opérateurs de
+liaison</a>)
+qu'il est assez courant de <em>confiner</em> dans des sous-modules dédiés
+(généralement <code>Infix</code> et <code>Syntax</code>). Pour des raisons d'API, les re-exporter au
+niveau du <em>module mère</em> peut être une bonne idée. C'est d'ailleurs
+<a href="https://github.com/xvw/preface/blob/master/lib/preface_specs/indexed_functor.mli#L72">intensivement utilisé dans
+Preface</a>.</p>
+</li>
+</ul>
+<p>Les inclusions sont un outils puissant d'extension, mais aussi du mutualisation
+de code et il y a <strong>beaucoup à dire</strong> car ça peut souvent impliquer la présence
+de <em>substitution</em>, <em>substitution déstructive</em> ou de renforcement, ce qui
+impliquerait la rédaction d'un article dédié !</p>
+<h3 id="ouverture-vs-inclusion-avant-ocaml-408">Ouverture VS inclusion avant OCaml <code>4.08</code></h3>
+<p>Avant la fusion de la proposition de la <strong>généralisation des ouvertures</strong>, il
+existait une différence <strong>sensible</strong> dans l'usage des <code>open</code> contre <code>include</code> :
+le paramètre que prenait les deux primitives.</p>
+<ul>
+<li>
+<p><code>open</code> prenait <a href="https://v2.ocaml.org/releases/4.07/htmlman/names.html#module-path">un chemin de
+module</a>,
+par exemple : <code>A</code> ou encore <code>A.B.C</code></p>
+</li>
+<li>
+<p><code>include</code> prenait <a href="https://v2.ocaml.org/releases/4.07/htmlman/modules.html#module-expr">une expression de
+module</a>,
+par exemple : des chemins comme <code>A</code> ou <code>A.B.C</code>, mais aussi des applications de
+foncteurs comme <code>F(X)</code>, des modules contraints par des signatures : <code>(M : S)</code>
+ou directement le corps d'un module : <code>struct ... end</code>.</p>
+</li>
+</ul>
+<p>Cette différence de flexibilité impliquait l'utilisation de détours assez
+génants pour atteindre le même niveau d'expressivité pour les ouvertures en
+comparaison aux inclusions. En effet, pour permettre aux ouvertures de composer
+avec des applications de foncteurs ou des contraintes, il fallait passer par des
+modules intermédiaires.</p>
+<p>Dans le cas de l'utilisation d'un chemin, les deux appels sont — en terme
+d'expressivité — identiques, parce qu'un chemin peut aussi être une expression
+de module :</p>
+<div class="md-multicols">
+<pre><code class="language-ocaml">include A.B.C
+</code></pre>
+<pre><code class="language-ocaml">open A.B.C
+</code></pre>
+</div>
+<p>Par contre, dès que l'on essaie d'ouvrir des cas un peu plus complexes,
+nativement supportés par <code>include</code>, on devait rapidement introduire des modules
+intermédiaires :</p>
+<div class="md-multicols">
+<pre><code class="language-ocaml">include F(X)
+include (M : S)
+include struct
+  let x = 10
+end
+</code></pre>
+<pre><code class="language-ocaml">module A = F(X)
+open A
+
+module B : S = M
+open B
+
+module C = struct
+  let x = 10
+end
+open C
+</code></pre>
+</div>
+<p>Même si, aux premiers abords, ça peut ne pas sembler dramatique, l'introduction
+de modules intermédiaires impose de ne pas les exporter dans la signature du
+module qui les ouvres (dans son <code>mli</code> ou sa signature). En complément, alors que
+<code>open</code> et <code>include</code> sont souvent présentés symétriquement, on ne pouvait que
+déplorer leur absence de symétrie dans les paramètres qu'ils prenaient.
+Heureusement, depuis <code>4.08</code> (qui a tout de même été <strong>libérée en Juin 2019</strong>),
+grâce à la généralisation des ouvertures, <code>open</code> prend maintenant une expression
+de module arbitraire, exactement comme <code>include</code>, nous permettant de l'utiliser
+pour mimer ces fameux schémas d'importation, évoqués en introduction de cet
+article.</p>
+<h3 id="un-premier-bnfice">Un premier bénéfice</h3>
+<p>Le fait que la primitive <code>open</code> puisse prendre des expressions de modules
+arbitraires offre un premier bénéfice — <em>probablement futile quand on aime
+écrire les signatures de ses modules</em> : <strong>la définition d'expressions locales</strong>.
+En effet, l'ouverture d'un module n'exporte pas son contenu, il est donc
+possible de décrire très facilement des valeurs <em>top-level</em> non-exportée en les
+définissant dans une expression <code>open struct ... end</code>. Par exemple :</p>
+<div class="md-multicols">
+<pre><code class="language-ocaml">open struct
+  let x = 10
+  let y = 20
+end
+let z = x + y
+</code></pre>
+<pre><code class="language-ocaml">val z : int
+</code></pre>
+</div>
+<p>Les fonctions <code>x</code> et <code>y</code> sont <strong>confinées dans une ouverture</strong>, elles ne sont
+donc pas exportées, ce qui peut être très utiles quand on veut définir des
+valeurs (des types ou des modules) localement. De plus comme <strong>une structure
+peut être contrainte par une signature</strong>, il est aussi, par exemple, possible
+d'encapsuler un état mutable partagé dans l'ouverture locale, <strong>ne s'échappant
+pas du périmètre de son ouverture</strong>. Voici deux exemples dans lesquels il est
+impossible de modifier la cellule de référence sans passer par les <em>combinateurs
+exportés</em>, le premier utilisant une contrainte, le second en utilisant des
+ouvertures locales imbriquées :</p>
+<div class="md-multicols">
+<pre><code class="language-ocaml">open (
+  struct
+    let cell = ref 0
+    let incr () = cell := !cell + 1
+    let decr () = cell := !cell - 1
+  end :
+    sig
+      val incr : unit -&gt; unit
+      val decr : unit -&gt; unit
+    end)
+</code></pre>
+<pre><code class="language-ocaml">open struct
+  open struct 
+    let cell = ref 0 
+  end
+  let incr () = cell := !cell + 1
+  let decr () = cell := !cell - 1
+end
+
+</code></pre>
+</div>
+<p>Même si l'approche classique utilisée par un développeur OCaml est d'utiliser
+des signatures pour des problématiques <strong>d'encpasulation</strong>, utilisée comme
+telle, l'ouverture généralisée de modules permet de cacher, de manière
+relativement élégante, certains <em>éléments de plomberies</em> nécéssaires à la
+construction d'un module (qui lui, devrait exposer une API publique au moyen
+d'une signature).</p>
+<p>Maintenant que nous avons observé <em>des exemples</em> d'utilisation de l'ouverture
+généralisée, voyons de quelle manière elle rend la présence d'un langage dédié
+aux schémas d'importations <strong>discutablement utiles</strong>.</p>
+<h2 id="schmas-dimportation">Schémas d'importation</h2>
+<p>Depuis que la <strong>modularité</strong> est devenue un des cheveaux de bataille de la
+conception de logiciels — JavaScript a d'ailleurs <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">empilé les
+propositions</a>
+en faisant dépendre la stratégie de modularisation, et d'importation, du
+<em>cadriciel</em> ou du système de construction utilisé — les langages (comme
+<a href="https://www.python.org/">Python</a> ou encore <a href="https://www.haskell.org/">Haskell</a>)
+ont proposé des fonctionnalités similaires à la primitive <code>open</code> de OCaml pour
+importer des composants dans le module courant. Généralement, ces directives
+d'importation sont <em>un tout petit langage à part entière</em>, régit par ses propres
+règles et sa propre grammaire. Depuis que <code>open</code> est généralisé, on peut
+<em>encoder</em> une grande partie des constructions d'importation usuelles — même si
+nous verrons que certaines, proposées par Haskell, peuvent être un peu verbeuse
+à encoder.</p>
+<p>Pour l'exemple, nous utiliserons le module suivant comme cible d'importation :</p>
+<pre><code class="language-ocaml">module Foo : sig
+  val x : int
+  val y : string
+  val z : char
+end
+</code></pre>
+<p>Il existe cependant une <strong>nuance essentielle</strong> sur la notion <strong>d'importation
+qualifiée</strong>, en effet, en Haskell, pour être utilisé, un module <strong>doit être
+importé</strong>, alors qu'en OCaml, c'est la description du schéma de compilation qui
+indique la présence ou non d'un module. Dans nos différents exemples, nous
+supposerons que le module <code>Foo</code>, que nous avons décrit précédemment, est présent
+dans notre schéma de compilation. De ce fait, pour les importations qualifiée —
+où les termes sont toujours préfixées par leur cheminm de module, il n y a
+aucune cérémonie aditionnelle nécéssaire. Il est importer de garder à l'esprit
+que les astuces présentées ci-dessous peuvent se composer pour construit des
+schémas d'importations très spécifiques (et probablement irréalistes),
+démontrant que, au coup d'un peu de verbosité, l'approche <em>langage</em> permet
+encore plus de flexibilité qu'un <em>DSL</em> dédié à l'importation rigide.</p>
+<h3 id="importation-non-qualifie">Importation non-qualifiée</h3>
+<p>La première directive consiste simplement à importer les définition de <code>Foo</code>
+dans le module courant, les fonctions <code>x</code>, <code>y</code> et <code>z</code> :</p>
+<div class="md-multicols">
+<pre><code class="language-haskell">import * from Foo
+</code></pre>
+<pre><code class="language-ocaml">open Foo
+</code></pre>
+</div>
+<p>Il n y a pas de subtilité, importer toutes les termes exposés par <code>Foo</code> consiste
+simplement à l'ouvrir. Il n y a pas grand chose à dire de plus, on ne tire ici
+partit d'aucune subtilité du langage.</p>
+<h3 id="qualification-renomme">Qualification renommée</h3>
+<p>Une autre directive commune consiste à renommer le module, par exemple, importer
+<code>Foo</code> sous le nom <code>Bar</code> en rendant accessible dans le module <code>Bar.x</code>, <code>Bar.y</code> et
+<code>Bar.z</code>, pour cela, on peut utiliser <a href="https://v2.ocaml.org/releases/5.1/htmlman/modulealias.html">alias de module
+<em>type-level</em></a>.</p>
+<div class="md-multicols">
+<pre><code class="language-haskell">import Foo as Bar
+</code></pre>
+<pre><code class="language-ocaml">open struct module Bar = Foo end
+</code></pre>
+</div>
+<p>On utilise la construction <code>open struct ... end</code> pour ne pas échapper notre
+alias dans l'API publique de notre module — même si, en présence d'une
+signature, cette coquetterie n'est pas nécéssaire car il suffit de ne pas
+exporter le module <code>Bar</code> dans la signature.</p>
+<h4 id="prsence-du-module-renomm">Présence du module renommé</h4>
+<p>Le fait d'utiliser un <strong>alias de module</strong> laisse le module <code>Foo</code> accessible, et
+dans certains cas, on voudrait le rendre inaccessible. La solution la plus
+simple est de simplement <em>vider le module</em> et pour clarifier l'erreur lié à son
+utilisation non-désirée, on peut ajouter une
+<a href="https://v2.ocaml.org/releases/5.1/htmlman/alerts.html#start-section">alerte</a>
+indiquant que le module a été supprimé :</p>
+<pre><code class="language-ocaml">open struct
+  module Bar = Foo
+  module Foo = struct end [@@alert erased]
+end
+</code></pre>
+<p>Rendant l'exploitation du module <code>Foo</code>, dans le module courant, impossible.
+Cependant, comme il est d'usage de fournir des signatures de modules — et donc
+d'en contrôler son API publique, on trouvera plus régulièrement des renommages
+de cette forme : <code>module Bar = Foo</code>. De plus, je ne suis pas convaincu que l'interdiction d'accès au</p>
+<h4 id="renommage-imbriqu">Renommage imbriqué</h4>
+<p>On pourrait imaginer ce genre de renommage : <code>import Foo as Bar.Baz</code>, mais OCaml
+ne permet pas de décrire des chemins complets de cette forme <code>module Bar.Baz = Foo</code>, il faut donc décrire la hiérarchie d'imbrication des modules, de cette
+manière, rendant les fonctions <code>Bar.Baz.x</code>, <code>Bar.Baz.y</code> et <code>Bar.Baz.z</code>
+disponibles dans le module courant :</p>
+<pre><code class="language-ocaml">open struct 
+  module Bar = struct 
+    module Baz = Foo 
+  end 
+end
+</code></pre>
+<p>Ce qui est, je vous l'accorde, un peu verbeux, mais si pour des raisons
+obscures, vous voudriez renommer un module existant avec un chemin composé, vous
+pouvez, en déclarant la hiérarchie des modules.</p>
+<h3 id="importation-slective">Importation sélective</h3>
+<p>Il arrive parfois que l'importation <strong>complète</strong> du module soit excessive et que
+l'on ne voudrait que quelques composants exposés par ce dernier. C'est pour ça
+qu'il est possible de n'importer qu'une partie d'un module. Dans cet exemple, ne
+nous voudrions n'importer que <code>x</code> et <code>y</code> :</p>
+<div class="md-multicols">
+<pre><code class="language-haskell">import {x, y} from Foo
+</code></pre>
+<pre><code class="language-ocaml">open struct
+  let x = Foo.x
+  let y = Foo.y
+end
+</code></pre>
+</div>
+<p>Même si cette approche est, elle aussi, un peu verbeuse, elle n'importe, dans le
+module courant, que les fonctions <code>x</code> et <code>y</code>. Il est possible de simplifier
+cette écriture en utilisant des <em>n-uplet</em> et des ouvertures locales :</p>
+<pre><code class="language-ocaml">open struct
+  let (x, y) = Foo.(x, y)
+end
+</code></pre>
+<p>Sinon, il est aussi possible de <strong>contraindre l'ouverture</strong> au moyen d'une
+signature, ce qui implique de devoir le type des fonctions à exporter :</p>
+<pre><code class="language-ocaml">open (Foo : sig
+  val x : int
+  val y : string end)
+</code></pre>
+<p>Plusieurs propositions (<a href="https://github.com/ocaml/ocaml/pull/10013"><code>#10013</code></a> et
+<a href="https://github.com/ocaml/ocaml/issues/11558#issuecomment-1255946104"><code>#11558</code></a>)
+ont été faites pour permettre d'utiliser du
+<a href="https://v2.ocaml.org/releases/5.1/htmlman/bindingops.html#ss%3Aletops-punning"><em>let-punning</em></a>
+rendant la syntaxe moins lourde, cependant dans la première a été délestée du
+<em>punning</em> pour les membres de modules et la seconde est toujours au stade de
+l'issue.</p>
+<h4 id="importation-slective-avec-renommage">Importation sélective avec renommage</h4>
+<p>Comme les deux premières propositions laissent à l'utilisateurs un contrôle sur
+le nom (ce n'est que de la <em>redéfinition</em> de fonction), on peut trivialement
+intégrer le renommage. Dans cet exemple, on expose <code>x</code> et <code>new_y_name</code>, qui
+appelle <code>Foo.y</code> :</p>
+<div class="md-multicols">
+<pre><code class="language-haskell">import {x, y as new_y_name} from Foo
+</code></pre>
+<pre><code class="language-ocaml">open struct
+  let (x, new_y_name) = Foo.(x, y)
+end
+</code></pre>
+</div>
+<p>Sans surprise, le renommage est assez simple, par contre, si l'on voulait
+utiliser l'approche par signature, il faudrait utiliser un peu plus d'astuce en
+couplant une ouverture et une inclusion :</p>
+<pre><code class="language-ocaml">open (struct
+    include Foo
+    let new_y_name = y
+  end : sig
+    val x : int
+    val new_y_name : string end)
+</code></pre>
+<p>Cependant, cette dernière proposition est tellement verbeuse qu'elle en devient
+un peu irrationnelle — surtout en comparaison avec la précédente — que j'imagine
+que c'est le genre de code que l'on ne verra jamais — ou du moins, que l'on ne
+voudrait jamais voir — dans une base de code régulière. En revanche, même si la
+proposition est lourde, je trouve qu'elle montre tout de même assez
+explicitement comment <strong>il est possible de composer les différentes
+constructions et outils vu précédemment</strong>.</p>
+<h3 id="importation-par-exclusion">Importation par exclusion</h3>
+<p>Haskell possède un modificateur d'importation un peu particulier dont j'ai
+longuement hésité à parler parce que je n'avais aucune idée de comment
+l'implémenter, mais c'était sans compter, une fois de plus, sur l'inestimable
+aide de <a href="https://github.com/Octachron">@octachron</a> et de
+<a href="https://github.com/xhtmlboi">@xhtmlboi</a> qui m'ont tout deux donné,
+<em>approximativement</em>, la même solution . Ce modificateur permet d'importer tout
+un module, excepté une liste de composant. Dans cet exemple, <code>x</code> et <code>y</code> seront
+importé parce que l'on importe <strong>tout le module <code>Foo</code></strong>, excepté la fonction
+<code>z</code>.</p>
+<pre><code class="language-haskell">import Foo hidding (z)
+</code></pre>
+<p>OCaml ne dipose pas, nativement, la possibilité de construire des
+<strong>intersections</strong> ou des <strong>différences</strong> de modules. La solution proposée par
+<a href="https://github.com/Octachron">@octachron</a> et
+<a href="https://github.com/xhtmlboi">@xhtmlboi</a> repose sur de la réecriture de
+fonction, adjoint à l'utilisation d'une alerte, d'une manière un peu similaire à
+ce que nous avions fait pour évincer un module renommé. Par contre, avant
+d'observer la solution proposée, faisons un petit détour par le variant vide.</p>
+<h4 id="le-type-somme-vide">Le type somme vide</h4>
+<p>En OCaml, il est possible de définir un type somme qui ne contient aucun
+constructeur, en utilisant <a href="https://v2.ocaml.org/releases/5.1/htmlman/emptyvariants.html#start-section"><strong>le variant
+vide</strong></a>
+et qui permet, dans les grandes lignes, de <em>décrire des valeurs non
+représentables</em>. Pour le définir, il suffit de construire une somme avec une
+branche vide (qui, <strong>attention</strong>, n'est pas le <a href="https://en.wikipedia.org/wiki/Bottom_type">type
+bottom</a>, noté <code>⊥</code>) :</p>
+<pre><code class="language-ocaml">type empty = |
+</code></pre>
+<p>Pour se convaincre que le compilateur peut réfuter les cas contenant une valeur
+de type <code>empty</code>, on peut très facilement l'expérimenter avec de la
+correspondance de motifs, dans l'exemple qui suit, le compilateur ne lève aucun
+avertissement car les motifs sont exhaustifs. Comme il n'est pas possible de
+construire une valeur de type <code>empty</code> (sauf en trichant, en utilisant, par
+exemple de la sorcellerie comme l'inénarrable fonction <code>Obj.magic</code>), on peut
+<em>réfuter</em> le traitement du cas d'erreur :</p>
+<pre><code class="language-ocaml">let f : ('a, empty) result -&gt; 'a = function
+  | Ok x -&gt; x
+</code></pre>
+<p>Mais dans notre cas d'usage, ce n'est pas la réfutation qui va nous intéresser
+mais plutôt le fait qu'il n'est pas possible de décrire une valeur de type
+<code>empty</code> pour permettre l'éviction de fonctions.</p>
+<h4 id="suppression-de-fonctions">Suppression de fonctions</h4>
+<p>La solution qui m'a été proposée consiste à rendre les fonctions que l'on veut
+expulser du module <strong>impossible à appeler</strong>. Pour ça, nous allons d'abord créer
+une fonction <em>placeholder</em> que nous utiliserons pour écraser une fonction
+existante :</p>
+<pre><code class="language-ocaml">type empty = |
+let expelled : empty -&gt; unit = fun _ -&gt; ()
+</code></pre>
+<p>A priori, notre fonction <code>expelled</code> est impossible à appeler car on ne peut la
+provisionner d'une valeur de type <code>empty</code>, cette dernière étant impossible à
+produire. Nous allons donc pouvoir <strong>inclure le module que l'on veut refiner</strong>
+et ensuite <strong>substituer les fonctions que l'on veut exclure</strong> avec notre
+fonction <code>expelled</code>, et nous les associerons à une alerte pour clarifier
+l'erreur que l'utilisation d'une fonction évincée produira :</p>
+<pre><code class="language-ocaml">open struct
+  include Foo
+  let (z [@alert expelled]) = expelled
+end
+</code></pre>
+<p><em>Et voila</em>, on peut être à peu près sûr que l'utilisation de <code>z</code> provoquera une
+erreur de compilation, et la compilation d'un module qui l'exploite soulèvera un
+avertissement. En revanche, la solution est loin d'être parfait car elle
+<strong>n'élimine pas</strong> le composant du module. Pour être très honnête, j'ai <strong>très
+rarement</strong> eu l'occasion de regretter l'absence de cette fonctionnalité,
+nativement. De mon point de vue, l'importation sélèctive suffit généralement
+largement.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Je pense sincèrement que, dans une utilisation quotidienne de OCaml, nous sommes
+très rarement confronté à ce genre de besoins. L'objectif de l'article était,
+<em>essentiellement</em>, de montrer comment utiliser certaines primitives liées au
+langage de modules en complément de la <em>généralisation des ouvertures</em> pour
+démontrer qu'avoir des primitives expressives et composables permet de
+reproduire, parfois trivialement (et parfois moins trivialement), des schémas
+d'importations classiques, présents dans d'autres langages de programmation. Il
+existe probablement d'autres encodages <em>rigolos</em> — probablement à base de
+<em>foncteurs</em> — et n'hésitez pas à me les faire parvenirs pour que je puisse
+compléter cet article !</p>
+<p>Pour terminer, j'ajouterai que même si j'ai fièrement <em>fanfaronné</em> en prétendant
+que ce n'était pas commun de programmer de cette manière en OCaml, la présence
+de paquet comme <a href="https://ocaml.org/p/ppx_import/latest">ppx_import</a> ou
+<a href="https://github.com/johnyob/ppx-open">ppx_open</a> indique que quelques allègement
+syntaxique ne serait pas de trop, notamment pour les importation sélectives.</p>
+</article>
+</main>
+    <footer>
+      <div class="container">
+        <p>
+          Diffusé sous licence
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <strong>CC BY-SA</strong>
+          </a>
+        </p>
+        <p>
+          Honteuseument généré par
+          <a href="https://github.com/xhtmlboi/yocaml">
+            <strong>YOCaml</strong>
+          </a>
+        </p>
+        <p class="feed-icons"><a href="/feeds.html">🮾</a></p>
+      </div>
+    </footer>
+    <script>
+      capsule.mount();
+    </script>
+  </body>
+</html>
