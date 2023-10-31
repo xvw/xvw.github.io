@@ -467,7 +467,8 @@ end
 <p>Rendant l'exploitation du module <code>Foo</code>, dans le module courant, impossible.
 Cependant, comme il est d'usage de fournir des signatures de modules — et donc
 d'en contrôler son API publique, on trouvera plus régulièrement des renommages
-de cette forme : <code>module Bar = Foo</code>. De plus, je ne suis pas convaincu que l'interdiction d'accès au</p>
+de cette forme : <code>module Bar = Foo</code>. De plus, je ne suis pas convaincu que
+l'interdiction d'accès au module original soit réellement un problème.</p>
 <h4 id="renommage-imbriqu">Renommage imbriqué</h4>
 <p>On pourrait imaginer ce genre de renommage : <code>import Foo as Bar.Baz</code>, mais OCaml
 ne permet pas de décrire des chemins complets de cette forme <code>module Bar.Baz = Foo</code>, il faut donc décrire la hiérarchie d'imbrication des modules, de cette
