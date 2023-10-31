@@ -85,6 +85,8 @@
 </li>
 </ul>
 </li>
+<li><a href="#ancrages-de-types">Ancrages de types</a>
+</li>
 <li><a href="#conclusion">Conclusion</a>
 </li>
 </ul>
@@ -615,6 +617,29 @@ avertissement. En revanche, la solution est loin d'être parfait car elle
 rarement</strong> eu l'occasion de regretter l'absence de cette fonctionnalité,
 nativement. De mon point de vue, l'importation sélèctive suffit généralement
 largement.</p>
+<h2 id="ancrages-de-types">Ancrages de types</h2>
+<p>Avant de conclure cet article, <a href="https://github.com/Octachron">@octachron</a> m'a
+pointé du doigt la symétrie partielle entre <code>open</code> et <code>include</code> en présence de
+modules anonymes (donc d'expression de modules <code>struct ... end</code>), c'est un
+problème auquel j'avais déjà été confronté théoriquement car j'avais assisté à
+l'événement de <a href="https://www.meetup.com/ocaml-paris/events/292972153">Mai 2023</a>
+du <a href="https://oups.frama.io/">OCaml Users in Paris</a> où <a href="https://clement.blaudeau.net/">Clément
+Blaudeau</a>, dans sa présentation <a href="https://www.irill.org/videos/OUPS/2023-05/blaudeau.html"><em>Retrofitting
+OCaml Modules</em></a> (qui
+était une synthèse de son papier <a href="https://inria.hal.science/hal-03526068/file/main.pdf"><em>OCaml modules: formalization, insights and
+improvements</em></a>).</p>
+<p>Comme l'ouverture n'exporte pas les composants ouverts, sans l'association à une
+signature explicite, certains termes ne peuvent pas être typés. Par exemple :</p>
+<pre><code class="language-ocaml">open struct type t = A end
+let x = A
+</code></pre>
+<p>Dans cet exemple, le type <code>t</code> (et son constructeur <code>A</code>) est présent dans le
+<em>scope courant</em>, cependant, comme il n'est pas exporté, il est impossible de
+<em>typer</em> correctement <code>x</code>. Si le module disposait d'une signature, on pourrait
+facilement se rendre compte qu'il n'existe pas de type acceptable pour <code>x</code>et
+qu'il faudrait soit changer la directive d'ouverture, soit ne pas exporter <code>x</code>.
+C'est un problème que l'on appelle <strong>l'ancrage des types</strong> qui est décrit
+expansivement dans le papier cité en début de section.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Je pense sincèrement que, dans une utilisation quotidienne de OCaml, nous sommes
 très rarement confronté à ce genre de besoins. L'objectif de l'article était,
