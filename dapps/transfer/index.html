@@ -26,7 +26,7 @@
     <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
     <link rel="alternate" type="application/atom+xml" href="/addresses.xml" />
     <script src="/js/hell.js"></script>
-    <script src="/js/capsule.js"></script>
+    <script src="/js/capsule_client.bc.js"></script>
   </head>
   <body>
     <main class="container"><section class="header">
@@ -39,24 +39,29 @@
       </li></ol>
   </nav>
 
-  <h1>Transfer</h1></section><section class="synopsis"><p>Une toute petite <em>dApp</em> qui ne sert qu'à expérimenter le <em>binding</em> de la bibliothèque <a href="https://www.walletbeacon.io/">Beacon Wallet</a> et l'implémentation du <em>framework</em> <a href="https://tezos.com">Tezos</a>.</p>
+  <h1>Transfer</h1></section><section class="synopsis"><p>L'application <strong>Transfer</strong> est une toute petite <em>dApp</em> qui tire partit de <a href="https://github.com/funkywork/yourbones">Yourbones</a> pour effectuer, <em>simplement</em> des transferts vers une adresse donnée.</p>
 </section>
 
-<section class="dapp" id="current-dapp"><div id="dapp dapp-transfer-container" class="standard-dapp">
-    <div id="dapp-transfer">Lancement de la dApp...<div>
+<section class="dapp" id="current-dapp"><div class="dapp-container">
+    <div id="dapp-transfer" class="dapp">
+        <div class="dapp-loading">
+            <span>❖</span>
+            <span>chargement de la dApp ...</span>
+        </div>
+    <div>
 </div>
 <script>
- capsule.suspend(function() {
-     capsule.dapps.transfer.mount({
-         containerId: "dapp-transfer"
-     });
+ nightmare_js.suspend(function() {
+     capsule_dapps.mountTransfer("dapp-transfer");
  });
 </script>
 </section>
 
 
 <article><p><strong>Transfer</strong> n'est pas une <em>dApp</em> très intéressante. Elle ne permet que de
-transférer un certains montant à une adresse donnée.</p>
+transférer un certains montant à une adresse donnée. Cependant, elle démontre,
+de mon point de vue, de quelle manière il est facile d'intégrer des applications
+financières au sein d'un site statique classique.</p>
 <ul>
 <li>Connectez votre <em>Wallet</em> en appuyant sur le bouton <code>Connecter son Wallet</code>.
 </li>
@@ -70,7 +75,7 @@ Vous pouvez, par exemple, utiliser la mienne:
 </li>
 <li>Confirmez l'opération depuis votre <em>Wallet</em>.
 </li>
-<li>Attendez.
+<li>Attendez le passage de deux blocs.
 </li>
 </ul>
 </article>
@@ -93,7 +98,7 @@ Vous pouvez, par exemple, utiliser la mienne:
       </div>
     </footer>
     <script>
-      capsule.mount();
+      nightmare_js.mount();
     </script>
   </body>
 </html>
