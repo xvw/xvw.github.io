@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xvw - 2023-11-14 15:20:50</title>
+    <meta name="description" content="Entrée du 2023-11-14 15:20:50" />
+    <meta name="keywords" content="capsule, meta, fediverse, mastodon, commentaires" />
+    <meta name="author" content="Xavier Van de Woestyne" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="og:title" content="2023-11-14 15:20:50" />
+    <meta name="og:description" content="Entrée du 2023-11-14 15:20:50" />
+    <meta name="twitter:title" content="2023-11-14 15:20:50" />
+    <meta name="twitter:description" content="Entrée du 2023-11-14 15:20:50" />
+    <meta name="twitter:creator" content="@vdwxv" /><link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/hl.css" />
+    <link rel="stylesheet" href="/css/default.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/journal.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/addresses.xml" />
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule_client.bc.js"></script>
+  </head>
+  <body>
+    <main class="container"><section class="header">
+  <nav class="breadcrumb">
+    <ol>
+      <li>
+        <a href="/">Accueil</a>
+      </li><li>
+        <a href="/journal/">Journal</a>
+      </li></ol>
+  </nav>
+
+  <h1>2023-11-14 15:20:50</h1></section><section class="feed-entry">
+  <div class="feed-sidebar">
+    <div class="feed-date">2023-11-14 15:20:50</div><ul class="feed-tags"><li class="tag">meta</li><li class="tag">fediverse</li><li class="tag">mastodon</li><li class="tag">commentaires</li><li class="permalink"><a href="/journal/2023-11-14_15-20-50.html">permalink</a></li>
+    </ul></div>
+  <div class="feed-content"><article><p>Depuis la version <a href="https://github.com/xvw/planet">précédente</a> de mon site web,
+j'avais mis les commentaires de côté. En effets, il y a quelques années, j'avais
+eu l'occasion — <em>à titre personnel</em> — d'être contrarié par
+<a href="https://disqus.com/">Disqus</a>, un service permettant d'enrichir une site généré
+statiquement de commentaires et d'interactions sociales. Après une très brève
+investigation, j'en étais arrivé à la conclusion qu'en fait, si les gens
+voulaient me faire des retours, ils pouvaient le faire au moyen de réseaux
+sociaux, ou encore par courrier électronique. Comme depuis que mon site
+personnel est construit au moyen de
+<a href="https://github.com/xhtmlboi/yocaml">YOCaml</a>, donc avec un langage que je
+maitrise mieux, l'inénarrable <a href="https://ocaml.org">OCaml</a>, j'ai décidé de prendre
+mon courage à deux mains et de me replonger dans l'investigation !</p>
+<p>Il existe beaucoup de solutions très sophistiquées et intéressantes à mettre en
+place, notamment celle de passer par une application très simple qui
+supporterait le <em>minimum des interactions nécéssaires</em> pour permettre,
+entre-autres, le support des commentaires, probablement dans un
+<a href="https://en.wikipedia.org/wiki/Unikernel">unikernel</a> construit au moyen de
+<a href="https://mirage.io/">MirageOS</a>. Cependant, même si cette solution est séduisante
+(parce qu'elle m'oblige à écrire du Caml et que ça pourrait être un bon
+<em>stress-test</em> pour <a href="https://github.com/funkywork/nightmare">Nightmare</a>), elle
+soulève une collection de questions potentiellement ennuyante concernant la
+notion <strong>d'identité</strong> ou encore la <strong>modération</strong>. Je garde l'idée en tête,
+ceci-dit, car elle est potentiellement très amusante !</p>
+<p>Récemment, alors que je réfléchissais toujours à l'intégration de commentaires,
+je suis tombé sur un article qui présente son <a href="https://cassidyjames.com/blog/fediverse-blog-comments-mastodon/">utilisation de
+Mastodon</a> (et
+donc, par extension, du <em>fediverse</em>) pour embarquer des commentaires dans son
+site généré statiquement. Comme depuis quelques mois (oui, je ne suis pas très
+original), j'utilise de plus en plus <a href="https://merveilles.town/@xvw">Mastodon</a>,
+il m'a semblé que c'était un très bon point de départ !</p>
+<p>J'ai donc, à la manière des différents articles qui traitent du sujet, ajouté la
+possibilité <strong>d'attacher un fil de discussion Mastodon</strong> à des pages qui sont
+rendues dans l'interface via un peu de JavaScript (écrit en OCaml, évidemment,
+via <a href="https://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_OCaml</a>).
+Actuellement, le support des messages, des mentions et des tags est assez
+rudimentaire, mais c'est, de mon point de vue, un bon début. Et maintenant, mon
+minuscule lectorat à l'opportunité de commenter mes articles !</p>
+</article><div class="feed-meta"><div class="feed-index">
+        <h2>Autres implémentations</h2>
+        <p>L&apos;idée ne vient pas de moi, voici d&apos;autres propositions.</p>
+        <ul><li><a href="https://cassidyjames.com/blog/fediverse-blog-comments-mastodon/">Cassidy James</a></li><li><a href="https://jan.wildeboer.net/2023/02/Jekyll-Mastodon-Comments/">Jan Wildeboer</a></li><li><a href="https://notes.abhinavsarkar.net/2023/mastodon-comments">Abhinav&apos;s Notes</a></li><li><a href="https://carlschwan.eu/2020/12/29/adding-comments-to-your-static-blog-with-mastodon/">Carl Schwan</a></li></ul>
+      </div><div class="feed-index">
+        <h2>Alternatives</h2>
+        <p>Le Fediverse n&apos;est pas la seule manière d&apos;intégrer des commentaires, voici quelques alternatives.</p>
+        <ul><li><a href="https://en.wikipedia.org/wiki/Webmention">Webmention</a></li><li><a href="https://cactus.chat/">Cacuts</a></li><li><a href="https://giscus.app/">Giscus</a></li><li><a href="https://utteranc.es/">Utterances</a></li></ul>
+      </div></div></div>
+</section></main>
+    <footer>
+      <div class="container">
+        <p>
+          Diffusé sous licence
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <strong>CC BY-SA</strong>
+          </a>
+        </p>
+        <p>
+          Honteuseument généré par
+          <a href="https://github.com/xhtmlboi/yocaml">
+            <strong>YOCaml</strong>
+          </a>
+        </p>
+        <p class="feed-icons"><a href="/feeds.html">🮾</a></p>
+      </div>
+    </footer>
+    <script>
+      nightmare_js.suspend(function () {
+        capsule_hljs.run();
+      });
+      nightmare_js.mount();
+    </script>
+  </body>
+</html>
