@@ -2513,7 +2513,31 @@ je tâcherai d'être plus régulier dans ma rédaction, en, <em>pourquoi pas</em
 continuant dans la description de mécaniques de jeu ! Encore merci pour votre
 lecture et <em>très bonne canicule</em>.</p>
 </article>
-</main>
+<hr />
+<section class="page-comment-widget">
+  <h1>Commentaires</h1>
+  <p>
+    Comme mon site web est hébergé sur un serveur de fichiers statiques (et ne
+    dispose pas de base de données), les commentaires sont assurés par le
+    <i>Fediverse</i>. Si vous possédez un compte, par exemple <i>Mastodon</i>,
+    <strong>vous pouvez donc commenter</strong> cet article en en répondant à ce
+    <a
+      href="https://merveilles.town/@xvw/111408053910454773"
+      >fil de discussion</a
+    >!
+  </p>
+  <script>
+    nightmare_js.suspend(function () {
+      capsule_widgets.mountComments(
+        "comments-thread",
+        "merveilles.town",
+        "xvw",
+        "111408053910454773"
+      );
+    });
+  </script>
+  <div id="comments-thread"></div>
+</section></main>
     <footer>
       <div class="container">
         <p>
