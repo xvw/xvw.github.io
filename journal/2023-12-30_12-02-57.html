@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xvw - 2023-12-30 12:02:57</title>
+    <meta name="description" content="Entrée du 2023-12-30 12:02:57" />
+    <meta name="keywords" content="capsule, rétrospective, 2023, bilan, projets" />
+    <meta name="author" content="Xavier Van de Woestyne" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="og:title" content="2023-12-30 12:02:57" />
+    <meta name="og:description" content="Entrée du 2023-12-30 12:02:57" />
+    <meta name="twitter:title" content="2023-12-30 12:02:57" />
+    <meta name="twitter:description" content="Entrée du 2023-12-30 12:02:57" />
+    <meta name="twitter:creator" content="@vdwxv" /><link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/hl.css" />
+    <link rel="stylesheet" href="/css/default.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/journal.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/addresses.xml" />
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule_client.bc.js"></script>
+  </head>
+  <body>
+    <main class="container"><section class="header">
+  <nav class="breadcrumb">
+    <ol>
+      <li>
+        <a href="/">Accueil</a>
+      </li><li>
+        <a href="/journal/">Journal</a>
+      </li></ol>
+  </nav>
+
+  <h1>2023-12-30 12:02:57</h1></section><section class="feed-entry">
+  <div class="feed-sidebar">
+    <div class="feed-date">2023-12-30 12:02:57</div><ul class="feed-tags"><li class="tag">rétrospective</li><li class="tag">2023</li><li class="tag">bilan</li><li class="tag">projets</li><li class="permalink"><a href="/journal/2023-12-30_12-02-57.html">permalink</a></li>
+    </ul></div>
+  <div class="feed-content"><article><p>Après avoir <a href="/journal/2023-12-29_18-23-07.html">brièvment parlé</a> de mon site
+personnel en <strong>rétrospective</strong>, il est temps de faire le bilan des <strong>projets
+libres</strong> de 2023. C'est la seconde partie de ma rétrospective de 2023 !</p>
+<p>Le <em>gros projets</em> de 2022 a été le développement du forum
+<a href="https://github.com/xvw/muhokama">Muhokama</a>. Développé en
+<a href="https://ocaml.org">OCaml</a> (évidemment) par dessus le <em>cadriciel</em>
+<a href="https://github.com/aantron/dream">Dream</a>. Même si, durant l'année 2023, il y a
+eu très peu de contributions (quelques fixes et fonctionnalités en Janvier), le
+projet a servi de base pour raisonner la construction d'une pile d'outils nous
+permettant de facilement décrire des applications <em>full-stack</em> avec OCaml. Une
+grande partie de mes contributions durant l'année 2023 ont porté sur cet
+ensemble de bibliothèque !</p>
+<h3 id="avec-the-funkyworkers">Avec The Funkyworkers</h3>
+<p>Nous avons, en Avril 2022, fondé un collectif, <a href="https://github.com/funkywork">The
+Funkyworkers</a> — dont le nom ne fait pas
+l'unanimité. L'objectif du groupe est de fournir — à la mesure de nos
+compétences — un support industriel pour le développement d'applications sûres
+et fiables, exploitant des langages avec vérification statique des types (comme
+OCaml et Haksell) et des assistants de preuves (comme Coq). En complément du
+développement de logiciels, nous offrons une expertise en technologies Web3
+(essentiellement sur la <em>blockchain</em> <a href="https://tezos.com">Tezos</a>). Pour des
+raisons contractuelles, je ne peux pas être très expansif sur notre activité
+commerciale (et dans le cadre de ma rétrospective, ça aurait peu de sens car je
+ne suis pas salarié de ma propre entreprise), par contre, les outils que nous
+développons sont généralement libres !</p>
+<h4 id="nightmare">Nightmare</h4>
+<p><a href="https://github.com/funkywork/nightmare">Nightmare</a> est un ensemble de
+bibliothèques permettant de développer des applications web (<em>back-end</em> et
+<em>front-end</em>) uniquement avec OCaml. Même si le projet permet de n'utiliser que
+OCaml, il est tout de même très différent de
+<a href="https://ocsigen.org/home/intro.html">Ocsigen</a>, qui permet de construire des
+applications
+<a href="https://soft.vub.ac.be/~lphilips/jspdg/stip/stip-web/index.html"><em>multi-tiers</em></a>,
+car les différents tiers sont distincts. Cependant, une grande partie des outils
+développés dans Muhokama ont servi de base pour essayer d'utiliser au maximum le
+typage statique pour exprimer des invariants. Le projet avance lentement mais
+surement et <strong>2024 sera probablement l'année où nous l'utiliserons pour réecrire
+Muhokama</strong>. Actuellement, le seul projet s'en servant (uniquement de la partie
+<em>front-end</em>) est ce site web. En effet, les <a href="/dapps.html"><em>dApps</em></a> et les
+<a href="/journal/2023-11-14_15-20-50.html">commentaires</a> utilisent Nightmare.</p>
+<p>Pour 2024, nous travaillons sur l'abstraction des formulaires et sur un DSL pour
+exprimer des requêtes SQL (un peu à la manière des <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/query-expressions">expressions de requêtes en
+F#</a>).</p>
+<h4 id="yourbones">Yourbones</h4>
+<p>Derrière ce très mauvais nom (<em>Yourbones</em> pour <em>Tes os</em>, ce qui peut,
+phonétiquement, se prononcer comme <em>Tezos</em>) se cache l'embryon d'un kit de
+développement pour <strong>interagir avec la <em>blockchain</em> Tezos</strong>. Le but étant de se
+marier efficacement avec Nightmare pour construire des <em>dApps</em> de bout en bout.
+C'est d'ailleurs via Yourbones que les <a href="/dapps.html"><em>dApps</em></a> de ce site web
+sont développées. L'ensemble des bibliothèques repose sur les mêmes idiomes que
+ceux mis en avant par Nightmare (dont certaines des bibliothèques sont des
+dépendances des bibliothèques qui décrivent Yourbones), soit l'usage, un peu
+immodérée, du typage statique pour exprimer un maximum d'invariants.
+Actuellement, un <a href="https://github.com/funkywork/tezos-dapps-examples">petit
+projet</a> sert de <em>showcase</em>.</p>
+<p>Même si, en l'état, il est déjà possible de construire des <em>dApps</em> peu
+ambitieuse, nous tâchons de dériver le développement <em>par l'usage</em>,
+implémentant, au fur et à mesure, les outils dont nous avons besoin pour
+augmenter le potentiel des <em>dApps</em> développable avec Yourbones.</p>
+<p>Notre objectif pour 2024 est d'améliorer l'interaction avec les contrats en
+fournissant un DSL pour décrire des expressions
+<a href="https://tezos.gitlab.io/active/michelson.html">Michelson</a> valides et vérifiées
+statiquement. Une fois que ce sujet sera traité, nous tâcherons d'améliorer
+<em>l'expérience développeur</em> pour fournir un concurrent sérieux (et en OCaml) à
+<a href="https://tezostaquito.io/">Taquito</a> et idéalement à <a href="https://dipdup.io/">Dip
+dup</a>.</p>
+<h5 id="note-sur-jsofocaml">Note sur Js_of_ocaml</h5>
+<p>Même si je n'ai pas contribué <em>concrètement</em> à
+<a href="http://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_ocaml</a>, notre
+usage un peu brutal de ce dernier (pour s'interfacer avec l'écosystème
+JavaScript) à permis de soulever plusieurs <em>bogues</em> liés à la <em>minification</em> du
+<em>bundle</em> JavaScript généré. Ce qui me permet de remercier très chaleureusement
+<a href="https://github.com/hhugo">Hugo Heuzard</a> pour ses <em>fixes</em> rapides !</p>
+<h4 id="les-amis-dma-mre">Les Amis d'ma mère</h4>
+<p><a href="https://lesamisdmamere.be/">Les Amis d'ma mère</a> est une ASBL belge qui vise à
+faire la promotion d'artistes belges — il se trouve que l'ASBL, Les Amis d'ma
+mère, a été fondée par ... des amis de ma mère, d'où la mise en contact. Une de
+leur activité est d'accompagner les artistes à estimer leur éligibilité au
+<strong>statut d'artiste</strong> — similaire au <strong>statut d'intermittent du spectacle</strong> en
+France. Comme très souvent, la bureaucratie rend ce suivi complexe, et, en
+collaboration avec des experts sur le sujets, nous avons développé un prototype
+pour faciliter (et potentiellement <em>gamifier</em>) le suivi des prestations pour
+calculer son éligibilité. Ça se matérialise par <a href="https://github.com/funkywork/ladmm-sa">une
+application</a> (écrite en OCaml) permettant
+de construire une feuille de suivi où il n'est possible que d'entrer des valeurs
+valides. L'application a été développée bénévolement pour mettre en avant la
+volonté de <em>The Funkyworkers</em> à allouer du temps pour la construction de projets
+<em>pour le bien commun</em>.</p>
+<p>Même si le prototype est utilisé en interne, 2024 sera probablement l'année où
+nous écrirons une version plus ambitieuse, fonctionnant sur mobile, pour rendre
+accessible à tous les artistes, l'application et leur permettant de construire
+eux-mêmes leurs dossiers d'artistes.</p>
+<h4 id="pour-la-suite">Pour la suite</h4>
+<p>Même si chacun des projets présentés semble avoir des extensions/améliorations
+prévues, certains projets ayant reçu peu de mises à jour en 2023, nous avons
+aussi des perspectives pour ces derniers :</p>
+<ul>
+<li>
+<p><a href="https://github.com/xhtmlboi/yocaml"><strong>YOCaml</strong></a>, même si, par l'initiative de
+<a href="https://blog.osau.re/">Romain Calascibetta</a>, YOCaml a enfin été publié sur
+<a href="https://ocaml.org/p/yocaml/latest">OPAM</a>, le générateur, <em>de générateur</em>, n'a
+pas été fortement mis à jour. Par contre, comme évoqué dans la rétrospective
+précédente, la bibliothèque étant utilisée par <a href="https://github.com/xhtmlboi/yocaml#websites-using-yocaml">d'autres
+utilisateurs</a>, nous
+travaillons actuellement sur une nouvelle version (très inspirée par le papier
+<a href="https://ndmitchell.com/downloads/paper-build_systems_a_la_carte_theory_and_practice-21_apr_2020.pdf">&quot;<em>Build Systems à la Carte: Theory and
+Practice</em>&quot;</a>).</p>
+</li>
+<li>
+<p><a href="https://github.com/xvw/preface"><strong>Preface</strong></a> a reçu quelques mises à jours
+(notamment l'intégration <a href="https://github.com/xvw/preface/pull/183">d'abstraction
+indexées</a> et l'ajout de
+<a href="https://github.com/xvw/preface/pulls?q=is%3Apr+is%3Aclosed+lattice">Lattices</a>),
+un <em>gros chantier</em> est en cours de réflexion. Il est donc probable que l'on y
+alloue un peu de temps.</p>
+</li>
+<li>
+<p><a href="https://github.com/xvw/muhokama"><strong>Muhokama</strong></a>, comme évoqué dans la section
+dédiée à Nightmare, il est probable que l'on exploite Nightmare et Yourbones
+pour implémenter une version plus ambitieuse !</p>
+</li>
+</ul>
+<p>Bref, pleins de perspectives amusantes ! En espérant que l'on arrive à
+construire des feuilles de routes réalistes pour faire progresser rapidement
+chacun de ces projets. De plus, il est possible que l'on passe un peu de temps à
+construire une véritable application web pour décrire notre activité
+publiquement et fournir des <em>bacs à sable d'expérimentations</em>.</p>
+<h3 id="en-solo">En solo</h3>
+<p>Cette année, j'ai relativement peu travaillé sur des projets en solitaire, mis à
+part mon site personnel. Je n'ai pas de projets spécifiques en tête à réaliser
+seul, même s'il est probable que j'exploite les différentes avancées des projets
+cités ci-dessus pour faire des expérimentations et des retours d'expériences.</p>
+<p>Cependant, je ne regrette pas cet excès de collaboration parce que c'est, de mon
+point de vue, largement plus motivant de travailler en groupe qu'en solo !</p>
+<p>C'était la seconde partie de ma rétrospective ! Merci de votre lecture
+<em>potentielle</em> et passez d'avance de très bonne fêtes de fin d'année et tout le
+meilleur pour 2024 !</p>
+</article><div class="feed-meta"><div class="feed-meta-kv"><div>
+          <span>Rétrospective</span>
+          <span>Sur les projets libres</span>
+        </div></div><div class="feed-index">
+        <h2>Sources</h2>
+        <p>Dépots de sources des différents projets</p>
+        <ul><li><a href="https://github.com/funkywork/nightmare">Nightmare</a></li><li><a href="https://github.com/funkywork/yourbones">YourBones</a></li><li><a href="https://github.com/funkywork/ladmm-sa">Simulateur du statut</a></li><li><a href="https://github.com/xvw/muhokama">Muhokama</a></li><li><a href="https://github.com/xvw/preface">Preface</a></li><li><a href="https://github.com/xhtmlboi/yocaml">YOCaml</a></li></ul>
+      </div></div></div>
+</section></main>
+    <footer>
+      <div class="container">
+        <p>
+          Diffusé sous licence
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+            <strong>CC BY-SA</strong>
+          </a>
+        </p>
+        <p>
+          Honteuseument généré par
+          <a href="https://github.com/xhtmlboi/yocaml">
+            <strong>YOCaml</strong>
+          </a>
+        </p>
+        <p class="feed-icons"><a href="/feeds.html">⛰</a></p>
+      </div>
+    </footer>
+    <script>
+      nightmare_js.suspend(function () {
+        capsule_hljs.run();
+      });
+      nightmare_js.mount();
+    </script>
+  </body>
+</html>
