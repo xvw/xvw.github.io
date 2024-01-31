@@ -41,6 +41,58 @@
     <a href="/journal/2.html"> Entrées plus anciennes </a>
   </div></div><section class="feed-entry">
   <div class="feed-sidebar">
+    <div class="feed-date">2024-01-31 15:41:13</div><ul class="feed-tags"><li class="tag">logiciel</li><li class="tag">document</li><li class="tag">indexation</li><li class="permalink"><a href="/journal/2024-01-31_15-41-13.html">permalink</a></li>
+    </ul></div>
+  <div class="feed-content"><article><p>Depuis plusieurs années, je téléchargeais beaucoup de PDFs, essentiellement des
+publications en rapport avec les sujets qui m'intéresse et j'utilisais une
+nomenclature de nommage un peu récurrente : <code>nom-auteur-titre-approximatif</code>.
+Cette approche posait plusieurs problèmes :</p>
+<ul>
+<li>parfois, certaines publications avaient beaucoup d'auteurs
+</li>
+<li>je n'étais pas vraiment consistant sur l'ordre des auteurs, rendant donc
+l'ordre des publications, dans mon système de fichiers, un peu aléatoire
+</li>
+<li>pas de <em>tags</em>, donc impossibilité de trouver rapidement des publications
+</li>
+<li>obligé de retrouver la provenance du document quand je voulais le citer.
+</li>
+</ul>
+<p>Il y a plusieurs années, j'avais utilisé le logiciel
+<a href="https://github.com/Armael/papiers">Papiers</a>, qui avait le bon goût d'être écrit
+en <a href="https://ocaml.org">OCaml</a>, cependant, j'ai, au fil du temps, rapidement
+perdu l'habitude d'indexer mes documents, me plaçant dans une situation où, <em>à
+postériori</em>, j'avais beaucoup trop de documents à traiter.</p>
+<p>Comme souvent, j'ai pensé <strong>réinventer la roue</strong>, mais je pense que je n'aurais
+pas pu faire mieux que Papiers. J'ai donc décidé de me tourner vers une solution
+existante, dont j'avais déjà entendu parlé, mais que je n'avais jamais essayé !</p>
+<h4 id="zotero">Zotero</h4>
+<p><a href="https://www.zotero.org/">Zotero</a> est un logiciel
+<a href="https://github.com/zotero/zotero">libre</a>, permettant l'indexation facile de
+publications scientifiques. Son énorme point fort est qu'il permet d'importer
+rapidement des documents depuis un
+<a href="https://fr.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</a>, un
+identifiant <a href="https://fr.wikipedia.org/wiki/Digital_Object_Identifier">DOI</a> et
+beaucoup d'autres. De plus, il est possible d'ajouter des <em>tags</em> par entrée et
+de générer une référence bibliographique
+(<a href="https://fr.wikipedia.org/wiki/BibTeX">Bibtex</a>, entre autres) très facilement.
+Il existe des solutions de synchronisation mais j'avoue ne pas m'y être
+intéressé pour le moment, l'indexation me suffit largement.</p>
+<p>Je suis encore loin d'être un expert, mais j'ai pu <strong>très rapidement</strong> indexer
+les documents éparses de mon disque. Je suis donc <strong>très satisfait</strong> du logiciel
+pour le moment. Si jamais vous connaissez des alternatives <em>qui valent le coup</em>,
+n'hésitez surtout pas à m'en faire part via les différents canaux de
+communication par lesquels il est possible de me contacter !</p>
+</article><div class="feed-meta"><div class="feed-meta-kv"><div>
+          <span>key A</span>
+          <span>value A</span>
+        </div></div><div class="feed-index">
+        <h2>An Index</h2>
+        <p>Synopsis de l&apos;index</p>
+        <ul><li><a href="https://www.google.com">Google</a></li></ul>
+      </div></div></div>
+</section><section class="feed-entry">
+  <div class="feed-sidebar">
     <div class="feed-date">2023-12-31 15:22:41</div><ul class="feed-tags"><li class="tag">rétrospective</li><li class="tag">2023</li><li class="tag">bilan</li><li class="tag">prise de parole</li><li class="tag">événement</li><li class="permalink"><a href="/journal/2023-12-31_15-22-41.html">permalink</a></li>
     </ul></div>
   <div class="feed-content"><article><p>Suivant <a href="/journal/2023-12-30_12-02-57.html">la rétrospective de mes contributions à des projets
@@ -404,56 +456,6 @@ meilleur pour 2024 !</p>
           <span>Rétrospective</span>
           <span>Sur ce site web</span>
         </div></div></div></div>
-</section><section class="feed-entry">
-  <div class="feed-sidebar">
-    <div class="feed-date">2023-11-14 15:20:50</div><ul class="feed-tags"><li class="tag">meta</li><li class="tag">fediverse</li><li class="tag">mastodon</li><li class="tag">commentaires</li><li class="permalink"><a href="/journal/2023-11-14_15-20-50.html">permalink</a></li>
-    </ul></div>
-  <div class="feed-content"><article><p>Depuis la version <a href="https://github.com/xvw/planet">précédente</a> de mon site web,
-j'avais mis les commentaires de côté. En effets, il y a quelques années, j'avais
-eu l'occasion — <em>à titre personnel</em> — d'être contrarié par
-<a href="https://disqus.com/">Disqus</a>, un service permettant d'enrichir une site généré
-statiquement de commentaires et d'interactions sociales. Après une très brève
-investigation, j'en étais arrivé à la conclusion qu'en fait, si les gens
-voulaient me faire des retours, ils pouvaient le faire au moyen de réseaux
-sociaux, ou encore par courrier électronique. Comme depuis que mon site
-personnel est construit au moyen de
-<a href="https://github.com/xhtmlboi/yocaml">YOCaml</a>, donc avec un langage que je
-maitrise mieux, l'inénarrable <a href="https://ocaml.org">OCaml</a>, j'ai décidé de prendre
-mon courage à deux mains et de me replonger dans l'investigation !</p>
-<p>Il existe beaucoup de solutions très sophistiquées et intéressantes à mettre en
-place, notamment celle de passer par une application très simple qui
-supporterait le <em>minimum des interactions nécéssaires</em> pour permettre,
-entre-autres, le support des commentaires, probablement dans un
-<a href="https://en.wikipedia.org/wiki/Unikernel">unikernel</a> construit au moyen de
-<a href="https://mirage.io/">MirageOS</a>. Cependant, même si cette solution est séduisante
-(parce qu'elle m'oblige à écrire du Caml et que ça pourrait être un bon
-<em>stress-test</em> pour <a href="https://github.com/funkywork/nightmare">Nightmare</a>), elle
-soulève une collection de questions potentiellement ennuyante concernant la
-notion <strong>d'identité</strong> ou encore la <strong>modération</strong>. Je garde l'idée en tête,
-ceci-dit, car elle est potentiellement très amusante !</p>
-<p>Récemment, alors que je réfléchissais toujours à l'intégration de commentaires,
-je suis tombé sur un article qui présente son <a href="https://cassidyjames.com/blog/fediverse-blog-comments-mastodon/">utilisation de
-Mastodon</a> (et
-donc, par extension, du <em>fediverse</em>) pour embarquer des commentaires dans son
-site généré statiquement. Comme depuis quelques mois (oui, je ne suis pas très
-original), j'utilise de plus en plus <a href="https://merveilles.town/@xvw">Mastodon</a>,
-il m'a semblé que c'était un très bon point de départ !</p>
-<p>J'ai donc, à la manière des différents articles qui traitent du sujet, ajouté la
-possibilité <strong>d'attacher un fil de discussion Mastodon</strong> à des pages qui sont
-rendues dans l'interface via un peu de JavaScript (écrit en OCaml, évidemment,
-via <a href="https://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_OCaml</a>).
-Actuellement, le support des messages, des mentions et des tags est assez
-rudimentaire, mais c'est, de mon point de vue, un bon début. Et maintenant, mon
-minuscule lectorat à l'opportunité de commenter mes articles !</p>
-</article><div class="feed-meta"><div class="feed-index">
-        <h2>Autres implémentations</h2>
-        <p>L&apos;idée ne vient pas de moi, voici d&apos;autres propositions.</p>
-        <ul><li><a href="https://cassidyjames.com/blog/fediverse-blog-comments-mastodon/">Cassidy James</a></li><li><a href="https://jan.wildeboer.net/2023/02/Jekyll-Mastodon-Comments/">Jan Wildeboer</a></li><li><a href="https://notes.abhinavsarkar.net/2023/mastodon-comments">Abhinav&apos;s Notes</a></li><li><a href="https://carlschwan.eu/2020/12/29/adding-comments-to-your-static-blog-with-mastodon/">Carl Schwan</a></li></ul>
-      </div><div class="feed-index">
-        <h2>Alternatives</h2>
-        <p>Le Fediverse n&apos;est pas la seule manière d&apos;intégrer des commentaires, voici quelques alternatives.</p>
-        <ul><li><a href="https://en.wikipedia.org/wiki/Webmention">Webmention</a></li><li><a href="https://cactus.chat/">Cacuts</a></li><li><a href="https://giscus.app/">Giscus</a></li><li><a href="https://utteranc.es/">Utterances</a></li></ul>
-      </div></div></div>
 </section></main>
     <footer>
       <div class="container">
