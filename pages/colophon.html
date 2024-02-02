@@ -525,7 +525,31 @@ collection de <em>jardins numériques</em> pouvant être une très bonne source
 d'inspiration et je suis, évidemment, ouvert à tout échange à ce propos, via les
 différents canaux de contact qu'il est possible de trouver sur ce site !</p>
 </article>
-</main>
+<hr />
+<section class="page-comment-widget">
+  <h1>Commentaires</h1>
+  <p class="hyphenate">
+    Comme mon site web est hébergé sur un serveur de fichiers statiques (et ne
+    dispose pas de base de données), les commentaires sont assurés par le
+    <i>Fediverse</i>. Si vous possédez un compte, par exemple <i>Mastodon</i>,
+    <strong>vous pouvez donc commenter</strong> cette page en répondant à ce
+    <a
+      href="https://merveilles.town/@xvw/111859520888220057"
+      >fil de discussion</a
+    >!
+  </p>
+  <script>
+    nightmare_js.suspend(function () {
+      capsule_widgets.mountComments(
+        "comments-thread",
+        "merveilles.town",
+        "xvw",
+        "111859520888220057"
+      );
+    });
+  </script>
+  <div id="comments-thread"></div>
+</section></main>
     <footer>
       <div class="container">
         <p>
