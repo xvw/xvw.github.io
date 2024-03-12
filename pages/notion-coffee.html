@@ -43,6 +43,8 @@
 
   <h1>Indexation de café avec Notion</h1><time class="published-at" datetime="2024-01-23">
     2024-01-23
+  </time><time class="updated-at" datetime="2024-03-12">
+      2024-03-12
   </time></section><section class="synopsis"><p>Cet article est une réinterprétation d'un <a href="https://github.com/xvw/planet/blob/master/content/posts/notion-cafe.org">article</a> que j'avais rédigé en 2021, sur mon <a href="https://github.com/xvw/planet">ancien site</a>. J'ai essayé d'aller à l'essentiel et il présente, dans les grandes lignes, l'ensemble des pages <a href="https://www.notion.so/about">Notion</a> mises en place pour me permettre d'indexer ma consommation de café et tenter de construire une intuition sur la compréhension des mes goûts. De manière générale, je pense que se construire une <em>base de connaissances</em> est une bonne pratique quand on tente de découvrir une discipline. Étant loin d'être un expert en café et avec Notion, il est probable qu'une grande partie de ce que je décris dans cet article semble naïf ! Pour résumer, cet article présentera la manière dont j'ai mis en place une infrastructure pour indexer les cafés que je goûte, en vue de me fournir des métriques précises m'aidant à caractériser mes préférences, au moyen de l'outil Notion, tout en présentant quelques techniques et ruses apprises lors de la mise en place de ce système.</p>
 </section><section class="table-of-contents"><ul>
 <li><ul>
@@ -92,6 +94,8 @@
 </li>
 <li><a href="#dcrire-les-grains-torrfis">Décrire les grains torréfiés</a>
 <ul>
+<li><a href="#amlioration-triviale">Amélioration triviale</a>
+</li>
 <li><a href="#un-second-outil-diversifier-les-expriences">Un second outil: diversifier les expériences</a>
 </li>
 </ul>
@@ -651,6 +655,24 @@ indice <strong>très révélateur</strong> la qualité globale du café.</p>
 <p>Même si le modèle n'est, malheureusement, pas parfait, il est, de mon point de
 vue, suffisant pour construire une sacré intuition sur <em>mon appréciation
 générale du café</em>.</p>
+<h5 id="amlioration-triviale">Amélioration triviale</h5>
+<p>Quand j'ai partagé l'article sur différents réseaux, <a href="https://github.com/q-rault">Quentin
+Rault</a> m'a, dans <a href="https://www.linkedin.com/feed/update/urn:li:activity:7155947052378521600?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7155947052378521600%2C7156372641266716673%29&amp;dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287156372641266716673%2Curn%3Ali%3Aactivity%3A7155947052378521600%29">cette
+conversation</a>,
+très cordialement fait remarquer que je pourrai <strong>diviser</strong> le modèle <code>beans</code> en
+deux modèles :</p>
+<ul>
+<li><code>GreenBeans</code> décrivant les grains <strong>avant torréfaction</strong> ;
+</li>
+<li><code>RoastedBeans</code> décrivant les grains <strong>après torréfaction</strong> (qui entretien une
+relation avec <code>GreenBeans</code>).
+</li>
+</ul>
+<p>L'avantage de cette séparation, c'est qu'elle permet d'éviter la redondance
+d'informations quand des torréfacteurs torréfient les mêmes grains verts. En
+effet, les producteurs vendent le fruit de leurs productions à plusieurs
+torréfacteurs différents. C'est donc une amélioration triviale, améliorant
+largement le modèle.</p>
 <h5 id="un-second-outil-diversifier-les-expriences">Un second outil: diversifier les expériences</h5>
 <p>Comme dans beaucoup de disciplines qui proposent des paramètres variés — et ici,
 le nombre de champs décrivant des <em>grains torréfiés</em> et le nombre de <em>processus
