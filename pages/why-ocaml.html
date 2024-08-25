@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xvw - Sur le choix d&apos;OCaml</title>
+    <meta name="description" content="Une explication détaillée de pourquoi j&apos;ai fais le choix de OCaml pour langage de programmation &quot;par défaut&quot; pour chaque projet." />
+    <meta name="keywords" content="capsule, programmation, ocaml, opinion" />
+    <meta name="author" content="Xavier Van de Woestyne" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="og:title" content="Sur le choix d&apos;OCaml" />
+    <meta name="og:description" content="Une explication détaillée de pourquoi j&apos;ai fais le choix de OCaml pour langage de programmation &quot;par défaut&quot; pour chaque projet." />
+    <meta name="twitter:title" content="Sur le choix d&apos;OCaml" />
+    <meta name="twitter:description" content="Une explication détaillée de pourquoi j&apos;ai fais le choix de OCaml pour langage de programmation &quot;par défaut&quot; pour chaque projet." />
+    <meta name="twitter:creator" content="@vdwxv" /><link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/hl.css" />
+    <link rel="stylesheet" href="/css/default.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/journal.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/addresses.xml" />
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule_client.bc.js"></script>
+  </head>
+  <body>
+    <main class="container"><section class="header">
+  <nav class="breadcrumb">
+    <ol>
+      <li>
+        <a href="/">Accueil</a>
+      </li><li>
+        <a href="/programming.html">Programmation</a>
+      </li><li>
+        <a href="/programming.html#index-opinions">Opinions</a>
+      </li></ol>
+  </nav>
+
+  <h1>Sur le choix d&apos;OCaml</h1><time class="published-at" datetime="2024-08-25">
+    2024-08-25
+  </time></section><section class="synopsis"><p>J'ai commencé à utiliser régulièrement le langage <a href="https://ocaml.org">OCaml</a> vers 2012, et depuis, mon intérêt et mon engouement pour ce langage n'ont cessé de croître. Il est devenu mon choix de prédilection pour presque tous mes projets personnels, influençant également mes choix professionnels.
+Depuis 2014, je participe activement aux conférences grand public dédiées à la programmation et à la construction de logiciels, où j'exprime souvent mon enthousiasme pour OCaml de manière parfois excessive (mais toujours passionnée). Cela m'a valu, de manière amicale, le surnom <em>d'évangéliste d'OCaml</em>, une appellation qui, je l'avoue, me flatte énormément.
+Convaincu que mon intérêt pour OCaml est justifié, je prends souvent plaisir à énumérer les nombreux avantages de cette technologie. J'ai donc décidé de coucher par écrit les raisons pour lesquelles je considère OCaml comme un excellent choix pour divers types de projets. Cette page me permettra de partager facilement mes arguments et d'expliquer pourquoi OCaml mérite attention et intérêt.
+De plus, je ne suis pas seul à penser cela. Malgré l'idée reçue que OCaml ne serait pas un choix pragmatique pour l'industrie, de grandes entreprises telles que <a href="https://engineering.fb.com/?s=ocaml">Meta</a>, <a href="https://www.microsoft.com/en-us/research/project/slam/?from=https://research.microsoft.com/en-us/projects/slam/&amp;type=exact">Microsoft</a>, <a href="https://tech.ahrefs.com/tagged/ocaml">Ahref</a>, <a href="https://tarides.com">Tarides</a>, <a href="https://ocamlpro.com/">OCamlPro</a>, <a href="https://www.bloomberg.com/company?s=ocaml">Bloomberg</a>, <a href="https://github.com/moby/vpnkit">Docker</a>, <a href="https://www.janestreet.com/technology/">Janestreet</a>, <a href="https://xapi-project.github.io/">Citrix</a>, <a href="https://tezos.com">Tezos</a>, et <a href="https://ocaml.org/industrial-users">bien d'autres</a> l'utilisent activement.</p>
+</section><section class="table-of-contents"><ul>
+<li><ul>
+<li><a href="#avant-propos">Avant-propos</a>
+<ul>
+<li><a href="#autres-ressources">Autres ressources</a>
+</li>
+</ul>
+</li>
+<li><a href="#ocaml-en-tant-que-langage">OCaml en tant que langage</a>
+<ul>
+<li><a href="#sur-la-vrification-statique-des-types">Sur la vérification statique des types</a>
+</li>
+<li><a href="#fonctionnalits-du-langage">Fonctionnalités du <em>langage</em></a>
+<ul>
+<li><a href="#un-langage-multi-paradigmes">Un langage <em>multi-paradigmes</em></a>
+<ul>
+<li><a href="#syntaxe--la-ml">Syntaxe <em>à la ML</em></a>
+</li>
+<li><a href="#troitement-li--la-recherche">Étroitement lié à la recherche</a>
+</li>
+</ul>
+</li>
+<li><a href="#types-algbriques">Types algébriques</a>
+</li>
+<li><a href="#programmation-modulaires-et-langage-de-modules">Programmation modulaires et langage de modules</a>
+</li>
+<li><a href="#injection-et-inversion-de-dpendances">Injection et inversion de dépendances</a>
+<ul>
+<li><a href="#par-le-biais-de-modules">Par le biais de modules</a>
+</li>
+<li><a href="#par-le-biais-deffets-dfinis-par-lutilisateur">Par le biais d'<em>effets définis par l'utilisateur</em></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#concernant-le-futur">Concernant le futur</a>
+</li>
+<li><a href="#points-faibles">Points faibles</a>
+</li>
+<li><a href="#pour-conclure-sur-le-langage">Pour conclure sur le langage</a>
+</li>
+</ul>
+</li>
+<li><a href="#ocaml-en-tant-qucosystme">OCaml en tant qu'écosystème</a>
+<ul>
+<li><a href="#compilation-runtimes-et-cibles-additionnelles">Compilation, <em>runtimes</em>, et cibles additionnelles</a>
+<ul>
+<li><a href="#un-petit-dtour-par-mirageos">Un petit détour par MirageOS</a>
+</li>
+</ul>
+</li>
+<li><a href="#la-plateforme-ocaml">La plateforme OCaml</a>
+<ul>
+<li><a href="#opam-le-gestionnaire-de-paquets">OPAM, le gestionnaire de paquets</a>
+</li>
+<li><a href="#dune-le-build-system">Dune, le <em>build-system</em></a>
+<ul>
+<li><a href="#sur-le-choix-des-s-expression">Sur le choix des S-expression</a>
+</li>
+<li><a href="#contribution--ltat-de-lart-selective-applicative-functor">Contribution à l'état de l'art: Selective Applicative Functor</a>
+</li>
+<li><a href="#alternatives">Alternatives</a>
+</li>
+</ul>
+</li>
+<li><a href="#lsp-et-merlin-pour-les-diteurs">LSP et Merlin pour les éditeurs</a>
+<ul>
+<li><a href="#avnement-de-vscode-lsp-comme-standard">Avènement de VSCode, LSP comme standard</a>
+</li>
+</ul>
+</li>
+<li><a href="#odoc-le-gnrateur-de-documentation">Odoc, le générateur de documentation</a>
+</li>
+</ul>
+</li>
+<li><a href="#bibliothques-disponibles">Bibliothèques disponibles</a>
+<ul>
+<li><a href="#apart-sur-la-bibliothque-standard">Aparté sur la bibliothèque standard</a>
+</li>
+</ul>
+</li>
+<li><a href="#conclusion-de-lcosystme">Conclusion de l'écosystème</a>
+</li>
+</ul>
+</li>
+<li><a href="#sur-la-communaut">Sur la communauté</a>
+</li>
+<li><a href="#quelques-mythes-lis--ocaml">Quelques mythes liés à OCaml</a>
+<ul>
+<li><a href="#ocaml-et-f">OCaml et F#</a>
+</li>
+<li><a href="#les-oprateurs-doubls-pour-les-flottants">Les opérateurs doublés pour les flottants</a>
+</li>
+<li><a href="#sur-la-sparation-entre-ml-et-mli">Sur la séparation entre <code>ml</code> et <code>mli</code></a>
+<ul>
+<li><a href="#grer-lencapsulation-sans-mli">Gérer l'encapsulation sans <code>mli</code></a>
+</li>
+<li><a href="#exprimer-linterface-depuis-le-ml">Exprimer l'interface depuis le <code>ml</code></a>
+</li>
+<li><a href="#pour-conclure-sur-la-sparation">Pour conclure sur la séparation</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#pour-conclure">Pour conclure</a>
+</li>
+</ul>
+</section><article><p>Dans ce <em>billet d'opinion</em>, je vais essayer de présenter brièvement ma rencontre
+avec le langage, et d'énumérer ses avantages — répartis en plusieurs rubriques
+portant sur <em>le langage lui-même</em>, son écosystème et sa communauté. Je tâcherai
+également de démystifier certains mythes (ou idées reçues) populaires sur
+Internet. Par souci de transparence, il est important de préciser qu'à l'heure
+où j'écris ces lignes, mon <a href="(https://tarides.com)">activité professionnelle</a>
+consiste <strong>à travailler pour et sur l'écosystème OCaml</strong>. Cependant, les
+lecteurs qui me suivent depuis plusieurs années pourront témoigner que je
+faisais la promotion du langage bien avant d'être rémunéré pour travailler sur
+l'écosystème OCaml, parfois de manière immodérée.</p>
+<h2 id="avant-propos">Avant-propos</h2>
+<p>Premièrement, cet article expliquera pourquoi je trouve <strong>personnellement</strong>
+qu'OCaml est un choix pertinent dans de nombreux contextes. Mon but n'est pas
+particulièrement de vous convaincre — même si cela serait un <em>effet de bord</em>
+tout à fait bénéfique — et il est fort probable que beaucoup des arguments que
+je présenterai s'appliquent aussi à d'autres langages !</p>
+<p>Ensuite, très souvent, quand je propose OCaml à des gens qui souhaitent
+découvrir de nouveaux langages ou encore des solutions écrites en OCaml, on me
+fait gentiment remarquer que <em>je fais toujours la promotion d'OCaml</em>. Il est
+amusant de constater que lorsque les propositions concernent des langages
+adoptés _<em>par défaut</em> comme JavaScript ou des langages plus récents comme
+<a href="https://www.rust-lang.org/">Rust</a> ou <a href="https://go.dev/">Go</a>, cela suscite
+souvent moins de réactions. Probablement parce que l'on pense <em>implicitement</em>
+que la proposition d'un langage <em>moins connu</em> tend vers l'irrationalité et les
+préférences personnelles. De mon point de vue, <strong>proposer OCaml est, dans
+beaucoup de cas où le contrôle mémoire fin n'est pas nécessaire, aussi pertinent
+que proposer Rust</strong> (et probablement plus).</p>
+<p>Pour terminer cet avant-propos, beaucoup de personnes ont été confrontées à
+OCaml (ou <a href="https://caml.inria.fr/caml-light/release.fr.html">Caml Light</a>) en
+licence ou en classes préparatoires, l'utilisant dans des contextes souvent très
+éloignés de l'industrie. Pour ma part, j'ai commencé à m'intéresser à OCaml bien
+avant, grâce au <a href="(http://sdz.tdct.org/)">Site du Zéro</a>, où une petite communauté
+de programmeurs férus de fonctionnel faisait la promotion de langages moins
+<em>mainstream</em> comme <a href="https://ocaml.org">OCaml</a>, <a href="https://www.erlang.org/">Erlang</a>
+et <a href="https://www.haskell.org/">Haskell</a>. Mon interaction avec OCaml à
+l'université n'était <strong>que du bonus</strong>.</p>
+<h3 id="autres-ressources">Autres ressources</h3>
+<p>Je ne suis pas le premier à avoir documenté les raisons qui poussent à choisir
+OCaml. Il existe de nombreuses alternatives qui, selon moi, valent aussi le coup
+d'être consultées et qui démontrent que les utilisateurs d'OCaml en sont
+généralement très satisfaits, les motivant à communiquer sur <em>comment et
+pourquoi</em> nous avons fait le choix du langage comme technologie principale :</p>
+<ul>
+<li>
+<p><a href="https://dev.realworldocaml.org/prologue.html#why-ocaml">&quot;<strong>Why OCaml?</strong>&quot;</a>,
+prologue du livre <a href="https://dev.realworldocaml.org/toc.html">Real World OCaml</a>,
+qui présente des avantages factuels à l'utilisation d'OCaml (et dont
+l'introduction propose une frise chronologique). Même si le livre est
+excellent sur de nombreux aspects, j'ai pris l'habitude de ne pas le
+recommander car je le trouve très biaisé dans son usage, proposant
+l'utilisation de bibliothèques, par défaut, qui ne font pas spécialement
+l'unanimité dans la communauté.</p>
+</li>
+<li>
+<p><a href="https://cs3110.github.io/textbook/chapters/intro/intro.html">&quot;<strong>Better Programming Through
+OCaml</strong>&quot;</a>,
+prologue du livre (accompagné de vidéos) <a href="https://cs3110.github.io/textbook/cover.html">OCaml Programming: Correct +
+Efficient + Beautiful</a> qui
+présente essentiellement en quoi l'apprentissage d'OCaml peut améliorer les
+compétences d'un développeur dans d'autres technologies plus populaires. Le
+livre est assez récent et c'est celui que <strong>j'ai pris l'habitude de
+recommander comme ressource de base</strong> pour appréhender OCaml.</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=v1CmGbOGb2I"><strong>Conférence &quot;Why OCaml?&quot;</strong></a>,
+une conférence de <a href="https://twitter.com/yminsky">Yaron Minsky</a>, le <em>CTO</em> de
+l'entreprise <a href="https://blog.janestreet.com/">Jane Street</a> — un utilisateur
+industriel d'OCaml faisant partie des <em>leaders</em> mondiaux de la finance. Yaron
+est aussi l'un des auteurs de <em>Real World OCaml</em> et la personne à qui l'on
+doit la très populaire phrase, dans le monde des langages de programmation à
+vérification statique des types, &quot;<em>Make illegal states unrepresentable</em>&quot;. La
+conférence donne beaucoup d'informations sur les motivations du choix d'OCaml
+chez Jane Street.</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=TxuLrsQZprE">&quot;<strong>OCaml for Fun &amp; Profit: An Experience
+Report</strong>&quot;</a>, présentée par <a href="https://lambdafoo.com/">Tim
+McGilchrist</a> durant la conférence <a href="https://yowcon.com/melbourne-2023">Yow
+2023</a>, qui, après une présentation riche du
+langage, expose certains cas d'usages très concrets de l'utilisation d'OCaml
+en production, <em>avec fun et profit</em>.</p>
+</li>
+<li>
+<p><a href="https://roscidus.com/blog/blog/categories/0install/">&quot;<strong>Replacing Python for
+0Install</strong>&quot;</a> par <a href="https://roscidus.com/blog/">Thomas
+Leonard</a>. Cette série d'articles est, de mon point
+de vue, <strong>incroyablement intéressante</strong>. En effet, l'auteur de
+<a href="https://0install.net/">0Install</a>, un système d'installation de logiciels
+décentralisé et multiplateforme (une alternative très légèrement plus ancienne
+que <a href="https://nixos.org/">Nix</a>), cherche un autre langage que
+<a href="https://www.python.org/">Python</a> pour l'implémentation d'une nouvelle version
+(le remplacement de Python est, lui aussi,
+<a href="https://roscidus.com/blog/blog/2013/06/09/choosing-a-python-replacement-for-0install/#why-replace-python">documenté</a>)
+et procède très consciencieusement à la comparaison méthodique de plusieurs
+candidats : <a href="https://www.cs.bu.edu/~hwxi/atslangweb/">ATS</a>,
+<a href="https://learn.microsoft.com/en-us/dotnet/csharp/">C#</a>,
+<a href="https://www.haskell.org/">Haskell</a>, <a href="https://go.dev">Go</a>,
+<a href="https://www.rust-lang.org/">Rust</a> et <a href="https://ocaml.org">OCaml</a> avec Python.
+Plusieurs années après, je suis toujours émerveillé par la rigueur et la
+nuance de cette série que je <strong>recommande très fortement</strong>.</p>
+</li>
+</ul>
+<p>Il existe probablement d'autres ressources et témoignages, notamment sur le
+<a href="https://ocaml.org/">site officiel</a> qui propose des témoignages
+<a href="https://ocaml.org/industrial-users">industriels</a> et
+<a href="https://ocaml.org/academic-users">académiques</a>. De même qu'il existe des
+articles témoignant du dépit que peut provoquer OCaml. Je suis conscient
+qu'OCaml n'est pas parfait — je pense qu'il n'existe pas de technologie
+parfaite. Il est probable que j'évoque (implicitement ou explicitement) certains
+de ces articles dans la section dédiée aux <em>mythes</em> et en conclusion, où je
+tâcherai d'expliquer dans quels contextes je ne trouve pas l'utilisation d'OCaml
+pertinente.</p>
+<h2 id="ocaml-en-tant-que-langage">OCaml en tant que langage</h2>
+<p>Avant de rentrer dans les <strong>fonctionnalités</strong> offertes par le langage,
+j'aimerais commencer par un point qui, selon moi, est essentiel. OCaml est un
+langage de programmation issu <a href="https://ocaml.org/about#history">de la
+recherche</a>, utilisé par des <a href="https://ocaml.org/industrial-users">utilisateurs
+industriels</a>. Cette dualité est importante
+car elle offre au langage deux choses :</p>
+<ul>
+<li>
+<p>Une guidance sur les fonctionnalités <em>désirables</em> comme objet de langage
+intéressant, supportées par une recherche poussée. Par exemple, à ma
+connaissance, OCaml est le premier langage <em>mainstream</em> proposant un support
+natif des <a href="https://v2.ocaml.org/manual/effects.html">effets définis par
+l'utilisateur</a> (<em>user-defined
+effects</em>), qui est le fruit d'une recherche avancée, illustrée par beaucoup de
+<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Sivaramakrishnan,+K">publications</a>.</p>
+</li>
+<li>
+<p>Une guidance sur les fonctionnalités <em>désirables</em> comme outil pour
+l'industrialisation, aussi supportées par une recherche poussée et motivées
+par des cas d'usages. Par exemple, depuis peu, <a href="https://blog.janestreet.com/">Jane
+Street</a>, un des utilisateurs industriels très
+importants de OCaml, a proposé l'intégration de <em>sessions affines</em> permettant
+un <a href="https://blog.janestreet.com/search/?query=oxidizing">contrôle linéaire des
+ressources</a> (un peu <em>à la
+Rust</em>).</p>
+</li>
+</ul>
+<p>Cet entrelacement entre des motivations industrielles et académiques permet à
+OCaml de proposer une collection de fonctionnalités solides, utiles et
+clairement définies. En d'autres termes, OCaml est un langage <strong>vivant</strong> et
+depuis que je m'en sers, j'ai eu l'occasion d'être témoin de nombreuses
+évolutions et ajouts très — de mon point de vue — désirables et qui <em>débunkent</em>
+une assertion très courante en défaveur de OCaml : <strong>le langage ne sert que pour
+de la théorie ou pour l'implémentation de <a href="https://coq.inria.fr/">Coq/Rocq</a></strong>.
+Même si, historiquement, c'était vrai, les motivations apportées par les
+utilisateurs industriels justifient le titre &quot;<em>An industrial-strength functional
+programming language with an emphasis on expressiveness and safety</em>&quot;. La
+<em>Keynote</em> d'ouverture du <a href="https://ocaml.org/workshops/ocaml-workshop-2021">OCaml Workshop
+2021</a> de <a href="https://xavierleroy.org/">Xavier
+Leroy</a>, &quot;<a href="https://watch.ocaml.org/w/tU8wR9EcAcyFHHVcX4GS46"><em>25 Years Of
+OCaml</em></a>&quot; présente une frise
+chronologique exhaustive de la conception continue de OCaml, montrant les
+différentes phases d'évolutions par lesquelles est passé le langage.</p>
+<p>Dans les grandes lignes, OCaml est un langage de programmation de la famille
+<a href="https://en.wikipedia.org/wiki/ML_(programming_language)">ML</a>, <strong>haut-niveau</strong>
+(ici, à lire comme étant doté d'un
+<a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">glâneur de cellules</a>),
+<strong>statiquement typé</strong> (dont les types sont vérifiés à la compilation et ne font
+pas de conversions implicites), avec de la <strong>synthèse de types</strong> (aussi appelée
+<a href="https://en.wikipedia.org/wiki/Type_inference"><em>inférence de types</em></a>, laissant
+la main au compilateur, dans une majorité de cas, de déduire le type d'une
+expression) permettant de programmer dans un style
+<a href="https://en.wikipedia.org/wiki/Functional_programming"><strong>fonctionnel</strong></a> et
+<a href="https://en.wikipedia.org/wiki/Imperative_programming"><strong>impératif</strong></a>. Il
+dispose aussi d'un modèle de <strong>programmation par objets</strong> et d'un <strong>langage de
+modules</strong> très riche. OCaml dispose de deux schémas de compilation : <code>ocamlc</code>,
+qui permet de compiler vers un <em>bytecode</em> interprétable par une <strong>machine
+virtuelle</strong> (portable et efficace), et <code>ocamlopt</code>, qui compile vers du <strong>code
+machine</strong> (exécutable dans une grande <a href="https://github.com/ocaml/ocaml?tab=readme-ov-file#overview">diversité
+d'architectures</a>).
+De plus, OCaml permet la <strong>conversion de son <em>bytecode</em> en JavaScript</strong> au moyen
+de <a href="https://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_ocaml</a>,
+permettant une interopérabilité <em>très rapide</em> avec l'écosystème OCaml (je
+l'utilise d'ailleurs <em>massivement</em> sur ce site web). La <a href="https://github.com/ocaml-wasm/wasm_of_ocaml">même approche est
+utilisée pour produire du
+WebAssembly</a>. Pour une
+interopérabilité plus poussée avec l'écosystème JavaScript,
+<a href="https://melange.re/">Melange</a> utilise une approche sensiblement différente de
+Js_of_ocaml pour produire du JavaScript robuste.</p>
+<p>OCaml est un langage <strong>très versatile</strong> et maintenant, je vais tâcher de
+présenter les fonctionnalités et apports du langage qui en font — <em>pour moi</em> —
+un outil idéal pour la construction de projets personnels et professionnels, en
+commençant par un petit détour sur le typage statique.</p>
+<h3 id="sur-la-vrification-statique-des-types">Sur la vérification statique des types</h3>
+<p>Quand je préparais, avec <a href="https://twitter.com/bibear">Bruno</a>, l'épisode <a href="https://www.ifttd.io/liste-des-episodes">If This
+Then Dev</a> dédié à OCaml, qui, au final,
+a été
+<a href="https://www.ifttd.io/episodes/le-langage-de-tous-les-langages">enregistré</a> avec
+<a href="https://github.com/d-plaindoux">Didier</a>, il m'a posé une question que j'ai
+trouvée surprenante :</p>
+<blockquote>
+<p>Est-ce que ça vaut vraiment la peine de s'embêter avec des types quand on fait
+un <em>projet perso</em>, rapidement ? Même si, pour de la <em>prod</em>, je vois
+parfaitement l'intérêt, pour un <em>projet personnel</em>, ça me semble être une
+perte de temps.</p>
+</blockquote>
+<p>Je pense qu'il y a deux axes de réponse. Le premier, et le plus évident, c'est
+que, dans l'absolu, <strong>je ne vois pas pourquoi un projet personnel devrait être
+moins hygiénique qu'un projet professionnel</strong>. Quand j'écris un logiciel <em>pour
+moi</em>, je peux effectivement me contenter de ne pas le faire se heurter aux
+<em>corner cases</em> de mon implémentation, certes. Mais ce n'est probablement pas ce
+que j'ai envie de faire. Donc, si un langage et son compilateur me permettent de
+tendre des filets de sécurité pour me forcer à prendre en compte tous les cas
+d'un logiciel, <em>je prends</em> — de la même manière que rédiger des <em>tests
+unitaires</em> <strong>facilite mon développement</strong> et je ne les vois pas comme une
+contrainte.</p>
+<p>Mais au-delà des considérations sur l'hygiène que l'on souhaite apporter à un
+projet personnel, je pense que, généralement, la mauvaise presse de la
+vérification statique des types est souvent la conséquence d'une mauvaise
+expérience. En effet, dans des langages comme C, ou encore Java, les types
+<strong>sont essentiellement une contrainte</strong> qu'il est possible de dérouter
+<em>facilement</em>. Dans des langages qui portent un intérêt fort au typage, comme
+<a href="https://ocaml.org">OCaml</a>, <a href="https://haskell.org">Haskell</a>,
+<a href="https://fsharp.org/">F#</a>, <a href="https://www.scala-lang.org/">Scala</a> ou encore
+<a href="https://www.rust-lang.org">Rust</a>, <strong>les types servent de garde-fous</strong>, mais, et
+selon moi, c'est le point le plus important, <strong>les types servent aussi d'outil
+de <em>design</em> expressif</strong>. En les utilisant, on gagne en sécurité, mais on dispose
+également d'un outil de description de données incroyablement riche, versatile
+et concis.</p>
+<p>D'après mon expérience, même s'il est courant de passer d'un langage <em>mal-typé</em>
+(désolé, la tentation est trop forte) à un langage <em>dynamiquement typé</em> — j'ai,
+par exemple, expérimenté le passage de Java à Ruby avec beaucoup de joie —
+passer d'un langage avec un système de type riche, comme OCaml ou Haskell, rend
+le passage à un langage <em>dynamiquement typé</em> largement plus compliqué. À l'heure
+actuelle, <strong>je ne connais personne ayant expérimenté sérieusement des langages
+comme OCaml ou Haskell, qui soit ravi de revenir à des langages aux systèmes de
+types moins sophistiqués</strong> (même si la motivation d'un projet intéressant peut
+justifier la régression technologique).</p>
+<p>Ce n'est d'ailleurs <strong>pas une observation personnelle</strong> ; la vérification
+statique des types fait partie intégrante <em>du grand débat sur l'évolution des
+langages</em>. Des langages historiques muent (ou tentent de muer) pour intégrer
+plus de vérification des types. Par exemple, <a href="https://www.erlang.org/">Erlang</a>,
+dès les années 80 (avant la libération du code source de son compilateur), avait
+expérimenté <a href="https://homepages.inf.ed.ac.uk/wadler/papers/erlang/erlang.pdf">l'intégration d'un système de
+type</a>. Et Java
+améliore, de version en version, les fonctionnalités destinées à améliorer la
+vérification statique des types, en intégrant, par exemple, des <a href="https://openjdk.org/jeps/409">familles
+scellées</a>. Beaucoup de langages expérimentent
+l'intégration de systèmes de types : <a href="https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released/">Ruby avec
+RBS</a> (ou
+encore <a href="https://crystal-lang.org/">Crystal</a>, un langage statiquement typé,
+drastiquement inspiré par Ruby), <a href="https://mypy-lang.org/">Python et Mypy</a>,
+<a href="https://www.irif.fr/_media/users/gduboc/elixir-types.pdf">Elixir</a>, qui revient
+sur les tentatives passées d'Erlang en proposant une approche graduelle viable,
+et évidemment, <a href="https://www.typescriptlang.org/">TypeScript</a> qui est devenu
+<strong>largement adopté</strong> par la communauté des développeurs et développeuses
+JavaScript. Même si toutes ces initiatives sont très motivantes, et vont
+clairement, selon moi, dans la bonne direction, actuellement, ces propositions
+<em>ajoutent des garde-fous</em>, mais ne servent pas encore d'outils de <em>design</em>
+expressifs.</p>
+<p>Dans l'utilisation de systèmes de types de plus en plus riches, <strong>la Maison
+Blanche</strong> a récemment publié un
+<a href="https://www.whitehouse.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf">communiqué</a>
+qui insiste sur l'importance de la <em>memory safety</em> dans la conception de
+programmes et ... <em>plébiscite</em> l'utilisation du langage
+<a href="https://www.rust-lang.org">Rust</a> (historiquement <a href="https://users.rust-lang.org/t/understanding-how-the-rust-compiler-is-built/87237/7">écrit en
+OCaml</a>,
+avant d'être <em>auto-hébergé</em>) au détriment de C++, montrant très explicitement
+que même les instances officielles (et souvent présentées comme poussiéreuses)
+soulignent l'importance des systèmes de types riches — d'ailleurs, la <a href="https://tarides.com/blog/2024-03-07-a-time-for-change-our-response-to-the-white-house-cybersecurity-press-release/">réponse
+formulée par
+Tarides</a>,
+l'entreprise où je travaille à l'heure où je rédige cet article, est aussi
+porteuse d'arguments intéressants en faveur de l'utilisation d'OCaml pour la
+construction de systèmes critiques.</p>
+<p>Pour conclure, la vérification statique des types, c'est vraiment bien et
+recommandé, et ça vaut le coup de regarder des langages disposant de systèmes de
+types sophistiqués (comme OCaml) et pourquoi pas, d'aller encore plus loin, en
+s'intéressant de plus en plus aux méthodes formelles.</p>
+<h3 id="fonctionnalits-du-langage">Fonctionnalités du <em>langage</em></h3>
+<p>Même s'il est très tentant de faire un gigantesque tutoriel sur OCaml,
+l'objectif de cet article est de présenter, dans cette section, ce qui fait que
+<strong>pour moi</strong>, OCaml est un choix <strong>très pertinent</strong> pour l'apprentissage et la
+production. Les avantages seront donc présentés (et <em>défendus</em>), mais <strong>ce n'est
+pas un tutoriel</strong>.</p>
+<h4 id="un-langage-multi-paradigmes">Un langage <em>multi-paradigmes</em></h4>
+<p>De nos jours, parler de langages <strong>multi-paradigmes</strong> peut sembler peu sensé car
+une très large partie des langages de programmation <em>plébiscités par
+l'industrie</em> sont déjà multi-paradigmes. Cependant, OCaml est un langage de
+<strong>programmation fonctionnelle</strong>, permettant la <strong>programmation impérative</strong>, la
+<strong>programmation modulaire</strong>, la <strong>programmation par objets</strong>, et depuis la
+version <code>5.0.0</code> du langage, la <strong>programmation multi-cœur</strong>. Comme
+<a href="https://www.haskell.org/">Haskell</a> a <em>pignon sur rue</em> quand on parle de
+programmation fonctionnelle, il arrive souvent que l'on considère que proposer
+des mécanismes impératifs, dans un langage, est une mauvaise idée, surtout si
+l'on est convaincu des bienfaits du style fonctionnel. De mon point de vue, il
+existe plusieurs raisons parfaitement légitimes de faire de la programmation
+impérative, si le langage le permet :</p>
+<ul>
+<li>
+<p><strong>La lisibilité d'une implémentation.</strong> En effet, il arrive parfois que pour
+éviter la mutabilité, il faille ajouter de la plomberie additionnelle (par
+exemple, une <a href="https://wiki.haskell.org/State_Monad">monade State</a>) rendant la
+lecture et la compréhension d'un programme plus laborieuse.</p>
+</li>
+<li>
+<p><strong>La performance.</strong> L'ajout de plomberie peut engendrer des coûts, rendant
+l'exécution d'implémentations plus laborieuse.</p>
+</li>
+<li>
+<p><strong>Le confort à l'usage.</strong> Il y a quelques années, <a href="https://twitter.com/rtguillon">Arthur
+Guillon</a> m'avait cérémonieusement dit que
+&quot;<em>OCaml était un lambda-calcul permettant trivialement d'exécuter des
+effets</em>&quot;, ce qui le rendait très efficace pour, par exemple, faciliter le
+débogage en permettant facilement d'imprimer des messages sur la sortie
+standard. Même si je reconnais que ce n'est probablement pas la <em>meilleure
+manière</em> de produire de la journalisation, cela apporte indéniablement un
+confort d'utilisation, permettant le prototypage rapide.</p>
+</li>
+</ul>
+<p>De manière générale, la nature à la fois impérative et fonctionnelle d'OCaml
+permet de tirer parti des différents avantages des deux paradigmes dans des
+situations différentes et, évidemment, de les coupler. Par exemple, en cachant
+la nature impérative d'un module sous une API fonctionnelle.</p>
+<h5 id="syntaxe--la-ml">Syntaxe <em>à la ML</em></h5>
+<p>Bien que la syntaxe soit souvent considérée comme un détail, les langages de <a href="https://en.wikipedia.org/wiki/ML_(programming_language)">la
+famille ML</a> disposent
+d'une syntaxe concise, expressive et lisible. Même si <em>cette famille de syntaxe</em>
+peut être déroutante quand on vient de syntaxe plus conventionnelle, <em>inspirée
+de C</em>, on s'y fait assez rapidement et l'on peut très vite se rendre compte
+qu'elle est très cohérente et relativement peu ambigüe. Cependant, si la syntaxe
+de OCaml vous pose des soucis, n'hésitez pas à vous tourner vers
+<a href="https://reasonml.github.io/">ReasonML</a>, une syntaxe alternative — avec des
+accolades.</p>
+<h5 id="troitement-li--la-recherche">Étroitement lié à la recherche</h5>
+<p>OCaml est un langage issu de la recherche française, comme en témoigne
+<a href="https://caml.inria.fr/about/history.en.html">l'histoire de Caml</a>,
+essentiellement pour permettre l'implémentation de l'assistant de preuves
+<a href="https://coq.inria.fr/">Coq/Rocq</a>. Cette provenance — et les motivations
+initiales, implémenter Coq, mais aussi servir de langage de programmation
+enseigné en classes préparatoires — induit une certaine dualité :</p>
+<ul>
+<li>
+<p>Le socle des fonctionnalités n'a pas été pensé pour l'industrie. Cependant,
+cette assertion n'est plus du tout vraie, essentiellement parce que OCaml
+<strong>est</strong> devenu un langage utilisé industriellement. Même si, dans la genèse du
+langage, on trouvait plus d'outils pour construire un langage (permettant de
+faciliter l'enseignement du fonctionnement des compilateurs plus aisé) que de
+l'outillage pour <em>construire des applications dites
+&quot;<a href="https://www.oracle.com/fr/java/technologies/java-ee-glance.html">entreprises</a>&quot;</em>,
+des projets issus de la communauté, motivés par des usages industriels
+enrichiront le langage et son écosystème, faisant du langage un outil
+générique, et adapté à l'industrie. Par exemple, la construction d'une
+<em>liaison</em> avec la bibliothèque
+<a href="https://en.wikipedia.org/wiki/Tk_(software)">Tk</a> motivera l'intégration, dans
+le langage, <a href="https://ocaml.org/manual/lablexamples.html">d'arguments nommés</a>,
+<a href="https://ocaml.org/manual/lablexamples.html#s%3Aoptional-arguments">d'arguments
+optionnels</a>,
+et de <a href="https://ocaml.org/manual/polyvariant.html">variants polymorphes</a>.</p>
+</li>
+<li>
+<p>L'ensemble des paradigmes et des fonctionnalités du langage sont <strong>très
+mûrement réfléchis et théorisés</strong>. En général, l'intégration d'une
+fonctionnalité (ou d'une collection de fonctionnalités) est le fruit d'un
+travail de recherche méticuleux, basé sur des fondements théoriques solides et
+soumis à la revue d'un grand nombre d'experts dans le domaine (souvent
+<a href="https://www.inria.fr/fr/avec-xavier-leroy-linformatique-confirme-sa-presence-au-college-de-france">reconnus</a>
+par la communauté scientifique). Cette rigueur peut parfois ralentir
+l'intégration de nouvelles fonctionnalités, mais garantit généralement leur
+bon fonctionnement et leur stabilité théorique.</p>
+</li>
+</ul>
+<p>Cette rigueur théorique, engendrée par une proximité indéniable avec le monde de
+la recherche, fait que les différents aspects de OCaml sont bien documentés,
+illustrés par <a href="https://arxiv.org/search/?query=ocaml&amp;searchtype=all&amp;source=header">un grand nombre de
+publications</a>
+et possèdent des <strong>comportements prévisibles</strong>. Ce qui fait que, de mon point de
+vue, OCaml est un choix très judicieux pour comprendre, <em>en profondeur</em>, ces
+différentes fonctionnalités. Par exemple, je pense que OCaml m'a permis de
+<strong>largement mieux comprendre</strong> certains traits ou paradigmes de langages.</p>
+<p>D'ailleurs, un très bon exemple démontrant comment un travail méticuleux et
+rigoureux de recherche peut servir l'intégration d'un aspect de langage est
+l'implémentation d'un <a href="https://ocaml.org/manual/objectexamples.html">modèle
+objet</a> dans OCaml. En effet, la
+thèse de <a href="https://www.irif.fr/~vouillon/">Jérôme Vouillon</a>, <em><a href="https://www.irif.fr/~vouillon/publi/these.ps.gz">Conception et
+réalisation d'une extension du langage ML avec des
+objets</a></em> propose un modèle
+objet novateur, qui se marie très bien à l'inférence de types en <a href="https://caml.inria.fr/pub/docs/oreilly-book/html/book-ora144.html">séparant la
+notion d'héritage et de
+sous-typage</a>
+— l'héritage étant une <strong>notion syntaxique</strong> et le sous-typage étant une
+<strong>notion sémantique</strong> — utilisant du <a href="https://en.wikipedia.org/wiki/Row_polymorphism">polymorphisme de
+rangée</a> pour décrire des
+relations de <a href="https://en.wikipedia.org/wiki/Structural_type_system">sous-typage
+structurelles</a>, par
+opposition au <a href="https://en.wikipedia.org/wiki/Nominal_type_system">sous-typage
+nominal</a>, utilisé par Java,
+C#, et une grande partie des langages de programmation OOP populaires. Le modèle
+objet de OCaml se conforme parfaitement au principe
+<a href="https://en.wikipedia.org/wiki/SOLID">SOLID</a> sans <a href="https://spring.io/projects/spring-boot">cérémonie
+additionnelle</a>.</p>
+<h4 id="types-algbriques">Types algébriques</h4>
+<p>J'ai été assez expansif sur les raisons qui font que je trouve qu'un langage
+soit doté d'une analyse statique des types. Cependant, dans mon expérience, je
+trouve que pour qu'un langage statiquement typé soit réellement utilisable, la
+présence de <a href="https://cs3110.github.io/textbook/chapters/data/algebraic_data_types.html">types
+algébriques</a>
+est nécessaire :</p>
+<ul>
+<li>
+<p>Des <strong>types produits</strong> : qui permettent de grouper des valeurs de types
+hétérogènes (donc de créer une <strong>conjonction</strong> de types hétérogènes). Ils sont
+généralement présents dans tous les langages <em>mainstream</em> (les <em>objets</em> par
+exemple, qui introduisent des concepts en plus, ou les couples et les
+enregistrements).</p>
+</li>
+<li>
+<p>Des <strong>types sommes</strong> : qui permettent de construire une <strong>disjonction</strong> de
+types de valeurs hétérogènes, des différents <em>cas</em>, indexés par des
+constructeurs. Même si on peut trouver des <em>cas particuliers</em> de sommes dans
+les langages <em>mainstreams</em>, notamment les <em>booléens</em> (qui sont une disjonction
+de deux cas : <code>true</code> et <code>false</code>, soit deux constructeurs sans paramètres), le
+support de ces dernières est souvent laborieux dans les langages populaires.
+Par exemple, Kotlin et Java (et <em>de facto</em>, C#) utilisent une construction,
+associée aux relations d'héritages, <a href="https://docs.oracle.com/en/java/javase/17/language/sealed-classes-and-interfaces.html">le
+scellage</a>.
+L'intégration <a href="https://docs.scala-lang.org/scala3/reference/enums/adts.html">d'une syntaxe dédiée aux
+sommes</a> a aussi
+pris un peu de temps en Scala, qui, avant les dernières versions du langage,
+utilisait aussi des familles scellées, rendant l'expression de sommes assez
+verbeuses (et, de mon point de vue, difficile à raisonner).</p>
+</li>
+<li>
+<p>Des <strong>types exponentiels</strong> : qui permettent de décrire des fonctions qui
+permettent d'exprimer des types pour des fonctions d'ordre supérieur (que l'on
+peut passer en argument ou renvoyer).</p>
+</li>
+</ul>
+<p>Couplé avec de la <a href="https://ocaml.org/manual/5.2/patterns.html">correspondance de
+motifs</a> et du <a href="https://en.wikipedia.org/wiki/Parametric_polymorphism">polymorphisme
+paramétrique</a> (ou
+<em>génériques</em>), un système de types algébriques est un outil formidablement
+expressif pour décrire des structures de données, la machine à état d'un
+programme, ou l'expression d'un <a href="https://pragprog.com/titles/swdddf/domain-modeling-made-functional/">domaine
+métier</a>
+avec une cardinalité adaptée. Même s'il est, au 21ème siècle, courant d'avoir
+des produits et des exponentiels, quand je suis amené à utiliser des langages
+<em>très populaires</em>, je suis souvent frustré de l'absence de sommes, m'obligeant à
+utiliser un encodage verbeux (et augmentant la cardinalité d'un domaine). C'est
+très flagrant dans l'utilisation de <a href="https://go.dev/">Go</a> et de
+<a href="https://www.typescriptlang.org/">TypeScript</a>.</p>
+<p>L'intérêt de cette triade est d'ailleurs, probablement, une des raisons (couplée
+à un écosystème et une chaîne d'outillage très ergonomique) qui explique le
+succès de <a href="https://www.rust-lang.org/">Rust</a>. En bref, si vous avez l'intention
+de construire un nouveau langage de programmation, doté d'une vérification
+statique des types, <em>par pitié</em>, n'hésitez surtout pas à intégrer des types
+algébriques !</p>
+<p>Pour terminer, il existe des pans du systèmes de types de OCaml que je n'ai pas
+couverts, mais qui méritent probablement des articles dédiés. Par exemple, <a href="https://ocaml.org/manual/gadts-tutorial.html">les
+types algébriques généralisés</a> qui
+permettent de décrire encore plus d'invariants.</p>
+<h4 id="programmation-modulaires-et-langage-de-modules">Programmation modulaires et langage de modules</h4>
+<p>OCaml, par le biais de <a href="https://caml.inria.fr/pub/docs/manual-caml-light/">Caml
+Light</a>, son ancêtre, figure
+parmi les premiers langages à proposer un système de modules, à l'instar de
+<a href="https://smlfamily.github.io/">Standard ML</a>, offrant ainsi <strong>l'encapsulation et
+l'abstraction</strong> tout en permettant <strong>la compilation séparée</strong>, à la manière de
+<a href="https://en.wikipedia.org/wiki/Modula-2">Modula-2</a>. Le langage de modules
+d'OCaml constitue un <strong>aspect fondamental</strong> de ce langage, bien que sa
+complexité puisse intimider. En effet, en OCaml, il est possible de distinguer
+clairement l'interface (la <em>signature</em>) de l'implémentation (la <em>structure</em>),
+facilitant ainsi l'encapsulation et la documentation, tout en autorisant
+<strong>l'application de fonctions dans le langage des modules</strong>.</p>
+<p>Il m'est particulièrement difficile d'aborder brièvement le sujet des modules
+(c'est un domaine que j'aspire à explorer depuis <em>des années</em> sur mon blog).
+Cependant, voici une liste des avantages que je perçois dans cette approche
+<em>très modulaire</em> d'OCaml :</p>
+<ul>
+<li>
+<p>La compilation séparée, une fonctionnalité clé, permet de compiler
+efficacement de gros programmes en identifiant des points de jonction pour
+optimiser la compilation parallèle et incrémentale. Cette approche est
+exploitée par <a href="https://dune.build/">dune</a>, le système de construction
+recommandé pour compiler du OCaml.</p>
+</li>
+<li>
+<p>La séparation systématique entre l'implémentation et l'interface offre
+plusieurs avantages significatifs, notamment l'encapsulation et la
+localisation de la documentation dans l'interface. Dans mon flot de
+programmation, je trouve ça très confortable car je peux implémenter ma
+<em>structure</em> (l'implémentation d'un module) en me <em>laissant guider par
+l'inférence</em> et spécifier son API dans sa <em>signature</em> (l'interface du module)
+tout en décidant d'un ordre d'affichage et en fournissant une documentation
+claire ne polluant pas l'espace d'implémentation. En complément,
+l'encapsulation me permet librement de décrire, dans le corps de ma structure,
+des types intermédiaires pour, par exemple, exprimer la machine à état d'une
+application, <a href="https://en.wikipedia.org/wiki/Leaky_abstraction">sans la laisser
+s'échapper</a>.</p>
+</li>
+<li>
+<p>Un outil formidable pour décrire des structures de données. En effet, en
+abstrayant les types (en cachant leur implémentation), couplé à
+l'encapsulation, il est possible de décrire des structures de données qui
+<strong>maintiennent des invariants</strong>. C'est d'ailleurs pour ça qu'il est courant
+d'avoir une paire structure/signature par structure de données cachant, au
+moyen de l'abstraction et de l'encapsulation, des détails d'implémentation.</p>
+</li>
+<li>
+<p>De la réutilisabilité et de la mutualisation. En effet, de la même manière
+qu'il est possible de décrire des types dans le langage des valeurs (comme
+nous l'avons vu dans la rubrique dédiée aux types algébriques), il est
+possible de décrire des types dans le langage des modules, que l'on appelle
+des <strong>signatures translucides</strong>, permettant de décrire le type d'une
+signature, sans l'associer à une structure. Ces signatures sont typées
+structurellement, et couplées avec les fonctions dans le langage des modules,
+<a href="https://ocaml.org/docs/functors">foncteurs</a>, il est possible de <em>mutualiser
+du comportement</em> attaché à des modules.</p>
+</li>
+<li>
+<p>Des formes de polymorphisme avancé, notamment du <a href="https://okmij.org/ftp/ML/higher-kind-poly.html">Higher Kinded
+Polymorphism</a>, disponible
+dans le langage des modules. Dans les grandes lignes, on peut décrire <em>&quot;des
+génériques, paramétrés par des génériques&quot;</em>. Cette limitation dans des
+langages, comme F# ou Java, motive souvent l'utilisation <a href="https://github.com/yallop/higher?tab=readme-ov-file#implementations-in-other-languages">d'encodages
+lourds</a>
+pour pallier ce manque.</p>
+</li>
+</ul>
+<p>La théorie derrière les langages de modules dans les langages ML est un sujet
+très vaste, <a href="https://dl.acm.org/doi/10.1145/3649818">toujours en évolution</a>,
+qu'il est très difficile de résumer dans un paragraphe. Cependant,
+l'introduction de la thèse de <a href="https://people.mpi-sws.org/~dreyer/">Derek
+Dreyer</a>, <a href="https://people.mpi-sws.org/~dreyer/thesis/main.pdf"><em>Understanding and Evolving the
+ML Module System</em></a> donne une
+très bonne explication sur les intérêts des modules, de leurs usages, illustrés
+avec beaucoup d'exemples. J'espère cependant prendre du temps dans les
+semaines/mois à venir pour écrire sur le langage de modules, plus expansivement
+que ce que j'ai <a href="/pages/modules-import.html">déjà tenté</a>, parce que ça pourrait
+être formateur et que le domaine est, je trouve, très très intéressant !</p>
+<h4 id="injection-et-inversion-de-dpendances">Injection et inversion de dépendances</h4>
+<p>En parlant brièvement de la programmation orientée objets en OCaml, j'ai évoqué
+rapidement le <em>fait</em> que OCaml permet d'exprimer, par le biais des
+fonctionnalités offertes par le langage, trivialement, des prérequis pour écrire
+du code <strong>SOLID</strong>. Le dernier point que j'aimerais souligner est la facilité
+d'inversion des dépendances à injecter au moyen de <strong>fonctionnalités offertes
+par le langage</strong>. Dans les grandes lignes, le principe d'inversion des
+dépendances consiste à décrire des treillis de dépendance au moyen
+<strong>d'abstractions</strong> et non <strong>d'implémentations</strong>. De cette manière, les
+dépendances peuvent-être <em>injectées à postériori</em> — rendant, notamment, le
+changement de contextes, pour des tests unitaires par exemple, trivialement
+implémentables.</p>
+<p>OCaml dispose de deux outils facilitant cette inversion, et pouvant être utiles
+dans des contextes différents. Et nous allons nous inspirer de l'exemples très
+populaires du télétype pour montrer comment inverser les dépendances :</p>
+<pre><code class="language-ocaml">let program () =
+  let () = print_endline &quot;Hello World&quot; in
+  let () = print_endline &quot;What is your name?&quot; in
+  let name = read_line () in
+  print_endline (&quot;Hello &quot; ^ name)
+</code></pre>
+<p>Même si ça peut ne pas sembler évident, ce programme dépend d'implémentations
+concrètes, <strong>les interactions avec l'entrée et la sortie standards</strong>.</p>
+<h5 id="par-le-biais-de-modules">Par le biais de modules</h5>
+<p>L'approche la plus évidente consiste à utiliser des modules, comme <a href="https://ocaml.org/manual/firstclassmodules.html">valeurs de
+premier ordre</a> ou par
+construction, au moyen de <a href="https://ocaml.org/docs/functors">foncteurs</a>. La
+dualité entre les signatures et les structures rend l'inversion de dépendances
+évidente. Par exemple, pour reprendre notre exemple, voici comment, en utilisant
+des <a href="https://ocaml.org/manual/firstclassmodules.html"><em>first-class modules</em></a>, il
+est <strong>très facile</strong> de dépendre d'un ensemble d'interaction abstrait. On
+commence par décrire la représentation abstraite des interactions possibles :</p>
+<pre><code class="language-ocaml">module type IO = sig
+  val print_endline : string -&gt; unit
+  val read_line : unit -&gt; string
+end
+</code></pre>
+<p>On peut maintenant attendre de notre fonction <code>program</code> qu'elle prenne un module
+du type <code>IO</code> en argument (on appellera ça <em>un gestionnaire</em>) et utiliser les
+fonctions exportées par le module, qui, dans notre exemple, s'appelle <code>Handler</code>
+:</p>
+<pre><code class="language-ocaml">let program (module Handler: IO) = 
+  let () = Handler.print_endline &quot;Hello World&quot; in
+  let () = Handler.print_endline &quot;What is your name?&quot; in
+  let name = Handler.read_line () in
+  Handler.print_endline (&quot;Hello &quot; ^ name)
+</code></pre>
+<p>Et il est possible, par exemple, dans le contexte des tests unitaires, de
+fournir une implémentation qui journalise l'ensemble des opérations appelées (et
+qui <em>mock</em> l'appel de <code>read_line</code>, pour fixer le résultat renvoyé). Cela rend
+l'expression de tests unitaires <em>testant la logique métier</em> très facile à
+implémenter.</p>
+<p>L'action de passer une implémentation concrète en argument à notre fonction
+consiste à <strong>interpréter le programme</strong>.</p>
+<h5 id="par-le-biais-deffets-dfinis-par-lutilisateur">Par le biais d'<em>effets définis par l'utilisateur</em></h5>
+<p>La version 5 d'OCaml est arrivée avec son lot de nouveautés. Cependant, la plus
+grande avancée est la refonte du <em>runtime</em> d'OCaml pour prendre en charge le
+multi-cœur. Il existe plusieurs manières de décrire des algorithmes concurrents,
+par exemple en utilisant des
+<a href="https://en.wikipedia.org/wiki/Actor_model">acteurs</a> ou encore des
+<a href="https://go101.org/article/channel.html">canaux</a>. OCaml a fait le choix
+d'utiliser <a href="https://github.com/ocaml-multicore/ocaml-effects-tutorial">des
+effets</a>, permettant
+de simplifier le traitement du flot de contrôle du programme. En effet OCaml
+permet à l'utilisateur de décrire ses propres effets, que l'on appelle
+logiquement, <a href="https://ocaml.org/manual/effects.html">des effets définis par
+l'utilisateur</a>. Même s'ils forment un
+outil formidable pour décrire des programme concurrents, ils permettent aussi de
+faciliter l'injection de dépendances quand on veut garder la main, <em>au niveau du
+gestionnaire</em>, sur le flot d'exécution d'un programme.</p>
+<blockquote>
+<p>Attention, dans mon exemple, j'utilise une syntaxe expérimentale, <a href="https://github.com/ocaml/ocaml/pull/12309">tout juste
+fusionnée</a> dans le tronc de OCaml,
+et qui sera probablement disponible dans la version <code>5.3.0</code> du langage.</p>
+</blockquote>
+<p>Comme pour notre amélioration précédente, il faut d'abord décrire l'ensemble des
+opérations que l'on pourra produire. On utilise la construction <code>effect</code> :</p>
+<pre><code class="language-ocaml">effect Print_endline : string -&gt; unit
+effect Read_line : unit -&gt; string
+</code></pre>
+<p>Ensuite, on peut écrire, dans un style directe, notre programme en <em>produisant
+des effets</em> :</p>
+<pre><code class="language-ocaml">let program () =
+  let () = Effect.perform (Print_endline &quot;Hello World&quot;) in
+  let () = Effect.perform (Print_endline &quot;What is your name?&quot;) in
+  let name = Effect.perform (Read_line ()) in
+  Effect.perform (Print_endline (&quot;Hello &quot; ^ name)
+</code></pre>
+<p>Il est ensuite possible d'interpréter, à postériori, notre programme en
+utilisant une construction similaire au filtrage par motif pour donner un sens
+spécifique à chaque effet.</p>
+<p>Actuellement, on regrettera que la propagation d'effets ne soit pas capturée par
+le système de types. Cependant, il s'agit d'une fonctionnalité expérimentale,
+que l'on utilise massivement dans la <a href="https://gitlab.com/funkywork/yocaml">nouvelle version de
+YOCaml</a>. Je sais que des ressources sont
+allouées à l'élaboration d'un système de type efficace pour <em>tracker</em> la
+propagation d'effets !</p>
+<p>En général, quand je ne me soucie pas du contrôle du flot du programme, ou que
+je ne veux pas pouvoir ajouter des effets <em>à postériori</em>, j'utilise des modules.
+Mais dans le cas de YOCaml, on a profité de l'utilisation du nouveau système
+d'effets pour <a href="https://gitlab.com/funkywork/yocaml/-/commit/d78bb21077272ae86f7b6b3017509596de0a5a27">introduire des effets dédiés aux tests
+unitaires</a>,
+permettant, par exemple, de <em>mocker</em> le <em>temps qui passe</em>.</p>
+<p>Une fois de plus, il est vraiment très compliqué de ne pas trop s'épancher sur
+les <em>effets définis par l'utilisateur</em>, qui est une toute nouvelle
+fonctionnalité très excitante du langage. Je terminerai en me contentant de vous
+partager deux articles écrits par <a href="https://github.com/art-w">Arthur Wendling</a>
+expliquant, très pédagogiquement, l'utilisation des effets, ainsi qu'une
+bibliographie très complète de la littérature relative à l'abstraction d'effets
+en programmation fonctionnelle :</p>
+<ul>
+<li><a href="https://hackmd.io/@yF_ntUhmRvKUt15g7m1uGw/Bk-5NXh15">Scopes and effect
+handlers</a>
+</li>
+<li><a href="https://hackmd.io/@yF_ntUhmRvKUt15g7m1uGw/BJBZ7TMeq">Roguelike with effect
+handlers</a>
+</li>
+<li><a href="https://github.com/yallop/effects-bibliography">Effect bibliography</a>
+</li>
+</ul>
+<h3 id="concernant-le-futur">Concernant le futur</h3>
+<p>OCaml est un langage <em>toujours en activité</em> qui, de version en version, évolue.
+Dans la section dédiée à l'inversion de dépendances, j'ai rapidement parlé de
+l'inclusion toute récente d'effets dans le langage pour décrire un <em>runtime</em>
+multi-cœur, témoignant des mutations dont bénéficie le langage au fil des
+années. On notera aussi l'intégration des <a href="https://ocaml.org/manual/bindingops.html">opérateurs de
+liaisons</a>, rendant l'utilisation de la
+triade
+<a href="https://en.wikipedia.org/wiki/Functor_(functional_programming)">Foncteurs</a>,
+<a href="https://en.wikipedia.org/wiki/Applicative_functor">Foncteurs Applicatifs</a> et
+<a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">Monades</a> plus
+confortable — à la manière des <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">expressions de
+calcul</a>,
+en F#.</p>
+<p>Actuellement, beaucoup de chantiers très excitants sont en œuvre pour améliorer,
+encore plus, le langage :</p>
+<ul>
+<li>
+<p>un travail de fond sur l'expression des effets, avec une nouvelle syntaxe
+fraichement ajoutée, et une collection de travaux sur la séparation entre les
+<a href="https://github.com/ocaml/ocaml/pull/12736">opérations et les effets</a> et,
+évidemment, sur la <a href="https://arxiv.org/abs/2407.11816">propagation des effets dans le système de
+types</a>.</p>
+</li>
+<li>
+<p><a href="https://opensource.janestreet.com/">Jane Street</a> a proposé <a href="https://antonlorenzen.de/mode-inference.pdf">un modèle
+non-intrusif de gestion de
+ressources</a>, inspiré par celui de
+Rust, introduisant <em>des modalités</em> et <em>un peu de linéarité</em>.</p>
+</li>
+<li>
+<p>Un véritable <a href="https://clement.blaudeau.net/assets/pdf/blaudeau_ocaml_modules.pdf">travail de
+fond</a> à
+été entamé sur le langage de modules permettant de rendre l'implémentation de
+<a href="https://www.cl.cam.ac.uk/~jdy22/papers/modular-implicits.pdf">Modular
+Implicits</a> plus
+sereinement implémentable.</p>
+</li>
+</ul>
+<p>On notera aussi le développement d'un système de <a href="https://xnning.github.io/papers/icfp23.pdf">macro
+hygiénique</a>, de l'intégration
+progressive d'un système de <a href="https://okmij.org/ftp/ML/MetaOCaml.html">métaprogrammation à
+étages</a>, de l'implémentation d'un
+<a href="https://ocamlpro.com/blog/tag/flambda2/"><em>back-end d'optimisation</em></a>, témoignant
+de l'activité forte de OCaml dans le secteur de l'innovation et rendant son
+développement, pour les années à venir, très motivant et excitant !</p>
+<h3 id="points-faibles">Points faibles</h3>
+<p>Même si je suis convaincu que OCaml est un <strong>excellent langage</strong>, dire qu'il est
+parfait serait probablement de la <em>très mauvaise foi</em> — en effet, <em>rien n'est
+malheureusement parfait</em>. Voici, selon moi, quelques points ombrageant OCaml en
+tant que langage :</p>
+<ul>
+<li>
+<p>l'absence de <a href="https://en.wikipedia.org/wiki/Ad_hoc_polymorphism">polymorphisme
+ad-hoc</a>. Même s'il est
+possible de s'en tirer sans, notamment au moyen d'ouvertures locales de
+modules, l'absence de <em>polymorphisme ad-hoc</em> (au moyen de <a href="https://en.wikibooks.org/wiki/Haskell/Classes_and_types">classes de
+types</a>, <em>à la
+Haskell</em> ou
+<a href="https://doc.rust-lang.org/book/ch10-02-traits.html">traits</a>/<a href="https://docs.scala-lang.org/tour/implicit-parameters.html">objets
+implicites</a>, <em>à la
+Rust et Scala</em> ou encore des <a href="https://coq.inria.fr/doc/v8.18/refman/language/extensions/canonical.html">structures
+canoniques</a>
+<em>à la Coq</em>) peut parfois rendre certaines situations délicates. Même si j'ai
+tendance à toujours trouver les relations explicites préférables, j'ai, au fil
+des années, trouvé plusieurs cas où cette absence pouvait être problématique :</p>
+<ul>
+<li>
+<p>l'impossibilité de décrire des contraintes de paramètres de types sur des
+fonctions polymorphes, introduisant dans la bibliothèque des fonctions
+d'égalités et de comparaisons polymorphes, faisant couler <a href="https://blog.janestreet.com/the-perils-of-polymorphic-compare/">beaucoup
+d'encre</a>
+et imposant, par exemple, des versions spécialisées de opérateurs
+arithmétiques pour les differentes représentations des nombres (<code>int</code>,
+<code>int64</code>, <code>float</code>).</p>
+</li>
+<li>
+<p>Le risque d'explosion combinatoire quand on décrit beaucoup de relations
+entre des modules. C'est pour cette raison que la bibliothèque
+<a href="https://github.com/xvw/preface">Preface</a> propose une <a href="https://github.com/xvw/preface/blob/master/guides/option_instantiation.md">découpe modulaire
+un peu
+complexe</a></p>
+</li>
+</ul>
+<p>Cependant, même si l'arrivée des <a href="https://www.cl.cam.ac.uk/~jdy22/papers/modular-implicits.pdf">modules
+implicites</a>
+n'est probablement pas dans la feuille de route <em>court-termiste</em>, les récents
+travaux sur le langage de modules, présentés dans la rubrique dédiée au futur
+du langages, sont prometteurs.</p>
+</li>
+<li>
+<p>Une interaction laborieuse entre le langage de modules et le langages des
+valeurs. En effet, le langage de modules est <strong>un langage différent</strong>, doté
+d'un système de types différent. Je ne sais pas si l'on peut réellement parler
+d'un point faible, mais cette différence peut être intimidante et s'explique
+par le fait que le langage de modules de OCaml est un pionier dans la théorie
+des modules et prédate des innovation <em>plus récentes</em>
+(<a href="https://people.mpi-sws.org/~rossberg/1ml/1ml-extended.pdf">1ML</a> par
+exemple). Dans la pratique, en plus d'être <em>complexe à appréhender</em>, certains
+pans du langages sont difficiles à spécifier correctement, par exemple <a href="https://www.ocaml.org/manual/5.2/recursivemodules.html#s%3Arecursive-modules">les
+modules
+récursifs</a>.</p>
+</li>
+<li>
+<p>Un langage <em>confortable pour la programmation fonctionnelle</em>, impur. Même si
+je trouve que l'impureté est <strong>une feature</strong>, quand on essaye d'importer des
+idiomes issus de langages purs (au hasard, Haskell), on peut se heurter à des
+difficultés liées à l'inférence de types : la <a href="https://en.wikipedia.org/wiki/Value_restriction"><em>value
+restriction</em></a>. Même si, en
+OCaml, elle <a href="https://caml.inria.fr/pub/papers/garrigue-value_restriction-fiwflp04.pdf">a été
+<em>détendue</em></a>,
+ses implications sur l'inférence de fonctions polymorphes peuvent être
+intimidantes — pour de très bonnes raisons.</p>
+</li>
+<li>
+<p>La syntaxe. Même si, à titre personnel, j'apprécie beaucoup la syntaxe de
+OCaml et que je suis convaincu que la syntaxe devrait rarement être une issue,
+je suis conscient que certains choix syntaxiques peuvent être déroutants. Par
+exemple, le fait que les paramètres de types préfixent le nom du type, <em>une
+liste de a</em> sera écrite <code>'a list</code>. Beaucoup de ces choix sont motivés par une
+<em>volonté de réduire l'ambiguïté de la syntaxe du langage</em> et on s'y fait très
+vite. Cependant, je suis conscient qu'en venant d'un autre langage, certains
+de ces choix peuvent sembler surprenants.</p>
+</li>
+</ul>
+<p>Je pense que ces points faibles sont globalement discutables (parce qu'ils sont
+souvent justifiés), mais je comprend parfaitement qu'ils peuvent être
+perturbants. Cependant, je pense qu'ils ne suffisent pas à rendre OCaml
+inutilisable et <strong>qu'ils ne devraient pas être une barrière trop grande pour se
+mettre à OCaml</strong> ! Et le bénéfice d'avoir un langage <em>améliorable</em>, c'est qu'il
+reste, en permanence, une volée d'améliorations potentielles, motivant des
+travaux qui peuvent, en plus, bénéficier à d'autres langages. Et, en toute
+sincérité, en étant conscient de ces <em>parties rugueuses</em>, j'ai plus souvent eu
+l'occasion de râler de l'absence de traits de langages, présents dans OCaml,
+dans d'autres langages, que de râler de ces parties en écrivant du OCaml, pour
+lesquelles il existe, souvent, des solutions (parfois, à la limite de la
+satisfaction, je vous l'accorde) permettant de travailler sereinement.</p>
+<h3 id="pour-conclure-sur-le-langage">Pour conclure sur le langage</h3>
+<p>J'ai, dans les <em>très très</em> grandes lignes, survolé <strong>des raisons</strong> qui font que,
+selon moi, apprendre OCaml est un choix <strong>très pertinent</strong>. Ce langage permet de
+<em>comprendre fondamentalement</em> certains idiomes de programmation <em>très</em>
+populaires (mais souvent mal définis). De plus, certains aspects du langage
+servent parfaitement des desseins industriels rendant, parfois, des bonnes
+pratiques, triviales à exprimer ! Une grande partie de ces attraits est
+expérimentable avec d'autres langages, cependant, la nature <em>fortement
+multi-paradigmes</em> de OCaml permet de centraliser son apprentissage dans un seul
+langage. À ma connaissance, dans la jungle de langages <em>partiellement
+populaires</em>, seul Scala semble couvrir autant de sujets, même si, de mon point
+de vue, son modèle objet est, essentiellement par soucis d'interopérabilité avec
+les autres langages de la JVM, largement moins intéressant.</p>
+<p>Comme l'objectif de cet article n'est pas d'être un tutoriel, j'ai
+volontairement passé rapidement sur certains concepts, <a href="https://ocaml.org/docs/modules">les
+modules</a> et les
+<a href="https://ocaml.org/manual/ffects.html">effets</a>. Je n'ai presque pas parlé des
+<a href="https://ocaml.org/docs/objects">objets</a>, des <a href="https://ocaml.org/manual/polyvariant.html">variants
+polymorphes</a> et des <a href="https://ocaml.org/manual/gadts-tutorial.html">types
+algébriques généralisés</a>. Si
+jamais ces sujets vous intéressent, je vous invite à lire en détail l'excellent
+<a href="https://caml.inria.fr/pub/docs/u3-ocaml/index.html">Using, Understanding, and Unraveling The OCaml
+Language</a>, de <a href="http://cristal.inria.fr/~remy/">Didier
+Remy</a>, couplé aux livres que j'ai présentés en
+introduction, qui est une mine d'or pour toute personne désireuse d'approfondir
+ses connaissances en OCaml.</p>
+<p>Pour conclure, OCaml offre un outillage, au niveau du langage, varié et riche
+pour l'apprentissage de la programmation, la construction de programmes
+industriels respectant des standards mais aussi l'implémentation <a href="https://github.com/art-w/deque">structure de
+données complexes</a> et <a href="https://github.com/xvw/preface">d'abstractions issu de la
+théorie des catégories</a> comme un noyau
+fonctionnel, des traits impératifs, un système de types inférés riche et
+expressif (permettant l'expression de types algébriques, facilitant l'expression
+de domaines clairs), un langage de modules comme outil d'abstraction, de
+réutilisabilité et de définition d'unités de compilation, un modèle objet, la
+possibilité d'exprimer des effets que l'on peut propager et interpréter <em>à
+postériori</em> et d'autres fonctionnalités avancées. Ne serait-ce que pour
+<em>appréhender des concepts avancés de programmation</em>, OCaml est un <strong>excellent
+candidat</strong> — c'est d'ailleurs pour ça que OCaml est une inspiration évidente
+pour beaucoup de langages plus récents, <a href="https://doc.rust-lang.org/reference/influences.html">Rust étant un des exemples
+notables</a>.</p>
+<h2 id="ocaml-en-tant-qucosystme">OCaml en tant qu'écosystème</h2>
+<p>Avoir un langage expressif est très bénéfique pour <em>construire des choses</em> (la
+formulation est volontairement naïve). Cependant, dans différents contextes, le
+professionnel et le personnel, ce n'est pas suffisant :</p>
+<ul>
+<li>
+<p>dans le contexte professionnel, il est évident que si je veux que mon équipe et moi
+soyons productifs, il n'est probablement pas très pertinent de devoir
+construire une pile d'outils avant de pouvoir commencer à répondre au problème
+pour lequel on est mandaté.</p>
+</li>
+<li>
+<p>Dans le contexte personnel, même si l'on pourrait <em>arguer</em> que construire sa
+pile technologique est <strong>très formateur</strong>, ça modifie l'ensemble des
+compétences que l'on veut <em>travailler</em>. Si pour construire une petite
+application web pour m'initier à OCaml comme un langage web, je dois
+construire toute ma pile HTTP, il est fort probable que OCaml ne soit pas le
+bon choix. Rassurez-vous, cependant, OCaml dispose <a href="https://ocaml.org/docs/is-ocaml-web-yet">d'un outillage
+riche</a> pour construire des
+applications web !</p>
+</li>
+</ul>
+<p>C'est pour ça que les fonctionnalités offertes par le langage ne sont pas une
+métrique suffisante pour décrire sa viabilité pour construire et maintenir des
+projets. L'écosystème est aussi un point très important. C'est d'ailleurs pour
+ces raisons que <a href="https://dotnet.microsoft.com/en-us/">.NET</a> et la
+<a href="https://en.wikipedia.org/wiki/Java_virtual_machine">JVM</a>, par le biais de
+langages relativement peu expressifs (mais en progrès) comme Java et C# sont
+aussi populaires. Pour juger la pertinence d'un écosystème, je pense qu'il est
+important de prendre en compte plusieurs critères :</p>
+<ul>
+<li>
+<p>la pertinence du <em>runtime</em> (ou des cibles de compilations) pour le projet. Il
+est probable que je ne recommande pas OCaml pour l'embarquer dans un tout
+petit <em>hardware</em> exotique — même si, n'y connaissant rien en programmation
+<em>bas-niveau</em> (parce que ce n'est pas du tout mon métier), il est probable que
+je me trompe.</p>
+</li>
+<li>
+<p>Sa <strong>plateforme</strong>. Est-ce que l'ensemble de sa <em>chaine d'outillage</em> est
+complète et ergonomique. Ce qui inclut, de mon point de vue, un gestionnaire
+de paquet, un <em>build-system</em>, un bon <em>support éditeur</em> (agnostique au
+possible), un bon générateur de documentation et une collection d'outils
+additionnels, comme, par exemple, un <em>formateur</em> (et bien d'autres).</p>
+</li>
+<li>
+<p>La pertinence des <strong>bibliothèques disponibles</strong> (et leur niveau de maintenance
+et leur découvrabilité, ce qui implique généralement la nécéssité de disposer
+d'un gestionnaire de paquets) avec une considération particulière sur
+l'ergonomie de ces dernières. Par exemple, si je ne dispose d'aucune primitive
+de chiffrement, il est probable que je ne choisisse pas cette technologie pour
+construire une <em>blockchain</em>. Il existe toute une classe de problèmes qu'il est
+<strong>très difficile</strong> de <em>résoudre dans son coin</em> ou dans un contexte
+professionnel.</p>
+</li>
+</ul>
+<p>Dans cette section, nous allons essayer de survoler ces différents points pour
+voir si l'écosystème OCaml est à la hauteur du langage. Je tiens à préciser que
+<strong>je suis un peu biaisé</strong> parce que je suis convaincu de la pertinence de OCaml
+depuis 2012, à l'époque où l'écosystème était <strong>drastiquement plus pauvre</strong>. A
+cette époque, j'ai essayé de construire des projets en composant avec les
+manques ce qui a engendré, probablement, un <a href="https://en.wikipedia.org/wiki/Survivorship_bias">biais du
+survivant</a>. Comme de nos jours,
+notamment grâce à des utilisateurs industriels, l'écosystème de OCaml est
+largement plus riche et étendu, il est cependant devenu beaucoup plus simple de
+le défendre, et quand certains manques subsistent, la mauvaise fois <em>de l'ancien
+utilisateur</em> peut ressurgir.</p>
+<h3 id="compilation-runtimes-et-cibles-additionnelles">Compilation, <em>runtimes</em>, et cibles additionnelles</h3>
+<p>OCaml dispose depuis sa genèse de deux cibles de compilation :</p>
+<ul>
+<li>
+<p>une compilation native, qui produit des exécutables très efficaces, compilés
+pour une architecture. (Et qui supporte un <a href="https://github.com/ocaml/ocaml?tab=readme-ov-file#overview">grand nombre
+d'architectures</a>).
+De plus, alors qu'historiquement, Windows était fortement délaissé, <a href="https://tarides.com/blog/2024-05-22-launching-the-first-class-windows-project/">un effort
+tout
+particulier</a>
+a été mis en oeuvre pour le supporter (on notera aussi le projet
+<a href="https://github.com/diskuv/dkml-installer-ocaml">DkMl</a>, une initiative
+indépendante).</p>
+</li>
+<li>
+<p>une compilation vers un <em>bytecode</em> (donc à destination d'une machine
+virtuelle), produisant des exécutables portables.</p>
+</li>
+</ul>
+<p>La présence d'une machine virtuelle a permis le développement du vénérable
+<a href="http://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_OCaml</a> qui
+permet <a href="https://www.irif.fr/~vouillon/publi/js_of_ocaml.pdf">la transformation dy bytecode OCaml vers
+JavaScript</a>, rendant OCaml
+parfaitement viable pour le développement d'application dans le navigateur, mais
+aussi dans le <em>runtime</em> <a href="https://nodejs.org/en">node</a>, et qui est drastiquement
+utilisé pour ce site web. En utilisant une technique similaire, le support de
+<a href="https://webassembly.org/">WebAssembly</a> a été rendu possible, très récemment,
+par le biais du projet
+<a href="https://github.com/ocaml-wasm/wasm_of_ocaml">Wasm_of_OCaml</a>. Supporter la
+compilation vers <em>WASM</em> pour un langage étant doté d'un <a href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">glâneur de
+cellules</a>
+était un <em>sacré challenge</em>, mais l'équipe derrière <em>WASM</em> ayant récemment
+spécificé l'interaction entre <em>WASM</em> et des <a href="https://github.com/WebAssembly/gc"><em>garbage
+collector</em></a>), <strong>OCaml dispose maintenant
+d'une compilation vers WebAssembly parfaitement décente</strong> (et beaucoup de
+projets web, ambitieux, comme <a href="https://ocsigen.org">Ocsigen</a>, commencent à
+supporter <em>WASM</em> nativement).</p>
+<p>De plus, le projet <a href="https://melange.re">Melange</a> (historiquement
+<a href="https://discuss.ocaml.org/t/a-short-history-of-rescript-bucklescript/7222">BuckleScript</a>)
+propose de <em>transpiler</em> — mapper l'<em>AST</em> de OCaml vers l'<em>AST</em> de JavaScript —
+est une alternative pour produire du JavaScript. Si je devais comparer
+<a href="http://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_OCaml</a> et
+<a href="https://melange.re">Melange</a>, au delà des différentes méthodes sous-jacentes
+utilisées pour produire du JavaScript (compiler vers du <em>bytecode</em> et
+transformer ce <em>bytecode</em> en JavaScript, contre la transformation syntaxique de
+OCaml en JavaScript), je dirais que <strong>Js_of_OCaml</strong> se marie mieux avec
+l'écosystème OCaml, et est donc, probablement, à <strong>destination de développeurs
+OCaml</strong> désireux de rendre leurs projets accessibles depuis un navigateur — en
+effet, l'interaction avec l'écosystème JavaScript existant peut-être plus
+laborieuse. <strong>Melange</strong> se marie mieux avec l'écosystème JavaScript (<code>npm</code> <em>and
+co</em>) et est donc, probablement, <strong>à destination des développeurs JavaScript</strong>
+désireux d'apporter plus de sûreté dans leurs projets JS (ou dans une base de
+code existante).</p>
+<p>De nos jours, il est courant de trouver des langages <em>multi-backend</em> comme
+<a href="https://www.idris-lang.org/">Idris</a> ou <a href="https://nim-lang.org/">Nim</a>. Cependant,
+<em>à l'époque</em>, j'étais très impressionné par le fait que OCaml puisse, <em>depuis le
+moment où j'ai commencé à l'utiliser</em>, compiler vers JavaScript (en plus). A
+cette épqoue, je ne connaissais que <a href="https://haxe.org/">Haxe</a> qui proposait
+plusieurs cibles de compilation, si différentes (d'ailleurs, Haxe est <a href="https://github.com/HaxeFoundation/haxe">écrit en
+OCaml</a>).</p>
+<p>En effet, en 2024, produire du JavaScript est devenu standard, on trouve les
+<a href="https://www.irif.fr/~balat/publications/2006mlworkshop-balat-ocsigen.pdf">premières traces de Js_of_OCaml en
+2006</a>,
+faisant de OCaml, un pionier dans le domaine !</p>
+<h4 id="un-petit-dtour-par-mirageos">Un petit détour par MirageOS</h4>
+<p>Dans le <em>treillis formé par les différents contextes d'exécution et de
+compilation de OCaml</em>, avoir des bibliothèques qui fonctionnent bien dans <em>une
+majorité de contexte</em> est un exercice compliqué. Heureusement, le projet
+<a href="https://mirage.io/">MirageOS</a> — un ensemble de bibliothèques conçues pour
+construire un <strong>systéme d'exploitation dedié à ne faire tourner qu'une seule
+application</strong>, au moyen de virtualisation (un
+<a href="https://en.wikipedia.org/wiki/Unikernel"><em>unikernel</em></a>) — a introduit une
+véritable hygiène de la production de bibliothèques multi-contextes.</p>
+<p>Dans un futur <em>proche</em>, j'aimerais passer plus de temps à écrire sur Mirage, un
+projet fascinant que l'on essaie d'intégrer dans nos projets, par exemple dans
+<a href="https://github.com/xhtmlboi/yocaml">YOCaml</a>, notre générateur de sites
+statiques. D'ailleurs, en plus de fournir une approche saine de la distribution
+de bibliothèques <em>intelligemment compartimentées</em>, Mirage offre un socle solide
+de bibliothèques pour la construction de projets OCaml, dont je parlerai, en
+étant plus <em>expansif</em>, dans la rubrique dédiée aux bibliothèques.</p>
+<h3 id="la-plateforme-ocaml">La plateforme OCaml</h3>
+<p>La <a href="https://ocaml.org/platform">plateforme OCaml</a> est un ensemble d'outils,
+maintenus dans un cycle de vie explicite (<code>actif</code>, <code>en incubation</code>, <code>maintenu</code>
+et <code>déprécié</code>), destinés adosser le compilateur à une chaine d'outillage
+cohérente pour la production de code OCaml. On y trouve beaucoup d'outils qui
+servent différents propos, cependant, dans cette section, je ne vais me
+focaliser que sur certains points de la plateforme, vous laissant le loisir de
+consulter sa <a href="https://ocaml.org/platform">page</a> et sa <a href="https://ocaml.org/tools/platform-roadmap">feuille de
+route</a> pour de plus amples
+informations. Dans cette section, nous allons nous intéresser, <em>dans les grandes
+lignes</em>, à 4 grands points spécifiques :</p>
+<ul>
+<li>Le gestionnaire de paquets
+</li>
+<li>Le système de construction (<em>build-system</em>)
+</li>
+<li>Le support éditeurs (incluant le formatage de code)
+</li>
+<li>Le générateur de documentation
+</li>
+</ul>
+<p>Quand on utilise OCaml depuis un certains temps, c'est probablement la partie la
+plus excitante de l'article, car, selon moi, c'est celle qui a bénéficié du plus
+de progrès. Et la <a href="https://ocaml.org/tools/platform-roadmap">feuille de route</a>
+est, selon moi, prometteuse !</p>
+<h4 id="opam-le-gestionnaire-de-paquets">OPAM, le gestionnaire de paquets</h4>
+<p>Même si <em>les gestionnaires de paquets dédiés à un langage spécifique</em> sont
+devenu très populaires (pour ne pas dire obligatoire) dans la réduction des
+frictions de l'adoption d'un langage, à l'époque ou OCaml a été conçu, ces
+derniers étaient confidentiels. En effet, mis à part
+<a href="https://en.wikipedia.org/wiki/CTAN">CTAN</a>, pour distribuer des paquets
+<a href="https://en.wikipedia.org/wiki/TeX">TeX</a> et
+<a href="https://en.wikipedia.org/wiki/CPAN">CPAN</a>, inspiré par CTAN, pour distribuer
+des paquets <a href="https://www.perl.org/">Perl</a> et
+<a href="https://en.wikipedia.org/wiki/PEAR">PEAR</a>, pour <a href="https://www.php.net/">PHP</a>, il
+faudra attendre les <a href="https://en.wikipedia.org/wiki/RubyGems">Gems</a> pour que les
+technologies de développement considèrent l'adoption d'un gestionnaire de
+paquets comme axiomatique pour le développement d'un langage.</p>
+<p><a href="https://opam.ocaml.org">OPAM</a>, pour <strong>O</strong>Caml <strong>Pa</strong>ckage <strong>M</strong>anager est une
+<a href="https://raw.githubusercontent.com/ocaml/opam/30598a59c98554057ce2beda80f0d31474b94150/specs/roadmap.pdf">proposition</a>
+de 2012 (la <a href="https://opam.ocaml.org/about.html">page <em>À propos</em> du site
+officiel</a> présente une petite frise
+chronologique). OPAM permet, en plus d'installer des paquets, installer des
+versions différentes de OCaml, et construire des environnements <em>potentiellement
+isolés dans des bacs à sables</em>, que l'on appelle des
+<a href="https://ocaml.org/docs/opam-switch-introduction">switches</a>. Il est possible
+d'utiliser le dépôt publique de ressources, <a href="https://github.com/ocaml/opam-repository">hébergé sur
+Github</a> mais il est parfaitement
+possible de construire son propre index de paquets.</p>
+<blockquote>
+<p>Ayant déjà publié plusieurs paquets sur OPAM, je dois avouer que la
+<a href="https://check.ci.ocaml.org/">CI</a> de validation d'ajout de paquets est
+incroyablement efficace et ergonomique (chaque erreur fournit un Dockerfile
+pour reproduire l'issue localement) et que l'équipe de personnes qui modèrent
+et administrent les ajouts/modifications de paquets sont extraordinaires de
+réactivité et de bienveillance.</p>
+</blockquote>
+<p>Même si, à la lumière de la modernité, on pourrait reprocher plusieurs points à
+OPAM, par exemple :</p>
+<ul>
+<li>une terminologie pouvant être laborieuse à appréhender (<em>switch</em>, <em>invariant</em>,
+etc.)
+</li>
+<li>la duplication de tous les paquets et de tous les compilateurs entre plusieurs
+<em>switches</em> (c'est un problème connu pour lequel <a href="https://www.youtube.com/watch?v=5JDSUCx-tPw">du travail a déjà été mis en
+oeuvre</a>)
+</li>
+<li>et probablement quelques soucis d'ergonomie (notamment l'interaction avec
+<code>dune</code> pouvant être plus <em>smooth</em>, pour lequel un <a href="https://discuss.ocaml.org/t/ann-dune-developer-preview-updates/15160">travail est aussi
+actuellement en
+cours</a>)
+</li>
+<li>quelques complications quand il s'agit de gérer des paquets en développement,
+en les référençant depuis un dépôt de source plutôt que depuis OPAM
+</li>
+</ul>
+<p>Je dois avouer qu'en venant d'une ère où OPAM n'existait pas, j'ai appris à
+m'accomoder de certains de ces petits écueils et que, quotidiennement, je dois
+avouer avoir peu de raison de me plaindre de l'outil qui, pour mon usage
+quotidien, ne m'a jamais réellement fait défaut. Cependant, si vous avez fait
+face à des soucis d'usages, je vous invite à venir en discuter sur <a href="https://ocaml.org/community">l'un des
+espaces destinés à la communication</a> pour que
+l'équipe de développement puisse tenir compte de vos retours, et vous aiguiller.</p>
+<p>Il existe aussi <a href="https://esy.sh/">esy</a> comme gestionnaire de paquets alternatif,
+qui s'inspire de <a href="https://nixos.org/">Nix</a> pour construire un <em>store</em>
+réutilisable, de la même manière qu'il est possible d'utiliser Nix avec OCaml,
+cependant, étant un peu conventionnel, je ne suis pas vraiment aux faits de ces
+pratiques et, étant satisfait de mon <em>workflow</em> avec OPAM, je n'ai,
+malheureusement, jamais pris le temps d'expérimenter sérieusement <strong>esy</strong>.</p>
+<h4 id="dune-le-build-system">Dune, le <em>build-system</em></h4>
+<p>Comme pour la gestion de paquets, historiquement, OCaml disposait de
+<strong>plusieurs</strong> <em>build-systems</em> : le vénérable
+<a href="https://github.com/ocaml/ocamlbuild">ocamlbuild</a>,
+<a href="https://github.com/ocaml/oasis">oasis</a>,
+<a href="https://github.com/OCamlPro/ocp-build">ocp-build</a>,
+<a href="https://ocaml.org/p/jenga/latest">Jenga</a> et d'autres variation autours de
+<a href="https://www.gnu.org/software/make/">Make</a>. Cependant, depuis 2018, la
+communauté à fortement adopté <a href="https://dune.build/">Dune</a>, un <em>build-system</em>
+initialement développé à <a href="https://www.janestreet.com/">Janestreet</a>.</p>
+<p>Sur beaucoup d'aspects, Dune peut être intimidant. En effet, sa
+<a href="https://dune.readthedocs.io/en/stable/">documentation</a> est <strong>très touffue</strong> —
+mais elle s'est très largement améliorée, en terme de structure au cours de ces
+derniers mois. Et, alors que beaucoup d'outils choisissent des langages de
+descriptions de règles comme <a href="https://en.wikipedia.org/wiki/YAML">Yaml</a>,
+<a href="https://en.wikipedia.org/wiki/TOML">Toml</a> ou encore
+<a href="https://en.wikipedia.org/wiki/JSON">JSon</a>, Dune a fait le choix des
+<a href="https://en.wikipedia.org/wiki/S-expression">S-expression</a>. On regrettera aussi
+que Dune paramètre, <em>par défaut</em>, <a href="https://ocaml.org/manual/5.2/comp.html#s%3Acomp-warnings">l'ensemble des
+avertissements</a> fatal.</p>
+<p>Avant de motiver certains choix (comme les <strong>S-expression</strong>), il est très
+important de souligner les points qui ont fait de Dune un standard :</p>
+<ul>
+<li>Dune est <strong>très rapide</strong> et propose un modèle d'exécution <strong>très efficace</strong>
+</li>
+<li>il construit des artéfacts nécéssaire à la configuration <em>gratuitement</em>
+</li>
+<li>il génère certains fichiers redondants (comme les fichiers de description
+OPAM)
+</li>
+<li>il trivialise le <a href="https://en.wikipedia.org/wiki/S-expression"><em>vendoring</em></a> de
+bibliothèques
+</li>
+<li>il permet d'invoquer des <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">boucles
+d'interaction</a>
+correctement provisionnées par le contexte
+</li>
+<li>on se familiarise très rapidement avec les <strong>S-expression</strong>, qui permette de
+décrire schématiquement et rapidement des règles de compilation
+</li>
+<li>il est relativement agnostique et peut exécuter des tâches arbitraires (à la
+manière de <code>make</code>)
+</li>
+<li>il est en constante évolution et amélioré de version en version
+</li>
+<li>adossé à <a href="https://github.com/tarides/dune-release">dune-release</a>, il rend la
+publication de paquets sur OPAM incroyablement simple
+</li>
+</ul>
+<p>Peut-être que je suis biaisé mais, selon moi, Dune est un des <em>build-system</em> les
+plus génériques et agréables que j'ai pu utiliser — même si, aux premiers
+abords, il peut sembler effrayant et certains choix peuvent sembler difficile à
+motiver.</p>
+<h5 id="sur-le-choix-des-s-expression">Sur le choix des S-expression</h5>
+<p>Aux premiers abords, l'utilisation d'un <em>lisp-like</em> pour décrire des binaires,
+des bibliothèques et des projets peut sembler surprenant. Cependant, cette
+décision à plusieurs avantages :</p>
+<ul>
+<li>l'AST des <strong>S-expression</strong> étant <strong>drastiquement simple</strong>, le <em>parsing</em> est
+très simple et il est facile de le rendre très efficace, ce qui ne pénalise
+pas l'efficacité de la compilation
+</li>
+<li>le langage dispose de <em>terminaison</em>, ce qui le rend plus facile à inspecter en
+cas d'erreurs (pour toute personne ayant tenté de traiter des erreurs dans de
+gros fichiers YAML doit avoir été confronté à ce genre de problèmes)
+</li>
+<li>le langage est très facile à apprendre, et à décrire
+</li>
+<li>il permet de décrire de <strong>véritables programmes</strong>, rendant Dune relativement
+générique et permettant de faire des tâches additionnelles
+</li>
+</ul>
+<p>Donc, de mon point de vue, le choix des <strong>S-expression</strong> est pertinent, il
+permet de décrire des programmes complexes, lisibles, sans être trop verbeux, il
+ne pénalise pas trop la compilation et il permet de décrire, de manière très
+concise, des règles de compilations très complexes. Et pour être très honnête,
+on s'y fait très vite !</p>
+<h5 id="contribution--ltat-de-lart-selective-applicative-functor">Contribution à l'état de l'art: Selective Applicative Functor</h5>
+<p>En plus d'être un très agréable <em>build-system</em>, Dune a contribué à l'état de
+l'art de la recherche en mettant en lumière une nouvelle construction <em>inspirée
+de la théorie des catégories</em>. En effet, en 2018, <a href="https://blogs.ncl.ac.uk/andreymokhov/about/">Andrey
+Mokhov</a>, <a href="https://ndmitchell.com/">Neil
+Mitchell</a> et <a href="https://simon.peytonjones.org/">Simon Peyton
+Jones</a> ont proposé, dans l'excellent papier
+<a href="https://dl.acm.org/doi/10.1145/3236774">&quot;<em>Build Systems à la Carte</em>&quot;</a>, une
+collection d'abstraction pour réimplémenter — modulairement — des
+<em>build-systems</em> divers et variés. Cependant, pour certaines raisons liées à
+<strong>l'analyse statique des dépendances</strong>, ces modèles n'étaient pas compatibles
+avec Dune. Après plusieurs investigations et expérimentations, une nouvelle
+construction, similaire à un
+<a href="https://hackage.haskell.org/package/base-4.20.0.1/docs/Control-Applicative.html">Applicative</a>,
+un <a href="https://dl.acm.org/doi/10.1145/3341694">Selective Applicative Functor</a>,
+capturant les pré-requis de Dune a été proposée. Cette information peut sembler
+anecdotique, mais, de mon point de vue, elle renforce l'intérêt (et
+l'importance) d'être à <strong>l'intersection entre la recherche et l'industrie</strong>.</p>
+<h5 id="alternatives">Alternatives</h5>
+<p>Bien qu'étant fortement adopté par la communauté, OCaml propose des systèmes
+alternatifs (utilisant parfois Dune <em>sous le capot</em>), par exemple,
+<a href="https://obazl.github.io/docs_obazl/">Obazl</a> qui offre des règles OCaml pour
+<a href="https://bazel.build/">Bazel</a>, <a href="https://github.com/rizo/onix">Onix</a> qui permet
+de construire des projets avec <a href="https://nixos.org">Nix</a>,
+<a href="https://buck2.build/">Buck2</a> qui est un projet ambitieux et générique qui est
+en compétition avec Bazel et <a href="https://github.com/OCamlPro/drom">Drom</a> qui offre
+une expérience similaire à <a href="https://doc.rust-lang.org/stable/cargo/">Cargo</a>,
+unifiant la gestion de paquets et la construction de projets.</p>
+<p>En toute transparence, je n'ai jamais expérimenté ces alternatives, étant très
+satisfait de Dune et de la direction qu'il est en train de prendre, unifiant
+enfin, la gestion des <em>constructions</em> et des paquets !</p>
+<h4 id="lsp-et-merlin-pour-les-diteurs">LSP et Merlin pour les éditeurs</h4>
+<p>Dans les précédentes sections, nous avons pu voir à quel point OCaml à progressé
+dans des domaines nécéssaires à l'industrialisation. Par contre, en terme de
+support éditeur, OCaml dispose depuis plus de 10 ans d'un excellent support pour
+<a href="https://www.vim.org/">Vim</a> et <a href="https://www.gnu.org/software/emacs/">Emacs</a> au
+moyen du projet <a href="https://github.com/ocaml/merlin">Merlin</a> qui fournit des
+services d'éditeurs permettant de la <strong>complétion</strong>, du <strong>diagnostique</strong>, des
+fonctionnalités de <strong>navigation dans le code</strong>, des outils liées à la
+<strong>déstructuration de valeurs</strong>, à la <strong>construction de valeur</strong>, de la gestion
+(et navigation) de <strong>trous typés</strong>, de la <strong>recherche par polarité</strong>, des
+informations précises (avec contrôle de verbosité) sur <strong>les types de valeurs</strong>,
+du <strong><em>jump-to-definition</em></strong> etc.</p>
+<p>Selon moi, le support IDE, via Merlin, est excellent, en OCaml, depuis très
+longtemps. Couplé avec <a href="https://github.com/OCamlPro/ocp-indent">ocp-indent</a>, qui
+permet de calculer la position du curseur après une action dans l'éditeur et
+<a href="https://github.com/ocaml-ppx/ocamlformat">OCamlformat</a>, qui permet le formatage
+(configurable) à la volée de document OCaml, écrire du code dans Emacs ou Vim
+est un immense plaisir !</p>
+<h5 id="avnement-de-vscode-lsp-comme-standard">Avènement de VSCode, LSP comme standard</h5>
+<p>En 2015, <a href="https://en.wikipedia.org/wiki/Visual_Studio_Code">Visual Studio Code</a>
+est arrivé en amenant <a href="https://en.wikipedia.org/wiki/Language_Server_Protocol">Language Server
+Protocol</a> permettant
+d'abstraire la manière dont les éditeurs interagissent avec un langage par le
+biais d'un serveur, respectant protocole uniforme. OCaml dispose d'un <a href="https://github.com/ocaml/ocaml-lsp">très bon
+serveur LSP</a> qui, lui même, repose sur des
+bibliothèques éprouvées de l'écosystème OCaml, notamment Merlin. Comme LSP est
+devenu <em>relativement standard</em> dans le monde des éditeurs (Vim, Emacs et, en
+fait, presque tous les éditeurs libres que je connaisse) permettent d'interagir
+avec un serveur LSP, il est question de déprécier le serveur de Merlin, pour ne
+passer plus que par LSP, faisant de Merlin une bibliothèque <em>bas-niveau</em>,
+fournissant l'outillage, sous forme de bibliothèque utilisée par LSP. C'est un
+des projets sur lequel travaille l'équipe <code>Editeur</code>, chez
+<a href="https://tarides.com">Tarides</a> (dont je fais partie) : rendre <code>ocaml-lsp</code>
+compatible en fonctionnalités, avec le serveur historique de Merlin pour réduire
+la maintenance des clients alternatifs (Emacs et Vim), ne nous souciant plus que
+des requêtes et actions spécifiques à OCaml (et ne faisant donc, logiquement,
+pas partie du protocole).</p>
+<p>Un peu comme pour Dune, l'état de l'outillage est, à mon sens, excellent, et la
+feuille de route est motivante ! Cependant, comme c'est <strong>mon travail</strong>, il est
+probable que je sois biaisé.</p>
+<h4 id="odoc-le-gnrateur-de-documentation">Odoc, le générateur de documentation</h4>
+<p>OCaml est distribué avec un générateur de documentation, le vénérable
+<a href="https://ocaml.org/manual/5.2/ocamldoc.html">OCamldoc</a>, cependant, ce dernier
+n'est plus recommandé par/pour la communauté. En effet, l'outil mis en avant est
+<a href="https://ocaml.github.io/odoc/">Odoc</a>, un nouvel outil, qui vit en dehors du
+compilateur et qui offre plusieurs fonctionnalités très intéressantes :</p>
+<ul>
+<li>un langage de <em>markup riche</em>, supportant les références croisées
+</li>
+<li>la possibilité d'écrire des pages &quot;de manuel&quot;, volatiles, tout en bénéficiant
+des références croisées
+</li>
+<li>une très bonne intégration dans Dune
+</li>
+<li>une barre de recherche par types (implémentée via
+<a href="https://doc.sherlocode.com/">Sherlodoc</a>)
+</li>
+<li>l'inclusion du code source (rédigé dans la documentation ou des modules documentés)
+</li>
+<li>l'implémentation de <em>dérivers</em> permettant de générer des grands ensembles de
+documentation (utilisé pour implémenter <a href="https://ocaml.org/packages">la documentation de tous les paquets
+présents sur OPAM</a>)
+</li>
+<li>le support de <a href="https://en.wikipedia.org/wiki/Doctest"><em>doctest</em></a> via
+<a href="https://github.com/realworldocaml/mdx">mdx</a>
+</li>
+</ul>
+<p>Même si le <em>look'n feel</em> d'une documentation générée par Odoc, par défaut, est,
+de mon point de vue, <strong>largement superieur</strong> de celle générée par OCamldoc, il
+reste tout de même (<em>une fois de plus, de mon point de vue</em>) un peu de travail à
+fournir sur l'UI pour que l'outil soit réellement <strong>parfait</strong> !</p>
+<p>J'ai clairement une certaine sympathie pour la documentation du langage
+<a href="https://elixir-lang.org/">Elixir</a>, <a href="https://hexdocs.pm/">HexDoc</a> (en terme de
+<em>design</em> et de fonctionnalités), et à titre personnel, j'aimerais que OCaml
+converge vers cet exemple. En revanche, il faut reconnaitre que la documentation
+générée par Odoc est supérieure à beaucoup de documentation d'autres langages.</p>
+<h3 id="bibliothques-disponibles">Bibliothèques disponibles</h3>
+<p>On a vu que le langage était <em>cool</em>, et qu'il dispose d'un outillage, bien que
+toujours en progrès, efficace et agréable à utiliser. Se pourrait-il que son
+manque de popularité soit la conséquence d'un ensemble de bibliothèque trop
+restreind ? Pour être très honnête, <strong>je ne sais pas</strong>. Ce que je sais, c'est
+que quand j'ai eu à écrire des projets OCaml, professionnels comme personnels,
+j'ai souvent trouvé tout mon bonheur dans la <a href="https://ocaml.org/packages">liste des
+paquets</a>. Je pense que les raisons qui font que
+OCaml est mature pour beaucoup de projets usuels peut se synthétiser en
+plusieurs points :</p>
+<ul>
+<li>des entreprises comme <a href="https://www.lexifi.com/">Lexifi</a> et
+<a href="https://www.janestreet.com/">Janestreet</a> ont fortement contribué à
+l'écosystème en libérant beaucoup des bibliothèques nécéssaires à leurs usages
+quotidien
+</li>
+<li>Des projets de recherches ambitieux, comme, dans le cas du Web par exemple,
+<a href="https://ocsigen.org/home/intro.html">Ocsigen</a>, utilisé industriellement dans
+le projet <a href="https://www.besport.com">BeSport</a> ont généré une collection de
+bibliothèques utiles
+</li>
+<li>Nous en parlions précédemment mais <a href="https://mirage.io">MirageOS</a>, dans son
+approche <a href="https://blog.container-solutions.com/all-about-unikernels-part-1-what-they-are"><em>Clean
+Slate</em></a>
+a, naturellement, engendré beaucoup de bibliothèques robustes
+</li>
+<li>Comme pour des langages populaires, comme JavaScript ou Rust, des
+contributeurs motivés ont fourni d'excellentes bibliothèques
+</li>
+<li>Le langage est ancien, et utilisé industriellement depuis bien longtemps
+</li>
+</ul>
+<p>Pour ma part, il m'est arrivé de <em>re-créer</em> des bibliothèques pour le <strong>plaisir
+de réinventer la roue</strong>, mais aussi, parfois, pour proposer une interface
+alternative. De plus, OCaml permet de s'interfacer avec, entre autres, du C,
+permettant de construire des <em>bindings</em> pour un grand nombre de bibliothéques et
+outils. Cependant, s'il existe une bibliothèque que vous trouvez <em>objectivement</em>
+manquante, je vous invite à prendre part à <a href="https://ocaml.org/community">la
+communauté</a>.</p>
+<p>Il est important de noter que mon usage de OCaml s'est porté essentiellement sur
+3 sujets :</p>
+<ul>
+<li><strong>le développement web</strong> (fortement porté par Mirage, Ocsigen et des projets
+indépendants, comme <a href="https://aantron.github.io/dream/">Dream</a>,
+<a href="https://github.com/xhtmlboi/yocaml">YOCaml</a> et bien
+<a href="https://ocaml.org/packages/search?q=web">d'autres</a>)
+</li>
+<li><strong>le développement de <a href="https://tezos.com/">Blockchain</a></strong> et par extension
+l'utilisation de bibliothèque de cryptographie, offertes, une fois de plus,
+par Mirage, mais aussi par le projet
+<a href="https://github.com/hacl-star/hacl-star">HACL*</a>, une bibliothèque
+formellement vérifiée, écrite en <a href="https://fstar-lang.org/">F*</a> et extraite en OCaml
+</li>
+<li><strong>le développement de <a href="https://github.com/ocaml/merlin">Merlin</a></strong>
+</li>
+</ul>
+<p>Tous ces sujets impliquent tout de même la nécéssité d'un bon outillage de tests
+et OCaml dispose de plusieurs bibliothèques complémentaires pour implémenter des
+suites de tests robustes. En effet, dans l'écosystème OCaml on trouve de quoi
+rédiger des <a href="https://github.com/realworldocaml/mdx">doctests</a>, des <a href="https://github.com/mirage/alcotest">tests
+unitaires classiques</a>, de quoi décrire des
+<a href="https://github.com/c-cube/qcheck">tests dirigés par les propriétés</a>, de quoi
+faire <a href="https://github.com/stedolan/crowbar">du <em>fuzzing</em></a> mais aussi des <a href="https://dune.readthedocs.io/en/stable/tests.html#inline-expectation-tests">tests
+par observation de la
+sortie</a>,
+des <a href="https://dune.readthedocs.io/en/stable/tests.html#inline-tests">tests
+<em>inlines</em></a> (qui
+permettent de tester, notamment, des composants privés) et des <a href="https://dune.readthedocs.io/en/latest/reference/cram.html">tests
+cram</a>.</p>
+<p>Je continue de trouver mon bonheur dans les paquets disponibles et je suis
+toujours très impressionné de voir le nombre de paquets et d'alternative
+croître, <em>d'année. en année</em>. Il existe évidemment des manques, mais qui n'ont
+pas invalidés mon choix de OCaml.</p>
+<h4 id="apart-sur-la-bibliothque-standard">Aparté sur la bibliothèque standard</h4>
+<p>Un reproche récurrent qu'il est fait à OCaml est la <em>modestie</em> de sa
+bibliothèque standard. En effet, <em>historiquement</em>, cette dernière ne servait
+qu'a implémenter le langage. Elle ne s'ecombrait donc pas de certaines
+fonctionnalités utiles pour l'utilisateur final. Cette situation a engendré
+l'émergence de bibliothèques standards alternatives dont les plus populaires
+sont :</p>
+<ul>
+<li><a href="https://github.com/ocaml-batteries-team/batteries-included">Batteries</a>, une
+alternative à la bibliothèque standard <em>un peu datée</em>. Historiquement une
+<em>fork</em> de <a href="https://github.com/ygrek/ocaml-extlib">Extlib</a>.
+</li>
+<li><a href="https://opensource.janestreet.com/base/">Base</a>, une alternative construite
+par <a href="https://janestreet.com">Janestreet</a> utilisée <em>un peu invasivement</em> dans
+le livre <a href="https://dev.realworldocaml.org/">Real World OCaml</a>. La bibliothèque
+utilise des conventions forte, comme <em>labeliser</em> les fonctions d'ordre
+superieur (généralement avec le nom <code>f</code>).
+</li>
+<li><a href="https://opensource.janestreet.com/core/">Core</a> est une extension de Base.
+</li>
+<li><a href="https://github.com/c-cube/ocaml-containers">Containers</a> est une extension de
+la bibliothèque standard (dans le sens où <code>open Containers</code> en début de module
+ne casse pas du code rédigé avec la bibliothèque standard).
+</li>
+</ul>
+<p>Je n'ai pas d'opinion forte concernant le choix d'une bibliothèque alternative,
+j'ai tendance à utiliser celle que mon projet utilise ou de <em>réinventer la roue</em>
+(parce que c'est très rigolo), cependant, si je devais donner un avis, il est
+probable que je recommande <strong>Containers</strong>.</p>
+<p>En plus de ces bibliothèques standards alternatives, on trouve des bibliothèques
+spécifiques qui résolvent des problématiques générales comme
+<a href="https://github.com/dbuenzli/bos">Bos</a> qui propose des outils pour interagir
+avec un système d'exploitation ou encore
+<a href="https://github.com/xvw/preface">Preface</a> — <em>shameless plug</em> — qui permet de
+<em>concrétiser des abstractions issues de la théorie des catégories</em>.</p>
+<p>La position des mainteneurs sur la bibliothèque standard à évolué au fil des
+années et il est dorénavant envisageable de l'étendre. Cependant, les additions
+dans cette dernière sont souvent sujettes à débat et l'addition de nouveaux
+modules peut parfois prendre beaucoup de temps. Pour ma part, j'aurais préféré
+que la bibliothèque standard <strong>continue à ne servir que le développement du
+langage</strong> et qu'une bibliothèque sous l'ombrelle de la communauté OCaml soit
+publiée. Cette séparation permet de désynchroniser les <em>releases</em> du langage et
+de sa bibliothèque standard et aussi, probablement, de simplifier la
+compatibilité entre cette bibliothèque et le langage.</p>
+<h3 id="conclusion-de-lcosystme">Conclusion de l'écosystème</h3>
+<p>Je n'ai malheureusement pas l'occasion de parler de tous les outils de la
+plateforme, ni des briques fondamentales qui font que OCaml est un langage
+agréable à utiliser pour des projets personnels, mais aussi pour des projets
+industriels (par exemple, des différents
+<a href="https://github.com/hackwaly/ocamlearlybird">débogueurs</a> existants). En
+revanche, j'espère avoir survolé quelques outils, qui forment un socle solide
+pour l'utilisation de OCaml.</p>
+<p>Dans mon utilisation du langage, il m'est parfois arrivé de devoir construire ma
+propre bibliothèque, cependant, ce n'est pas un exercice que je regrette et je
+pense que, maheureusement, si l'on décide de ne jamais utiliser un langage parce
+que 100% des bibliothèques nécéssaires ne sont pas disponibles, je trouve,
+peut-être maladroitement que c'est <strong>nivellement par le bas</strong>, et que ça nous
+enferme derrière des langages portés par des <em>entreprises riches</em>, comme Java ou
+C# et <strong>c'est un peu triste</strong>.</p>
+<h2 id="sur-la-communaut">Sur la communauté</h2>
+<p>Même si j'ai utilisé beaucoup de langages de programmation différents, je pense
+que OCaml est le seul avec lequel j'ai entretenu une interaction communautaire
+forte. Je ne suis donc pas au courant de la manière dont les choses se passent
+dans d'autres communautés, ce qui rend mon retour <em>un peu inutile</em>. Mais de mon
+expérience, je trouve que la communauté OCaml, en plus d'être très productive,
+est :</p>
+<ul>
+<li>
+<p><strong>Très accessible</strong> : comme beaucoup d'autres, OCaml dispose d'une <a href="https://ocaml.org/community">présence
+numérique forte</a>. Sur ces différents espaces, il
+est possible d'y retrouver des contributeurs au langage et à son écosystème
+très aguéris et de bénéficier de conseils pointus (ou moins). Je me permet
+d'adresser une mention particulière à <a href="http://gasche.info">Gabriel Scherer</a> et
+<a href="https://perso.quaesituri.org/florian.angeletti">Florian Angeletti</a> dont les
+réponses sont toujours élaborées et intéressantes.</p>
+</li>
+<li>
+<p><strong>Très bienveillante</strong> : il m'arrive souvent d'avoir à demander de l'aide et
+j'ai toujours eu l'occasion d'avoir des réponses claires et précises, que ça
+soit en privé ou en public.</p>
+</li>
+<li>
+<p><strong>Très brillante</strong> : OCaml est le fruit du travail de <em>chercheurs brillants</em>
+et avoir l'opprtunité d'interagir avec eux est incroyable (et potentiellement
+un peu intimidant). Avoir l'opportunité de poser, directement, des questions à
+des gens étant derrière certaines découvertes importantes de la construction
+de langage est une aubaine formidable.</p>
+</li>
+</ul>
+<p>Pour conclure sur le pan communautaire, même si je ne suis pas réellement aux
+faits des interactions dans d'autres communautés, je trouve que c'est un plaisir
+de faire partie de celle des développeurs et développeuses OCaml. C'est un
+espace bienveillant, propice au partage et à l'apprentissage.</p>
+<h2 id="quelques-mythes-lis--ocaml">Quelques mythes liés à OCaml</h2>
+<p>J'arrive — <em>enfin</em> — à la partie la plus amusante de ce trop long article, je
+vais pouvoir <em>debunker</em> certains mythes persistants liés à OCaml. Je ne promet
+toujours de bonne foi, mais sachez que mon intention est bonne. On lit souvent
+sur les internets plusieurs critiques ou remarques à l'égard d'OCaml, et
+souvent, je trouve qu'il est fatiguant d'y répondre. Cependant, quoi de mieux
+qu'un article destiné à faire part de mon intérêt pour le langage pour prendre
+le temps de survoler certaines de ses critiques et tâcher d'apporter une réponse
+?</p>
+<p>J'en ai sélectionné quelques-uns mais il est probable que dans le futur,
+j'écrirais des articles un peu plus long, à la manière des membres de
+<a href="https://www.heyplzlookat.me/articles/critique-de-la-raison-pure.gmi">HeyPlzLookAtMe</a>,
+sur des articles que je trouve injustes.</p>
+<h3 id="ocaml-et-f">OCaml et F#</h3>
+<p><a href="https://fsharp.org/">F#</a> est un langage de programmation <a href="https://fsharp.org/history/hopl-final/hopl-fsharp.pdf">historiquement très
+inspiré</a> par OCaml qui
+tourne sur la plateforme <a href="https://dotnet.microsoft.com">.NET</a> (et s'interface,
+<em>de facto</em>, très bien avec C#). Je trouve le langage — que j'ai
+professionnellement utilisé chez <a href="https://derniercri.io/">DernierCri</a> et chez
+<a href="https://www.d-edge.com">D-Edge</a> — très agréable. Comme historiquement, .NET
+était exclusivement réservé à des environnements Windows, OCaml souffrait peu de
+la comparaison, cependant depuis l'arrivée de <a href="https://github.com/dotnet/core">.NET
+Core</a>, une implémentation multi-plateforme de
+.NET, il m'arrive de plus en plus de lire sur les internets, de phrases de ce
+genre :</p>
+<blockquote>
+<p>Pourquoi continuer à faire du OCaml, quand on peut disposer du même langage,
+F#, avec tout l'écosystème .NET, plus de fonctionnalités et une syntaxe plus
+agréable à utiliser.</p>
+</blockquote>
+<p>Premièrement, je trouve que oui, bénéficier de l'écosystème .NET (Core) est un
+énorme avantage. Concernant le syntaxe, je suis plus réservé. En effet, je
+trouve que la syntaxe basé sur l'indentation rend parfois le déplacement de code
+plus laborieux et même s'il existe des critiques à l'encontre de la syntaxe de
+OCaml, je dois avouer qu'elle ne me fait pas défaut. Le dernier point me semble,
+lui, un peu plus pernicieux. En effet, F# s'est vu doté de fonctionnalités non
+présentes dans OCaml, par exemple :</p>
+<ul>
+<li>les <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">expressions de
+calcul</a>
+(qui sont une forme syntaxiquement plus générale que les <a href="https://ocaml.org/manual/5.2/bindingops.html">opérateurs de
+liaisons</a>)
+</li>
+<li>le <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">fournisseur de
+types</a>
+(qui malheureusement ne fonctionne pas avec .NET Core)
+</li>
+<li>les <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns">motifs
+actifs</a>
+</li>
+<li><a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/generics/statically-resolved-type-parameters">Paramètres de type résolus
+statiquement</a>
+</li>
+<li>la possibilité d'attribuer des méthodes à des sommes et des produits, ce qui,
+pour des raisons d'interopérabilité a beaucoup de sens, mais casse notablement
+l'inférence
+</li>
+<li>et probablement d'autres fonctionnalités que je ne connais pas bien (ou liées
+à l'interopérabilité avec la plateforme .NET, notamment de la
+<a href="https://learn.microsoft.com/fr-fr/dotnet/fsharp/language-reference/attributes">réflexion</a>)
+</li>
+</ul>
+<p>Ces évolutions sont arrivées progressivement dans le langage. Il serait naïf de
+croire que OCaml n'a pas évolué lui aussi. En effet, bien que historiquement,
+les deux langages semblaient très similaires, dès le début de la proposition de
+F#, certaines fonctionnalités étaient manquantes :</p>
+<ul>
+<li>l'absence d'un <strong>langage de modules</strong>. En effet, le mot-clé <code>module</code> est
+présent en F#, cependant, ce dernier ne sert qu'a décrire des classes
+statiques (et se marie étrangement avec les espaces noms)
+</li>
+<li>Un modèle objet <strong>drastiquement différent</strong> (pour l'interopérabilité avec C#,
+évidemment)
+</li>
+</ul>
+<p>Ces deux raisons, à elles seules, suffiraient de considérer OCaml et F# comme
+deux langages <em>cousins</em> mais <strong>très différents</strong> et motiveraient, selon moi,
+très largement le fait de préférer l'un à l'autre. Dans mon cas, OCaml plutôt
+que F# rendant la phrase d'introduction de la section caduc. Cependant, comme
+F#, OCaml a aussi évolué et en plus de ces deux différences fondamentales, on
+trouve beaucoup de choses en OCaml, absente dans F# :</p>
+<ul>
+<li>les ouvertures locales et
+<a href="https://ocaml.org/manual/5.2/generalizedopens.html">généralisées</a>. En effet,
+en F#, on ne peut ouvrir un module qu'en <em>top-level</em>, ce qui parfois peut être
+très iritant
+</li>
+<li>Du <a href="https://en.wikipedia.org/wiki/Row_polymorphism">row polymorphism</a> sur les
+produits (via des objets) et sur les sommes (via des <a href="https://ocaml.org/manual/5.2/polyvariant.html">variants
+polymorphes</a>)
+</li>
+<li>Des <a href="https://ocaml.org/manual/5.2/gadts-tutorial.html">Types algébriques
+généralisés</a> (probablement
+une des fonctionnalités, après le langage de modules, qui m'a le plus manqué)
+</li>
+<li>Des <a href="https://ocaml.org/manual/5.2/effects.html">Effets définis par
+l'utilisateur</a>
+</li>
+<li>Des <a href="https://ocaml.org/manual/5.2/extensiblevariants.html">sommes ouvertes</a>,
+ce qui peut largement se simuler avec des objets et de l'héritage ceci-dit
+</li>
+</ul>
+<p>Pour conclure, même si F# est un vraiment chouette langage, et que son usage
+fait profiter de beaucoup d'avantages (notamment la plateforme .NET), ce n'est
+pas <em>juste une meilleure version de OCaml</em>. Les deux langages sont très
+différents et, de mon point de vue, OCaml dispose d'un système de types plus
+sophistiqué, me faisant le préférer largement à F#. Et, à mon sens, dire que F#
+est juste un OCaml plus beau est aussi recevable que de dire que
+<a href="https://kotlinlang.org/">Kotlin</a> n'est rien de plus qu'un
+<a href="https://www.scala-lang.org/">Scala</a> avec une syntaxe plus légère.</p>
+<h3 id="les-oprateurs-doubls-pour-les-flottants">Les opérateurs doublés pour les flottants</h3>
+<p>Dans la bibliothèque standard, on trouve les opérateurs arithmétiques sur les
+entiers suivant :</p>
+<pre><code class="language-ocaml">val ( + ) : int -&gt; int -&gt; int
+val ( - ) : int -&gt; int -&gt; int
+val ( * ) : int -&gt; int -&gt; int
+</code></pre>
+<p>Mais aussi des opérateurs arithmétiques pour les nombres flottants :</p>
+<pre><code class="language-ocaml">val ( +. ) : float -&gt; float -&gt; float
+val ( -. ) : float -&gt; float -&gt; float
+val ( *. ) : float -&gt; float -&gt; float
+</code></pre>
+<p>Aux premiers abords, cela peut sembler déroutant. Cependant, c'est parfaitement
+sensé. Si on voulait avoir des opérateurs génériques, il nous faudrait du
+<a href="https://en.wikipedia.org/wiki/Ad_hoc_polymorphism">polymorphisme ad-hoc</a>, comme
+c'est le cas en Haskell, par exemple, où les opérateurs arithmétiques résides
+dans la classe <code>Num</code> :</p>
+<pre><code class="language-haskell">class  Num a  where
+  -- more code
+  (+), (-), (*) :: a -&gt; a -&gt; a
+  -- more code
+</code></pre>
+<p>Sans forme de polymorphisme ad-hoc (via des classes, des traits ou des
+implicites), permettant de décrire une contrainte sur nos opérateurs : <code>op :: Num a =&gt; a -&gt; a -&gt; a</code> ? Une proposition que j'ai souvent lu sur internet serait
+d'utiliser <em>la même triche</em> que pour l'opérateur <code>=</code>, dont le type est <code>val (=) : 'a -&gt; 'a -&gt; 'a</code>. Ça ne fonctionne pas, parce que alors que l'on peut
+espérer que <em>tout soit compatable</em> (dans le pire des cas, on peut renvoyer
+<code>false</code>), comment généraliser, par exemple, une addition ?</p>
+<p>Le support des opérateurs arithmétiques est un problème laborieux, qui est
+d'ailleurs la motivation originale derrière les <a href="https://en.wikipedia.org/wiki/Type_class">classes de
+types</a> (et la raison d'être des
+<a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/generics/statically-resolved-type-parameters">Paramètres de type résolus
+statiquement</a>
+en F#). De mon point de vue, <em>en attendant les <a href="https://www.cl.cam.ac.uk/~jdy22/papers/modular-implicits.pdf">modules
+implicites</a></em>,
+doubler les opérateurs pour fonctionner avec les entiers et les flottants me
+semble être une proposition <em>raisonnable</em> et, si pour d'étranges raisons,
+suffixer les opérateurs par des points en présence de flottant vous donne de
+l'urticaire, il est possible, au moyen d'ouvertures locales, de s'en passer en
+fournissant, par exemple, ce module :</p>
+<pre><code class="language-ocaml">module Arithmetic (P : sig
+  type t
+
+  val add : t -&gt; t -&gt; t
+  val sub : t -&gt; t -&gt; t
+  val mul : t -&gt; t -&gt; t
+  val div : t -&gt; t -&gt; t
+end) =
+struct
+  let ( + ), ( - ), ( * ), ( / ) = P.(add, sub, mul, div)
+end
+</code></pre>
+<p>Qui permet d'étendre les modules <code>Int</code> et <code>Float</code> (qui disposent déjà des
+fonctions <code>add</code>, <code>sub</code>, <code>mul</code> et <code>div</code>) pour les provisionner d'opérateurs
+arithmétiques :</p>
+<pre><code class="language-ocaml">module Int = struct
+  include Int
+  include Arithmetic (Int)
+end
+</code></pre>
+<p>Dans les grandes lignes, on construit un module <code>Int</code>, on inclut le module <code>Int</code>
+précédent, pour que notre nouveau module <code>Int</code> dispose de toute l'API du module
+<code>Int</code> original, ensuite on construit (et on inclut) nos opértateurs
+arithmétiques. On peut maintenant répéter l'opération avec <code>Float</code> :</p>
+<pre><code class="language-ocaml">module Float = struct
+  include Float
+  include Arithmetic (Float)
+end
+</code></pre>
+<p>Et on peut maintenant se servir de l'ouverture locale pour ne pas devoir
+suffixer nos opérateurs avec des points :</p>
+<pre><code class="language-ocaml">let x = Int.(1 + 2 + 3 + (4 * 6 / 7))
+let y = Float.(1.3 + 2.5 + 3.1 + (4.6 * 6.8 / 7.9))
+</code></pre>
+<p>De mon point de vue, même si ça peut être déroutant quand on vient de languages
+pour lesquels ce n'est pas une question, c'est un problème mineur, et il me
+semble que l'absence de surcharge d'opérateurs est un argument un peu léger pour
+ne pas donner sa chance à un langage, <em>mais ce n'est que mon humble avis</em>.</p>
+<h3 id="sur-la-sparation-entre-ml-et-mli">Sur la séparation entre <code>ml</code> et <code>mli</code></h3>
+<p>Un autre point qui fait couler beaucoup d'encre (encore
+<a href="https://discuss.ocaml.org/t/has-there-been-a-syntax-proposed-for-combining-mli-into-ml/15163">récemment</a>)
+porte sur la <strong>séparation entre <code>ml</code> et <code>mli</code></strong>. Pour ma part, je trouve ça
+génial, même si ça peut engendrer une légère forme de répétition, je peux me
+concentrer sur l'API, via l'encapsulation, de mon module côté <code>mli</code> tout en
+décrivant de la documentation, ça me permet d'ordonner les fonctions que
+j'expose dans l'ordre qu'il me plait et, naturellement, ça me fait abstraire au
+maximum les types que je partage. De plus, si je consulte une implémentation, le
+code du <code>ml</code> est rarement pollué par de la documentation et je peux rapidement
+naviguer dans les différentes éléments qui consistuent le module que j'observe.
+En plus ça rend la compilation séparée possible et permet de ne pas recompiler
+des modules qui dépendent de modules dont seul l'implémentation a été modifiée
+en développement (c'est le comportement par défaut de Dune dans le profile
+<code>dev</code>).</p>
+<p>Cependant, les goûts et les couleurs ne sont pas vraiment discutable et quand on
+expose des types complexes ou des types de modules, cette répétition peut être
+ennuyante. Heureusement, il existe une <em>astuce</em>, présentée en 2020 par <a href="https://www.craigfe.io">Craig
+Ferguson</a>, qui permet de palier à ces répétitions : <a href="https://www.craigfe.io/posts/the-intf-trick">The
+<code>_intf_</code> trick</a>.</p>
+<p>En plus, il existe des petites astuces, basées sur la possibilité de passer des
+expressions de modules arbitraires aux primitives <code>open</code> et <code>include</code> qui
+permettent, parfois, de se passer <code>mli</code>. J'en avais déjà parlé dans l'article
+<a href="/pages/modules-import.html">OCaml, modules et schémas d'importation</a>.</p>
+<h4 id="grer-lencapsulation-sans-mli">Gérer l'encapsulation sans <code>mli</code></h4>
+<p>On peut simplement utiliser <code>open struct (* code privé *) end</code> pour ne pas
+exporter des parties codes sans nécéssiter d'interfaces. Par exemple :</p>
+<pre><code class="language-ocaml">open struct
+  (* Private API *)
+  let f x = x
+  let g = _some_private_stuff
+end
+
+(* Public API *)
+let a = f 10
+let b = g + 11
+</code></pre>
+<h4 id="exprimer-linterface-depuis-le-ml">Exprimer l'interface depuis le <code>ml</code></h4>
+<p>Une autre technique similaire consiste à utiliser <code>include (struct ... end : sig (* API publique *) end)</code> pour permettre de décrire la structure et l'interface
+dans le même fichier. Par exemple :</p>
+<pre><code class="language-ocaml">include (struct 
+  type t = int
+  let f x = x
+  let g = _some_private_stuff
+end : sig 
+  type t
+  val f : int -&gt; t
+end)
+</code></pre>
+<p>De cette manière, la signature et la structure vivent dans le même fichier, tout
+en permettant de contrôler précisemment l'encapsulation. Une autre approche
+consisterait à sortir la signature dans un <code>module type</code> dédié, de cette manière
+:</p>
+<pre><code class="language-ocaml">module type S = sig
+  type t
+  val f : int -&gt; t
+end
+
+include (struct
+  type t = int
+  let f x = x
+  let g = _some_private_stuff
+end : S)
+</code></pre>
+<p>C'est très similaire à la première proposition, si ce n'est que le module expose
+aussi le type de module <code>S</code>. L'effet de bord bénéfique de ce <em>leak</em> est que l'on
+peut facilement référencer la signature du module en utilisant <code>My_mod.S</code> plutôt
+que de devoir utiliser <code>module type of My_mod</code>.</p>
+<h4 id="pour-conclure-sur-la-sparation">Pour conclure sur la séparation</h4>
+<p>Je trouve que cette séparation est <strong>très désirable</strong>, cependant, le langage de
+module de OCaml étant très expressif, il est possible, au moyen d'un peu
+d'encodage, de pallier à cette séparation. De mon point de vue, ces approches
+servent essentiellement à démontrer cette <em>expressivité</em> parce que le
+contre-coup de ce regroupement est la perte de la compilation séparée, ce que je
+trouve sacrément balot.</p>
+<h1 id="pour-conclure">Pour conclure</h1>
+<p>Je pense avoir <em>sommairement</em> survolé les points que je voulais développer. De
+mon point de vue, <strong>OCaml est un langage génial</strong> ! En effet, il offre un très
+bon compromis entre la sûreté et l'expressivité notamment grâce à un système de
+type très avancé, un langage de modules riche, des objets, le support de <em>row
+polymorphism</em> au moyen d'objets et de variants polymorphes et le support
+d'effets définis par l'utilisateurs ! Son intersection entre la recherche et
+l'industrie en font un langage qui, de mon point de vue, évolue dans la bonne
+direction, en intégrant précautionneusement de nouvelles fonctionnalités
+permettant au langage de rester moderne, sans subir les éceuils d'une
+intégration trop rapide et non éprouvée.</p>
+<p>Même si pendant plusieurs années, l'outillage de OCaml pouvait sembler un peu
+... <em>poussiéreux</em>, ces derniers temps, notamment grâce au support commercial de
+certaines entreprises, l'outillage s'est drastiquement modernisé, et continue
+son progrès comme le témoigne <a href="https://ocaml.org/tools/platform-roadmap">la feuille de route de la
+plateforme</a>. En complément, l'ensemble
+des bibliothèques disponibles progresse permettant d'utiliser OCaml dans une
+multitude de contexte, notamment grâce à ses différentes cibles de compilation
+(par exemple le navigateur via
+<a href="https://github.com/ocsigen/js_of_ocaml">js_of_ocaml</a> et
+<a href="https://github.com/ocaml-wasm/wasm_of_ocaml">wasm_of_ocaml</a>).</p>
+<p>En ajoutant à un langage expressif, doté d'un écosystème versatile, une
+communauté bienveillante et réactive, OCaml devient un choix très sérieux pour
+des projets personnels et professionnels. Il est évident que proposer une
+migration complète d'une base de code pour aller vers OCaml n'est probablement
+pas un choix pragmatique, mais si vous avez des petits projets personnels en
+tête et que vous êtes curieux et amusés par les langages de programmation, <strong>je
+vous invite sérieusement à considérer OCaml</strong> !</p>
+<p>J'espère avoir réussi à transmettre mon intérêt pour ce langage (et son
+écosystème). Si vous désirez en parler, trouver des projets ou des points de
+contributions, je serais ravi d'en parler avec vous, ou alors vous pouvez vous
+adresser à la communauté par le biais <a href="https://discuss.ocaml.org/">du forum</a> qui
+est actif, réactif et bienveillant !</p>
+</article>
+</main>
+    <footer>
+      <div class="container">
+        <div>
+          <p>
+            <a href="https://ring.muhokama.fun">Webring Muhokama</a><br />
+            <a class="wb-btn" href="https://ring.muhokama.fun/u/xvw/pred"
+              >Précédent</a
+            >
+            |
+            <a class="wb-btn" href="https://ring.muhokama.fun/u/xvw/succ"
+              >Suivant</a
+            >
+          </p>
+        </div>
+        <div>
+          <p>
+            Diffusé sous licence
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+              <strong>CC BY-SA</strong>
+            </a>
+          </p>
+          <p>
+            Honteuseument généré par
+            <a href="https://github.com/xhtmlboi/yocaml">
+              <strong>YOCaml</strong>
+            </a>
+          </p>
+          <p class="feed-icons"><a href="/feeds.html">⛰</a></p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      nightmare_js.suspend(function () {
+        capsule_hljs.run();
+      });
+      nightmare_js.mount();
+    </script>
+  </body>
+</html>
