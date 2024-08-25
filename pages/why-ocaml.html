@@ -37,7 +37,7 @@
       </li><li>
         <a href="/programming.html">Programmation</a>
       </li><li>
-        <a href="/programming.html#index-opinions">Opinions</a>
+        <a href="/programming.html#index-opinion">Opinions</a>
       </li></ol>
   </nav>
 
@@ -1870,7 +1870,31 @@ contributions, je serais ravi d'en parler avec vous, ou alors vous pouvez vous
 adresser à la communauté par le biais <a href="https://discuss.ocaml.org/">du forum</a> qui
 est actif, réactif et bienveillant !</p>
 </article>
-</main>
+<hr />
+<section class="page-comment-widget">
+  <h1>Commentaires</h1>
+  <p class="hyphenate">
+    Comme mon site web est hébergé sur un serveur de fichiers statiques (et ne
+    dispose pas de base de données), les commentaires sont assurés par le
+    <i>Fediverse</i>. Si vous possédez un compte, par exemple <i>Mastodon</i>,
+    <strong>vous pouvez donc commenter</strong> cette page en répondant à ce
+    <a
+      href="https://merveilles.town/@xvw/113021972448640275"
+      >fil de discussion</a
+    >!
+  </p>
+  <script>
+    nightmare_js.suspend(function () {
+      capsule_widgets.mountComments(
+        "comments-thread",
+        "merveilles.town",
+        "xvw",
+        "113021972448640275"
+      );
+    });
+  </script>
+  <div id="comments-thread"></div>
+</section></main>
     <footer>
       <div class="container">
         <div>
