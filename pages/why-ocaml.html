@@ -161,7 +161,7 @@ De plus, je ne suis pas seul à penser cela. Malgré l'idée reçue que OCaml ne
 </section><article><p>Dans ce <em>billet d'opinion</em>, je vais essayer de présenter brièvement ma rencontre
 avec le langage, et d'énumérer ses avantages — répartis en plusieurs rubriques
 portant sur <em>le langage lui-même</em>, son écosystème et sa communauté. Je tâcherai
-également de démystifier certains mythes (ou idées reçues) populaires sur
+également de <em>débunker</em> certains mythes (ou idées reçues) populaires sur
 Internet. Par souci de transparence, il est important de préciser qu'à l'heure
 où j'écris ces lignes, mon <a href="(https://tarides.com)">activité professionnelle</a>
 consiste <strong>à travailler pour et sur l'écosystème OCaml</strong>. Cependant, les
@@ -189,7 +189,7 @@ que proposer Rust</strong> (et probablement plus).</p>
 OCaml (ou <a href="https://caml.inria.fr/caml-light/release.fr.html">Caml Light</a>) en
 licence ou en classes préparatoires, l'utilisant dans des contextes souvent très
 éloignés de l'industrie. Pour ma part, j'ai commencé à m'intéresser à OCaml bien
-avant, grâce au <a href="(http://sdz.tdct.org/)">Site du Zéro</a>, où une petite communauté
+avant, grâce au <a href="http://sdz.tdct.org/">Site du Zéro</a>, où une petite communauté
 de programmeurs férus de fonctionnel faisait la promotion de langages moins
 <em>mainstream</em> comme <a href="https://ocaml.org">OCaml</a>, <a href="https://www.erlang.org/">Erlang</a>
 et <a href="https://www.haskell.org/">Haskell</a>. Mon interaction avec OCaml à
@@ -776,7 +776,7 @@ des effets</em> :</p>
   let () = Effect.perform (Print_endline &quot;Hello World&quot;) in
   let () = Effect.perform (Print_endline &quot;What is your name?&quot;) in
   let name = Effect.perform (Read_line ()) in
-  Effect.perform (Print_endline (&quot;Hello &quot; ^ name)
+  Effect.perform (Print_endline (&quot;Hello &quot; ^ name))
 </code></pre>
 <p>Il est ensuite possible d'interpréter, à postériori, notre programme en
 utilisant une construction similaire au filtrage par motif pour donner un sens
@@ -810,6 +810,10 @@ handlers</a>
 <li><a href="https://github.com/yallop/effects-bibliography">Effect bibliography</a>
 </li>
 </ul>
+<p>À noter qu'il serait aussi possible de procéder à cette inversion/injection au
+moyen de <em>records</em> ou d'objets, cependant, mon expérience en OCaml m'indique que
+les approches avec des modules ou des effets (quand on veut pouvoir manipuler le
+flot de contrôle), sont souvent plus directes et facile à raisonner.</p>
 <h3 id="concernant-le-futur">Concernant le futur</h3>
 <p>OCaml est un langage <em>toujours en activité</em> qui, de version en version, évolue.
 Dans la section dédiée à l'inversion de dépendances, j'ai rapidement parlé de
