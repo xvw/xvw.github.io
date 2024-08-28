@@ -731,7 +731,7 @@ end
 du type <code>IO</code> en argument (on appellera ça <em>un gestionnaire</em>) et utiliser les
 fonctions exportées par le module, qui, dans notre exemple, s'appelle <code>Handler</code>
 :</p>
-<pre><code class="language-ocaml">let program (module Handler: IO) = 
+<pre><code class="language-ocaml">let program (module Handler: IO) =
   let () = Handler.print_endline &quot;Hello World&quot; in
   let () = Handler.print_endline &quot;What is your name?&quot; in
   let name = Handler.read_line () in
@@ -964,7 +964,7 @@ langage. À ma connaissance, dans la jungle de langages <em>partiellement
 populaires</em>, seul Scala semble couvrir autant de sujets, même si, de mon point
 de vue, son modèle objet est, essentiellement par soucis d'interopérabilité avec
 les autres langages de la JVM, largement moins intéressant.</p>
-<p>Comme l'objectif de cet article n'est pas d'être un tutoriel, j'ai
+<p>Comme l'objectif de cet article n'est pas d'être un tutoriel, je suis
 volontairement passé rapidement sur certains concepts, <a href="https://ocaml.org/docs/modules">les
 modules</a> et les
 <a href="https://ocaml.org/manual/ffects.html">effets</a>. Je n'ai presque pas parlé des
@@ -1092,7 +1092,7 @@ compilation vers <em>WASM</em> pour un langage étant doté d'un <a href="https:
 cellules</a>
 était un <em>sacré challenge</em>, mais l'équipe derrière <em>WASM</em> ayant récemment
 spécificé l'interaction entre <em>WASM</em> et des <a href="https://github.com/WebAssembly/gc"><em>garbage
-collector</em></a>), <strong>OCaml dispose maintenant
+collector</em></a>, <strong>OCaml dispose maintenant
 d'une compilation vers WebAssembly parfaitement décente</strong> (et beaucoup de
 projets web, ambitieux, comme <a href="https://ocsigen.org">Ocsigen</a>, commencent à
 supporter <em>WASM</em> nativement).</p>
@@ -1713,7 +1713,7 @@ dans la classe <code>Num</code> :</p>
 <p>Sans forme de polymorphisme ad-hoc (via des classes, des traits ou des
 implicites), permettant de décrire une contrainte sur nos opérateurs : <code>op :: Num a =&gt; a -&gt; a -&gt; a</code> ? Une proposition que j'ai souvent lu sur internet serait
 d'utiliser <em>la même triche</em> que pour l'opérateur <code>=</code>, dont le type est <code>val (=) : 'a -&gt; 'a -&gt; 'a</code>. Ça ne fonctionne pas, parce que alors que l'on peut
-espérer que <em>tout soit compatable</em> (dans le pire des cas, on peut renvoyer
+espérer que <em>tout soit comparable</em> (dans le pire des cas, on peut renvoyer
 <code>false</code>), comment généraliser, par exemple, une addition ?</p>
 <p>Le support des opérateurs arithmétiques est un problème laborieux, qui est
 d'ailleurs la motivation originale derrière les <a href="https://en.wikipedia.org/wiki/Type_class">classes de
@@ -1805,11 +1805,11 @@ let b = g + 11
 <h4 id="exprimer-linterface-depuis-le-ml">Exprimer l'interface depuis le <code>ml</code></h4>
 <p>Une autre technique similaire consiste à utiliser <code>include (struct ... end : sig (* API publique *) end)</code> pour permettre de décrire la structure et l'interface
 dans le même fichier. Par exemple :</p>
-<pre><code class="language-ocaml">include (struct 
+<pre><code class="language-ocaml">include (struct
   type t = int
   let f x = x
   let g = _some_private_stuff
-end : sig 
+end : sig
   type t
   val f : int -&gt; t
 end)
