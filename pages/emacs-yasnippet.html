@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xvw - Expansion d&apos;abréviations avec YASnippet</title>
+    <meta name="description" content="Une très brève introduction à l&apos;utilisation de YASnippet pour l&apos;expansion d&apos;abréviations." />
+    <meta name="keywords" content="capsule, programmation, emacs, yasnippet" />
+    <meta name="author" content="Xavier Van de Woestyne" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="og:title" content="Expansion d&apos;abréviations avec YASnippet" />
+    <meta name="og:description" content="Une très brève introduction à l&apos;utilisation de YASnippet pour l&apos;expansion d&apos;abréviations." />
+    <meta name="twitter:title" content="Expansion d&apos;abréviations avec YASnippet" />
+    <meta name="twitter:description" content="Une très brève introduction à l&apos;utilisation de YASnippet pour l&apos;expansion d&apos;abréviations." />
+    <meta name="twitter:creator" content="@vdwxv" /><link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/hl.css" />
+    <link rel="stylesheet" href="/css/default.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/journal.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/addresses.xml" />
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule_client.bc.js"></script>
+  </head>
+  <body>
+    <main class="container"><section class="header">
+  <nav class="breadcrumb">
+    <ol>
+      <li>
+        <a href="/">Accueil</a>
+      </li><li>
+        <a href="/programming.html">Programmation</a>
+      </li><li>
+        <a href="/programming.html#index-notes">Notes</a>
+      </li><li>
+        <a href="/emacs.html">Emacs</a>
+      </li><li>
+        <a href="/emacs.html#index-astuces">Astuces</a>
+      </li></ol>
+  </nav>
+
+  <h1>Expansion d&apos;abréviations avec YASnippet</h1><time class="published-at" datetime="2024-09-25">
+    2024-09-25
+  </time></section><section class="synopsis"><p>Quand on programme (ou que l'on rédige), il est assez courant de devoir saisir des séquences récurrentes (du <em>boilerplate</em>). C'est probablement plus observable quand on écrit de code, où certaines constructions du langages, disposant de niveau d'expressivité différents, doivent être répétées très régulièrement. Dans cet article, je vous propose de découvrir <a href="https://github.com/joaotavora/yasnippet">YASnippet</a> (pour <em><strong>Y</strong>et <strong>A</strong>n other <strong>S</strong>nippet extension</em>), un système de <em>template</em> pour Emacs, permettant l'expansion d'abréviations, de manière structurée.</p>
+</section><section class="table-of-contents"><ul>
+<li><ul>
+<li><ul>
+<li><a href="#un-petit-dtour-par-abbrev-mode">Un petit détour par <code>abbrev-mode</code></a>
+</li>
+</ul>
+</li>
+<li><a href="#installation-et-organisation-des-snippets">Installation et organisation des <em>snippets</em></a>
+<ul>
+<li><a href="#organisation-du-rpertoire-de-snippets">Organisation du répertoire de <em>snippets</em></a>
+</li>
+</ul>
+</li>
+<li><a href="#cration-dabrviations">Création d'abréviations</a>
+<ul>
+<li><a href="#contrle-du-curseur-aprs-subsitution">Contrôle du curseur après subsitution</a>
+</li>
+<li><a href="#remplacements-et-navigation-structure">Remplacements et navigation structurée</a>
+<ul>
+<li><a href="#rptitions-et-excution-de-lisp">Répétitions et exécution de Lisp</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#une-collection-de-snippets-pour-ocaml">Une collection de snippets pour OCaml</a>
+</li>
+<li><a href="#pour-conclure">Pour conclure</a>
+</li>
+</ul>
+</li>
+</ul>
+</section><article><p>Quand on écrit du code, où que l'on rédige des documents, il est assez
+courant de devoir répéter des instructions imposant une structure
+fixe. Par exemple, dans beaucoup de langages de programmation, la
+construction <code>if</code> respecte généralement ce motif : <code>if PREDICATE then A else B</code>. <a href="https://github.com/joaotavora/yasnippet">YASnippet</a> est un
+système de <em>templates</em> populaire dans le monde d'Emacs, pour permettre
+la saisie interactive, tout en ajoutant une notion de <strong>mouvements
+structurés</strong>. Le <em>greffons</em> est très connu cependant, en essayant
+d'augmenter ma maitrise de Emacs (qui est toujours tristounette), j'ai
+commencé à l'utiliser et j'ai été très impressionné par son ergonomie
+! Cet article n'est pas un <em>tutoriel en profondeur</em>, <a href="http://joaotavora.github.io/yasnippet/snippet-development.html">la
+documentation</a>
+du greffon est très complète, mais un très rapide survol de quelques
+fonctionnalités que j'utilise.</p>
+<h3 id="un-petit-dtour-par-abbrev-mode">Un petit détour par <code>abbrev-mode</code></h3>
+<p>De mon point de vue, YASnippet est une version augmentée du mode de
+saisie d'abréviations via de Emacs,
+<a href="https://www.emacswiki.org/emacs/AbbrevMode"><code>abbrev-mode</code></a> qui permet
+de produire une expansion pour une abréviation donnée. Par exemple, en
+<a href="https://ocaml.org">OCaml</a>, la définition du corps d'un module, une
+<em>structure</em>, est toujours close entre <code>struct</code> et <code>end</code>. On pourrait
+donc imaginer une abréviation qui étend <code>struct</code> en <code>struct end</code> (à la
+saisie de la touche <code>TAB</code>). Même si le mode d'abréviations est très
+convaincant, j'ai trouvé que son minimalisme le rendait compliqué à
+utiliser efficacement. En effet, dans l'exemple qui d'associer
+<code>struct</code> et <code>end</code>, je voudrais que mon curseur se trouve entre
+l'ouverture et la fermeture. Malheureusement, le contrôle de la
+position du curseur et autres action <em>ad-hoc</em>, impose de passer par
+des <em>hooks</em>, rendant la définition d'expansion d'abréviations, de mon
+point de vue, laborieuse.</p>
+<p>Heureusement, YASnippet permet de résoudre ce problème, d'une manière
+que je trouve convaincante. Voyons comment s'en servrir pour résoudre
+des petits cas pratiques.</p>
+<h2 id="installation-et-organisation-des-snippets">Installation et organisation des <em>snippets</em></h2>
+<p>YASnippet n'est pas fourni par défaut dans Emacs, il est donc
+nécéssaire de l'installer. Pour ma part, j'utilise la macro
+<a href="https://github.com/jwiegley/use-package"><code>use-package</code></a>, qui me
+permet de décrire déclarativement ma configuration (et qui, depuis <code>&gt;= 29</code>, est disponible par défaut) :</p>
+<pre><code class="language-scheme">(use-package yasnippet
+  :config
+  (setq yas-snippet-dirs '(&quot;~/scame/snippets&quot;))
+  (yas-global-mode 1))
+</code></pre>
+<p>L'installation est assez commune, je configure le répertoire où se
+trouveront mes <em>snippets</em> (<a href="https://github.com/xvw/scame">scame</a> est
+ma configuration Emacs) et j'active globalement le mode. Comme nous le
+verrons plus en détail dans l'organisation des <em>snippets</em>, ils sont
+<em>scopés</em> par mode, ce qui ne pose donc, de mon point de vue, aucun
+problème d'activer le mode globalement. Il est aussi possible de
+modifier les liaisons de touches par défaut, mais pour mon usage,
+<code>TAB</code> pour subsituer une abréviation est très confortable.</p>
+<h3 id="organisation-du-rpertoire-de-snippets">Organisation du répertoire de <em>snippets</em></h3>
+<p>Un <em>snippet</em> est un fichier texte qui se trouvera dans un répertoire
+enfant du répertoire que nous avons configuré par le biais de la
+variable <code>yas-snippet-dirs</code>. Chaque sous-répertoire décrit un mode
+pour lequel les <em>snippets</em> sont accessibles. Par exemple, dans mon
+cas, voici comment est structuré le répertoire <code>~/scame/snippets</code> :</p>
+<pre><code>└─📁 scame
+   └─📁 snippets
+     ├─📁 fundamental-mode
+     ├─📁 html-mode
+     ├─📁 markdown-mode
+     └─📁 tuareg-mode
+</code></pre>
+<p>Les <em>snippets</em>, qui sont des fichiers textuels classiques, seront
+enregistrés dans chacun des sous-répertoires, pour n'être actifs que
+si l'on se trouve dans le mode référant. Dans mon exemple, j'ai des
+abréviations pour les modes <code>html</code>, <code>markdown</code>, <code>tuareg</code> (pour OCaml)
+et les abréviations localisées dans <code>fundamental-mode</code> seront communes
+à tous les modes.</p>
+<p>Quand le répertoire <code>yas-snippet-dirs</code> est correctement paramétré,
+chaque création de <em>snippet</em> lancera le mode <code>snippet</code> automatiquement
+et chaque sauvegarde rechargera la table des <em>snippets</em>, ce qui est
+très confortable !</p>
+<h2 id="cration-dabrviations">Création d'abréviations</h2>
+<p>Maintenant que nous avons installé YASnippet, et que nous avons
+configuré son répertoire, créeons nos premiers <em>snippets</em> !</p>
+<p>Pour commencer, nous allons créer le <em>snippet</em> <code>me</code>, qui quand on
+écrit <code>!me</code>, à la saisie de <code>TAB</code>, remplace <code>!me</code> par <code>Xavier Van de Woestyne &lt;mon adresse email&gt;</code>. Comme cette abréviation n'est pas
+spécifique à un seul mode, on peut l'écrire dans
+<code>snippets/fundamental-mode</code>. Créeons un fichier <code>me</code> (comme YASnippet
+détecte si un fichier est créée dans un répertoire destiné à stocker
+des abréviations, il n'est pas nécéssaire de donner une extension au
+fichier, Emacs activera automatiquement le mode <code>snippet</code>). Dans ce
+fichier, nous allons avoir 4 lignes:</p>
+<pre><code># name: me
+# key: !me
+# --
+Xavier Van de Woestyne &lt;my email address&gt;
+</code></pre>
+<p>Les lignes préfixées par <code>#</code> décrivent les métadonnées de
+l'abréviation :</p>
+<ul>
+<li><code>#name</code> est l'identifiant de l'abréviation, usuellement, c'est le
+nom du fichier, dans notre exemple, <code>me</code> ;
+</li>
+<li><code>#key</code> décrit l'abréviation, ici <code>!me</code> sera le texte à substituer si
+la touche <code>TAB</code> est pressée ;
+</li>
+<li><code># --</code> décrit la fin de la section dédiée aux métadonnées de
+l'abréviation, et tout ce qui suit décrira comment substituer la clé
+(<code>#key</code>) par le contenu du <em>template</em>.
+</li>
+</ul>
+<p>En sauvegardant le fichier, l'expansion sera disponible et il sera
+possible de s'en servir de cette manière :
+<img src="/images/yas-1.gif" alt="Exemple d'expansion" class="aered-centered-fig" /></p>
+<p>Actuellement, notre abréviation ne fait pas beaucoup plus que ce qu'il
+était possible de faire avec <code>abbrev-mode</code>, mais c'est déjà un très
+bon début ! (Il existe des métadonnées aditionnelles, documentées
+<a href="http://joaotavora.github.io/yasnippet/snippet-development.html#org5e87ae3">ici</a>,
+permettant de paramétrer très finement une substitution d'abréviation).</p>
+<h3 id="contrle-du-curseur-aprs-subsitution">Contrôle du curseur après subsitution</h3>
+<p>Ce qui rend, de mon point de vue, YASnippet largement plus flexible et
+agréable à utiliser que <code>abbrev-mode</code> est la possibilité <strong>de décrire
+la position du curseur après substitution</strong>. Reprenons l'exemple
+<code>struct</code> et <code>end</code>:</p>
+<pre><code># name: structend
+# key: !struct
+# --
+struct $0 end
+</code></pre>
+<p>Ici, <code>$0</code> dénotera la position du curseur après substitution. Une fois
+que <code>!struct</code> sera remplacé par <code>struct end</code>, le curseur se trouvera
+entre <code>struct</code> et <code>end</code>. Démonstration :</p>
+<p><img src="/images/yas-2.gif" alt="Exemple d'expansion avec relocalisation du curseur" class="aered-centered-fig" /></p>
+<p>Dans notre exemple, on observe qu'une fois que <code>!struct</code> a été
+remplacé par <code>struct end</code>, le curseur se situe bel et bien entre les
+deux membres de l'expression de module ! A ce niveau, je trouve que
+YASnippet est déjà largement plus simple à utiliser que <code>abbrev-mode</code>,
+ne demandant pas de viruosité particulière en <code>elisp</code> pour contrôler
+efficacement la position du curseur après une expansion.</p>
+<h3 id="remplacements-et-navigation-structure">Remplacements et navigation structurée</h3>
+<p>La raison pour laquelle YASnippet est <em>plus</em> qu'une extension à
+l'<code>abbrev-mode</code>, c'est que la description d'un <em>template</em> permet de
+construire des trous (des <em>placeholders</em>) tout en autorisant la
+navigation de trous en trous et potentiellement d'appliquer des
+fonctions Elisp.</p>
+<p>Par exemple, reprenons l'exemple <code>me</code>, sauf que cette fois, je
+voudrais construire un gabarit générique me permettant de naviguer
+entre le nom et l'adresse email.</p>
+<pre><code># name: email
+# key: !email
+# --
+$1  &lt;$2&gt; $0
+</code></pre>
+<p>L'effet de la substitution de <code>!email</code> placera d'abord le curseur à la
+position <code>$1</code> et l'utilisation de <code>TAB</code> déplacera le curseur sur <code>$2</code>,
+permettant <strong>la navigation entre les différents trous</strong> du
+gabarit. Une fois que la saisie est finie, <code>TAB</code> déplacera le curseur
+à la fin de la substitution.</p>
+<p><img src="/images/yas-3.gif" alt="Exemple d'expansion avec navigation" 
+class="aered-centered-fig" /></p>
+<p>La définition de trous permet aussi l'association à des labels, pour
+rendre la lecture de la substitution plus facile :</p>
+<pre><code># name: email
+# key: !email
+# --
+$1  &lt;$2&gt; $0
+</code></pre>
+<p><img src="/images/yas-4.gif" alt="Exemple d'expansion avec navigation et labels" 
+class="aered-centered-fig" /></p>
+<h4 id="rptitions-et-excution-de-lisp">Répétitions et exécution de Lisp</h4>
+<p>Allons un peu plus loin, dans un exemple plus réaliste que les
+précédents. Il est très courant qu'un document
+<a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> commence par la
+définition de métadonnées, par exemple, le titre du document,
+l'auteur, et la date de publication.</p>
+<p>Voyons un gabarit, situé dans <code>snippets/markdown-mode</code> (pour n'être
+accessible que depuis le mode Markdown), nous permettant d'automatiser
+l'écritue du prélude de notre document :</p>
+<pre><code># name: prelude
+# key: !prelude
+# --
+---
+title: ${1:Article title}
+author: Xavier Van de Woestyne &lt;xaviervdw@gmail.com&gt;
+date: ${2:`(current-time-string)`}
+---
+
+# $1
+
+$0
+</code></pre>
+<p>Dans ce gabarit, on observe deux choses intéressantes. Premièrement,
+le champ <code>date</code> est construit en définissant comme valeur par défaut
+l'expression Elisp <code>(current-time-string)</code>. Ensuite, on répète
+l'utilisation du trou <code>$1</code> pour pré-remplir le titre de niveau 1 :</p>
+<p><img src="/images/yas-5.gif" alt="Exemple d'expansion de prélude Markdown" 
+class="aered-centered-fig" /></p>
+<p>L'exemple est déjà plus ambitieux (et potentiellement réaliste) que
+ceux que nous avions vu précédemment et, selon moi, démontre l'utilité
+de YASnippet ! Je vous invite à lire <a href="http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7">la documentation du langage de
+gabarits</a>
+pour prendre pleinement connaissance des possibilités offertes et
+potentiellement pour trouver des cas d'usages amusants !</p>
+<h2 id="une-collection-de-snippets-pour-ocaml">Une collection de snippets pour OCaml</h2>
+<p>Pour démontrer l'intérêt, et la versatilité des gabarits, voici un
+dernier exemple qui applique une fonction sur un trou. En OCaml, un
+<a href="https://ocaml.org/docs/modules">module</a> doit commencer par une
+majuscule, et il est courant de nommer les <a href="https://ocaml.org/manual/5.2/moduleexamples.html#s%3Asignature">types de
+modules</a>
+<em>tout en majuscule</em> (c'est une convention implicite). On peut donc
+imaginer ces 3 gabarits :</p>
+<p>Premièrement, on permet la construction structurée d'un module, où le
+nom du module remplace automatiquement les espaces par des <code>_</code> et où
+le nom du module est automatiquement captialisé, donc <code>foo bar baz</code>
+devient <code>Foo_Bar_Baz</code> (pour parfaitement faire les choses, il ne
+faudrait ne capitaliser <strong>que le premier mots</strong> mais je voulais garder
+l'exemple en <em>one-liner</em>) :</p>
+<pre><code># name: impl
+# key: !impl
+# --
+module ${1:$$(capitalize (string-replace &quot; &quot; &quot;_&quot; yas-text))} = struct
+  $0
+end
+</code></pre>
+<p>On applique la même logique pour décrire une signature :</p>
+<pre><code># name: intf
+# key: !intf
+# --
+module ${1:$$(capitalize (string-replace &quot; &quot; &quot;_&quot; yas-text))} : sig
+  $0
+end
+</code></pre>
+<p>Et on applique <code>upcase</code>, plutôt que <code>capitalize</code> pour les types de
+modules, transformant le texte <code>foo bar baz</code> en <code>FOO_BAR_BAZ</code> :</p>
+<pre><code># name: modtype
+# key: !modtype
+# --
+module type ${1:$$(upcase (string-replace &quot; &quot; &quot;_&quot; yas-text))} = sig
+  $0
+end
+</code></pre>
+<p>En ajoutant quelques abréviations supplémentaires, pour décrire <code>let</code>
+par exemple, on peut construire un <em>workflow</em> d'écriture de code très
+interactive, de mon point de vue :</p>
+<p><img src="/images/yas-6.gif" alt="OCaml workflow" class="aered-centered-fig" /></p>
+<p>Il est évidemment possible d'aller largement plus loin, et d'améliorer
+drastiquement l'ergonomie de nos gabarits. Le but de cette rubrique
+était de montrer de quelle manière il est possible, au moyen de
+YASnippet, de décrire une manière de naviguer structurellement dans
+une expression, ce qui se marie assez bien avec les <a href="https://ocaml.github.io/merlin/editor/emacs/#source-browsing">fonctionnalités
+de
+navigation</a>
+dans le code <a href="https://github.com/ocaml/merlin">Merlin</a>.</p>
+<h2 id="pour-conclure">Pour conclure</h2>
+<p>Le <em>mode</em>, au vue de ses <a href="https://melpa.org/#/yasnippet">statistiques
+MELPA</a>, est <strong>incroyablement
+populaire</strong> et je comprend pourquoi :</p>
+<ul>
+<li>Le paquet est facile à installer, à personnaliser et à utiliser
+</li>
+<li>Son expérience utilisateur est agréable (il est très facile
+d'ajouter des abréviations)
+</li>
+<li>Il offre un <strong>grand nombre de fonctionnalités</strong>.
+</li>
+</ul>
+<p>Je vais continuer à utiliser YASnippet pour simplifier certaines
+tâches récurrentes et la fonctionnalités que je préfère est sans aucun
+doute la possibilité de décrire des trous, rendant la navigation
+structurelle envisageable ! Si jamais vous avez des chouettes gabarits
+à partager, n'hésitez surtout pas, je serais ravi de lire vos
+propositions !</p>
+<p>Une fois de plus, un article qui semblera évident pour les
+utilisateurs de Emacs aguerris ! Cependant, si, comme moi, vous avez
+toujours utilisé Emacs <em>sans réellement essayer de comprendre comment
+efficace</em>, j'espère que cet article aura été utile !</p>
+</article>
+</main>
+    <footer>
+      <div class="container">
+        <div>
+          <p>
+            <a href="https://ring.muhokama.fun">Webring Muhokama</a><br />
+            <a class="wb-btn" href="https://ring.muhokama.fun/u/xvw/pred"
+              >Précédent</a
+            >
+            |
+            <a class="wb-btn" href="https://ring.muhokama.fun/u/xvw/succ"
+              >Suivant</a
+            >
+          </p>
+        </div>
+        <div>
+          <p>
+            Diffusé sous licence
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+              <strong>CC BY-SA</strong>
+            </a>
+          </p>
+          <p>
+            Honteuseument généré par
+            <a href="https://github.com/xhtmlboi/yocaml">
+              <strong>YOCaml</strong>
+            </a>
+          </p>
+          <p class="feed-icons"><a href="/feeds.html">⛰</a></p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      nightmare_js.suspend(function () {
+        capsule_hljs.run();
+      });
+      nightmare_js.mount();
+    </script>
+  </body>
+</html>
