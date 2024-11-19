@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/krita.xml</id>
+  <title type="text">xvw.tags/krita</title>
+  <subtitle type="text">Flux du tag krita</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-01-29T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/galleries/cosmic-atlantis.html</id>
+    <title type="text">Atlantide Cosmique</title>
+    <updated>2024-01-29T00:00:00Z</updated>
+    <summary type="text">
+      Cette galerie, qui porte un nom un peu _kéké_, liste une série d&apos;illustrations de _choses étranges_ observées dans l&apos;espace (c&apos;est de la fiction hein). L&apos;objectif est de m&apos;entrainer à dessiner des éléments qui font penser à de la science-fiction.
+    </summary>
+    <link href="https://xvw.lol/galleries/cosmic-atlantis.html" rel="alternate" title="Atlantide Cosmique"/>
+    <category term="scfi"/>
+    <category term="illustration"/>
+    <category term="krita"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/galleries/never-ended-inktober-2023.html</id>
+    <title type="text">Inktober 2023</title>
+    <updated>2023-10-31T00:00:00Z</updated>
+    <summary type="text">
+      Pour l&apos;année 2023, j&apos;ai tenté de recommencer à dessiner en m&apos;essayant à [L&apos;Inktober](https://inktober.com/), un _auto-defi_ où il est question de faire un dessin par jour, motivé par un thème commun. Même si j&apos;ai **lamentablement** abandonné après 6 jours, l&apos;objectif est atteint car j&apos;ai recommencé à dessiner.
+    </summary>
+    <link href="https://xvw.lol/galleries/never-ended-inktober-2023.html" rel="alternate" title="Inktober 2023"/>
+    <category term="inktober"/>
+    <category term="illustration"/>
+    <category term="krita"/>
+  </entry>
+</feed>

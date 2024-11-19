@@ -1,0 +1,744 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><meta name="keywords" content="programmation, ocaml, modules" /><meta name="description" content="Utilisation du langage de modules et des ouvertures pour reproduire des schémas d&apos;importations usuels dans d&apos;autres langages" /><meta name="generator" content="YOCaml" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="OCaml, modules et schémas d&apos;importation" /><meta name="og:title" content="OCaml, modules et schémas d&apos;importation" /><meta name="twitter:description" content="Utilisation du langage de modules et des ouvertures pour reproduire des schémas d&apos;importations usuels dans d&apos;autres langages" /><meta name="og:description" content="Utilisation du langage de modules et des ouvertures pour reproduire des schémas d&apos;importations usuels dans d&apos;autres langages" /><meta name="og:site_name" content="xvw.lol" /><meta name="og:type" content="article" /><meta name="og:article:published_time" content="2023-10-31 00:00:00" /><meta name="og:article:section" content="programmation" /><meta name="og:article:tag" content="programmation" /><meta name="og:article:tag" content="ocaml" /><meta name="og:article:tag" content="modules" /><meta name="author" content="xvw, Xavier Van de Woestyne" /><meta name="twitter:site" content="@vdwxv" /><meta name="twitter:creator" content="@vdwxv" /><meta name="og:profile:username" content="xvw" /><meta name="og:profile:first_name" content="Xavier" /><meta name="og:profile:last_name" content="Van de Woestyne" /><meta name="og:image" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:url" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:type" content="image/png" /><meta name="og:image:width" content="1200" /><meta name="og:image:height" content="630" /><meta name="og:image:alt" content="Cover image xvw.lol" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/capsule.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="me" href="https://x.com/vdwxv"><link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://xvw.lol/pages/modules-import.html">
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <title>xvw.lol - OCaml, modules et schémas d&apos;importation</title>
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule_js.bc.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="header-content">
+        <div><h3><a href="/">xvw.lol</a></h3></div>
+        <div>
+          <nav class="set breadcrumb">
+            <a href="/">Index</a><a href="/programming.html">Programmation</a><a href="/programming.html#index-bribes-and-encodages">Bribes &amp; Encodages</a></nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="main-content"><h1>OCaml, modules et schémas d&apos;importation</h1><div class="set publication-date"><time class="date-repr"
+        data-prefix="publié le"
+        datetime="2023-10-31 00:00:00">
+    2023-10-31
+  </time></div><article class="synopsis"><p>Le langage de modules de <a href="https://ocaml.org">OCaml</a> peut être intimidant, et il implique généralement l'utilisation de beaucoup de mots-clés, par exemple <code>open</code> et <code>include</code> qui  permettent d'importer des définitions dans un module. Depuis la version <code>4.08</code> du langage, la primitive <code>open</code> a été <em>généralisée</em> pour permettre l'ouverture <strong>d'expression de module arbitraire</strong>. Dans cet article, nous allons observer comment utiliser cette généralisation pour reproduire une pratique commune dans d'autres langages, que j'appelle, <em>un peu pompeusement</em>, des stratégies d'importation, décrivant, par exemple, ce genre de d'importation <code>import {a, b as c} from K</code> sans dépendre d'un langage dédié à l'importation.</p>
+</article><section class="toc"><ul><li><a href="#importation-de-composants-de-modules">Importation de composants de modules</a><ul><li><a href="#ouverture-de-modules">Ouverture de modules</a><ul><li><a href="#ouverture-locale-de-modules">Ouverture locale de modules</a></li></ul></li><li><a href="#inclusion-de-modules">Inclusion de modules</a></li><li><a href="#ouverture-vs-inclusion-avant-ocaml-408">Ouverture VS inclusion avant OCaml 4.08</a></li><li><a href="#un-premier-bénéfice">Un premier bénéfice</a></li></ul></li><li><a href="#schémas-dimportation">Schémas d'importation</a><ul><li><a href="#importation-non-qualifiée">Importation non-qualifiée</a></li><li><a href="#qualification-renommée">Qualification renommée</a><ul><li><a href="#présence-du-module-renommé">Présence du module renommé</a></li><li><a href="#renommage-imbriqué">Renommage imbriqué</a></li></ul></li><li><a href="#importation-sélective">Importation sélective</a><ul><li><a href="#importation-sélective-avec-renommage">Importation sélective avec renommage</a></li></ul></li><li><a href="#importation-par-exclusion">Importation par exclusion</a><ul><li><a href="#le-type-somme-vide">Le type somme vide</a></li><li><a href="#suppression-de-fonctions">Suppression de fonctions</a></li></ul></li></ul></li><li><a href="#ancrages-de-types">Ancrages de types</a></li><li><a href="#conclusion">Conclusion</a></li></ul></section><article><p>La généralisation des ouvertures a été documentée dans le papier
+<a href="https://www.cl.cam.ac.uk/~jdy22/papers/extending-ocamls-open.pdf">&quot;<em>Extending OCaml's</em>
+<code>open</code>&quot;</a>,
+présenté au <a href="https://ocaml.org/workshops/ocaml-users-and-developers-workshop-2017">OCaml Workshp
+2017</a>,
+et implémenté — pour la version <code>4.08</code> de OCaml — via les soumissions
+<a href="https://github.com/ocaml/ocaml/pull/1506"><code>#1506</code></a> et
+<a href="https://github.com/ocaml/ocaml/pull/2147"><code>#2147</code></a> (adjoint,
+probablement, de quelques correctifs suivant la fusion de
+l'implémentation). Cette généralisation augmente grandement la
+flexibilité du terme <code>open</code>, rendant possible la mise en place de
+quelques astuces pour contrôler finement l'importation de <em>composants
+de modules</em> dans un autre module.</p>
+<blockquote>
+<p>Certaines des astuces présentées sont reprises telles qu'elles du
+papier qui, en plus de présenter les stratégies d'implémentations,
+présente quelques cas d'usages (dont certains n'étant pas pertinents
+dans le cadre de cet article car ils ne concernent pas les
+stratégies d'importations).</p>
+</blockquote>
+<p>Il est probable qu'une grande partie des <em>astuces</em> présentées ne
+deviennent pas <em>idiomatiques</em> dans les bases de code OCaml. Selon moi,
+leur présentation met essentiellement en lumière l'accroissement de
+flexibilité de la primitive <code>open</code> sans devoir se reposer sur une
+<strong>extension gramaticale spécifique</strong> dédiée à l'importation de
+composants, tout en présentant quelques encodages un peu
+<em>capilotractés</em> ... pour le plaisir de la démonstration.</p>
+<h2 id="importation-de-composants-de-modules"><a class="anchor" aria-hidden="true" href="#importation-de-composants-de-modules"></a>Importation de composants de modules</h2>
+<p>Quand on décrit un programme OCaml, on construit des collections de
+modules qui exportent des composants (des types, des <em>sous-modules</em>,
+des exceptions et des fonctions). Il est donc crucial de contrôler
+finement leurs accessibilités depuis d'autres modules, pour cela, on
+dispose de deux primitives — <code>open</code> et <code>include</code> — dont la différence
+est subtile. Pour décrire correctement les différences entre les deux
+primitive, nous allons nous baser sur ce module (un peu artificiel)
+que nous utiliserons dans les exemples qui suivent :</p>
+<div class="side-by-side">
+<pre><code class="language-ocaml">module A = struct
+  type a = T_a
+  let a_a = 1
+  let a_b = T_a
+  module B = struct
+    type b = T_b
+    let b_a = T_b
+    let b_b = T_a
+  end
+end
+</code></pre>
+<pre><code class="language-ocaml">module A : sig
+  type a = T_a
+  val a_a : int
+  val a_b : a
+  module B : sig
+    type b = T_b
+    val b_a : b
+    val b_b : a
+  end
+end
+</code></pre>
+</div>
+<p>Comme vous pouvez le remarquer, l'implémentation — et <em>de facto</em>, la
+signature — du module n'est pas très intéressant, il ne servira qu'a
+illustrer mon propos.  Ce que l'on voudra, c'est utiliser, dans un
+fichier <code>c.ml</code> (qui dénotera le module <code>C</code>), les composants décrits
+dans <code>A</code>.</p>
+<p>La première approche, et la plus évidente, est d'utiliser leurs noms
+complets (un appel <strong>totalement qualifié</strong>) en utilisant le <strong>chemin</strong>
+du module. Par exemple, créons un couple de <code>int</code> et de <code>A.a</code> :</p>
+<pre><code class="language-ocaml">let c_a = (A.a_a, A.B.b_b)
+</code></pre>
+<p>Par contre, il arrive que le fait d'utilisé les chemins complets
+puisse être <em>rébarbatif</em> (voire totalement illisible). C'est pour ça
+que nous allons voir comment <strong>importer les composants du module <code>A</code>
+dans le module <code>C</code></strong>. Cependant, comme le but de l'article n'est pas
+d'être un didacticiel sur l'ouverture et l'inclusion, mais d'explorer
+les ouvertures généralisées pour décrire des schémas d'importations,
+nous ne nous étendrons pas sur ces deux fonctionnalités qui sont déjà
+fortemment décrites dans le <a href="https://v2.ocaml.org/releases/5.1/htmlman/index.html">manuel du
+langage</a> — dans
+les sections dédiées <a href="https://v2.ocaml.org/releases/5.1/htmlman/moduleexamples.html">aux
+modules</a>,
+<a href="https://v2.ocaml.org/releases/5.1/htmlman/overridingopen.html">à la surcharge liée aux
+ouvertures</a>
+et <a href="https://v2.ocaml.org/releases/5.1/htmlman/generalizedopens.html">aux ouvertures
+généralisées</a>.</p>
+<h3 id="ouverture-de-modules"><a class="anchor" aria-hidden="true" href="#ouverture-de-modules"></a>Ouverture de modules</h3>
+<p>La primitive <code>open</code> permet <em>d'importer</em> les composants d'un module
+dans un autre module, <strong>sans re-exporter</strong> ces dernières dans le
+module courant. Par exemple, utilisons <code>open</code> pour réécrire la
+fonction <code>c_a</code> :</p>
+<div class="side-by-side">
+<pre><code class="language-ocaml">open A
+
+let c_a = (a_a, B.b_b)
+</code></pre>
+<pre><code class="language-ocaml">val c_a : int * A.a
+</code></pre>
+</div>
+<p>Comme on peut le voir dans la signature (inférée), <strong>n'exporte pas</strong>
+les <em>composants</em> du module <code>A</code> et référence le type <code>a</code> par son chemin
+complet. Il serait aussi possible d'ouvrir <code>A.B</code> en utilisant <code>open A.B</code> ou encore <code>open B</code> (car <code>A</code> est déjà ouvert).</p>
+<p>De la même manière qu'il est possible d'ouvrir des modules dans
+<em>l'implémentation</em>, il est aussi possible d'ouvrir des modules dans
+<em>la signature</em>, permettant de réduire le chemin pour décrire des types
+(ou des modules).</p>
+<h4 id="ouverture-locale-de-modules"><a class="anchor" aria-hidden="true" href="#ouverture-locale-de-modules"></a>Ouverture locale de modules</h4>
+<p>Les cas d'ouvertures que nous avons observés précédemment étaient
+<strong>globales</strong> au module dans lequelle elles étaient invoquées, ce qui
+peut être un peu contraignant quand on veut ouvrir plusieurs modules —
+exposant, par exemple, des opérateurs arithmétiques. Heureusement, il
+est possible d'ouvrir <strong>au niveau de l'expression</strong>, de deux manières
+différentes :</p>
+<ul>
+<li>
+<p><code>let open Module in ...</code> où dans l'expression suivant ce bloc — donc
+lexicalement borné — <code>Module</code> sera ouvert <em>localement</em>. Ce qui est
+très utile pour n'ouvrir un module que dans une fonction ;</p>
+</li>
+<li>
+<p><code>Module.(...)</code> où <code>Module</code> ne sera ouvert — lexicalement borné aussi
+— uniquement entre les parenthèses. Ce qui est très utile pour
+n'ouvrir un module que dans une expression, par exemple, imaginons
+que le module <code>Float</code> expose un module <code>Infix</code>, exposant les
+opérateurs arithmétiques usuels pour l'arithmétique, il serait
+possible de décrire une opération entre des
+flottants de cette manière :<br>
+<code>let x = Float.Infix.(1.2 + 3.14 + 1.68)</code>.</p>
+</li>
+</ul>
+<p>L'absence d'ouverture locale peut être très handicapant. Par exemple,
+le langage <a href="https://fsharp.org/"><code>F#</code></a> ne permet que des <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/import-declarations-the-open-keyword">ouvertures
+globales</a>
+ce qui rend la définition d'opérateurs dans un module dédié
+laborieuse, préconisant l'utilisation de <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading">surcharge
+d'opérateurs</a>
+(ou encore de <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/generics/statically-resolved-type-parameters">Statically Resolved Type
+Parameters</a>)
+engendrant parfois beaucoup de complexité.</p>
+<h3 id="inclusion-de-modules"><a class="anchor" aria-hidden="true" href="#inclusion-de-modules"></a>Inclusion de modules</h3>
+<p>La primitive <code>include</code> ressemble très fort à la primitive <code>open</code> sauf
+qu'elle — comme son <em>nom</em> l'indique — inclus le contenu du module
+ciblé dans le corps du module où elle est appelée. Par exemple, si
+nous avions utilisé <code>include</code> au lieu de <code>open</code> dans notre exemple
+précédent, observons l'incidence sur la signature inférée :</p>
+<div class="side-by-side">
+<pre><code class="language-ocaml">include A
+
+let c_a = (a_a, B.b_b)
+</code></pre>
+<pre><code class="language-ocaml">type a = A.a = T_a
+val a_a : int
+val a_b : a
+module B = A.B
+val c_a : int * A.a
+</code></pre>
+</div>
+<p>Même si la signature <em>varie légèrement</em> de celle que nous avions
+définie en introduction — il y a quelques subtilités concernant les
+propagations <strong>d'égalités de types et de modules</strong>, décrites dans la
+section <a href="https://v2.ocaml.org/releases/5.1/htmlman/moduletypeof.html">&quot;Recovering the type of a
+module&quot;</a>,
+liées au
+<a href="https://discuss.ocaml.org/t/extend-existing-module/1389/7">renforcement</a>
+— on peut observer que le contenu du module <code>A</code> a été <em>inclus</em>,
+<em>ajouté</em> au module <code>C</code>. Au contraire de l'ouverture, il n'est <strong>pas
+possible de faire de l'inclusion locale</strong>, ce qui est parfaitement
+logique parce que <strong>de l'inclusion au niveau local aurait exactement
+le même effet qu'une ouverture</strong>.</p>
+<p>De mon expérience personnelle, je retire généralement deux cas d'usages
+spécfiques à l'utilisation de <code>include</code> :</p>
+<ul>
+<li>
+<p>l'extension d'un module existant (par exemple, ajouter une fonction
+au module <code>List</code> dans le cadre de mon projet, ou pour faire une
+extension à la bibliothèque standard) ;</p>
+</li>
+<li>
+<p>l'inclusion de sous-modules dans un module parent. Par exemple, il
+est assez courant que dans un module, on retrouve des opérateurs (où
+des <a href="https://v2.ocaml.org/releases/5.1/htmlman/bindingops.html#start-section">opérateurs de
+liaison</a>)
+qu'il est assez courant de <em>confiner</em> dans des sous-modules dédiés
+(généralement <code>Infix</code> et <code>Syntax</code>). Pour des raisons d'API, les
+re-exporter au niveau du <em>module mère</em> peut être une bonne
+idée. C'est d'ailleurs <a href="https://github.com/xvw/preface/blob/master/lib/preface_specs/indexed_functor.mli#L72">intensivement utilisé dans
+Preface</a>.</p>
+</li>
+</ul>
+<p>Les inclusions sont un outils puissant d'extension, mais aussi du
+mutualisation de code et il y a <strong>beaucoup à dire</strong> car ça peut
+souvent impliquer la présence de <em>substitution</em>, <em>substitution
+déstructive</em> ou de renforcement, ce qui impliquerait la rédaction d'un
+article dédié !</p>
+<h3 id="ouverture-vs-inclusion-avant-ocaml-408"><a class="anchor" aria-hidden="true" href="#ouverture-vs-inclusion-avant-ocaml-408"></a>Ouverture VS inclusion avant OCaml <code>4.08</code></h3>
+<p>Avant la fusion de la proposition de la <strong>généralisation des
+ouvertures</strong>, il existait une différence <strong>sensible</strong> dans l'usage des
+<code>open</code> contre <code>include</code> : le paramètre que prenait les deux
+primitives.</p>
+<ul>
+<li>
+<p><code>open</code> prenait <a href="https://v2.ocaml.org/releases/4.07/htmlman/names.html#module-path">un chemin de
+module</a>,
+par exemple : <code>A</code> ou encore <code>A.B.C</code></p>
+</li>
+<li>
+<p><code>include</code> prenait <a href="https://v2.ocaml.org/releases/4.07/htmlman/modules.html#module-expr">une expression de
+module</a>,
+par exemple : des chemins comme <code>A</code> ou <code>A.B.C</code>, mais aussi des
+applications de foncteurs comme <code>F(X)</code>, des modules contraints par
+des signatures : <code>(M : S)</code> ou directement le corps d'un module :
+<code>struct ... end</code>.</p>
+</li>
+</ul>
+<p>Cette différence de flexibilité impliquait l'utilisation de détours
+assez génants pour atteindre le même niveau d'expressivité pour les
+ouvertures en comparaison aux inclusions. En effet, pour permettre aux
+ouvertures de composer avec des applications de foncteurs ou des
+contraintes, il fallait passer par des modules intermédiaires.</p>
+<p>Dans le cas de l'utilisation d'un chemin, les deux appels sont — en
+terme d'expressivité — identiques, parce qu'un chemin peut aussi être
+une expression de module :</p>
+<div class="side-by-side">
+<pre><code class="language-ocaml">include A.B.C
+</code></pre>
+<pre><code class="language-ocaml">open A.B.C
+</code></pre>
+</div>
+<p>Par contre, dès que l'on essaie d'ouvrir des cas un peu plus
+complexes, nativement supportés par <code>include</code>, on devait rapidement
+introduire des modules intermédiaires :</p>
+<div class="side-by-side">
+<pre><code class="language-ocaml">include F(X)
+include (M : S)
+include struct
+  let x = 10
+end
+</code></pre>
+<pre><code class="language-ocaml">module A = F(X)
+open A
+
+module B : S = M
+open B
+
+module C = struct
+  let x = 10
+end
+open C
+</code></pre>
+</div>
+<p>Même si, aux premiers abords, ça peut ne pas sembler dramatique,
+l'introduction de modules intermédiaires impose de ne pas les exporter
+dans la signature du module qui les ouvres (dans son <code>mli</code> ou sa
+signature). En complément, alors que <code>open</code> et <code>include</code> sont souvent
+présentés symétriquement, on ne pouvait que déplorer leur absence de
+symétrie dans les paramètres qu'ils prenaient.  Heureusement, depuis
+<code>4.08</code> (qui a tout de même été <strong>libérée en Juin 2019</strong>), grâce à la
+généralisation des ouvertures, <code>open</code> prend maintenant une expression
+de module arbitraire, exactement comme <code>include</code>, nous permettant de
+l'utiliser pour mimer ces fameux schémas d'importation, évoqués en
+introduction de cet article.</p>
+<h3 id="un-premier-bénéfice"><a class="anchor" aria-hidden="true" href="#un-premier-bénéfice"></a>Un premier bénéfice</h3>
+<p>Le fait que la primitive <code>open</code> puisse prendre des expressions de
+modules arbitraires offre un premier bénéfice — <em>probablement futile
+quand on aime écrire les signatures de ses modules</em> : <strong>la définition
+d'expressions locales</strong>.  En effet, l'ouverture d'un module n'exporte
+pas son contenu, il est donc possible de décrire très facilement des
+valeurs <em>top-level</em> non-exportée en les définissant dans une
+expression <code>open struct ... end</code>. Par exemple :</p>
+<div class="side-by-side">
+<pre><code class="language-ocaml">open struct
+  let x = 10
+  let y = 20
+end
+let z = x + y
+</code></pre>
+<pre><code class="language-ocaml">val z : int
+</code></pre>
+</div>
+<p>Les fonctions <code>x</code> et <code>y</code> sont <strong>confinées dans une ouverture</strong>, elles
+ne sont donc pas exportées, ce qui peut être très utiles quand on veut
+définir des valeurs (des types ou des modules) localement. De plus
+comme <strong>une structure peut être contrainte par une signature</strong>, il est
+aussi, par exemple, possible d'encapsuler un état mutable partagé dans
+l'ouverture locale, <strong>ne s'échappant pas du périmètre de son
+ouverture</strong>. Voici deux exemples dans lesquels il est impossible de
+modifier la cellule de référence sans passer par les <em>combinateurs
+exportés</em>, le premier utilisant une contrainte, le second en utilisant
+des ouvertures locales imbriquées :</p>
+<div class="side-by-side">
+<pre><code class="language-ocaml">open (
+  struct
+    let cell = ref 0
+    let incr () = cell := !cell + 1
+    let decr () = cell := !cell - 1
+  end :
+    sig
+      val incr : unit -&gt; unit
+      val decr : unit -&gt; unit
+    end)
+</code></pre>
+<pre><code class="language-ocaml">open struct
+  open struct 
+    let cell = ref 0 
+  end
+  let incr () = cell := !cell + 1
+  let decr () = cell := !cell - 1
+end
+
+</code></pre>
+</div>
+<p>Même si l'approche classique utilisée par un développeur OCaml est
+d'utiliser des signatures pour des problématiques <strong>d'encpasulation</strong>,
+utilisée comme telle, l'ouverture généralisée de modules permet de
+cacher, de manière relativement élégante, certains <em>éléments de
+plomberies</em> nécéssaires à la construction d'un module (qui lui,
+devrait exposer une API publique au moyen d'une signature).</p>
+<p>Maintenant que nous avons observé <em>des exemples</em> d'utilisation de
+l'ouverture généralisée, voyons de quelle manière elle rend la
+présence d'un langage dédié aux schémas d'importations
+<strong>discutablement utiles</strong>.</p>
+<h2 id="schémas-dimportation"><a class="anchor" aria-hidden="true" href="#schémas-dimportation"></a>Schémas d'importation</h2>
+<p>Depuis que la <strong>modularité</strong> est devenue un des cheveaux de bataille
+de la conception de logiciels — JavaScript a d'ailleurs <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">empilé les
+propositions</a>
+en faisant dépendre la stratégie de modularisation, et d'importation,
+du <em>cadriciel</em> ou du système de construction utilisé — les langages
+(comme <a href="https://www.python.org/">Python</a> ou encore
+<a href="https://www.haskell.org/">Haskell</a>) ont proposé des fonctionnalités
+similaires à la primitive <code>open</code> de OCaml pour importer des composants
+dans le module courant. Généralement, ces directives d'importation
+sont <em>un tout petit langage à part entière</em>, régit par ses propres
+règles et sa propre grammaire. Depuis que <code>open</code> est généralisé, on
+peut <em>encoder</em> une grande partie des constructions d'importation
+usuelles — même si nous verrons que certaines, proposées par Haskell,
+peuvent être un peu verbeuse à encoder.</p>
+<p>Pour l'exemple, nous utiliserons le module suivant comme cible
+d'importation :</p>
+<pre><code class="language-ocaml">module Foo : sig
+  val x : int
+  val y : string
+  val z : char
+end
+</code></pre>
+<p>Il existe cependant une <strong>nuance essentielle</strong> sur la notion
+<strong>d'importation qualifiée</strong>, en effet, en Haskell, pour être utilisé,
+un module <strong>doit être importé</strong>, alors qu'en OCaml, c'est la
+description du schéma de compilation qui indique la présence ou non
+d'un module. Dans nos différents exemples, nous supposerons que le
+module <code>Foo</code>, que nous avons décrit précédemment, est présent dans
+notre schéma de compilation. De ce fait, pour les importations
+qualifiée — où les termes sont toujours préfixées par leur cheminm de
+module, il n y a aucune cérémonie aditionnelle nécéssaire. Il est
+importer de garder à l'esprit que les astuces présentées ci-dessous
+peuvent se composer pour construit des schémas d'importations très
+spécifiques (et probablement irréalistes), démontrant que, au coup
+d'un peu de verbosité, l'approche <em>langage</em> permet encore plus de
+flexibilité qu'un <em>DSL</em> dédié à l'importation rigide.</p>
+<h3 id="importation-non-qualifiée"><a class="anchor" aria-hidden="true" href="#importation-non-qualifiée"></a>Importation non-qualifiée</h3>
+<p>La première directive consiste simplement à importer les définition de
+<code>Foo</code> dans le module courant, les fonctions <code>x</code>, <code>y</code> et <code>z</code> :</p>
+<div class="side-by-side">
+<pre><code class="language-haskell">import * from Foo
+</code></pre>
+<pre><code class="language-ocaml">open Foo
+</code></pre>
+</div>
+<p>Il n y a pas de subtilité, importer toutes les termes exposés par
+<code>Foo</code> consiste simplement à l'ouvrir. Il n y a pas grand chose à dire
+de plus, on ne tire ici partit d'aucune subtilité du langage.</p>
+<h3 id="qualification-renommée"><a class="anchor" aria-hidden="true" href="#qualification-renommée"></a>Qualification renommée</h3>
+<p>Une autre directive commune consiste à renommer le module, par
+exemple, importer <code>Foo</code> sous le nom <code>Bar</code> en rendant accessible dans
+le module <code>Bar.x</code>, <code>Bar.y</code> et <code>Bar.z</code>, pour cela, on peut utiliser
+<a href="https://v2.ocaml.org/releases/5.1/htmlman/modulealias.html">alias de module
+<em>type-level</em></a>.</p>
+<div class="side-by-side">
+<pre><code class="language-haskell">import Foo as Bar
+</code></pre>
+<pre><code class="language-ocaml">open struct module Bar = Foo end
+</code></pre>
+</div>
+<p>On utilise la construction <code>open struct ... end</code> pour ne pas échapper
+notre alias dans l'API publique de notre module — même si, en présence
+d'une signature, cette coquetterie n'est pas nécéssaire car il suffit
+de ne pas exporter le module <code>Bar</code> dans la signature.</p>
+<h4 id="présence-du-module-renommé"><a class="anchor" aria-hidden="true" href="#présence-du-module-renommé"></a>Présence du module renommé</h4>
+<p>Le fait d'utiliser un <strong>alias de module</strong> laisse le module <code>Foo</code>
+accessible, et dans certains cas, on voudrait le rendre
+inaccessible. La solution la plus simple est de simplement <em>vider le
+module</em> et pour clarifier l'erreur lié à son utilisation non-désirée,
+on peut ajouter une
+<a href="https://v2.ocaml.org/releases/5.1/htmlman/alerts.html#start-section">alerte</a>
+indiquant que le module a été supprimé :</p>
+<pre><code class="language-ocaml">open struct
+  module Bar = Foo
+  module Foo = struct end [@@alert erased]
+end
+</code></pre>
+<p>Rendant l'exploitation du module <code>Foo</code>, dans le module courant,
+impossible.  Cependant, comme il est d'usage de fournir des signatures
+de modules — et donc d'en contrôler son API publique, on trouvera plus
+régulièrement des renommages de cette forme : <code>module Bar = Foo</code>. De
+plus, je ne suis pas convaincu que l'interdiction d'accès au module
+original soit réellement un problème.</p>
+<h4 id="renommage-imbriqué"><a class="anchor" aria-hidden="true" href="#renommage-imbriqué"></a>Renommage imbriqué</h4>
+<p>On pourrait imaginer ce genre de renommage : <code>import Foo as Bar.Baz</code>,
+mais OCaml ne permet pas de décrire des chemins complets de cette
+forme <code>module Bar.Baz = Foo</code>, il faut donc décrire la hiérarchie
+d'imbrication des modules, de cette manière, rendant les fonctions
+<code>Bar.Baz.x</code>, <code>Bar.Baz.y</code> et <code>Bar.Baz.z</code> disponibles dans le module
+courant :</p>
+<pre><code class="language-ocaml">open struct 
+  module Bar = struct 
+    module Baz = Foo 
+  end 
+end
+</code></pre>
+<p>Ce qui est, je vous l'accorde, un peu verbeux, mais si pour des
+raisons obscures, vous voudriez renommer un module existant avec un
+chemin composé, vous pouvez, en déclarant la hiérarchie des modules.</p>
+<h3 id="importation-sélective"><a class="anchor" aria-hidden="true" href="#importation-sélective"></a>Importation sélective</h3>
+<p>Il arrive parfois que l'importation <strong>complète</strong> du module soit
+excessive et que l'on ne voudrait que quelques composants exposés par
+ce dernier. C'est pour ça qu'il est possible de n'importer qu'une
+partie d'un module. Dans cet exemple, ne nous voudrions n'importer que
+<code>x</code> et <code>y</code> :</p>
+<div class="side-by-side">
+<pre><code class="language-haskell">import {x, y} from Foo
+</code></pre>
+<pre><code class="language-ocaml">open struct
+  let x = Foo.x
+  let y = Foo.y
+end
+</code></pre>
+</div>
+<p>Même si cette approche est, elle aussi, un peu verbeuse, elle
+n'importe, dans le module courant, que les fonctions <code>x</code> et <code>y</code>. Il
+est possible de simplifier cette écriture en utilisant des <em>n-uplet</em>
+et des ouvertures locales :</p>
+<pre><code class="language-ocaml">open struct
+  let (x, y) = Foo.(x, y)
+end
+</code></pre>
+<p>Sinon, il est aussi possible de <strong>contraindre l'ouverture</strong> au moyen
+d'une signature, ce qui implique de devoir le type des fonctions à
+exporter :</p>
+<pre><code class="language-ocaml">open (Foo : sig
+  val x : int
+  val y : string end)
+</code></pre>
+<p>Plusieurs propositions
+(<a href="https://github.com/ocaml/ocaml/pull/10013"><code>#10013</code></a> et
+<a href="https://github.com/ocaml/ocaml/issues/11558#issuecomment-1255946104"><code>#11558</code></a>)
+ont été faites pour permettre d'utiliser du
+<a href="https://v2.ocaml.org/releases/5.1/htmlman/bindingops.html#ss%3Aletops-punning"><em>let-punning</em></a>
+rendant la syntaxe moins lourde, cependant dans la première a été
+délestée du <em>punning</em> pour les membres de modules et la seconde est
+toujours au stade de l'issue.</p>
+<h4 id="importation-sélective-avec-renommage"><a class="anchor" aria-hidden="true" href="#importation-sélective-avec-renommage"></a>Importation sélective avec renommage</h4>
+<p>Comme les deux premières propositions laissent à l'utilisateurs un
+contrôle sur le nom (ce n'est que de la <em>redéfinition</em> de fonction),
+on peut trivialement intégrer le renommage. Dans cet exemple, on
+expose <code>x</code> et <code>new_y_name</code>, qui appelle <code>Foo.y</code> :</p>
+<div class="side-by-side">
+<pre><code class="language-haskell">import {x, y as new_y_name} from Foo
+</code></pre>
+<pre><code class="language-ocaml">open struct
+  let (x, new_y_name) = Foo.(x, y)
+end
+</code></pre>
+</div>
+<p>Sans surprise, le renommage est assez simple, par contre, si l'on
+voulait utiliser l'approche par signature, il faudrait utiliser un peu
+plus d'astuce en couplant une ouverture et une inclusion :</p>
+<pre><code class="language-ocaml">open (struct
+    include Foo
+    let new_y_name = y
+  end : sig
+    val x : int
+    val new_y_name : string end)
+</code></pre>
+<p>Cependant, cette dernière proposition est tellement verbeuse qu'elle
+en devient un peu irrationnelle — surtout en comparaison avec la
+précédente — que j'imagine que c'est le genre de code que l'on ne
+verra jamais — ou du moins, que l'on ne voudrait jamais voir — dans
+une base de code régulière. En revanche, même si la proposition est
+lourde, je trouve qu'elle montre tout de même assez explicitement
+comment <strong>il est possible de composer les différentes constructions et
+outils vu précédemment</strong>.</p>
+<h3 id="importation-par-exclusion"><a class="anchor" aria-hidden="true" href="#importation-par-exclusion"></a>Importation par exclusion</h3>
+<p>Haskell possède un modificateur d'importation un peu particulier dont
+j'ai longuement hésité à parler parce que je n'avais aucune idée de
+comment l'implémenter, mais c'était sans compter, une fois de plus,
+sur l'inestimable aide de <a href="https://github.com/Octachron">@octachron</a>
+et de <a href="https://github.com/xhtmlboi">@xhtmlboi</a> qui m'ont tout deux
+donné, <em>approximativement</em>, la même solution . Ce modificateur permet
+d'importer tout un module, excepté une liste de composant. Dans cet
+exemple, <code>x</code> et <code>y</code> seront importé parce que l'on importe <strong>tout le
+module <code>Foo</code></strong>, excepté la fonction <code>z</code>.</p>
+<pre><code class="language-haskell">import Foo hidding (z)
+</code></pre>
+<p>OCaml ne dipose pas, nativement, la possibilité de construire des
+<strong>intersections</strong> ou des <strong>différences</strong> de modules. La solution
+proposée par <a href="https://github.com/Octachron">@octachron</a> et
+<a href="https://github.com/xhtmlboi">@xhtmlboi</a> repose sur de la réecriture
+de fonction, adjoint à l'utilisation d'une alerte, d'une manière un
+peu similaire à ce que nous avions fait pour évincer un module
+renommé. Par contre, avant d'observer la solution proposée, faisons un
+petit détour par le variant vide.</p>
+<h4 id="le-type-somme-vide"><a class="anchor" aria-hidden="true" href="#le-type-somme-vide"></a>Le type somme vide</h4>
+<p>En OCaml, il est possible de définir un type somme qui ne contient
+aucun constructeur, en utilisant <a href="https://v2.ocaml.org/releases/5.1/htmlman/emptyvariants.html#start-section"><strong>le variant
+vide</strong></a>
+et qui permet, dans les grandes lignes, de <em>décrire des valeurs non
+représentables</em>. Pour le définir, il suffit de construire une somme
+avec une branche vide (qui, <strong>attention</strong>, n'est pas le <a href="https://en.wikipedia.org/wiki/Bottom_type">type
+bottom</a>, noté <code>⊥</code>) :</p>
+<pre><code class="language-ocaml">type empty = |
+</code></pre>
+<p>Pour se convaincre que le compilateur peut réfuter les cas contenant
+une valeur de type <code>empty</code>, on peut très facilement l'expérimenter
+avec de la correspondance de motifs, dans l'exemple qui suit, le
+compilateur ne lève aucun avertissement car les motifs sont
+exhaustifs. Comme il n'est pas possible de construire une valeur de
+type <code>empty</code> (sauf en trichant, en utilisant, par exemple de la
+sorcellerie comme l'inénarrable fonction <code>Obj.magic</code>), on peut
+<em>réfuter</em> le traitement du cas d'erreur :</p>
+<pre><code class="language-ocaml">let f : ('a, empty) result -&gt; 'a = function
+  | Ok x -&gt; x
+</code></pre>
+<p>Mais dans notre cas d'usage, ce n'est pas la réfutation qui va nous
+intéresser mais plutôt le fait qu'il n'est pas possible de décrire une
+valeur de type <code>empty</code> pour permettre l'éviction de fonctions.</p>
+<h4 id="suppression-de-fonctions"><a class="anchor" aria-hidden="true" href="#suppression-de-fonctions"></a>Suppression de fonctions</h4>
+<p>La solution qui m'a été proposée consiste à rendre les fonctions que
+l'on veut expulser du module <strong>impossible à appeler</strong>. Pour ça, nous
+allons d'abord créer une fonction <em>placeholder</em> que nous utiliserons
+pour écraser une fonction existante :</p>
+<pre><code class="language-ocaml">type empty = |
+let expelled : empty -&gt; unit = fun _ -&gt; ()
+</code></pre>
+<p>A priori, notre fonction <code>expelled</code> est impossible à appeler car on ne
+peut la provisionner d'une valeur de type <code>empty</code>, cette dernière
+étant impossible à produire. Nous allons donc pouvoir <strong>inclure le
+module que l'on veut refiner</strong> et ensuite <strong>substituer les fonctions
+que l'on veut exclure</strong> avec notre fonction <code>expelled</code>, et nous les
+associerons à une alerte pour clarifier l'erreur que l'utilisation
+d'une fonction évincée produira :</p>
+<pre><code class="language-ocaml">open struct
+  include Foo
+  let (z [@alert expelled]) = expelled
+end
+</code></pre>
+<p><em>Et voila</em>, on peut être à peu près sûr que l'utilisation de <code>z</code>
+provoquera une erreur de compilation, et la compilation d'un module
+qui l'exploite soulèvera un avertissement. En revanche, la solution
+est loin d'être parfait car elle <strong>n'élimine pas</strong> le composant du
+module. Pour être très honnête, j'ai <strong>très rarement</strong> eu l'occasion
+de regretter l'absence de cette fonctionnalité, nativement. De mon
+point de vue, l'importation sélèctive suffit généralement largement.</p>
+<h2 id="ancrages-de-types"><a class="anchor" aria-hidden="true" href="#ancrages-de-types"></a>Ancrages de types</h2>
+<p>Avant de conclure cet article,
+<a href="https://github.com/Octachron">@octachron</a> m'a pointé du doigt
+l'asymétrie partielle entre <code>open</code> et <code>include</code> en présence de modules
+anonymes (donc d'expression de modules <code>struct ... end</code>), c'est un
+problème auquel j'avais déjà été confronté théoriquement car j'avais
+assisté à l'événement de <a href="https://www.meetup.com/ocaml-paris/events/292972153">Mai
+2023</a> du <a href="https://oups.frama.io/">OCaml
+Users in Paris</a> où <a href="https://clement.blaudeau.net/">Clément
+Blaudeau</a>, dans sa présentation
+<a href="https://www.irill.org/videos/OUPS/2023-05/blaudeau.html"><em>Retrofitting OCaml
+Modules</em></a>
+(qui était une synthèse de son papier <a href="https://inria.hal.science/hal-03526068/file/main.pdf"><em>OCaml modules: formalization,
+insights and
+improvements</em></a>).</p>
+<p>Comme l'ouverture n'exporte pas les composants ouverts, sans
+l'association à une signature explicite, certains termes ne peuvent
+pas être typés. Par exemple :</p>
+<pre><code class="language-ocaml">open struct type t = A end
+let x = A
+</code></pre>
+<p>Dans cet exemple, le type <code>t</code> (et son constructeur <code>A</code>) est présent
+dans le <em>scope courant</em>, cependant, comme il n'est pas exporté, il est
+impossible de <em>typer</em> correctement <code>x</code>. Si le module disposait d'une
+signature, on pourrait facilement se rendre compte qu'il n'existe pas
+de type acceptable pour <code>x</code>et qu'il faudrait soit changer la directive
+d'ouverture, soit ne pas exporter <code>x</code>.  C'est un problème que l'on
+appelle <strong>l'ancrage des types</strong> qui est décrit expansivement dans le
+papier cité en début de section.</p>
+<h2 id="conclusion"><a class="anchor" aria-hidden="true" href="#conclusion"></a>Conclusion</h2>
+<p>Je pense sincèrement que, dans une utilisation quotidienne de OCaml,
+nous sommes très rarement confronté à ce genre de besoins. L'objectif
+de l'article était, <em>essentiellement</em>, de montrer comment utiliser
+certaines primitives liées au langage de modules en complément de la
+<em>généralisation des ouvertures</em> pour démontrer qu'avoir des primitives
+expressives et composables permet de reproduire, parfois trivialement
+(et parfois moins trivialement), des schémas d'importations
+classiques, présents dans d'autres langages de programmation. Il
+existe probablement d'autres encodages <em>rigolos</em> — probablement à base
+de <em>foncteurs</em> — et n'hésitez pas à me les faire parvenirs pour que je
+puisse compléter cet article !</p>
+<p>Pour terminer, j'ajouterai que même si j'ai fièrement <em>fanfaronné</em> en
+prétendant que ce n'était pas commun de programmer de cette manière en
+OCaml, la présence de paquet comme
+<a href="https://ocaml.org/p/ppx_import/latest">ppx_import</a> ou
+<a href="https://github.com/johnyob/ppx-open">ppx_open</a> indique que quelques
+allègement syntaxique ne serait pas de trop, notamment pour les
+importation sélectives.</p>
+</article>
+
+</div>
+    </main>
+    <footer>
+      <div id="footer-content">
+        <div>
+          <section>
+            <h3>Ring.muhokama.fun</h3>
+            <p>
+              Ce site fait partie du
+              <a href="https://ring.muhokama.fun">webring Muhokama</a>.
+              Je vous invite à le parcourir&nbsp;!
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/pred">
+                prédécesseur
+              </a>
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/succ">
+                successeur
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Diffusion</h3>
+            <p>
+              Le <a href="https://github.com/xvw/capsule">code source</a>
+              du générateur est diffusé sous
+              <a href="https://opensource.org/license/mit">
+                licence MIT</a>
+              et le contenu est diffusé (<i>sauf mention</i>) sous
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                licence CC BY-SA</a>.
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://github.com/xvw/capsule/blob/main/content/pages/modules-import.md">
+                sources de la page
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Flux</h3>
+            <nav class="set svg-light">
+              <a href="/atom.xml"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Rss</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a><a rel="me" href="https://x.com/vdwxv"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a rel="me" href="https://merveilles.town/@xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a><a rel="me" href="https://github.com/xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Github</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="/feeds.html">Autres flux</a>
+            </nav>
+          </section>
+        </div>
+        <div>
+          <div class="set svg-light">
+            <a href="https://ocaml.org"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>OCaml</title><path d="M12.178 21.637c-.085-.17-.187-.524-.255-.676-.067-.135-.27-.506-.37-.625-.22-.253-.27-.27-.338-.608-.12-.574-.405-1.588-.76-2.296-.187-.372-.49-.677-.761-.947-.236-.236-.777-.624-.878-.607-.895.169-1.166 1.046-1.587 1.739-.237.388-.473.71-.66 1.115-.167.371-.151.793-.439 1.115a2.952 2.952 0 00-.624 1.097c-.034.084-.101.929-.186 1.131l1.318-.084c1.233.085.877.557 2.787.456l3.022-.1a5.376 5.376 0 00-.27-.71zM20.96 1.539H3.023A3.02 3.02 0 000 4.56v6.587c.44-.152 1.047-1.08 1.25-1.3.337-.389.405-.895.574-1.2.389-.709.456-1.215 1.334-1.215.406 0 .575.1.845.473.186.253.523.743.675 1.064.186.371.474.86.609.962.1.068.185.136.27.17.135.05.253-.051.354-.12.118-.1.17-.286.287-.556.17-.39.339-.827.44-.997.169-.27.236-.608.422-.76.27-.236.641-.253.743-.27.557-.118.81.27 1.08.507.186.168.423.49.609.91.135.339.304.661.388.846.068.185.237.49.338.86.101.322.337.575.44.744 0 0 .152.406 1.03.778a7.505 7.505 0 00.81.286c.39.135.76.12 1.233.068.338 0 .524-.49.676-.878.084-.237.185-.895.236-1.081.05-.185-.085-.32.034-.49.135-.186.22-.203.287-.439.17-.523 1.114-.54 1.655-.54.456 0 .389.44 1.149.287.439-.085.86.05 1.318.185.388.102.76.22.98.473.134.17.489.997.134 1.031.033.033.067.118.118.151-.085.322-.422.085-.625.051-.253-.05-.44 0-.693.118-.439.187-1.063.17-1.452.49-.32.271-.32.861-.473 1.2 0 0-.422 1.063-1.317 1.722-.237.17-.692.574-1.672.726-.44.068-.86.068-1.318.05-.22-.016-.438-.016-.658-.016-.136 0-.575-.017-.558.034l-.05.119a.6.6 0 00.033.169c.017.1.017.185.034.27 0 .185-.017.388 0 .574.017.388.17.743.186 1.148.017.44.236.913.456 1.267.085.135.203.152.254.32.067.186 0 .406.033.609.118.794.355 1.638.71 2.364v.017c.439-.067.895-.236 1.47-.32 1.063-.153 2.532-.085 3.478-.17 2.399-.22 3.7.98 5.844.49V4.562a3.045 3.045 0 00-3.04-3.023zm-8.951 14.187c0-.034 0-.034 0 0zm-6.47 2.769c.17-.372.271-.778.406-1.15.135-.354.337-.86.693-1.046-.05-.05-.744-.068-.929-.085a7.406 7.406 0 01-.608-.084 22.976 22.976 0 01-1.15-.236c-.22-.051-.979-.322-1.13-.39-.39-.168-.642-.658-.93-.607-.185.034-.37.101-.49.287-.1.152-.134.423-.202.608-.084.203-.22.405-.32.608-.238.354-.626.676-.795 1.03-.033.085-.05.169-.084.254v4.07c.202.034.405.068.624.135 1.69.456 2.095.49 3.75.304l.152-.017c.118-.27.22-1.165.304-1.435.067-.22.153-.39.187-.591.033-.203 0-.406-.017-.59-.034-.491.354-.661.54-1.065z"/></svg></a>
+            <span>Fièrement généré par
+              <a href="https://github.com/xhtmlboi/yocaml">YOCaml
+            </a></span>
+          </div>
+          <div class="svg-cc-light">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/"><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.785" cy="28.501" r="28.836"/><path d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314
+	  c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143
+	  c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429
+	  c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2
+	  c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657
+	  c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913
+	  c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971
+	  c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344
+	  c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187
+	  l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657
+	  c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2
+	  c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629
+	  c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686
+	  C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2
+	  c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113
+	  c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686
+	  c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313
+	  c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z"/></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.637" cy="28.806" r="28.276"/>
+ <g><path d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456
+ C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5
+ c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657
+ c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771
+ c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571
+ C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557
+ c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6
+ C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514
+ c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z"/>
+ </g></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="36.944" cy="28.631" r="29.105"/><g>
+<path d="M37.443-3.5c8.951,0,16.531,3.105,22.742,9.315C66.393,11.987,69.5,19.548,69.5,28.5c0,8.954-3.049,16.457-9.145,22.514
+			     C53.918,57.338,46.279,60.5,37.443,60.5c-8.649,0-16.153-3.143-22.514-9.429C8.644,44.786,5.5,37.264,5.5,28.501
+			     c0-8.723,3.144-16.285,9.429-22.685C21.138-0.395,28.643-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.572-18.457,7.715
+			     c-5.22,5.296-7.829,11.467-7.829,18.513c0,7.125,2.59,13.257,7.77,18.4c5.181,5.182,11.352,7.771,18.514,7.771
+			     c7.123,0,13.334-2.609,18.629-7.828c5.029-4.876,7.543-10.99,7.543-18.343c0-7.313-2.553-13.485-7.656-18.513
+			     C51.004,4.842,44.832,2.272,37.557,2.272z M23.271,23.985c0.609-3.924,2.189-6.962,4.742-9.114
+			     c2.552-2.152,5.656-3.228,9.314-3.228c5.027,0,9.029,1.62,12,4.856c2.971,3.238,4.457,7.391,4.457,12.457
+			     c0,4.915-1.543,9-4.627,12.256c-3.088,3.256-7.086,4.886-12.002,4.886c-3.619,0-6.743-1.085-9.371-3.257
+			     c-2.629-2.172-4.209-5.257-4.743-9.257H31.1c0.19,3.886,2.533,5.829,7.029,5.829c2.246,0,4.057-0.972,5.428-2.914
+			     c1.373-1.942,2.059-4.534,2.059-7.771c0-3.391-0.629-5.971-1.885-7.743c-1.258-1.771-3.066-2.657-5.43-2.657
+			     c-4.268,0-6.667,1.885-7.2,5.656h2.343l-6.342,6.343l-6.343-6.343L23.271,23.985L23.271,23.985z"/></g></g></svg></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      nightmare_js.suspend(function () {
+          capsule_hljs.run();
+      });
+      nightmare_js.mount();
+    </script>
+  </body>
+</html>

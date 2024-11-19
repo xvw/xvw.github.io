@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/occur.xml</id>
+  <title type="text">xvw.tags/occur</title>
+  <subtitle type="text">Flux du tag occur</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-04-09T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/emacs-occurs-long-line.html</id>
+    <title type="text">Lister les lignes trop longues (via Occur)</title>
+    <updated>2024-04-09T00:00:00Z</updated>
+    <summary type="text">
+      Une petite astuce qui explique comment utiliser [occur](https://www.emacswiki.org/emacs/OccurMode) et [l&apos;argument universel](https://www.gnu.org/software/emacs/manual/html_node/emacs/Arguments.html) pour énumérer, dans un _buffer_, l&apos;ensemble des lignes qui dépassent un nombre donné de caractères.
+    </summary>
+    <link href="https://xvw.lol/pages/emacs-occurs-long-line.html" rel="alternate" title="Lister les lignes trop longues (via Occur)"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="occur"/>
+  </entry>
+</feed>

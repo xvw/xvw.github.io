@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/oop.xml</id>
+  <title type="text">xvw.tags/oop</title>
+  <subtitle type="text">Flux du tag oop</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2022-05-29T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/oop-refl.html</id>
+    <title type="text">Méthodes gardées en OCaml</title>
+    <updated>2022-05-29T00:00:00Z</updated>
+    <summary type="text">
+      Les **méthodes gardées** permettent d&apos;attacher des **contraintes** au receveur (`self`) **uniquement pour certaines méthodes**, permettant donc de n&apos;appeler ces méthodes que si le receveur satisfait ces contraintes (ces _guards_). [OCaml](https://ocaml.org) ne permet pas, syntaxiquement, de définir _directement_ ce genre de méthodes. Dans cette note, nous allons voir comment les encoder en utilisant un **témoin d&apos;égalité de type**.
+    </summary>
+    <link href="https://xvw.lol/pages/oop-refl.html" rel="alternate" title="M\195\169thodes gard\195\169es en OCaml"/>
+    <category term="programmation"/>
+    <category term="type"/>
+    <category term="oop"/>
+    <category term="ocaml"/>
+    <category term="gadt"/>
+  </entry>
+</feed>

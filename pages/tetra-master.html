@@ -1,0 +1,2551 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><meta name="keywords" content="final-fantasy, game-design, jeu-video, ocaml" /><meta name="description" content="Présentation aigrie du jeu de cartes de Final Fantasy 9" /><meta name="generator" content="YOCaml" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="L&apos;enfer du Tetra Master" /><meta name="og:title" content="L&apos;enfer du Tetra Master" /><meta name="twitter:description" content="Présentation aigrie du jeu de cartes de Final Fantasy 9" /><meta name="og:description" content="Présentation aigrie du jeu de cartes de Final Fantasy 9" /><meta name="og:site_name" content="xvw.lol" /><meta name="og:type" content="article" /><meta name="og:article:published_time" content="2023-09-05 00:00:00" /><meta name="og:article:section" content="jeu-video" /><meta name="og:article:tag" content="final-fantasy" /><meta name="og:article:tag" content="game-design" /><meta name="og:article:tag" content="jeu-video" /><meta name="og:article:tag" content="ocaml" /><meta name="author" content="xvw, Xavier Van de Woestyne" /><meta name="twitter:site" content="@vdwxv" /><meta name="twitter:creator" content="@vdwxv" /><meta name="og:profile:username" content="xvw" /><meta name="og:profile:first_name" content="Xavier" /><meta name="og:profile:last_name" content="Van de Woestyne" /><meta name="og:image" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:url" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:type" content="image/png" /><meta name="og:image:width" content="1200" /><meta name="og:image:height" content="630" /><meta name="og:image:alt" content="Cover image xvw.lol" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/capsule.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="me" href="https://x.com/vdwxv"><link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://xvw.lol/pages/tetra-master.html">
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <title>xvw.lol - L&apos;enfer du Tetra Master</title>
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule_js.bc.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="header-content">
+        <div><h3><a href="/">xvw.lol</a></h3></div>
+        <div>
+          <nav class="set breadcrumb">
+            <a href="/">Index</a><a href="/#index-technologies">Technologies</a><a href="/games.html">Jeux vidéo</a></nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="main-content"><h1>L&apos;enfer du Tetra Master</h1><div class="set publication-date"><time class="date-repr"
+        data-prefix="publié le"
+        datetime="2023-09-05 00:00:00">
+    2023-09-05
+  </time></div><article class="synopsis"><p>Le <em>Tetra Master</em> est le jeu de cartes facultatif du jeu <strong>Final Fantasy 9</strong>. Son fonctionnement est, en surface, similaire au <em>Triple Triad</em> — le jeu de cartes de Final Fantasy 8 — cependant, même s'il est possible de capturer une intuition générale nous permettant de gagner, pour peu que l'on possède des bonnes cartes, après plus d'une centaine de parties, je dois avouer avoir accepté le fait que, juste en jouant au jeu, et en lisant tous les didacticiels <em>en jeu</em>, je fusse incapable d'en comprendre l'ensemble des règles, me poussant à me documenter pour comprendre ce que j'avais raté. L'absence d' <strong>aucune règle</strong> dans le jeu (ou le manuel) m'a exaspéré, me poussant à écrire cet article ...</p>
+</article><section class="toc"><ul><li><a href="#mise-en-contexte">Mise en contexte</a><ul><li><a href="#simple-mais-pas-sur-tous-les-aspects">Simple, mais pas sur tous les aspects</a></li><li><a href="#découverte-des-règles-via-internet">Découverte des règles via Internet</a></li></ul></li><li><a href="#le-tetra-master">Le Tetra Master</a><ul><li><a href="#les-cartes-dans-lhistoire">Les cartes dans l'histoire</a></li><li><a href="#la-collecte-des-cartes">La collecte des cartes</a><ul><li><a href="#une-brève-note-sur-laléatoire">Une brève note sur l'aléatoire</a></li></ul></li><li><a href="#les-règles-selon-le-manuel">Les règles selon le manuel</a><ul><li><a href="#défier-un-adversaire">Défier un adversaire</a></li><li><a href="#règles-basiques">Règles basiques</a><ul><li><a href="#gagner-une-carte">Gagner une carte</a></li><li><a href="#récompenses-et-pénalités">Récompenses et pénalités</a></li></ul></li><li><a href="#nombre-limite-de-cartes-et-menu">Nombre limite de cartes et menu</a></li><li><a href="#conclusion-de-la-lecture-du-manuel">Conclusion de la lecture du manuel</a></li></ul></li><li><a href="#règles-détaillées">Règles détaillées</a><ul><li><a href="#initiation-dune-partie">Initiation d'une partie</a></li><li><a href="#plateau-de-jeu">Plateau de jeu</a></li><li><a href="#prise-de-cartes-simple">Prise de cartes simple</a></li><li><a href="#bataille">Bataille</a><ul><li><a href="#batailles-multiples">Batailles multiples</a></li><li><a href="#anatomie-dune-carte">Anatomie d'une carte</a></li><li><a href="#lire-les-statistiques-dune-carte">Lire les statistiques d'une carte</a></li><li><a href="#interprétation-des-statistiques-hexadécimales">Interprétation des statistiques hexadécimales</a></li><li><a href="#déroulé-de-la-bataille-toujours-plus-daléas">Déroulé de la bataille, toujours plus d'aléas</a></li><li><a href="#calcul-des-probabilités-de-victoire-en-duel">Calcul des probabilités de victoire en duel</a></li><li><a href="#les-combos">Les combos</a></li></ul></li><li><a href="#pré-conclusion-sur-les-règles">Pré-conclusion sur les règles</a></li></ul></li><li><a href="#expérience-et-évolution-des-cartes">Expérience et évolution des cartes</a><ul><li><a href="#evolution-de-lattaque-et-des-défenses">Evolution de l'attaque et des défenses</a></li><li><a href="#evolution-du-type-de-cartes">Evolution du type de cartes</a></li><li><a href="#liste-des-cartes">Liste des cartes</a></li></ul></li><li><a href="#le-niveau-de-collectionneur">Le niveau de collectionneur</a><ul><li><a href="#les-différents-niveaux">Les différents niveaux</a></li><li><a href="#sur-la-distinction-des-cartes">Sur la distinction des cartes</a></li><li><a href="#les-points-attribués-par-cartes">Les points attribués par cartes</a><ul><li><a href="#note-sur-les-permutations-de-motifs">Note sur les permutations de motifs</a></li></ul></li><li><a href="#la-cerise-sur-le-gateau">La cerise sur le gateau</a></li></ul></li></ul></li><li><a href="#pour-conclure-enfin">Pour conclure, enfin</a><ul><li><a href="#quen-tirer">Qu'en tirer</a></li><li><a href="#la-suite">La suite</a></li><li><a href="#remerciements">Remerciements</a></li><li><a href="#lultime-mot-de-la-fin">L'ultime mot de la fin</a></li></ul></li></ul></section><article><p>Attention, ma critique salée <strong>ne porte que sur le jeu Tetra
+Master</strong>. Bien que je puisse parfaitement comprendre (et accepter)
+certaines critiques formulées à l'égard du neuvième opus de la saga,
+j'ai, peut-être par nostalgie, beaucoup apprécié le jeu. De plus, le
+jeu de cartes n'est pas un élément bloquant pour le progrès dans
+l'aventure, il est donc possible de parfaitement apprécier le jeu,
+tout en ne conservant qu'une très légère frustration de ne pas
+comprendre les rouages complexes — et discutablement inférables — de
+son système de règles.</p>
+<p>Certaines personnes trouveront ça très étrange de revenir sur ce jeu,
+<strong>plus de 22 ans</strong> après sa sortie en Europe... c'est vrai ! Je dois
+vous avouer que je trouve ça très rigolo de tâcher de transformer ce
+site web en <em>un genre de bibliothèque poussiéreuse</em>, remplie de
+<em>savoirs inutiles</em>.</p>
+<h3 id="mise-en-contexte"><a class="anchor" aria-hidden="true" href="#mise-en-contexte"></a>Mise en contexte</h3>
+<p>J'ai découvert la saga <a href="https://en.wikipedia.org/wiki/Final_Fantasy">Final
+Fantasy</a> par le biais du
+7ème opus, à la fin des années 90, regardant avidement mon cousin,
+Thomas, y jouer. J'avais été très marqué, et je suis devenu un grand
+amateur de la série, pour ses ambiances, ses musiques, et ses
+histoires. Par contre, étant très jeune, et n'ayant pour seule
+expérience du genre
+<a href="https://en.wikipedia.org/wiki/History_of_Eastern_role-playing_video_games#Japanese_role-playing_games">JRPG</a>
+Pokemon rouge, je me souciais peu de mécaniques — quelle horreur, me
+direz-vous, je passais à côté de ce qui fait qu'un jeu vidéo <strong>est</strong>
+un jeu — et donc je lisais peu les didacticiels de jeu, ne cherchant
+qu'à progresser dans l'histoire.</p>
+<blockquote>
+<p>Même si la série Final Fantasy — du moins, les épisodes parvenus
+jusqu'en Europe à cette époque — n'est pas réputée pour être une
+collection de jeux difficile, ne pas s'embarrasser de la
+compréhension, par exemple, du sysème de
+<a href="http://ff7.fr/materias.php">materia</a>, dans Final Fantasy 7 peut
+rendre la progression de l'aventure <strong>très complexe</strong>. Et oui, bien
+que les opus 6, 7, 8 et 9 de Final Fantasy soient, en terme de
+<a href="https://en.wiktionary.org/wiki/skill_ceiling"><em>Skill Ceiling</em></a>,
+similaires aux versions rouge et bleue de Pokemon, j'ai l'intuition
+que le <a href="https://en.wiktionary.org/wiki/skill_floor"><em>Skill Floor</em></a>
+des trois Final Fantasy est largement plus élevé.</p>
+</blockquote>
+<p>Gardant une sympathie, pendant plusieurs années, sur ces jeux que je
+n'avais <strong>jamais</strong> terminés, des années plus tard, je décidais d'y
+rejouer, avec l'ambition de les terminer. De plus, à cette époque, mon
+intérêt en tant que programmeur se portait sur la série
+<a href="https://www.rpgmakerweb.com/">RPGMaker</a> (un <em>logiciel jouet</em> pour
+construire des RPGs, en offrant une interface de de programmation pour
+la construction de systèmes originaux et laissant un très grande
+liberté de personnalisation pour les <a href="https://www.aedemphia-rpg.net/">utilisateurs plus
+chevronnés</a>), jouer à des classiques
+du genre me semblait être une très bonne approche !</p>
+<p>Comme les <em>JRPGs</em> sont, très souvent, des jeux longs, et que je n'y
+jouais pas à la fréquence d'un <em>hardcore gamer</em>, presque 10 ans plus
+tard, après avoir terminé FF6, FF7 et FF8, mon bilan était clair:
+<strong>lire les didacticiels et comprendre les différentes mécaniques de
+jeu rend l'expérience de jeu largement plus facile</strong>. Même s'il existe
+des subtilités dans chacun de ces opus, relevant plus du <em>Skill
+Ceiling</em>, les jeux étaient globalement très simples — ce qui n'est pas
+une critique — et je pouvais attaquer FF9, sereinement.</p>
+<h4 id="simple-mais-pas-sur-tous-les-aspects"><a class="anchor" aria-hidden="true" href="#simple-mais-pas-sur-tous-les-aspects"></a>Simple, mais pas sur tous les aspects</h4>
+<p>Comme ses prédécesseurs, Final Fantasy 9 n'est pas un jeu
+compliqué. Les mécaniques de jeu sont faciles d'accès et, même si
+parfois les combats peuvent manquer de rythme — et le mécanisme de
+<a href="https://fr.wikipedia.org/wiki/Final_Fantasy_IX#Combats">transe</a> peut
+être frustrant quand on vient des deux précédents jeux — on comprend
+rapidement comment être efficace. La source de ma frustration provient
+du jeu de cartes.  Comme son prédécesseur, le jeu embarque un système
+<em>ad-hoc</em>, <strong>le Tetra Master</strong>, un jeu de cartes est introduit assez
+rapidement dans sa diégèse. En tant que joueur, je suis généralement
+assez favorable à la diversification (et la prolifération) de systèmes
+<em>ad-hoc</em>, surtout dans les JRPGs, qui bénéficient, généralement, d'une
+assez longue durée de vie et qui, du moins, à cette époque, étaient
+souvent linéaires parce qu'ils permettent parfois de changer le rythme
+et d'introduire des quêtes annexes amusantes. Dans le jeu, le Tetra
+Master est introduit comme un jeu de cartes <em>simple</em>, et il est très
+rapidement possible de récupérer ses premières cartes et d'apprendre
+les <em>pretendues</em> règles du jeu.</p>
+<p>Après plus d'une centaine de parties et, tout en ayant lu
+consciencieusement les différents fragments de règles éparpillées dans
+le jeu — notamment via les conseils de <em>Jack</em> — j'en suis arrivé à la
+conclusion suivante : <strong>je n'étais jamais serein lors d'une partie</strong>,
+car même si j'avais capturé l'idée générale du jeu, il semblait me
+manquer quelque chose dans la compréhension des règles.</p>
+<h4 id="découverte-des-règles-via-internet"><a class="anchor" aria-hidden="true" href="#découverte-des-règles-via-internet"></a>Découverte des règles via Internet</h4>
+<p>Frustré que, malgŕe mon expérience dans le jeu, je semblais passer à
+coté de plusieurs subtilités, je fis ce que, à l'époque (aux alentours
+de 2000), je ne pouvais pas faire, j'ai cherché sur le net. J'ai été
+amusé de voir qu'en 2023, il existe toujours des sites, à l'apparence
+des sites du début des années 2000 qui forment une base de
+connaissances impressionnantes sur la licence sur lesquels j'ai pu
+trouvé des règles détaillées du Tetra Master et, en effet, il me
+manquait <strong>beaucoup d'éléments</strong> pour comprendre l'ensemble des règles
+du jeu. D'ailleurs, durant mes recherches, j'ai eu l'occasion de
+trouver un grand nombre de messages publiés sur des forums de joueurs
+tout aussi désabusés que moi. Une fois les règles découvertes, une
+autre question s'est naturellement posée : &quot;<em>Comment ces sites ont-ils
+découvert ces règles ?</em>&quot;.</p>
+<p>Mon premier réflexe a été de consulter <a href="http://s3.amazonaws.com/szmanuals/6de938ebe61e9432ea99da2095150069">le manuel
+d'origine</a>
+qui, possède une section dédiée au Tetra Master (page <code>22</code> et <code>23</code>).
+Malheureusement, elle ne donne pas plus d'informations que ce que l'on
+apprend dans le jeu. Cependant, l'encart <strong>Card Ability Points</strong> de la
+page <code>22</code> :</p>
+<blockquote>
+<p>Every card has a set of numbers and letters that represents the
+strength of the card, which comes into play during card
+battles. Generally, the higher the number, the stronger the
+card. Try to figure out the effects of numbers and letters on each
+card.</p>
+</blockquote>
+<p>Sapristi, le manuel nous provoque ! En cherchant plus profondément,
+j'ai trouvé un <a href="http://web.archive.org/web/20221226113714/https://gamefaqs.gamespot.com/ps/197338-final-fantasy-ix/faqs/9671">sombre
+document</a>,
+publié en Novembre <strong>2000</strong>, et mis à jour jusqu'en Juin <strong>2001</strong>, qui
+semble être la base du savoir collectif des règles du jeu. Fruit d'une
+investigation poussée — incluant des demandes à
+<a href="https://en.wikipedia.org/wiki/Square_(video_game_company)">Squaresoft</a>
+et probablement un peu de <em>reverse-engineering</em> — Le document a été
+initié en vue d'établir un ensemble de règles exhaustives du jeu pour
+être porté en jeu de plateau et semble avoir été l'aboutissement d'une
+très jolie collaboration.</p>
+<p>Un autre point très amusant du document, au-delà d'expliquer les
+règles, est qu'il met en lumière une <a href="http://archive.thegia.com/letters/l0011/19.html">citation
+extraordinaire</a> d'un
+certain <a href="http://archive.thegia.com/features/990602/staff/s10.html">Drew
+Cosner</a>,
+membre de l'équipe de rédaction de <em>feu</em> <a href="http://www.thegia.com/">The Gaming Intelligence
+Agency</a>, un site éteint en 2015 proposant des
+revues de jeux vidéo.</p>
+<blockquote>
+<p>Anyway, here it is: how the hell are you supposed to play Tetra
+Masters in FFIX? As far as I can tell, you place your cards on the
+board at random and your opponent randomly puts his cards down
+causing random cards to flip over at random, leading to the random
+card battle which is apparently won completely at random. In the
+end, one of you wins. At random.</p>
+</blockquote>
+<p>Démontrant que non, je n'étais pas le seul ayant été frappé
+d'incompréhension par des règles, je ne me contente que de m'inscrire,
+20 ans plus tard, dans la collectivité des joueurs désabusés par cet
+étrange jeu de cartes, pourtant tant apprécié des habitants de
+l'univers imaginaire dans lequel se déroule l'histoire de, malgré
+tout, <strong>l'excellent Final Fantasy 9</strong>.</p>
+<h2 id="le-tetra-master"><a class="anchor" aria-hidden="true" href="#le-tetra-master"></a>Le Tetra Master</h2>
+<p>Comme je l'ai évoqué dans cette <em>très longue</em> introduction, il existe,
+depuis la publication du &quot;<a href="http://web.archive.org/web/20221226113714/https://gamefaqs.gamespot.com/ps/197338-final-fantasy-ix/faqs/9671">sombre
+document</a>&quot;,
+énormément de ressources <em>en ligne</em> pour apprendre les règles de
+l'infernal Tetra Master. Alors à quoi bon décider, en 2023, d'en
+écrire une nouvelle ? Même si l'article a essentiellement pour
+objectif de râler sur la complexité des règles et sur leur
+<em>non-découvrabilité</em>, je pense que documenter l'ensemble des règles,
+<strong>à ma manière</strong> — mais en me basant sur le document précédemment cité
+— appuiera mes propos, et me permet, un peu gratuitement, d'ajouter du
+contenu à mon site.</p>
+<h3 id="les-cartes-dans-lhistoire"><a class="anchor" aria-hidden="true" href="#les-cartes-dans-lhistoire"></a>Les cartes dans l'histoire</h3>
+<p>Les cartes sont très rapidement introduites dans le <em>lore</em> du jeu. En
+effet, elles semblent susciter, dès les premiers instants de jeux, un
+intérêt tout particulier pour
+<a href="https://fr.wikipedia.org/wiki/Personnages_de_Final_Fantasy_IX#Bibi_Orunitia">Bibi</a>.
+D'ailleurs, lors de la <a href="https://finalfantasy.fandom.com/wiki/Festival_of_the_Hunt">fête de la
+chasse</a>, il
+réclamme pour récompense la <a href="http://www.ff-heroes.com/final-fantasy-ix/tetra-master/liste-des-cartes/detail-de-la-carte/item/aerotheatre.html">carte
+Aérothéatre</a>,
+une carte largement superieure au niveau des cartes acquises à ce
+stade de l'aventure. Bien que les cartes ne changent absolument pas la
+progression dans l'histoire et ne procurent aucun bonus, on apprend
+que beaucoup des habitants de l'univers du jeu jouent à ces cartes et
+il existe même un <a href="https://www.gamerguides.com/final-fantasy-ix/guide/walkthrough/disc-3/back-to-treno">tournoi de
+cartes</a>
+(que vous pouvez perdre sans crainte).</p>
+<p>Si ces cartes n'apportent pas de bonus additionnel, elles permettent
+de satisfaire la <em>collectionnite aigüe</em> de certains joueurs et, comme
+beaucoup de systèmes de jeux <em>ad-hoc</em> dans le JRPGs, les parties de
+cartes permettent de <em>légèrement</em> rompre la linéarité du jeu,
+construisant un réseau de petites quêtes annexes se greffant à la
+trame principale ou à d'autres quêtes et systèmes annexes.</p>
+<p>En bref, si les règles du jeu avait été inférables... son intégration
+aurait été, selon moi, une excellente idée (un peu à la manière du
+<strong>Triple Triad</strong> de FF8), malheureusement, comme nous allons le
+voir... ce n'est absolument pas le cas !</p>
+<h3 id="la-collecte-des-cartes"><a class="anchor" aria-hidden="true" href="#la-collecte-des-cartes"></a>La collecte des cartes</h3>
+<p>Les cartes faisant partie de la diégèse du jeu, il est normal qu'il
+existe plusieurs moyens d'en collecter. Après avoir évoqué les
+différentes méthodes pour collecter de nouvelles cartes, je tâcherai
+de, subjectivement, définir l'approche la plus efficace :</p>
+<ul>
+<li>
+<p><strong>Les recevoir de personnages</strong><br>
+C'est la première approche auquel nous sommes confrontés. En effet,
+dès le début de l'aventure, Bibi aura l'occasion de collecter des
+cartes et de se voir enseigner les bases du jeu (oui, juste les
+bases, soit absolument trop peu d'information pour <em>comprendre les
+règles</em>. Fichus PNJs, incapables de nous donner des informations
+exhaustives).</p>
+</li>
+<li>
+<p><strong>Les trouver</strong><br>
+Comme dans tout JRPG qui se respecte, les donjons et les villages
+regorgent de trésors, dans FF9, en plus des coffres, il est possible
+de trouver des objets cachés — les frôler fera apparaitre un
+phylactère habité d'un point d'exclamation. Parfois, vous
+découvrirez des cartes. A noter qu'elles peuvent aussi faire partie
+des trésors découvrables au moyen de
+<a href="https://jegged.com/Games/Final-Fantasy-IX/Side-Quests/Chocographs.html">Chocographes</a>.</p>
+</li>
+<li>
+<p><strong>En récompense de combats</strong><br>
+Il arrive parfois que certains adversaires <em>offrent en récompense</em>
+une ou plusieurs cartes. Très souvent, la carte reçue correspondra à
+l'un des monstres présent dans le combat — <em>logique</em>, pour une fois.</p>
+</li>
+<li>
+<p><strong>Les acheter</strong><br>
+Il est possible d'acheter, pour <code>100 gils</code> des cartes dans la ville
+de <a href="https://finalfantasy.fandom.com/wiki/Treno">Treno</a>. Le prix
+étant très bas, les cartes disponibles à la vente seront, <em>de facto</em>
+relativement peu intéressantes.</p>
+</li>
+<li>
+<p><strong>Les gagner</strong><br>
+Nous le détaillerons plus tard en expliquant les règles mais gagner
+des parties de cartes permet de prendre une ou cinq cartes, en cas
+de victoire, à son adversaire. Comme certains PNJs sont des joueurs
+expérimentés — notamment au tournois de cartes de Treno — il est
+possible de collecter des cartes puissantes dès que l'on atteint un
+certain niveau de progression dans le jeu.</p>
+</li>
+</ul>
+<p>Naïvement, en observant cette liste, on pourrait rapidement arriver à
+la conclusion que la manière la plus efficace de gagner un maximum de
+cartes est de défier le plus d'adversaires possible. Cependant, et
+c'est la raison d'être de cet article, le jeu étant très compliqué,
+j'ai l'intime conviction que pour se construire un <em>deck</em> efficace, il
+vaut mieux <strong>combattre le plus de monstres possibles</strong>. En effet, les
+monstres, lors des rencontres aléatoires, ont une probabilité de
+laisser une carte en récompense. En plus de la carte, combattre des
+monstres fait gagner de l'expérience et d'autres objets, donnant donc,
+à la collecte de carte, une utilité concrète à la progression dans
+l'aventure.  Cependant, défier des adversaires est aussi nécessaire,
+comme nous le verrons dans l'exposition du détail des règles.</p>
+<h4 id="une-brève-note-sur-laléatoire"><a class="anchor" aria-hidden="true" href="#une-brève-note-sur-laléatoire"></a>Une brève note sur l'aléatoire</h4>
+<p>Chaque carte est dotée de plusieurs caractéristiques permettant
+d'estimer sa force. Donc deux cartes de mêmes illustrations peuvent
+être différentes. Un point <em>simultanément amusant et frustrant</em> est
+que ces <strong>caractéristiques ne sont pas définies tant que l'on ne
+possède pas la carte</strong>. En d'autres mots, les cartes données par
+d'autres personnages, ou trouvées dans les villages et les donjons,
+fixent leurs caractéristiques <strong>une fois trouvées</strong>. Il est donc
+possible, et recommandé, de <em>sauvegarder</em> avant de collecter une carte
+et de relancer le jeu tant que l'on est pas satisfait des
+caractéristiques de la carte. Et cette astuce fonctionne pour toutes
+les cartes, incluant les cartes rares.</p>
+<p>Tout au long de ce guide, je me plaindrai assez régulièrement sur
+<strong>l'aléatoire</strong> qui amplifie le <em>non-déterminisme</em> du jeu. La
+variabilité des statistiques d'une carte trouvée ou reçue en est le
+premier témoignage.</p>
+<h3 id="les-règles-selon-le-manuel"><a class="anchor" aria-hidden="true" href="#les-règles-selon-le-manuel"></a>Les règles selon le manuel</h3>
+<p>Comme évoqué dans la <em>mise en contexte</em> de cet article, <a href="http://s3.amazonaws.com/szmanuals/6de938ebe61e9432ea99da2095150069">le manuel
+d'origine</a>
+dédie deux pages au Tetra Master. Globalement, les informations
+proposées par le manuel ne sont pas beaucoup plus fournies que celle
+que l'on peut collecter pendant le jeu, cependant, pour que vous
+compreniez ma frustation, je vais le paraphraser, ce qui rendra
+l'explication détaillée suivant cette rubrique encore plus
+impresionnante !</p>
+<h4 id="défier-un-adversaire"><a class="anchor" aria-hidden="true" href="#défier-un-adversaire"></a>Défier un adversaire</h4>
+<p>C'est probablement la partie la plus exhaustive du guide, en effet,
+certains PNJs jouent aux cartes. Pour les défier, il suffit de
+s'approcher d'eux et d'interagir avec la touche <strong>carré</strong>.</p>
+<h4 id="règles-basiques"><a class="anchor" aria-hidden="true" href="#règles-basiques"></a>Règles basiques</h4>
+<p>Cette partie décrit <em>dans les très grandes lignes</em> le déroulé du jeu,
+en ommettant beaucoup de détails :</p>
+<blockquote>
+<p>Vous et votre opposant placez alternativement 5 cartes sur une
+grille de 4x4 cases. Il est possible de gagner les cartes de
+l'adversaire en fonction de où une carte est placée. Une fois que
+toutes les cartes sont placées, le joueur qui possède le plus de
+cartes est le gagnant.</p>
+</blockquote>
+<p>De cette section, on comprend que le but est de prendre le plus de
+cartes à l'adversaire. S'en suivent les différentes méthodes de prise
+de cartes.</p>
+<h5 id="gagner-une-carte"><a class="anchor" aria-hidden="true" href="#gagner-une-carte"></a>Gagner une carte</h5>
+<p>Dans les différents schémas, les cartes noires indiquent les cartes du
+joueur et les grises les cartes de l'opposant. La carte qui est
+marquée d'un cercle est celle qui vient d'être placée et la flèche
+entre des motifs de cartes indique la conséquence d'un placement.</p>
+<hr>
+<p>&quot;<em>Vous gagnez la carte de l'adversaire quand une flèche de votre carte
+pointe vers la carte de l'adversaire</em>&quot;.</p>
+<p><img src="/images/tetra-basic-1.png" alt="Carte pointant vers une carte de l'adversaire" ></p>
+<p>De cette première information (très incomplète), on peut déduire
+plusieurs choses :</p>
+<ul>
+<li>les cartes ont des flèches — comme la carte de l'adversaire, dans
+l'exemple, n'en a pas, on peut supposer qu'elles possèdent un nombre
+variable de flèches, dans des directions variées ;</li>
+<li>on peut supposer que les cartes doivent être adjacentes pour être
+gagnées ;</li>
+<li>une carte gagnée reste à sa place mais change de couleur pour
+prendre la couleur de celui qui l'a gagnée.</li>
+</ul>
+<hr>
+<p>&quot;<em>Si une flèche de votre carte fait face à une flèche de la carte de
+l'opposant,</em> <em>il y a</em> <strong>bataille</strong><em>, les nombres qui apparaissent sur
+les cartes se soustrayent et la carte qui a le plus grand nombre gagne
+l'autre</em>&quot;</p>
+<p><img src="/images/tetra-basic-2.png" alt="Situation de bataille" ></p>
+<p>La mécanique de bataille associée au schéma nous apprend de nouveaux
+éléments sur le déroulé du jeu :</p>
+<ul>
+<li>les cartes possèdent des <strong>statistiques</strong> ;</li>
+<li>on confirme l'intuition que les flèches présentent sur les cartes
+varient.</li>
+</ul>
+<hr>
+<p>&quot;<em>Quand on gagne une bataille, toutes les cartes ciblées par les
+flèches de la carte fraîchement gagnée sont aussi gagnées.</em>&quot;</p>
+<p><img src="/images/tetra-basic-3.png" alt="Situation de victoire en bataille" ></p>
+<p>La principale idée soulevée par ce schéma est que, en plus des
+flèches, il est possible de construire <em>une chaîne de prise</em>, un
+<strong>combo</strong> qui propage la réussite pour toutes les flèches
+adjacentes. Cette section soulève plus de questions que d'affirmations
+:</p>
+<ul>
+<li>les <em>combos</em> se propagent-ils récursivement ? (cette question peut
+s'adresser rapidement en jouant quelques parties)</li>
+<li>si une carte gagnée dans — le contexte d'un combo se trouve en
+situation de bataille — est-ce que la bataille a lieu ?</li>
+</ul>
+<hr>
+<p>Comme évoqué dans l'introduction, le manuel décrit les cartes comme
+étant dotées de statistiques — et on a pu le constater dans la
+situation de bataille — par contre, le manuel est explicite sur le
+fait <strong>qu'il n'expliquera pas</strong> comment déchiffrer les statistiques
+d'une carte et nous verrons que c'est loin d'être si trivial sans
+aide.</p>
+<h5 id="récompenses-et-pénalités"><a class="anchor" aria-hidden="true" href="#récompenses-et-pénalités"></a>Récompenses et pénalités</h5>
+<p>En fin de partie, le gagnant peut choisir <strong>une</strong> carte, <strong>parmi les
+cartes qu'il a réussi à gagner</strong> de son adversaire. Par contre, si le
+gagnant a réussi à <strong>gagner toutes les cartes de son adversaire</strong>,
+soit qu'il a joué un <strong><em>Perfect Game</em></strong>, le gagnant prend <strong>toutes</strong>
+les cartes de son adversaire, ce qui est une sacré aubaine en cas de
+victoire, mais peut être incroyablement pénalisant en cas de défaite.</p>
+<p>On apprend aussi qu'il est possible de regagner des cartes perdues en
+rejouant contre les PNJs nous ayant battu.</p>
+<h4 id="nombre-limite-de-cartes-et-menu"><a class="anchor" aria-hidden="true" href="#nombre-limite-de-cartes-et-menu"></a>Nombre limite de cartes et menu</h4>
+<p>Un petit encart nous apprend que <strong>l'on ne peut pas posséder plus de
+100 cartes</strong> et qu'il est possible de se débarasser de cartes depuis
+<strong>le menu des cartes</strong>. C'est un choix étrange car, comme nous
+l'apprend le menu des cartes, il <strong>existe 100 cartes différentes</strong>. On
+peut donc supposer que lorsque l'on est avancé dans la collection de
+cartes, construire une stratégie exploitant plusieurs même cartes est
+compromis. D'ailleurs, le fait de consulter ce menu anticipe la
+frustration que l'on ressentira lors de nos premières parties, en
+effet, il affiche des informations que l'on ne peut pas relier à ce
+que l'on a appris en lisant le manuel.</p>
+<h4 id="conclusion-de-la-lecture-du-manuel"><a class="anchor" aria-hidden="true" href="#conclusion-de-la-lecture-du-manuel"></a>Conclusion de la lecture du manuel</h4>
+<p>Même s'il reste des parts d'ombres, on pourrait croire que l'on a
+capturé la logique générale du jeu et que ces parts d'ombres
+disparaitront en pratiquant le jeu. Je vous rassure tout de suite,
+<strong>ce n'est absolument pas le cas</strong>. En effet, bien que le manuel
+présente quelques stratégies — assez facilement découvrables <em>par
+soi-même</em>, et donc que je n'introduis pas dans cette section — il
+semble volontairement laisser une collection d'inconnues, que nous
+devrions découvrir en jeu, mais, si vous êtes comme moi, vous verrez
+que les aléas combinés peu d'informations, notamment sur les
+statistiques des cartes, rendent cette découverte fastidieuse — pour
+ne pas dire <em>impossible</em> — faisant du Tetra Master, le sujet de
+<a href="https://www.reddit.com/r/FinalFantasy/comments/vuq3wc/oh_my_god_tetra_master_is_absolutely_awful/">multiples
+railleries</a>.
+Heureusement, grâce à Internet et à la patience de certains, les
+règles sont maintenant connues et dans les rubriques qui suivent, je
+vais essayer d'en donner une description claire ! Les deux seuls
+points sur lesquels je ne reviendrai pas seront l'utilisation du carré
+pour démarrer une partie et les récompenses, essentiellement parce que
+ces deux points sont probablemment les seuls décrits exhaustivement
+dans le manuel (encore heureux).</p>
+<p>Sans plus attendre, passons à une description <em>méticuleuse</em> des règles
+du Tetra Master. Vous allez voir, vous n'êtes pas à la fin de vos
+surprises.</p>
+<h3 id="règles-détaillées"><a class="anchor" aria-hidden="true" href="#règles-détaillées"></a>Règles détaillées</h3>
+<p>Décrire méticuleusement et exhaustivement les règles du Tetra Master
+n'est pas une mince affaire car il est, de mon point de vue, très
+difficile de définir l'ordre de priorité des informations. La lecture
+du manuel et la découverte du <em>jeu dans le jeu</em> donnent une idée
+générale de comment jouer, que l'on pourrait simplement résumer par :
+&quot;<em>gagner le plus de cartes opposantes possible</em>&quot;. Par contre, énumérer
+toutes les subtilités du jeu semble être un véritable défi.  Même si
+l'on peut accepter d'un jeu que ses rouages soient complexes, on
+voudrait avoir l'occasion de découvrir, par l'expérimentation, ou la
+documentation, l'ensemble des règles. Par exemple, les échecs, pour
+lequel il est facile de résumer l'objectif d'une partie : &quot;<em>mettre le
+roi dans une situation dans laquelle il peut être pris et où qu'il
+aille, il reste en situation de prise potentielle</em>&quot;, décrire les
+mouvement de chacune des pièces, les mécaniques de prises, les règles
+<em>ad-hoc</em>, comme le <em>roc</em> etc, n'est pas une mince affaire, par contre,
+quand les échecs ont été popularisés, ils étaient adossés à une
+<strong>explication exhaustive des règles</strong>. Dans le cas du Tetra Master, il
+faudra du <em>reverse engineering</em> et de l'investigation !</p>
+<h4 id="initiation-dune-partie"><a class="anchor" aria-hidden="true" href="#initiation-dune-partie"></a>Initiation d'une partie</h4>
+<p>Comme le jeu se joue à deux, où chaque joueur démarre avec cinq cartes, les deux
+prérequis sont :</p>
+<ul>
+<li>posséder 5 cartes (minimum) ;</li>
+<li>trouver un adversaire.</li>
+</ul>
+<p>Une fois ces conditions validées, démarrer un combat implique
+d'interagir avec un personnage en utilisant, par défaut, la touche
+carré. Il vous sera demandé de choisir les cinq cartes que vous
+désirez utiliser. On pourrait arguer qu'il faut idéalement prendre ses
+cinq meilleures cartes, cependant, comme il est possible de perdre
+soit une, soit cinq cartes, il faut aussi pondérer <em>le risque et la
+récompense</em> (car comme nous le verrons plus tard, les <em>combos</em> peuvent
+inverser la vapeur).</p>
+<p>Quand une partie commence, une pièce est lancée pour savoir qui est le
+premier à placer une carte, le joueur a <strong>une chance sur deux</strong> de
+commencer. Ensuite chaque joueur place successivement une carte.</p>
+<h4 id="plateau-de-jeu"><a class="anchor" aria-hidden="true" href="#plateau-de-jeu"></a>Plateau de jeu</h4>
+<p>Le plateau de jeu est une grille de <code>4x4</code>, il y a donc 16 cases. Pour
+ajouter de la variété le démarrage d'un combat peut générer,
+<strong>aléatoirement</strong> (une fois de plus) entre 0 et 6 cases qui seront
+bloquées (sur lesquelles nous ne pourront pas jouer de cartes). Comme
+on ne peut retirer que, au maximum, 6 espaces, il y aura toujours,
+logiquement assez d'espace pour jouer toutes les cartes.</p>
+<p>Voici trois exemples de plateaux pouvant être générés. Le premier n'a
+généré aucun obstacle, le second en a généré <code>3</code> et le dernier en a
+généré <code>6</code>.</p>
+<p><img src="/images/tetra-board.png" alt="Plateau de jeu" ></p>
+<p>Même si, en introduction de cet article, j'ai un peu râlé sur l'excès
+d'aléatoire, ici, je trouve que les légères variations de terrains
+sont une <strong>très bonne idée</strong> et qu'elles permettent d'échaffauder des
+<em>stratégies complémentaires</em>. Par exemple dans le troisième exemple,
+l'emplacement isolé, sans aucune case libre adjacente, permet de
+placer une carte plus faible, qui ne sera jamais prenable, bloquant
+ainsi la défaite <em>parfaite</em> et garantissant, dans le pire des cas, la
+perte d'une seule carte.</p>
+<h4 id="prise-de-cartes-simple"><a class="anchor" aria-hidden="true" href="#prise-de-cartes-simple"></a>Prise de cartes simple</h4>
+<p>Nous avions vu dans le manuel que pour prendre une carte, il suffit
+qu'une carte soit placée et toutes les cartes pointées par ses flèches
+seront gagnées.  Dans cet exemple, la carte noire gagne trois cartes
+ciblées.</p>
+<p><img src="/images/tetra-basic-4.png" alt="Placement de cartes sur le plateau" ></p>
+<p>En revanche, pour que les flèches soient effectives, <strong>il faut que la
+carte vienne d'être placée</strong>. Dans ce schéma, la carte grise n'affecte
+pas la carte noire, qui vient d'être jouée :</p>
+<p><img src="/images/tetra-basic-5.png" alt="Résultat du placement de cartes sur le plateau" ></p>
+<p>Parce qu'une carte jouée est <strong>offensive</strong> et une fois qu'elle a été
+placée, elle passe en mode <strong>défensif</strong>. Pour qu'une carte déjà placée
+en gagne une autre il faut une situation de <strong>bataille</strong> et/ou de
+<strong>combo</strong>, que nous détaillerons dans les sections suivantes.</p>
+<h4 id="bataille"><a class="anchor" aria-hidden="true" href="#bataille"></a>Bataille</h4>
+<p>A ce stade de la lecture de l'article, vous devriez vous dire que j'ai
+largement exagéré la complexité du jeu et que, même si les
+informations du manuel n'étaient pas complètes, quelques parties
+devraient suffire à comprendre l'ensemble des mécaniques de jeu !
+Rassurez-vous, dans cette section, nous allons rapidement comprendre
+pourquoi, en jouant au Tetra Master, sans comprendre certaines
+informations liées aux statistiques des cartes — que l'on peut
+observer dans une situation de bataille — on est sans arrêt écrasé par
+une anxiété latente, ne comprenant pas toujours pourquoi est-ce que
+l'on gagne... ou pire, pourquoi l'on perd.</p>
+<p>Pour rappel, quand on place une carte adjacente à une autre carte de
+couleur différente, on se retrouve face à plusieurs cas de figures :</p>
+<ul>
+<li>la carte placée pointe une ou plusieurs autres cartes adverses, sans
+opposition de flèches, elle gagne toutes les cartes ciblées ;</li>
+<li>la carte placée ne pointe pas d'autres cartes, et même si elle est
+pointée par une flèche d'une carte déjà positionnée, aucune carte
+n'est gagnée ;</li>
+<li>la carte placée pointe une ou plusieurs autres cartes adverses, on
+entre en situation de <strong>bataille</strong> et la carte placée est
+<strong>offensive</strong> et la carte ciblée est <strong>défensive</strong>.</li>
+</ul>
+<p><img src="/images/tetra-basic-2.png" alt="Plateau de jeu" ></p>
+<p>Nous avions aussi lu, qu'en situation de bataille, c'est <em>la carte
+avec le plus grand nombre qui gagne</em>. Et ce qui est génial... c'est
+que avant de lire les règles, et le document obscur et quelques de
+tentatives de <em>reverse engineering</em>, j'étais <strong>absolument incapable</strong>
+de comprendre comment <em>ce nombre</em> était défini. Accrochez-vous bien,
+je pense que c'est à partir de ce moment que les concepteurs du Tetra
+Master — et aussi les gens qui ont validé le <em>Game Design Document</em> —
+sont devenus fous parce que de mon point de vue, <strong>même en jouant des
+milliers de parties, il est impossible de comprendre comment est
+défini ce <em>nombre</em></strong>.</p>
+<h5 id="batailles-multiples"><a class="anchor" aria-hidden="true" href="#batailles-multiples"></a>Batailles multiples</h5>
+<p>Bien que nous n'ayons pas encore décrit réellement l'anatomie d'une
+carte, nous avons spéculé qu'une carte pouvait avoir un nombre
+multiple de flèches, pointant potentiellement plusieurs cartes
+différentes. Par exemple dans cette situation :</p>
+<p><img src="/images/tetra-multiple-battle.png" alt="Bataille multiple" ></p>
+<p>Dans cette situation, on peut voir que la carte jouée est en
+<strong>situation de bataille</strong> avec les deux cartes. Alors que
+généralement, le jeu décide de choisir l'aléatoire ou applique une
+règle discutablement explicite, pour définir l'ordre de bataille, <strong>le
+joueur offensif décide la carte qu'il désire attaquer en premier</strong>. Ce
+qui permet de mettre en place de véritables stratégies, comme nous le
+détaillerons lorsque nous expliquerons les <em>combos</em>.</p>
+<h5 id="anatomie-dune-carte"><a class="anchor" aria-hidden="true" href="#anatomie-dune-carte"></a>Anatomie d'une carte</h5>
+<p>Une carte — qui est généralement plus visuelle et jolie que mes
+éléments de schémas très sobres — peut avoir un nombre de flèches
+directionnelles compris entre 0 et 8, représentant chacune une
+direction d'attaque — et, comme on l'a vu dans les batailles, de
+défense. On pourrait trouver ça étrange d'avoir (et d'utiliser) des
+cartes n'ayant pas de flèches, car elle serait <em>absolument</em>
+inefficaces — ne pouvant n'être <em>que</em> prise, et ne pouvant jamais
+prendre.  Cependant, ces dernières peuvent être redoutablement utiles
+pour casser des <em>combos</em> ou, en cas de dernier coup, pour n'assurer
+que l'augmentation de <code>1</code>, en votre faveur, dans le compte des cartes
+gagnées.</p>
+<p>Ensuite, chaque carte possède un <em>genre d'identifiant cryptique</em>,
+difficile à déchiffrer — surtout sur un poste de télévision
+cathodique. Par exemple, voici le schéma d'une carte pouvant attaquer
+dans toutes les directions, avec comme <em>identifiant</em> : <code>1P23</code> :</p>
+<p><img src="/images/tetra-card-template.png" alt="Anatomie d'une carte" ></p>
+<p>Nous avons, je le pense, relativement bien compris la mécanique des
+flèches, et leur rôle, on peut donc spéculer sur le fait que
+l'identifiant sert à décrire les statistiques d'une carte, et
+permettent de calculer le <em>nombre</em> servant à faire une
+<em>bataille</em>. C'est tout à fait ça, mais nous allons voir qu'il y a
+énormément <em>d'implicites</em> rendant la compréhension de ces nombres
+<strong>très laborieuse</strong>.</p>
+<h5 id="lire-les-statistiques-dune-carte"><a class="anchor" aria-hidden="true" href="#lire-les-statistiques-dune-carte"></a>Lire les statistiques d'une carte</h5>
+<p>Comme de mon point de vue, il est <em>probablement impossible</em> de déduire
+la relation entre ce fameux <em>identifiant</em> (dans notre exemple, le
+fameux <code>1P23</code>), je vais être très explicite, il nous donne quatre
+informations sur la carte, de cette manière : <code>PTDM </code> où :</p>
+<ul>
+<li><code>P</code> la <strong>puissance offensive</strong> de la carte, exprimée... en
+<strong>hexadécimal</strong>, de <code>0</code> à <code>F</code>, dans notre exemple, la valeur <code>1</code> ;</li>
+<li><code>T</code> le <strong>type de la carte</strong>, pouvant prendre les valeurs <code>P</code>, <code>M</code>,
+<code>X</code> où <code>A</code>, dans notre exemple, la valeur <code>P</code></li>
+<li><code>D</code> la <strong>défense physique</strong> de la carte, exprimée elle aussi en
+<strong>hexadécimal</strong>, de <code>0</code> à <code>F</code>, dans notre exemple, la valeur <code>2</code> ;</li>
+<li><code>M</code> la <strong>défense magique</strong> de la carte, exprimée elle aussi en
+<strong>hexadécimal</strong>, de <code>0</code> à <code>F</code>, dans notre exemple, la valeur <code>3</code>.</li>
+</ul>
+<p>Je vous assure que le fait que les <em>digits</em> exprimés en hexadécimal
+peuvent être, quand on commence à progresser dans l'aventure des
+cartes, très déroutants. En effet, le jeu (et le manuel non plus
+d'ailleurs) n'indiquant <strong>à aucun moment</strong> comment lire les
+statistiques, alors que nous avions été habitué à voir au moins trois
+chiffres, voir apparaitre des lettres peut provoquer beaucoup de
+confusion ! D'autant plus que la statistiques <code>AAAA</code> est
+<strong>parfaitement valide</strong> Donc même si comme moi, des années après vous
+être heurté aux premiers contacts du Tetra Master, vous sortez
+d'études d'informatique et que vous décidez, <em>naïvement</em>, de retenter
+votre chance avec sa complexité effarante, quand bien même vous auriez
+déjà été exposé au système de numération hexadécimal... fort à parier
+que vous ne vous rendiez pas compte qu'il s'agit, en fait,
+d'hexadécimal, le motifs de la statistique ne ressemblant absolument
+pas à un nombre exprimé dans un système numérique connu.</p>
+<p>Avant de nous étendre sur la <strong>signification concrète</strong> des valeurs
+hexadécimales (parce que oui, c'est beaucoup plus compliqué que ce que
+vous pouvez imaginer), voyons les différents types de cartes :</p>
+<ul>
+<li>
+<p><code>P</code> (pour <em>physical</em>) est une carte qui utilisera sa <strong>puissance
+offensive</strong> pour attaquer la <strong>défense physique</strong> d'une autre
+carte. Par exemple dans la situation où <code>7P23</code> attaque <code>2M12</code>, nous
+aurons, <em>dans les grandes lignes</em>, <code>7</code> vs <code>1</code> ;</p>
+</li>
+<li>
+<p><code>M</code> (pour <em>magical</em>) est une carte qui utilisera sa <strong>puissance
+offensive</strong> pour attaquer, logiquement, la <strong>défense magique</strong> d'une
+autre carte. Par exemple, la situation où <code>2M12</code> attaque <code>7P23</code>,
+nous aurons, une fois de plus dans les grandes lignes <code>2</code> vs <code>3</code> ;</p>
+</li>
+<li>
+<p><code>X</code> (pour ... <em>power</em> (héhé) ou, selon les traductions, <em>flexible</em>)
+est une carte qui utilisera sa <strong>puissance offensive</strong> pour attaquer
+<strong>la plus faible des défenses</strong> d'une autre carte. Donc dans la
+situation où <code>7X12</code> attaque <code>2M32</code>, la carte ciblera, ici, la
+défense magique. Soit, une fois de plus <em>dans les grandes lignes</em>,
+<code>7</code> vs <code>2</code>;</p>
+</li>
+<li>
+<p><code>A</code> (pour <em>advanced</em> ou <em>assault</em>) est une carte qui utilisera <strong>la
+plus haute de ses statistique</strong> (d'attaque <strong>ou</strong> de défense) pour
+attaquer <strong>la plus faible des autres point de statistiques</strong>
+(incluant la puissance offensive) d'une autre carte. Par exemple,
+dans la situation où <code>2A8F</code> attaque <code>1X2F</code>, la carte utilisera sa
+défense magique pour cibler la puissance offensive de l'adversaire,
+soit, <em>dans les grandes lignes</em>, <code>F</code> vs <code>1</code>.</p>
+</li>
+</ul>
+<p>Ce qui nous permet d'affirmer que <code>FAFF</code> est la meilleure statistique
+envisageable pour une carte. Nous verrons qu'il est possible de <em>faire
+évoluer une carte</em>, mais une difficulté à la fois ! Voyons d'abord
+comment interpréter les chiffres en hexadécimal.</p>
+<h5 id="interprétation-des-statistiques-hexadécimales"><a class="anchor" aria-hidden="true" href="#interprétation-des-statistiques-hexadécimales"></a>Interprétation des statistiques hexadécimales</h5>
+<p>Comme les statistiques exprimées en hexadécimal ne couvrent que 15
+chiffres, il serait possible d'être relativement souvent en situation
+d'égalité. Et bien ne vous en faites pas, le jeu nous réserve une
+nouvelle surprise qui est, elle aussi, absolument absente du manuel du
+jeu (ou dans l'explication, <em>en jeu</em>, des règles). En effet, ce serait
+beaucoup trop simple que <code>9</code> veuille dire <code>9</code> ou que <code>F</code> veuille dire
+<code>15</code> !</p>
+<p>Les statistiques exprimées en hexadécimal décrivent en fait <strong>des
+intervalles</strong>.  Ce qui implique que, par exemple que si <code>EP12</code> attaque
+<code>2ME2</code>, les deux <code>E</code> <strong>représentent des valeurs concrètes
+<em>potentiellement</em> différentes</strong>. Il est évident que pour des raisons
+d'ergonomie évidentes (<em>je suis sarcastiques</em>), il est <strong>impossible</strong>,
+dans l'interface du jeu, de connaitre les valeurs concrètes de chaque
+carte. Voici la <strong>liste des intervalles de valeurs possible pour
+chaque niveau</strong> (la notation utilisée est celle des <a href="https://en.wikipedia.org/wiki/Interval_(mathematics)">intervalles
+ouverts</a>
+usuellement utilisée en mathématiques, où <code>[a, b]</code> décrit <code>x &gt;= a &amp;&amp; x &lt;= b</code>) :</p>
+<div role="region"><table>
+<tr>
+<th>Statistique</th>
+<th>Intervalle</th>
+<th>Statistique</th>
+<th>Intervalle</th>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td><code>[0, 15]</code></td>
+<td><code>A</code></td>
+<td><code>[160, 175]</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>[16, 31]</code></td>
+<td><code>B</code></td>
+<td><code>[176, 191]</code></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><code>[32, 47]</code></td>
+<td><code>C</code></td>
+<td><code>[192, 207]</code></td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td><code>[48, 63]</code></td>
+<td><code>D</code></td>
+<td><code>[208, 223]</code></td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td><code>[64, 79]</code></td>
+<td><code>E</code></td>
+<td><code>[224, 239]</code></td>
+</tr>
+<tr>
+<td><code>5</code></td>
+<td><code>[80, 95]</code></td>
+<td><code>F</code></td>
+<td><code>[240, 255]</code></td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td><code>[96, 111]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td><code>[112, 127]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>8</code></td>
+<td><code>[128, 143]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>9</code></td>
+<td><code>[144, 159]</code></td>
+<td></td>
+<td></td>
+</tr>
+</table></div><p>Comme il y a chaque fois <code>16</code> valeurs possibles par statistique, on
+peut facilement décrire une formule systèmatique pour décrire
+l'intervalle depuis un chiffre hexadécimal (dans la formule, nommé
+<code>n</code>) :</p>
+<pre><code class="language-ocaml">let min = to_decimal(n) *. 16.0
+let max = min +. 15.0
+let range = (min, max)
+</code></pre>
+<p>Et oui, certains nombres devraient mettre <em>la puce à l'oreille</em> (par
+exemple <code>32</code>, <code>128</code> ou encore <code>255</code>). En effet , <code>n</code> pourrait être
+exprimer comme <code>nF</code> ce qui fait que chaque point de statistiques
+(puissance offensive, défense physique et défense magique) est compris
+entre <code>0</code> et <code>255</code>. Donc, pour illustrer mon propos, la carte <code>4P0E</code>
+aura :</p>
+<ul>
+<li>une <strong>puissance offensive</strong> comprise entre <code>64</code> et <code>79</code> ;</li>
+<li>une <strong>défense physique</strong> comprise entre <code>0</code> et <code>15</code> ;</li>
+<li>une <strong>défense magique</strong> comprise entre <code>224</code> et <code>239</code>.</li>
+</ul>
+<p>Quand on le sait, c'est assez simple, cependant, comme il n'existe pas
+de moyen de connaitre explicitement la position dans l'intervalle,
+d'un point de vue, on se servira de la valeur minimale de l'intervalle
+pour éviter au maximum les <em>faux-positifs</em>. Maintenant que nous avons
+toutes les clés en mains pour lire correctement
+(mais... malheureusement partiellement) les statistiques d'une carte
+(qui est, selon moi, totalement exagérée et, je me répète,
+<strong>probablement impossible à déduire ne faisant que jouer</strong>) nous
+allons pouvoir observer le déroulement d'une bataille qui, évidemment,
+ajoute de la complexité et des aléas. <em>Chic</em>.</p>
+<h5 id="déroulé-de-la-bataille-toujours-plus-daléas"><a class="anchor" aria-hidden="true" href="#déroulé-de-la-bataille-toujours-plus-daléas"></a>Déroulé de la bataille, toujours plus d'aléas</h5>
+<p>Maintenant que nous sommes capable de lire les statistiques d'une
+carte, couplé à la compréhension des flèches et des mécanismes de
+prises de cartes, nous devrions avoir assez d'éléments pour comprendre
+comment gagner toutes nos parties. Bien qu'il nous reste à décrire les
+<em>combos</em>, qui tiennent compte de la position des cartes sur le plateau
+et que nous détaillerons dans la rubrique suivante, on pourrait croire
+que nous avons suffisamment d'informations pour être capable de gagner
+des batailles <em>locales</em>. Cependant, les joueurs aguéris se rendront
+vite compte que les nombres affichés sur les cartes durant des
+batailles sont changeants et, <em>encore pire</em>, il arrivera que <strong>des
+scénarios qui semblent inéluctables ne se déroulent pas comme prévu</strong>
+!</p>
+<p>Par exemple, imaginons une bataille entre les cartes <code>3P10</code>
+(attaquant) et <code>2M02</code> (défenseur). On oppose donc <strong>physiquement</strong> <code>3</code>
+(soit une puissance comprise entre <code>48</code> et <code>63</code>) à 0 (soit une défense
+comprise entre <code>0</code> et <code>15</code>).  Si notre interprétation des statistiques
+est bonne, il n'existe aucun scénarios dans lesquels il est possible
+d'imaginer que la carte attaquante perde. Et pourtant, ça arrivera. En
+effet, <strong>il existe certains facteurs aléatoires permettant à une carte
+plus faible de gagner une bataille</strong>. C'est pour l'application de ces
+facteurs aléatoires que l'on verra, lors d'une bataille plusieurs
+nombres s'afficher sur la carte.</p>
+<p>Reprenons notre exemple <code>3P10</code>, que l'on appellera <code>X</code>, attaquant
+<code>2M02</code>, que l'on appellera <code>Y</code>. Comme nous l'avons évoqué, nous
+opposons <code>3</code> à <code>0</code>.  Supposons ces différents faits :</p>
+<ul>
+<li>l'attaque de <code>X</code> soit de <code>50</code> (soit une valeur comprise entre <code>48</code>
+et <code>63</code>) ;</li>
+<li>la défense de <code>Y</code> soit de <code>7</code> (soit une valeur comprise entre <code>0</code> et
+<code>15</code>).</li>
+</ul>
+<p>Ce sont ces premiers nombres qui seront affichés (et c'est donc la
+seule manière de connaitre la position dans l'intervalle, même si nous
+verrons plus tard que n'est pas fiable pour établir des stratégies sur
+<em>la durée</em> car les cartes peuvent <em>évoluer</em> et que dans certaines
+situations, par exemple en position de défense, il est difficile de
+savoir quelle statistique est mise en avant, par exemple <code>1P22</code> contre
+une carte de type <code>X</code>, comment savoir si le nombre affiché cible la
+défense magique ou physique).</p>
+<p><img src="/images/tetra-battle1.png" alt="Situation initiale de bataille" ></p>
+<p>Ensuite, l'ordinateur définira un <strong>nombre aléatoire</strong> compris entre
+<code>0</code> et le précédent nombre affiché (donc pour <code>X</code>, entre <code>0</code> et <code>50</code>
+et pour <code>Y</code>, entre <code>0</code> et <code>7</code>). On appellera ces nombre les
+<em>roulements</em> Pour l'exemple, admettons ces différents faits :</p>
+<ul>
+<li><code>X</code> a tiré pour roulement <code>46</code> ;</li>
+<li><code>Y</code> a tiré pour roulement <code>1</code>.</li>
+</ul>
+<p><img src="/images/tetra-battle2.png" alt="Seconde situation de bataille" ></p>
+<p>Les roulements sont respectivement soustraits aux valeurs concrètes de
+l'intervalle. Comme chaque roulement est compris entre <code>0</code> et la
+valeur concrète de l'intervalle, on ne pourra jamais avoir de nombres
+négatifs.</p>
+<ul>
+<li><code>X</code> aura <code>50 - 46 = 4</code> ;</li>
+<li><code>Y</code> aura <code>7 - 1 = 6</code>.</li>
+</ul>
+<p><img src="/images/tetra-battle3.png" alt="Troisième situation de bataille" ></p>
+<p>Et la carte ayant le résultat de la soustraction le plus élevé
+l'emporte. Ici, contre toute attente, c'est la carte grise (<em>semblant
+largement moins puissante</em>) qui l'emporte (parce que ... logiquement
+<code>4 &lt; 6</code>). Nous nous retrouvons donc <em>Gros-Jean comme devant</em> (désolé)
+et <strong>notre carte noire est prise</strong>.</p>
+<p><img src="/images/tetra-battle4.png" alt="Quatrième situation de bataille" ></p>
+<p>On se rend compte que les <strong>roulements</strong> influent beaucoup sur le
+résultat de la bataille. En effet, <strong>au plus le roulement est élevé au
+plus le risque de défaite est grand</strong> car le résultat est soustrait du
+nombre concret de l'intervalle. Si par exemple le roulement de la
+carte <code>X</code> avait été de <code>30</code>, nous aurions eu <code>20 vs 6</code> et la carte
+noire aurait gagné. Notre exemple a volontairement été pessimiste car
+nous avons pris un très grand roulement.  Cependant, en terme de
+probabilité, la carte noire avait <code>~92%</code> de chance de
+gagner. Cependant, ça laisse tout de même <code>~8%</code> de chance de défaite,
+pouvant laisser un joueur ne connaissant pas les rouages complexes du
+Tetra Master circonspect et frustré. De plus, cette règle repose sur
+beaucoup d'éléments difficile à contrôler comme la position concrète
+dans l'intervalle, couplé à de l'aléatoire, le tout dans un contexte
+où le jeu est pauvrement expliqué et où la compréhension des
+statistiques est laborieuse. Cet aléa ajoute, de mon point de vue,
+<strong>énorme d'entropie dans la compréhension des règles</strong>, justifiant, au
+moins un peu, les propos de <a href="http://archive.thegia.com/features/990602/staff/s10.html">Drew
+Cosner</a>,
+cités en introduction de cet article, sur la teneur aléatoire du jeu.</p>
+<p>En terme de <em>feedback utilisateur</em>, voir une carte afficher le nombre
+<code>40</code> et perdre contre une carte qui affiche le nombre <code>3</code> peut être
+absolument incompréhensible (car oui, les nombres intermédiaire : le
+roulement, et la soustraction ne sont absolument pas affichés).</p>
+<h5 id="calcul-des-probabilités-de-victoire-en-duel"><a class="anchor" aria-hidden="true" href="#calcul-des-probabilités-de-victoire-en-duel"></a>Calcul des probabilités de victoire en duel</h5>
+<p>Le calcul de probabilité de victoire en cas de bataille est assez
+facile à simuler. En voici une approximation qui, pour notre exemple
+avec <code>X = 50</code> et <code>Y = 7</code> donnerait pour résultat <code>~92%</code> :</p>
+<pre><code class="language-ocaml">let proba my_stat opponent_stat =
+  let a, b, need_reverse =
+    if my_stat &gt; opponent_stat then (opponent_stat, my_stat, false)
+    else (my_stat, opponent_stat, true)
+  in
+  let x = 2.0 *. (1.0 +. b) and y = 1.0 +. a in
+  let result = 100.0 *. ((x -. y) /. x) in
+  if need_reverse then 100.0 -. result else result
+</code></pre>
+<p>Cependant, cette approche repose sur deux invariants qui ne sont
+généralement pas connu au moment de la partie, les deux positions
+concrètes dans l'intervalle. Une solution (acceptable) serait d'être
+<strong>très pessimiste</strong> concernant le calcul de ces probabilités en
+prenant la borne la plus basse de l'intervalle de <em>ma</em> carte et la
+borne la plus élevée de celle de l'opposant :</p>
+<pre><code class="language-ocaml">let pessimist_proba my_stat opponent_stat =
+  let my = to_decimal my_stat *. 16.0
+  and op = (to_decimal opponent_stat *. 16.0) +. 15.0 in
+  proba my op
+</code></pre>
+<p>Ce qui nous permet d'avoir une assez bonne idée des probabilités de
+victoire (un peu pessimiste mais, dans la vie, ne vaut-il pas mieux
+être prudent).</p>
+<p>Le point amusant c'est qu'une fois que l'on connait :</p>
+<ul>
+<li>comment lire la représentation compressé des statistiques ;</li>
+<li>les facteurs aléatoires durant les <em>batailles</em> ;</li>
+<li>les points plus <em>vaporeux</em> (le nombre concret dans l'intervalle)</li>
+</ul>
+<p>Les règles deviennent <strong>relativement peu complexes</strong>, et même si
+parfois, en tant que joueur, nous pouvons être frappés par l'aléatoire
+avec toutes ces informations, il est possible, une fois de plus, de
+mon point de vue, de prendre du plaisir, et de jouer plus sereinement,
+au Tetra Master. Bien que j'anticipe un peu la conclusion de cet
+article, le point de frustration essentiel réside dans la difficulté
+de découvrir les règles en lisant le manuel ou dans le jeu.  Et je
+trouve qu'il est très étrange d'avoir explicitement pris la décision
+d'être aussi peu expansif sur comment lire les cartes et où
+l'aléatoire intervient. Sans plus attendre, passons aux combos qui,
+contre toute attente, eux, sont très prévisibles et compréhensibles
+sans lire les règles (<em>yay</em>) !</p>
+<blockquote>
+<p>D'ailleurs, si pour une <em>raison obscure</em>, le code des probabilités
+vous intéresse, pour <em>fluidifier</em> l'écriture de cet article, j'ai
+écrit un tout petit programme qui me permet facilement d'avoir <strong>le
+pourcentage de réussite pessimiste</strong> d'une carte en attaquant une
+autre, vous pourrez trouver <a href="https://github.com/xvw/tetra-master-util">le code source sur ma page
+Github</a>. Au moment où
+j'écris cet article, le programme ne fait pas grand chose mais il
+est possible que je passe, dans les jours/semaines/mois/années un
+peu de temps dessus pour, pourquoi pas, construire un <strong>véritable
+simulateur de Tetra Master</strong>, mais ne rêvons pas trop, le temps que
+m'a pris l'écriture de cet article risque de, potentiellement, me
+décourager d'aller plus loin.</p>
+</blockquote>
+<h5 id="les-combos"><a class="anchor" aria-hidden="true" href="#les-combos"></a>Les combos</h5>
+<p>Il faut reconnaitre que le manuel est assez exhaustif sur le déroulé
+des <em>combos</em>, en effet, cette fois, pas d'aléatoire, pas de règles
+implicites, le manuel nous explique que : &quot;<em>Quand on gagne une
+bataille, toutes les cartes ciblées par les flèches de la carte
+fraichement gagnée sont aussi gagnées.</em>&quot; que nous pourrions reformuler
+de cette manière : &quot;<em>En situation de bataille, toutes les cartes
+pointées par la carte perdante (donc venant d'être gagnée dans la
+bataille) sont aussi gagnées</em>&quot;.</p>
+<p><img src="/images/tetra-basic-3.png" alt="Situation de bataille" ></p>
+<p>Il est important de souligner plusieurs points :</p>
+<ul>
+<li>même si la carte retournée pointe une autre carte <em>en situation de
+bataille</em> l'autre carte sera prise sans batailles ;</li>
+<li>les effets du <em>combo</em> ne se propagent pas récursivement (donc si une
+carte est prise parce qu'elle est ciblée par le perdant d'une
+bataille, les cartes qu'elle cible ne seront pas prises).</li>
+</ul>
+<p>Les <em>combos</em> peuvent donc totalement inverser la tendance d'un match
+car il est possible de retourner jusqu'a 8 cartes en une seule
+bataille. Par exemple dans cette situation là :</p>
+<p><img src="/images/tetra-combo.png" alt="Situation de combo" ></p>
+<p>Cette situation (artificielle, je vous l'accorde) montre à quel point
+une seule position de carte peut <strong>totalement</strong> changer l'issue d'une
+partie. En effet, si la carte noire l'emporte (ce qui semblerait
+normale étant donnée que dans <strong>pire des cas</strong>, soit <code>224</code> contre
+<code>15</code>, elle possède une probabilité de <code>96.44%</code> de chance de victoire),
+elle retournera sa voisine, qui elle, retournera, <strong>sans aucune
+bataille</strong> ses 7 voisines. Ce qui, dans la configuration actuelle du
+plateau, implique que peu importe le coup suivant, le plus mauvais
+scénario pour le joueur noir serait un match nul.</p>
+<p>Couplée avec la mécanique des <strong>batailles multiples</strong>, les <em>combos</em>
+introduisent des micro-choix stratégiques amusants (et assez
+gratifiant en cas de victoire).  Par exemple, si nous reprenons
+l'exemple présenté dans la section dédiée aux batailles multiples :</p>
+<p><img src="/images/tetra-multiple-battle.png" alt="Situation de bataille multiple" ></p>
+<p>Dans cette situation, nous avons l'opportunité de choisir si nous
+voulons attaquer la carte du dessus, qui a pour statistiques <code>EXFF</code>,
+où de cibler la carte de droite, qui a pour statistiques <code>2M12</code>. Pour
+rappelle les probabilités de victoires (pessimistes) sont :</p>
+<ul>
+<li><code>4P23</code> vs <code>EXFF</code> de <em>seulement</em> <code>12.70%</code> ;</li>
+<li><code>4P23</code> vs <code>2M12</code> de <code>75.38%</code>.</li>
+</ul>
+<p>Comme <strong>la carte de gauche pointe aussi la carte du haut</strong>, vaincre
+celle de gauche implique une prise, <em>de facto</em>, de la carte du
+haut. C'est un donc un coup largement plus pertinent à jouer ! Couplé
+avec les blocks dont nous avions parlé en détaillant la grille de jeu,
+mais aussi avec certaines cartes n'ayant pas de flèches (et bloquant
+donc la propagation des <em>combos</em>), il existe beaucoup de stratégies
+envisageables quand on joue au Tetra Master en essayant de se reposer
+au maximum sur les <em>combos</em> et à mon sens, <strong>c'est une excellente
+mécanique</strong>, bien documentée et dont il est facile de se rendre compte
+de son fonctionnement en jouant (même si la compréhension peut être un
+peu <em>obfusquée</em> par la difficulté de lecture de statistiques et les
+aléas imprévisibles du jeu).</p>
+<h4 id="pré-conclusion-sur-les-règles"><a class="anchor" aria-hidden="true" href="#pré-conclusion-sur-les-règles"></a>Pré-conclusion sur les règles</h4>
+<p>À ce stade, même s'il reste quelques sujets à aborder, nous avons
+survolé l'ensemble des règles d'une partie et normalement, seuls les
+mauvais tirages de <em>roulements</em> devraient rendre les issues
+imprévisibles. Ce que l'on peut <em>pré-conclure</em> de l'exploration, en
+détail, du jeu, c'est qu'il semble assez <strong>amusant</strong> ! Cependant,
+l'absence d'un guide exhaustif (dans le jeu ou dans le manuel), couplé
+à des tirages aléatoires, rend le jeu <strong>très frustrant</strong>, comme en
+témoigne <a href="https://www.youtube.com/watch?v=NimF-_ESmkU">cette vidéo</a>.</p>
+<p>Par contre, rassurez-vous, le Tetra Master nous révèle encore quelques
+surprises, ayant une incidence directe sur le jeu, augmentant
+l'aléatoire, rendant donc l'inférence des règles <strong>encore plus
+laborieuse</strong> et pouvant, bien que partant d'une bonne intention (<em>je
+l'espère</em>), générer encore plus de frustration. <em>Stay tuned</em>.</p>
+<h3 id="expérience-et-évolution-des-cartes"><a class="anchor" aria-hidden="true" href="#expérience-et-évolution-des-cartes"></a>Expérience et évolution des cartes</h3>
+<p>Nous en avions un peu parlé mais les cartes peuvent évoluer <strong>dans une
+limite définie</strong> (par carte) et nous allons voir que c'est, comme
+beaucoup de choses dans ce jeu, <strong>défini de manière assez
+aléatoire</strong>. En effet, au fil des combats, les cartes peuvent évoluer
+de deux manières différentes :</p>
+<ul>
+<li>leurs statistiques d'attaque et de défense (magique ou non) peuvent
+évoluer jusqu'à une certaine limite ;</li>
+<li>le type de la carte peut changer au fil de l'aventure.</li>
+</ul>
+<p>Et ce qui est très amusant, c'est que ces deux évolutions peuvent
+arriver de manière parfaitement indépendantes. En d'autres termes,
+<strong>le type d'une carte peut évoluer sans que cette dernière ait atteint
+sa limite en attaque et défense</strong>. C'est pour ça que nous allons
+détailler les cas d'évolutions dans deux rubriques différentes et
+ensuite nous donnerons une liste des cartes avec les statistiques
+maximums qu'elles peuvent atteindre.</p>
+<h4 id="evolution-de-lattaque-et-des-défenses"><a class="anchor" aria-hidden="true" href="#evolution-de-lattaque-et-des-défenses"></a>Evolution de l'attaque et des défenses</h4>
+<p>Une carte possède une statistique d'attaque et deux statistiques de
+défense (la défense physique et la défense magique). Pour rappel, les
+indices affichés sur la carte sont exprimé en <strong>hexadécimal</strong> et vont
+de <code>0</code> <code>F</code> (<code>15</code>). Ses indices ne donnent pas la véritable valeur
+associée à la carte mais un intervalle. Alors que des cartes de la
+même effigies peuvent avoir un nombre de flèches différent et des
+statistiques concrètes (la position dans l'intervalle) différentes,
+lors de leur acquisitions, elles sont associées à une limite d'attaque
+et de défense.  Par exemple, la carte <code>gobelin</code>, possède, <em>par défaut</em>
+la collection de statistiques suivante : <code>0P00</code>, en d'autres mots, que
+ses différents points d'attaque et de défense concrets <strong>peuvent aller
+de <code>0</code> à <code>15</code></strong>. Par contre, on sait (par une <em>obscure sorcellerie</em>
+parce que oui, évidemment que dans un jeu qui est aussi taiseux sur
+son fonctionnement, être explicite sur les capacités maximum d'une
+carte semble un peu surfait) qu'un <code>gobelin</code> peut avoir, au maximum
+<code>7</code> en attaque (toujour dans l'intervalle de <code>0</code>), <code>9</code> de défense
+physique et <code>4</code> de défense magique. Mais cependant, <strong>tant qu'une
+carte n'a pas atteint ses limites, elle peut continuer à évoluer</strong>.</p>
+<p>En effet, à chaque partie gagnée, chacune des cartes utilisée pendant
+la partie se verra <strong>augmentée de <code>1</code> point une caractéristique
+d'attaque ou de défense, choisie aléatoirement</strong>. Ce qui implique que,
+à chaque combat gagné, chaque caractéristique aura une chance sur
+trois d'être incrémentée. La seule manière de savoir quelle compétence
+a été augmentée étant de faire entrer, dans une partie de carte
+suivante, une des cartes de la partie précédente, dans une situation
+de bataille pour voir son score effect a augmenté.</p>
+<p>Un point amusant de cette décision aléatoire de la caractéristique à
+incrémenter, c'est <strong>qu'elle ne tient absolument pas compte du fait
+que la carte ait atteint sa limite</strong>. Donc si notre <code>gobelin</code> avait
+déjà atteint <code>7</code> en attaque mais qu'il est à <code>6</code> en défense et <code>2</code> en
+défense magique, mais que le hasard à décidé d'incrémenter les
+statistiques d'attaques... le point est <strong>tout simplement perdu</strong>
+... <em>meh</em>.</p>
+<p>Une fois de plus, <em>l'obfuscation</em> de cette information (et son
+aléatoire) servent à compliquer la compréhension des règles du jeu !
+Parce que oui, même si la notion d'expérience des cartes est, de mon
+point de vue, une très bonne idée qui motive à jouer au maximum, sans
+en informer le joueur, cette mécanique sert essentiellement à rendre
+la compréhension des statistiques (et des chiffres affichés sur la
+carte en situation de bataille) <strong>encore plus compliqué à inférer</strong>.</p>
+<h4 id="evolution-du-type-de-cartes"><a class="anchor" aria-hidden="true" href="#evolution-du-type-de-cartes"></a>Evolution du type de cartes</h4>
+<p>En plus de pouvoir faire évoluer les compétences d'attaque et de
+défense d'une carte, ces dernières peuvent aussi <strong>changer de
+type</strong>. Toute carte de type <code>P</code> ou <code>M</code> peut évoluer en carte de type
+<code>X</code> et toute carte de type <code>X</code> peut évoluer en carte de type <code>A</code>. Les
+évolutions respectent donc cet organigrame, ce qui est très logique
+car le type <code>X</code> est objectivement superieur au type <code>M</code> ou <code>P</code>, tout
+en étant inferieur au type <code>A</code> :</p>
+<p><img src="/images/tetra-type-lattice.png" alt="Lattice d'évolution des types" ></p>
+<p>Au contraire des évolutions précédentes, conditionnées par la victoire
+d'une partie, les cartes peuvent changer de type <strong>quand elles
+remportent une bataille</strong> (peu importe qu'elles soient offensives ou
+défensives). En effet, quand une carte <strong>gagne une bataille</strong>, si
+c'est une carte <code>P</code> ou <code>M</code>, elle possède <code>1</code> chance sur <code>32</code> d'évoluer
+en carte <code>X</code> et une carte <code>X</code> possède <code>1</code> chance sur <code>256</code> de passer
+<code>A</code>.</p>
+<p>Même si les chances d'évolution sont <em>relativement faible</em>, au
+contraire des évolutions de points offensifs ou défensifs, les
+changements de types sont largement plus facile à suivre (logique, ce
+dernier est inscrit sur la carte).  Quand nous nous intéresserons à la
+dernière section (avant la conclusion) de cette article, <strong>le niveau
+de collectionneur</strong>, nous verrons qu'il est nécessaire de faire monter
+toutes les cartes niveau <code>A</code>, d'où l'importance de clarifier la
+méthode pour réussir à faire qu'une carte atteigne ce niveau.</p>
+<h4 id="liste-des-cartes"><a class="anchor" aria-hidden="true" href="#liste-des-cartes"></a>Liste des cartes</h4>
+<p>Comme les statistiques maximums des cartes ne sont <strong>évidemment</strong> pas
+données, voici une liste des 100 cartes accessibles dans le jeu, que
+j'ai trouvée
+<a href="http://web.archive.org/web/20190927185010/http://www.espritduo.com/random/ff9_card_data.txt">ici</a>,
+mais comme je suppose que la découverte des statistiques maximums, 20
+ans plus tard, n'évoluera plus, je me permet de la reproduire ici, par
+soucis de <em>vendorisation</em> (je n'ai pas trouvé de traduction adéquate,
+désolé). Voici comment ce tableau se présente :</p>
+<ul>
+<li><code>Nom</code>, donne le nom, en Anglais, de la carte ;</li>
+<li><code>Type</code>, donne son type original ;</li>
+<li><code>Atk</code>, donne le nombre maximum de points (<em>concrets</em>) d'attaque
+possible ;</li>
+<li><code>Def</code>, donne le nombre maximum de points (<em>concrets</em>) de défense
+possible ;</li>
+<li><code>Atk</code>, donne le nombre maximum de points (<em>concrets</em>) de défense
+magique possible ;</li>
+<li><code>MStats</code> donne la statistique maximum affichable sur la
+carte. (Elles seront toutes de type <code>A</code> car toutes les cartes
+peuvent atteindre ce type).</li>
+</ul>
+<details>
+<summary>la liste de cartes</summary>
+<div role="region"><table>
+<tr>
+<th>Id</th>
+<th>Nom</th>
+<th>Type</th>
+<th>Atk</th>
+<th>Def</th>
+<th>MDef</th>
+<th>MStats</th>
+</tr>
+<tr>
+<td><code>001</code></td>
+<td>Gobelin</td>
+<td><code>P</code></td>
+<td><code>7</code></td>
+<td><code>9</code></td>
+<td><code>4</code></td>
+<td><code>0A00</code></td>
+</tr>
+<tr>
+<td><code>002</code></td>
+<td>Fang</td>
+<td><code>P</code></td>
+<td><code>9</code></td>
+<td><code>10</code></td>
+<td><code>4</code></td>
+<td><code>0A00</code></td>
+</tr>
+<tr>
+<td><code>003</code></td>
+<td>Skeleton</td>
+<td><code>P</code></td>
+<td><code>11</code></td>
+<td><code>12</code></td>
+<td><code>10</code></td>
+<td><code>0A00</code></td>
+</tr>
+<tr>
+<td><code>004</code></td>
+<td>Flan</td>
+<td><code>M</code></td>
+<td><code>13</code></td>
+<td><code>6</code></td>
+<td><code>19</code></td>
+<td><code>0A01</code></td>
+</tr>
+<tr>
+<td><code>005</code></td>
+<td>Zaghnol</td>
+<td><code>P</code></td>
+<td><code>15</code></td>
+<td><code>13</code></td>
+<td><code>13</code></td>
+<td><code>0A00</code></td>
+</tr>
+<tr>
+<td><code>006</code></td>
+<td>Lizard Man</td>
+<td><code>P</code></td>
+<td><code>17</code></td>
+<td><code>15</code></td>
+<td><code>8</code></td>
+<td><code>1A00</code></td>
+</tr>
+<tr>
+<td><code>007</code></td>
+<td>Zombie</td>
+<td><code>P</code></td>
+<td><code>19</code></td>
+<td><code>19</code></td>
+<td><code>11</code></td>
+<td><code>1A10</code></td>
+</tr>
+<tr>
+<td><code>008</code></td>
+<td>Bomb</td>
+<td><code>M</code></td>
+<td><code>21</code></td>
+<td><code>12</code></td>
+<td><code>21</code></td>
+<td><code>1A01</code></td>
+</tr>
+<tr>
+<td><code>009</code></td>
+<td>Ironite</td>
+<td><code>P</code></td>
+<td><code>23</code></td>
+<td><code>23</code></td>
+<td><code>13</code></td>
+<td><code>1A10</code></td>
+</tr>
+<tr>
+<td><code>010</code></td>
+<td>Sahagin</td>
+<td><code>P</code></td>
+<td><code>25</code></td>
+<td><code>18</code></td>
+<td><code>4</code></td>
+<td><code>1A10</code></td>
+</tr>
+<tr>
+<td><code>011</code></td>
+<td>Yeti</td>
+<td><code>M</code></td>
+<td><code>27</code></td>
+<td><code>6</code></td>
+<td><code>26</code></td>
+<td><code>1A01</code></td>
+</tr>
+<tr>
+<td><code>012</code></td>
+<td>Mimic</td>
+<td><code>M</code></td>
+<td><code>29</code></td>
+<td><code>20</code></td>
+<td><code>27</code></td>
+<td><code>1A11</code></td>
+</tr>
+<tr>
+<td><code>013</code></td>
+<td>Wyerd</td>
+<td><code>M</code></td>
+<td><code>31</code></td>
+<td><code>9</code></td>
+<td><code>33</code></td>
+<td><code>1A02</code></td>
+</tr>
+<tr>
+<td><code>014</code></td>
+<td>Mandragora</td>
+<td><code>M</code></td>
+<td><code>33</code></td>
+<td><code>15</code></td>
+<td><code>39</code></td>
+<td><code>2A02</code></td>
+</tr>
+<tr>
+<td><code>015</code></td>
+<td>Crawler</td>
+<td><code>P</code></td>
+<td><code>35</code></td>
+<td><code>36</code></td>
+<td><code>8</code></td>
+<td><code>2A20</code></td>
+</tr>
+<tr>
+<td><code>016</code></td>
+<td>Sand Scorpion</td>
+<td><code>P</code></td>
+<td><code>37</code></td>
+<td><code>37</code></td>
+<td><code>17</code></td>
+<td><code>2A21</code></td>
+</tr>
+<tr>
+<td><code>017</code></td>
+<td>Nymph</td>
+<td><code>M</code></td>
+<td><code>39</code></td>
+<td><code>12</code></td>
+<td><code>38</code></td>
+<td><code>2A02</code></td>
+</tr>
+<tr>
+<td><code>018</code></td>
+<td>Sand Golem</td>
+<td><code>P</code></td>
+<td><code>41</code></td>
+<td><code>38</code></td>
+<td><code>16</code></td>
+<td><code>2A21</code></td>
+</tr>
+<tr>
+<td><code>019</code></td>
+<td>Zuu</td>
+<td><code>P</code></td>
+<td><code>43</code></td>
+<td><code>11</code></td>
+<td><code>34</code></td>
+<td><code>2A02</code></td>
+</tr>
+<tr>
+<td><code>020</code></td>
+<td>Dragonfly</td>
+<td><code>P</code></td>
+<td><code>45</code></td>
+<td><code>40</code></td>
+<td><code>19</code></td>
+<td><code>2A21</code></td>
+</tr>
+<tr>
+<td><code>021</code></td>
+<td>Carrion Worm</td>
+<td><code>M</code></td>
+<td><code>47</code></td>
+<td><code>29</code></td>
+<td><code>25</code></td>
+<td><code>2A11</code></td>
+</tr>
+<tr>
+<td><code>022</code></td>
+<td>Cerberus</td>
+<td><code>P</code></td>
+<td><code>49</code></td>
+<td><code>45</code></td>
+<td><code>4</code></td>
+<td><code>3A20</code></td>
+</tr>
+<tr>
+<td><code>023</code></td>
+<td>Antlion</td>
+<td><code>P</code></td>
+<td><code>51</code></td>
+<td><code>48</code></td>
+<td><code>27</code></td>
+<td><code>3A31</code></td>
+</tr>
+<tr>
+<td><code>024</code></td>
+<td>Cactuar</td>
+<td><code>P</code></td>
+<td><code>53</code></td>
+<td><code>195</code></td>
+<td><code>4</code></td>
+<td><code>3AC0</code></td>
+</tr>
+<tr>
+<td><code>025</code></td>
+<td>Gimme Cat</td>
+<td><code>M</code></td>
+<td><code>55</code></td>
+<td><code>33</code></td>
+<td><code>29</code></td>
+<td><code>3A21</code></td>
+</tr>
+<tr>
+<td><code>026</code></td>
+<td>Ragtimer</td>
+<td><code>M</code></td>
+<td><code>57</code></td>
+<td><code>34</code></td>
+<td><code>30</code></td>
+<td><code>3A21</code></td>
+</tr>
+<tr>
+<td><code>027</code></td>
+<td>Hedgehog Pie</td>
+<td><code>M</code></td>
+<td><code>59</code></td>
+<td><code>22</code></td>
+<td><code>40</code></td>
+<td><code>3A12</code></td>
+</tr>
+<tr>
+<td><code>028</code></td>
+<td>Ralvuimahgo</td>
+<td><code>P</code></td>
+<td><code>61</code></td>
+<td><code>68</code></td>
+<td><code>12</code></td>
+<td><code>3A40</code></td>
+</tr>
+<tr>
+<td><code>029</code></td>
+<td>Ochu</td>
+<td><code>P</code></td>
+<td><code>63</code></td>
+<td><code>37</code></td>
+<td><code>18</code></td>
+<td><code>3A21</code></td>
+</tr>
+<tr>
+<td><code>030</code></td>
+<td>Troll</td>
+<td><code>P</code></td>
+<td><code>65</code></td>
+<td><code>62</code></td>
+<td><code>34</code></td>
+<td><code>4A32</code></td>
+</tr>
+<tr>
+<td><code>031</code></td>
+<td>Blazer Beetle</td>
+<td><code>P</code></td>
+<td><code>67</code></td>
+<td><code>91</code></td>
+<td><code>18</code></td>
+<td><code>4A51</code></td>
+</tr>
+<tr>
+<td><code>032</code></td>
+<td>Abomination</td>
+<td><code>P</code></td>
+<td><code>69</code></td>
+<td><code>59</code></td>
+<td><code>58</code></td>
+<td><code>4A33</code></td>
+</tr>
+<tr>
+<td><code>033</code></td>
+<td>Zemzelett</td>
+<td><code>M</code></td>
+<td><code>71</code></td>
+<td><code>32</code></td>
+<td><code>96</code></td>
+<td><code>4A26</code></td>
+</tr>
+<tr>
+<td><code>034</code></td>
+<td>Stroper</td>
+<td><code>P</code></td>
+<td><code>73</code></td>
+<td><code>64</code></td>
+<td><code>8</code></td>
+<td><code>4A40</code></td>
+</tr>
+<tr>
+<td><code>035</code></td>
+<td>Tantarian</td>
+<td><code>M</code></td>
+<td><code>75</code></td>
+<td><code>43</code></td>
+<td><code>39</code></td>
+<td><code>4A22</code></td>
+</tr>
+<tr>
+<td><code>036</code></td>
+<td>Grand Dragon</td>
+<td><code>P</code></td>
+<td><code>77</code></td>
+<td><code>65</code></td>
+<td><code>71</code></td>
+<td><code>4A44</code></td>
+</tr>
+<tr>
+<td><code>037</code></td>
+<td>Feather Circle</td>
+<td><code>M</code></td>
+<td><code>79</code></td>
+<td><code>45</code></td>
+<td><code>41</code></td>
+<td><code>4A22</code></td>
+</tr>
+<tr>
+<td><code>038</code></td>
+<td>Hecteyes</td>
+<td><code>M</code></td>
+<td><code>81</code></td>
+<td><code>10</code></td>
+<td><code>70</code></td>
+<td><code>5A04</code></td>
+</tr>
+<tr>
+<td><code>039</code></td>
+<td>Ogre</td>
+<td><code>P</code></td>
+<td><code>83</code></td>
+<td><code>80</code></td>
+<td><code>29</code></td>
+<td><code>5A51</code></td>
+</tr>
+<tr>
+<td><code>040</code></td>
+<td>Armstrong</td>
+<td><code>M</code></td>
+<td><code>85</code></td>
+<td><code>36</code></td>
+<td><code>75</code></td>
+<td><code>5A24</code></td>
+</tr>
+<tr>
+<td><code>041</code></td>
+<td>Ash</td>
+<td><code>M</code></td>
+<td><code>87</code></td>
+<td><code>50</code></td>
+<td><code>50</code></td>
+<td><code>5A33</code></td>
+</tr>
+<tr>
+<td><code>042</code></td>
+<td>Wraith</td>
+<td><code>M</code></td>
+<td><code>89</code></td>
+<td><code>80</code></td>
+<td><code>17</code></td>
+<td><code>5A51</code></td>
+</tr>
+<tr>
+<td><code>043</code></td>
+<td>Gargoyle</td>
+<td><code>M</code></td>
+<td><code>91</code></td>
+<td><code>51</code></td>
+<td><code>47</code></td>
+<td><code>5A32</code></td>
+</tr>
+<tr>
+<td><code>044</code></td>
+<td>Vepal</td>
+<td><code>M</code></td>
+<td><code>93</code></td>
+<td><code>52</code></td>
+<td><code>48</code></td>
+<td><code>5A33</code></td>
+</tr>
+<tr>
+<td><code>045</code></td>
+<td>Grimlock</td>
+<td><code>M</code></td>
+<td><code>84</code></td>
+<td><code>37</code></td>
+<td><code>54</code></td>
+<td><code>5A23</code></td>
+</tr>
+<tr>
+<td><code>046</code></td>
+<td>Tonberry</td>
+<td><code>P</code></td>
+<td><code>41</code></td>
+<td><code>54</code></td>
+<td><code>50</code></td>
+<td><code>2A33</code></td>
+</tr>
+<tr>
+<td><code>047</code></td>
+<td>Veteran</td>
+<td><code>M</code></td>
+<td><code>90</code></td>
+<td><code>30</code></td>
+<td><code>145</code></td>
+<td><code>5A19</code></td>
+</tr>
+<tr>
+<td><code>048</code></td>
+<td>Garuda</td>
+<td><code>M</code></td>
+<td><code>98</code></td>
+<td><code>72</code></td>
+<td><code>29</code></td>
+<td><code>6A41</code></td>
+</tr>
+<tr>
+<td><code>049</code></td>
+<td>Malboro</td>
+<td><code>M</code></td>
+<td><code>86</code></td>
+<td><code>57</code></td>
+<td><code>99</code></td>
+<td><code>5A36</code></td>
+</tr>
+<tr>
+<td><code>050</code></td>
+<td>Mover</td>
+<td><code>M</code></td>
+<td><code>102</code></td>
+<td><code>250</code></td>
+<td><code>8</code></td>
+<td><code>6AF0</code></td>
+</tr>
+<tr>
+<td><code>051</code></td>
+<td>Abadon</td>
+<td><code>M</code></td>
+<td><code>125</code></td>
+<td><code>105</code></td>
+<td><code>45</code></td>
+<td><code>7A62</code></td>
+</tr>
+<tr>
+<td><code>052</code></td>
+<td>Behemoth</td>
+<td><code>P</code></td>
+<td><code>189</code></td>
+<td><code>71</code></td>
+<td><code>106</code></td>
+<td><code>BA46</code></td>
+</tr>
+<tr>
+<td><code>053</code></td>
+<td>Iron Man</td>
+<td><code>P</code></td>
+<td><code>197</code></td>
+<td><code>110</code></td>
+<td><code>12</code></td>
+<td><code>CA60</code></td>
+</tr>
+<tr>
+<td><code>054</code></td>
+<td>Nova Dragon</td>
+<td><code>P</code></td>
+<td><code>236</code></td>
+<td><code>125</code></td>
+<td><code>194</code></td>
+<td><code>EA7C</code></td>
+</tr>
+<tr>
+<td><code>055</code></td>
+<td>Ozma</td>
+<td><code>P</code></td>
+<td><code>221</code></td>
+<td><code>6</code></td>
+<td><code>199</code></td>
+<td><code>DA0C</code></td>
+</tr>
+<tr>
+<td><code>056</code></td>
+<td>Hades</td>
+<td><code>M</code></td>
+<td><code>250</code></td>
+<td><code>200</code></td>
+<td><code>20</code></td>
+<td><code>FAC1</code></td>
+</tr>
+<tr>
+<td><code>057</code></td>
+<td>Holy</td>
+<td><code>M</code></td>
+<td><code>134</code></td>
+<td><code>40</code></td>
+<td><code>63</code></td>
+<td><code>8A23</code></td>
+</tr>
+<tr>
+<td><code>058</code></td>
+<td>Meteor</td>
+<td><code>M</code></td>
+<td><code>190</code></td>
+<td><code>162</code></td>
+<td><code>2</code></td>
+<td><code>BAA0</code></td>
+</tr>
+<tr>
+<td><code>059</code></td>
+<td>Flare</td>
+<td><code>M</code></td>
+<td><code>208</code></td>
+<td><code>17</code></td>
+<td><code>17</code></td>
+<td><code>DA11</code></td>
+</tr>
+<tr>
+<td><code>060</code></td>
+<td>Shiva</td>
+<td><code>M</code></td>
+<td><code>83</code></td>
+<td><code>6</code></td>
+<td><code>95</code></td>
+<td><code>5A05</code></td>
+</tr>
+<tr>
+<td><code>061</code></td>
+<td>Ifrit</td>
+<td><code>M</code></td>
+<td><code>100</code></td>
+<td><code>150</code></td>
+<td><code>17</code></td>
+<td><code>6A91</code></td>
+</tr>
+<tr>
+<td><code>062</code></td>
+<td>Ramuh</td>
+<td><code>M</code></td>
+<td><code>74</code></td>
+<td><code>29</code></td>
+<td><code>103</code></td>
+<td><code>4A16</code></td>
+</tr>
+<tr>
+<td><code>063</code></td>
+<td>Atomos</td>
+<td><code>M</code></td>
+<td><code>66</code></td>
+<td><code>100</code></td>
+<td><code>100</code></td>
+<td><code>4A66</code></td>
+</tr>
+<tr>
+<td><code>064</code></td>
+<td>Odin</td>
+<td><code>M</code></td>
+<td><code>205</code></td>
+<td><code>136</code></td>
+<td><code>72</code></td>
+<td><code>CA84</code></td>
+</tr>
+<tr>
+<td><code>065</code></td>
+<td>Leviathan</td>
+<td><code>M</code></td>
+<td><code>183</code></td>
+<td><code>100</code></td>
+<td><code>22</code></td>
+<td><code>BA61</code></td>
+</tr>
+<tr>
+<td><code>066</code></td>
+<td>Bahamut</td>
+<td><code>M</code></td>
+<td><code>200</code></td>
+<td><code>145</code></td>
+<td><code>83</code></td>
+<td><code>CA95</code></td>
+</tr>
+<tr>
+<td><code>067</code></td>
+<td>Ark</td>
+<td><code>M</code></td>
+<td><code>226</code></td>
+<td><code>96</code></td>
+<td><code>90</code></td>
+<td><code>EA65</code></td>
+</tr>
+<tr>
+<td><code>068</code></td>
+<td>Fenrir</td>
+<td><code>M</code></td>
+<td><code>139</code></td>
+<td><code>36</code></td>
+<td><code>22</code></td>
+<td><code>8A21</code></td>
+</tr>
+<tr>
+<td><code>069</code></td>
+<td>Madeen</td>
+<td><code>M</code></td>
+<td><code>162</code></td>
+<td><code>22</code></td>
+<td><code>100</code></td>
+<td><code>AA16</code></td>
+</tr>
+<tr>
+<td><code>070</code></td>
+<td>Alexander</td>
+<td><code>M</code></td>
+<td><code>225</code></td>
+<td><code>183</code></td>
+<td><code>86</code></td>
+<td><code>EAB5</code></td>
+</tr>
+<tr>
+<td><code>071</code></td>
+<td>Excalibur II</td>
+<td><code>P</code></td>
+<td><code>255</code></td>
+<td><code>180</code></td>
+<td><code>6</code></td>
+<td><code>FAB0</code></td>
+</tr>
+<tr>
+<td><code>072</code></td>
+<td>Ultima Weapon</td>
+<td><code>P</code></td>
+<td><code>248</code></td>
+<td><code>24</code></td>
+<td><code>102</code></td>
+<td><code>FA16</code></td>
+</tr>
+<tr>
+<td><code>073</code></td>
+<td>Masamune</td>
+<td><code>P</code></td>
+<td><code>202</code></td>
+<td><code>180</code></td>
+<td><code>56</code></td>
+<td><code>CAB3</code></td>
+</tr>
+<tr>
+<td><code>074</code></td>
+<td>Elixir</td>
+<td><code>M</code></td>
+<td><code>100</code></td>
+<td><code>100</code></td>
+<td><code>100</code></td>
+<td><code>6A66</code></td>
+</tr>
+<tr>
+<td><code>075</code></td>
+<td>Dark Matter</td>
+<td><code>M</code></td>
+<td><code>199</code></td>
+<td><code>56</code></td>
+<td><code>195</code></td>
+<td><code>CA3C</code></td>
+</tr>
+<tr>
+<td><code>076</code></td>
+<td>Ribbon</td>
+<td><code>M</code></td>
+<td><code>12</code></td>
+<td><code>200</code></td>
+<td><code>255</code></td>
+<td><code>0ACF</code></td>
+</tr>
+<tr>
+<td><code>077</code></td>
+<td>Tiger Racket</td>
+<td><code>P</code></td>
+<td><code>12</code></td>
+<td><code>5</code></td>
+<td><code>19</code></td>
+<td><code>0A01</code></td>
+</tr>
+<tr>
+<td><code>078</code></td>
+<td>Save the Queen</td>
+<td><code>P</code></td>
+<td><code>112</code></td>
+<td><code>60</code></td>
+<td><code>10</code></td>
+<td><code>7A30</code></td>
+</tr>
+<tr>
+<td><code>079</code></td>
+<td>Genji</td>
+<td><code>P</code></td>
+<td><code>10</code></td>
+<td><code>105</code></td>
+<td><code>175</code></td>
+<td><code>0A6A</code></td>
+</tr>
+<tr>
+<td><code>080</code></td>
+<td>Mythril Sword</td>
+<td><code>P</code></td>
+<td><code>32</code></td>
+<td><code>4</code></td>
+<td><code>6</code></td>
+<td><code>2A00</code></td>
+</tr>
+<tr>
+<td><code>081</code></td>
+<td>Blue Narciss</td>
+<td><code>P</code></td>
+<td><code>143</code></td>
+<td><code>144</code></td>
+<td><code>20</code></td>
+<td><code>8A91</code></td>
+</tr>
+<tr>
+<td><code>082</code></td>
+<td>Hilda Garde 3</td>
+<td><code>P</code></td>
+<td><code>98</code></td>
+<td><code>62</code></td>
+<td><code>16</code></td>
+<td><code>6A31</code></td>
+</tr>
+<tr>
+<td><code>083</code></td>
+<td>Invincible</td>
+<td><code>M</code></td>
+<td><code>185</code></td>
+<td><code>145</code></td>
+<td><code>201</code></td>
+<td><code>BA9C</code></td>
+</tr>
+<tr>
+<td><code>084</code></td>
+<td>Cargo Ship</td>
+<td><code>P</code></td>
+<td><code>45</code></td>
+<td><code>100</code></td>
+<td><code>10</code></td>
+<td><code>2A60</code></td>
+</tr>
+<tr>
+<td><code>085</code></td>
+<td>Hilda Garde 1</td>
+<td><code>P</code></td>
+<td><code>99</code></td>
+<td><code>75</code></td>
+<td><code>2</code></td>
+<td><code>6A40</code></td>
+</tr>
+<tr>
+<td><code>086</code></td>
+<td>Red Rose</td>
+<td><code>P</code></td>
+<td><code>143</code></td>
+<td><code>20</code></td>
+<td><code>144</code></td>
+<td><code>8A19</code></td>
+</tr>
+<tr>
+<td><code>087</code></td>
+<td>Theater Ship</td>
+<td><code>P</code></td>
+<td><code>33</code></td>
+<td><code>106</code></td>
+<td><code>19</code></td>
+<td><code>2A61</code></td>
+</tr>
+<tr>
+<td><code>088</code></td>
+<td>Viltgance</td>
+<td><code>P</code></td>
+<td><code>228</code></td>
+<td><code>145</code></td>
+<td><code>32</code></td>
+<td><code>EA92</code></td>
+</tr>
+<tr>
+<td><code>089</code></td>
+<td>Chocobo</td>
+<td><code>P</code></td>
+<td><code>3</code></td>
+<td><code>5</code></td>
+<td><code>12</code></td>
+<td><code>0A00</code></td>
+</tr>
+<tr>
+<td><code>090</code></td>
+<td>Fat Chocobo</td>
+<td><code>P</code></td>
+<td><code>25</code></td>
+<td><code>30</code></td>
+<td><code>30</code></td>
+<td><code>1A11</code></td>
+</tr>
+<tr>
+<td><code>091</code></td>
+<td>Mog</td>
+<td><code>M</code></td>
+<td><code>3</code></td>
+<td><code>5</code></td>
+<td><code>12</code></td>
+<td><code>0A00</code></td>
+</tr>
+<tr>
+<td><code>092</code></td>
+<td>Frog</td>
+<td><code>P</code></td>
+<td><code>2</code></td>
+<td><code>2</code></td>
+<td><code>2</code></td>
+<td><code>0A00</code></td>
+</tr>
+<tr>
+<td><code>093</code></td>
+<td>Oglop</td>
+<td><code>P</code></td>
+<td><code>40</code></td>
+<td><code>33</code></td>
+<td><code>6</code></td>
+<td><code>2A20</code></td>
+</tr>
+<tr>
+<td><code>094</code></td>
+<td>Alexandria</td>
+<td><code>P</code></td>
+<td><code>4</code></td>
+<td><code>178</code></td>
+<td><code>100</code></td>
+<td><code>0AB6</code></td>
+</tr>
+<tr>
+<td><code>095</code></td>
+<td>Lindblum</td>
+<td><code>P</code></td>
+<td><code>6</code></td>
+<td><code>100</code></td>
+<td><code>178</code></td>
+<td><code>0A6B</code></td>
+</tr>
+<tr>
+<td><code>096</code></td>
+<td>Two Moons</td>
+<td><code>M</code></td>
+<td><code>113</code></td>
+<td><code>88</code></td>
+<td><code>88</code></td>
+<td><code>7A55</code></td>
+</tr>
+<tr>
+<td><code>097</code></td>
+<td>Gargant</td>
+<td><code>P</code></td>
+<td><code>46</code></td>
+<td><code>17</code></td>
+<td><code>56</code></td>
+<td><code>2A13</code></td>
+</tr>
+<tr>
+<td><code>098</code></td>
+<td>Namingway</td>
+<td><code>M</code></td>
+<td><code>127</code></td>
+<td><code>127</code></td>
+<td><code>127</code></td>
+<td><code>7A77</code></td>
+</tr>
+<tr>
+<td><code>099</code></td>
+<td>Boco</td>
+<td><code>P</code></td>
+<td><code>128</code></td>
+<td><code>127</code></td>
+<td><code>127</code></td>
+<td><code>8A77</code></td>
+</tr>
+<tr>
+<td><code>100</code></td>
+<td>Airship</td>
+<td><code>P</code></td>
+<td><code>129</code></td>
+<td><code>127</code></td>
+<td><code>127</code></td>
+<td><code>8A77</code></td>
+</tr>
+</table></div></details>
+<p>Maintenant, que vous savez comment faire monter les statistiques d'une
+carte et changer son type, nous allons pouvoir nous intéresser aux
+dernières sources d'incompréhension de ce jeu ... <strong>le niveau de
+collectionneur</strong>.</p>
+<h3 id="le-niveau-de-collectionneur"><a class="anchor" aria-hidden="true" href="#le-niveau-de-collectionneur"></a>Le niveau de collectionneur</h3>
+<p>Les règles du jeu et la logique d'évolution des cartes n'ont plus de
+secrets pour nous, nous pouvons nous intéresser à la dernière énigme
+du jeu, le fameux <em>niveau de collectionneur</em>. Quand on se rend dans le
+menu des cartes (depuis le <em>menu principal</em>), on peut observer
+l'ensemble de sa collection de cartes, et lire plusieurs statistiques.</p>
+<ul>
+<li>le nombre de parties gagnées ;</li>
+<li>le nombre de parties perdues ;</li>
+<li>le nombre de matchs nuls ;</li>
+<li>Le <code>niveau</code>, exprimé en <code>p</code>.</li>
+</ul>
+<p>Les trois premières informations ne devraient (à priori) pas
+nécéssiter de clarifications. Le jeu garde en mémoire une trace des
+parties effectuées et fourni, par le biais de ce menu, une
+synthèse. Par contre, ce qui attire notre attention est le
+<strong>niveau</strong>. En effet, en observant l'évolution de ce niveau au fil des
+parties, comme beaucoup d'éléments du Tetra Master, il est très
+difficile de comprendre la manière dont ce compteur évolue (<em>une fois
+n'est pas coutume</em>, on est face à une règle assez <em>capilotractée</em>).</p>
+<p>Encore plus amusant, on peut rapidement se rendre compte que les trois
+éléments de synthèse (victoires, défaites et nuls) n'influent <em>pas
+réellement</em> sur ce score. En effet, il existe plusieurs situations
+dans lesquelles <strong>l'issue d'une partie ne changeront pas le
+niveau</strong>. Et oui, comme souvent dans ce jeu, pourquoi se contenter de
+quelque chose de simple et de déductible quand on peut choisir une
+métrique <em>éclatée au sol</em> ? Pour faire <em>simple</em>, le niveau <strong>est
+déterminé par les cartes que l'on possède</strong>, selon une mécanique <em>très
+spécifique</em> que nous allons, sans plus tarder détailler.</p>
+<h4 id="les-différents-niveaux"><a class="anchor" aria-hidden="true" href="#les-différents-niveaux"></a>Les différents niveaux</h4>
+<p>Avant de décrire comment calculer les points en fonction des cartes
+possédées, voici la liste des différents niveaux qu'il est possible
+d'atteindre dans le jeu. Pour rappel, votre niveau aux cartes <strong>n'aura
+aucune incidence sur le déroulé du jeu</strong>.</p>
+<div role="region"><table>
+<tr>
+<th>Points minimum</th>
+<th>Niveau de collectionneur</th>
+</tr>
+<tr>
+<td><code>&gt;= 0</code></td>
+<td>Beginner</td>
+</tr>
+<tr>
+<td><code>&gt;= 300</code></td>
+<td>Novice</td>
+</tr>
+<tr>
+<td><code>&gt;= 400</code></td>
+<td>Player</td>
+</tr>
+<tr>
+<td><code>&gt;= 500</code></td>
+<td>Senior (<em>developper</em>)</td>
+</tr>
+<tr>
+<td><code>&gt;= 600</code></td>
+<td>Fan</td>
+</tr>
+<tr>
+<td><code>&gt;= 700</code></td>
+<td>Leader</td>
+</tr>
+<tr>
+<td><code>&gt;= 800</code></td>
+<td>Coach</td>
+</tr>
+<tr>
+<td><code>&gt;= 900</code></td>
+<td>Advisor</td>
+</tr>
+<tr>
+<td><code>&gt;= 1000</code></td>
+<td>Director</td>
+</tr>
+<tr>
+<td><code>&gt;= 1100</code></td>
+<td>Dealer</td>
+</tr>
+<tr>
+<td><code>&gt;= 1200</code></td>
+<td>Trader</td>
+</tr>
+<tr>
+<td><code>&gt;= 1250</code></td>
+<td>Commander</td>
+</tr>
+<tr>
+<td><code>&gt;= 1300</code></td>
+<td>Doctor</td>
+</tr>
+<tr>
+<td><code>&gt;= 1320</code></td>
+<td>Professor</td>
+</tr>
+<tr>
+<td><code>&gt;= 1330</code></td>
+<td>Veteran</td>
+</tr>
+<tr>
+<td><code>&gt;= 1340</code></td>
+<td>Freak</td>
+</tr>
+<tr>
+<td><code>&gt;= 1350</code></td>
+<td>Champion</td>
+</tr>
+<tr>
+<td><code>&gt;= 1360</code></td>
+<td>Analyst</td>
+</tr>
+<tr>
+<td><code>&gt;= 1370</code></td>
+<td>General</td>
+</tr>
+<tr>
+<td><code>&gt;= 1380</code></td>
+<td>Expert</td>
+</tr>
+<tr>
+<td><code>&gt;= 1390</code></td>
+<td>Shark</td>
+</tr>
+<tr>
+<td><code>&gt;= 1400</code></td>
+<td>Specialist</td>
+</tr>
+<tr>
+<td><code>&gt;= 1450</code></td>
+<td>Elder</td>
+</tr>
+<tr>
+<td><code>&gt;= 1475</code></td>
+<td>Dominator</td>
+</tr>
+<tr>
+<td><code>&gt;= 1500</code></td>
+<td>Maestro</td>
+</tr>
+<tr>
+<td><code>&gt;= 1550</code></td>
+<td>King</td>
+</tr>
+<tr>
+<td><code>&gt;= 1600</code></td>
+<td>Wizard</td>
+</tr>
+<tr>
+<td><code>&gt;= 1650</code></td>
+<td>Authority</td>
+</tr>
+<tr>
+<td><code>&gt;= 1680</code></td>
+<td>Emperor</td>
+</tr>
+<tr>
+<td><code>&gt;= 1690</code></td>
+<td>Pro</td>
+</tr>
+<tr>
+<td><code>= 1698</code></td>
+<td>Master</td>
+</tr>
+</table></div><p>Amusant d'avoir autant d'étapes de progression pour une logique de
+gain de points aussi difficile à déduire, n'est-il pas ? Une fois de
+plus, on pourra râler de l'excès d'implicites dans ce jeu, où chaque
+décision semble avoir été prise pour <em>perdre le joueur</em>. Comme nous
+allons le voir dans les sections qui suivent, le calcul des points est
+loin d'être trivial !</p>
+<h4 id="sur-la-distinction-des-cartes"><a class="anchor" aria-hidden="true" href="#sur-la-distinction-des-cartes"></a>Sur la distinction des cartes</h4>
+<p>Avant de détailler la <em>corrélation</em> entre les cartes possédées et les
+points qu'elles rapportent, il est important de donner quelques
+clarifications terminologiques. Voici les éléments qui
+<strong>caractérisent</strong> une carte pour le calcul des points :</p>
+<ul>
+<li>sa <strong>figure</strong>, par exemple <code>Gobelin</code> ou <code>Fat Chocobo</code> ;</li>
+<li>son <strong>motif de flèches</strong> ;</li>
+<li>son <strong>type</strong> (<code>X</code> ou <code>A</code>).</li>
+</ul>
+<p>Les cartes de types <code>P</code> ou <code>M</code> n'apportent pas de bonus de points et
+les statistiques des cartes (donc leur évolution), n'influent pas dans
+le calcul des points.</p>
+<p>Donc quand on parle d'une <strong>carte unique</strong>, on parle d'une carte avec
+une figure spécifique que l'on ne possède qu'une seule fois. Quand on
+parle d'une <strong>carte additionnelle</strong> on parle d'une carte avec une
+figure que l'on possède plusieurs fois.</p>
+<h4 id="les-points-attribués-par-cartes"><a class="anchor" aria-hidden="true" href="#les-points-attribués-par-cartes"></a>Les points attribués par cartes</h4>
+<p>Les points sont calculés en fonction des cartes que l'on possède et de
+la manière dont sont arrangés leurs flèches (<em>outch</em>). De manière
+schématique, on pourrait définir que les axes permettant se gagner des
+points sont :</p>
+<ul>
+<li>
+<p>la <strong>diversité des cartes</strong> que l'on possède. Dans l'absolu, c'est
+assez simple, on ne peut posséder que <code>100</code> cartes simultanément et
+il n'existe que <code>100</code> figures de cartes (par exemple <em>Gobelin</em>). Il
+faut donc, pour maximiser ses points, n'avoir que des figures
+différentes ;</p>
+</li>
+<li>
+<p>la <strong>diversité des motifs de flèches</strong> des cartes que l'on
+possède. En vue de maximiser ses points, chaque carte <strong>devrait
+avoir un motif de flèche unique</strong> (<em>non non, ce n'est pas une
+blague</em>) ;</p>
+</li>
+<li>
+<p>la <strong>puissance des cartes</strong> que l'on possède. Les cartes <code>X</code> et <code>A</code>
+donnent un bonus de point, donc pour maximiser ses points, toutes
+les cartes devraient être niveau <code>A</code> (qui rapporte le plus de
+points).</p>
+</li>
+</ul>
+<p>Voici de quelle manière une carte peut faire gagner des points, les
+caractéristiques sont cumulables (sauf, évidemment, dans le cas du
+type de la carte, parce que ... logiquement, une carte ne peut pas
+être simultanément <code>X</code> ou <code>A</code>) :</p>
+<div role="region"><table>
+<tr>
+<th>Caractéristique</th>
+<th>Récompense</th>
+</tr>
+<tr>
+<td>Carte unique ?</td>
+<td>+ 10 points</td>
+</tr>
+<tr>
+<td>Motif de flèches unique ?</td>
+<td>+ 5 points</td>
+</tr>
+<tr>
+<td>Si c'est une carte <code>X</code> ?</td>
+<td>+ 1 point</td>
+</tr>
+<tr>
+<td>Si c'est une carte <code>A</code> ?</td>
+<td>+ 2 point</td>
+</tr>
+</table></div><p>Donc pour atteindre le niveau maximum de points possible, il faut
+n'avoir <strong>que des cartes uniques</strong> (figures différentes et motifs de
+flèches différents) et qu'elles soient toutes au niveau <code>A</code>. On peut
+donc déduire le nombre de points nécessaire pour atteindre le niveau
+maximum : <code>1700</code>, parce qu'il y a <code>100</code> cartes et que <strong>le score
+maximum</strong> que peut atteindre une carte (unique sur la figure et le
+motif et de type <code>A</code>) est <code>17</code>.</p>
+<h5 id="note-sur-les-permutations-de-motifs"><a class="anchor" aria-hidden="true" href="#note-sur-les-permutations-de-motifs"></a>Note sur les permutations de motifs</h5>
+<p>On sait qu'une carte peut avoir <strong>entre <code>0</code> et <code>8</code> flèches</strong>. En
+d'autres termes, on pourrait dire que pour chacun des <code>8</code> espaces
+libres (<em>slots</em>) il peut y avoir une flèche ou pas. Ce qui correspond
+à <code>256</code> permutations possibles. On peut facilement s'en convaincre en
+décrivant le chaque <em>slot</em> par un booléen, <code>0</code> où '1', on obtient,
+dans le cas où tous les <em>slots</em> sont occupés une succession de huit
+<code>1</code>, <code>11111111</code>, soit la représentation binaire de <code>256</code>.</p>
+<p>On pourrait même décrire, <strong>par nombre de flèches</strong>, le nombre de
+combinaisons possibles avec cette formule :</p>
+<p><img src="/images/tetra-permut.png" alt="Formule de permutations" ></p>
+<p>Ce qui nous donne comme liste des combinaisons possibles pour chaque
+nombre de flèches, ce qui nous indique que nous ne sommes pas obligé
+d'avoir des <em>motifs faibles</em> pour attendre le niveau le plus élevé. En
+effet, il y a <code>163</code> combinaisons incluant <strong>au minimum <code>4</code> flèches</strong> :</p>
+<div role="region"><table>
+<tr>
+<th>Flèches</th>
+<th>Permutations</th>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>2</td>
+<td>28</td>
+</tr>
+<tr>
+<td>3</td>
+<td>56</td>
+</tr>
+<tr>
+<td>4</td>
+<td>70</td>
+</tr>
+<tr>
+<td>5</td>
+<td>56</td>
+</tr>
+<tr>
+<td>6</td>
+<td>28</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>256 permutations</td>
+</tr>
+</table></div><p>Alors que pour atteindre le maximum, vous devez avoir <strong>toutes les cartes</strong> et
+elles <strong>doivent tout être au niveau <code>A</code></strong>, vous ne devez vous embarasser que de
+<code>~39%</code> (<code>100</code> sur <code>256</code>) des motifs de flèches différents. <em>Chic</em>.</p>
+<h4 id="la-cerise-sur-le-gateau"><a class="anchor" aria-hidden="true" href="#la-cerise-sur-le-gateau"></a>La cerise sur le gateau</h4>
+<p>Si vous avez été attentifs, vous auriez dû remarquer quelque
+chose. Alors que nous avions dit que chaque carte pouvait <strong>rapporter
+au maximum <code>17</code> points</strong> et qu'il y en avait <code>100</code>, donc, qu'il était
+possible de collecter <code>1700</code> points, le tableau des niveaux, lui,
+s'arrête à <code>1698</code>. Alors que se passe-t-il si l'on atteint <code>1700</code> ? On
+pourrait s'attendre à une surprise d'envergure, par exemple, un objet
+rare, ou encore les félicitations d'un PNJs. Et bien la réponse nous
+est données par <strong>ik141</strong> (et reportée par le <em>sombre document</em>, je
+n'ai malheureusement pas pu retrouver le message original) qui lui, a
+fait l'effort d'obtenir le <strong>niveau maximum envisageable</strong> dans le
+Tetra Master :</p>
+<blockquote>
+<p>So what happens at <code>1700</code>, you ask? Well, under your collector
+pts. where <code>Master</code> was written it now says, superimposed over
+everything, '<code>Would you like to discard?</code>'. So, after a hundred
+hours of playing this game I am rewarded with a <em>F***ING
+GLITCH</em>!!!&quot;</p>
+</blockquote>
+<p>Je suis emmerveillé de terminer la longue description des règles du
+Tetra Master sur cette note de bonne humeur. Vous ne rêvez pas, le
+guide ou à été consigné ce témoignage de frustation est
+approximativement contemporain à la sortie du jeu.  L'exploit de
+<strong>ik141</strong> est donc très impressionnant car :</p>
+<ul>
+<li>il ne bénéficiait pas du guide que j'ai utilisé pour comprendre les
+règles ;</li>
+<li>l'état de l'art de l'émulation n'était pas encore au niveau où il
+est aujourd'hui. On peut donc supposer (mais ce n'est peut-être que
+de la spéculation) que ce prodige des cartes à tenté de terminer le
+jeu, incluant la quête du Tetra Master ... <em>à l'ancienne</em>.</li>
+</ul>
+<p>Et <strong>Squaresoft</strong> (par l'entremise des développeurs et concepteurs du
+jeu de cartes) est aussi extraordinaire d'avoir parsemé le chemin de
+la compréhension des règles d'embûches pour, au final, offrir un
+<em>glitch</em> en fin d'épopée. C'est sur le témoignage de cette incroyable
+chute que nous en avons terminé avec les règles du Tetra Master et
+nous pouvons, sans plus tarder, passer à la conclusion de ce très long
+article.</p>
+<h2 id="pour-conclure-enfin"><a class="anchor" aria-hidden="true" href="#pour-conclure-enfin"></a>Pour conclure, enfin</h2>
+<p><em>Une page se tourne</em>. J'ai découvert FFIX il y a plus de 20 ans, et à
+chaque tentative, le Tetra Master m'a toujours laissé un goût
+d'amertume dans en travers de la gorge. Après deux tentatives (une en
+2012 par <em>émulation</em> et une en 2020, sur Nintendo Switch) de
+comprendre les règles du <em>jeu dans le jeu</em>, j'ai abandonné pour
+m'aider d'internet. C'était une investigation très amusante qui me
+fait m'interroger sur la <strong>réelle qualité du jeu</strong>. Me plonger dans
+les règles du Tetra Master altère la conclusion que je pensais avoir
+en commençant à rédiger cet article. Ayant été un <strong>très grand
+amateur</strong> du neuvième opus de cette saga qui m'a tant marqué, mon
+impuissance face au Tetra Master a généré de le frustration et de
+l'aigreur. Quand j'ai commencé à me documenter, j'étais furieux de ce
+que je lisais et j'étais persuadé que ma conclusion serait
+assassine. Cependant, probablement parce que j'ai développé un genre
+de <em>syndrome de Stockholm</em>, depuis que je connais les règles du jeu,
+j'ai développé une sympathie macabre pour le Tetra Master. <strong>Je suis
+très content d'avoir appris, enfin, à y jouer</strong>.</p>
+<p>Pour conclure cet article (qui m'aura pris plus de 15 jours de
+rédaction, mais j'ai fais beaucoup de pauses), je vais essayer de
+donner un avis nuancé sur le jeu.</p>
+<h3 id="quen-tirer"><a class="anchor" aria-hidden="true" href="#quen-tirer"></a>Qu'en tirer</h3>
+<p>Que ce soit sur <a href="https://www.youtube.com">Youtube</a> ou sur
+<a href="https://www.reddit.com/">Reddit</a>, les avis sont mitigés. Certains
+détestent le Tetra Master, d'autres l'adorent. Cependant, sans être de
+mauvaise foi, l'énorme majorité des gens qui donnent leur avis
+semblent être tous d'accord, le jeu est trop compliqué et ses règles
+sont <strong>impossible à déduire</strong>. Pour ma part, maintenant que je pense
+avoir compris toutes les règles du jeu, j'ai beaucoup de mal à le
+considérer comme un mauvais jeu. Il fourmille de collections de bonnes
+idées. Par exemple, le fait de calculer le <strong>niveau du
+collectionneur</strong> sur base des cartes et non sur le rapport
+<code>victoire/défaite</code> permet de moduler son score au plus on avance dans
+le jeu, ne rendant presque aucune défaite <em>trop pénalisante</em>.</p>
+<p>Un autre retour assez populaire sur le jeu, comme en témoigne ce
+<a href="https://www.reddit.com/r/FinalFantasy/comments/vuq3wc/oh_my_god_tetra_master_is_absolutely_awful/"><em>thread</em>
+Reddit</a>
+est la présence d'aléatoire. Aux premiers abords, j'étais assez
+d'accord avec le fait de <em>conspuer l'aléatoire</em>. Cependant, avec un
+peu de recul, j'en arrive à la conclusion que <strong>l'aléatoire est
+présent dans une grande partie de jeux de cartes populaires</strong>. Par
+exemple quand le jeu introduit une <em>pioche de cartes</em> ou encore par le
+fait que l'on ne connaisse pas la main de l'adversaire et certains
+jeux <strong>ne reposent que sur de l'aléatoire</strong> (la très populaire
+<em>bataille</em> par exemple).</p>
+<p>Pour ma part, <strong>ce que je reproche réellement</strong> au jeu est
+<strong>l'impossibilité de déduire ses règles</strong> et <strong>le trop peu de retour
+utilisateurs</strong>. J'ai l'intime conviction que si le jeu était plus
+explicite, <em>in game</em> ou dans son manuel concernant ses règles (et ses
+différentes mécaniques) et que si les statistiques réelles des cartes
+étaient consultable depuis un menu (et expliquée, évidemment), la
+réception du jeu n'aurais pas été si mauvaise. D'ailleurs, je suis
+assez curieux de savoir comment la présentation (et la réception) de
+la proposion du Tetra Master s'est déroulée chez Squaresoft.</p>
+<p>Pour conclure, je pense que certaines règles pourraient être
+simplifiée, et que le jeu devrait disséminer plus d'informations et
+d'explications. Par contre, et contre toutes attentes, quand on
+connait les règles, le jeu est largement plus ludique que ce que l'on
+pourrait imaginer. Et si vous avez eu le courrage d'arriver jusqu'ici,
+dans cet article, je serais curieux d'avoir votre retour sur
+l'expérience du jeu une fois que l'on connait les règles !</p>
+<h3 id="la-suite"><a class="anchor" aria-hidden="true" href="#la-suite"></a>La suite</h3>
+<p>Il est très amusant de développer un intérêt pour un jeu en <em>décrivant
+ses règles parce qu'on les trouvait incompréhensible</em>. Il est donc
+possible que je ne m'arrête pas là. En effet, la rédaction de cet
+article m'a donnée l'envie, si le temps me le permet, d'en proposer
+une <strong>implémentation libre</strong> (même s'il est probable que ce projet
+n'aboutisse jamais, <em>faute de temps et de motivation</em>).</p>
+<h3 id="remerciements"><a class="anchor" aria-hidden="true" href="#remerciements"></a>Remerciements</h3>
+<p>Le premier remerciement que je souhaite adresser est pour
+<strong>Trifthen</strong>, je n'ai aucune idée de qui il est, mais sans <a href="http://web.archive.org/web/20221226113714/https://gamefaqs.gamespot.com/ps/197338-final-fantasy-ix/faqs/9671">son
+guide</a>
+qui est devenu une référence sur internet quand on essaie de
+comprendre les règles du Tetra Master, je n'aurais jamais pu écrire ma
+version (qui est plus naïve, je vous l'accorde). La précision et
+l'exhaustivité de son travail m'ont parfois poussé à abandonner la
+rédaction de l'article, me disant que je n'avais rien à apporté à son
+document. Mais bon, mon site personnel étant dans un état léthargique,
+un peu de contenu ne fais pas de mal !</p>
+<p>Ensuite, pour croiser les informations du guide de <em>Trifthen</em>, je
+voudrais spécialement remercier
+<a href="https://xhtmlboi.github.io"><strong>Antoine</strong></a> pour m'avoir donné accès à
+des ressources que je ne peux malheureusement pas partager dans cet
+article ainsi que tous les <a href="http://www.epsxe.com/">mainteneurs de
+ePSXe</a> me permettant de <em>naviguer dans des
+informations internes au jeu</em>.</p>
+<p>L'envie de me réintéresser aux Jeux-vidéo (et essentiellement au
+J-RPG) a été grandement stimulé par
+<a href="https://github.com/BastienDuplessier"><strong>Bastien</strong></a> m'ayant fait le
+plaisir, en Aout, de m'offrir l'excellent livre <a href="https://www.bitmapbooks.com/products/a-guide-to-japanese-role-playing-games">A Guide to Japanese
+Role-Playing
+Games</a>
+dont la lecture des premières pages m'a directement (et
+instantanément) donné envie de <em>retenter de fabriquer un RPG</em> (en me
+laissant plus de temps que pour la construction de <a href="https://xvw.itch.io/almost-heroic">Almost
+Heroic</a>).</p>
+<p>Je remercie aussi très chaleureusement <strong>Lorie</strong> qui a subi mon
+<em>étrange monomanie</em>, pendant tout une soirée, où j'ai témoigné d'un
+sentiment mélangeant l'émerveillement et la terreur face à la
+cathétrale de complexité que semblaient être les règles du Tetra
+Master. Son écoute et ses questions ont permis de clarifier certains
+points (et certains choix terminologiques) et aussi pour sa relecture
+potentielle, améliorant ma désastreuse orthographe et mes tournures de
+phrases maladroites (qu'il est utile et plaisant d'avoir dans son
+entourage des gens ayant une <em>acquaintance</em> naturelle pour
+l'expression écrite et l'amour des belles phrases).</p>
+<p>Après la publication de cet article, j'ai reçu une collection des
+revues et de retours, incluant
+<a href="https://hakimba.github.io/oxywa/"><strong>Hakim</strong></a>,
+<a href="https://www.abitus.net/"><strong>Matthieu</strong></a>, l'inénarrable
+<a href="https://github.com/fenntasy"><strong>Fenn</strong></a> ainsi que de <strong>Maël</strong>, merci à
+vous !</p>
+<p>Pour terminer, je souhaite remercier les différentes personnes ayant
+encensé ou critiqué le jeu sur les différents médiums qu'offre
+l'Internet mondial ainsi que les lecteurs potentiels ayant réussi à
+digérer ce très long article, sur un sujet si dépassé !</p>
+<h3 id="lultime-mot-de-la-fin"><a class="anchor" aria-hidden="true" href="#lultime-mot-de-la-fin"></a>L'ultime mot de la fin</h3>
+<p>Plus de vingt plus tard, une page se tourne. Il est difficile de me
+considérer comme un adulte sans avoir compris les règles du Tetra
+Master. C'est chose faite ! Je peux maintenenant me concentrer sur des
+projets moins intéressants et moins formatteurs ! Blagues à part, j'ai
+eu beaucoup d'amusement à faire ce travail d'archéologie, de rédaction
+(et un peu d'implémentation). C'était très rigolo et je tâcherai
+d'être plus régulier dans ma rédaction, en, <em>pourquoi pas</em>, continuant
+dans la description de mécaniques de jeu ! Encore merci pour votre
+lecture et <em>très bonne canicule</em>.</p>
+</article>
+
+</div>
+    </main>
+    <footer>
+      <div id="footer-content">
+        <div>
+          <section>
+            <h3>Ring.muhokama.fun</h3>
+            <p>
+              Ce site fait partie du
+              <a href="https://ring.muhokama.fun">webring Muhokama</a>.
+              Je vous invite à le parcourir&nbsp;!
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/pred">
+                prédécesseur
+              </a>
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/succ">
+                successeur
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Diffusion</h3>
+            <p>
+              Le <a href="https://github.com/xvw/capsule">code source</a>
+              du générateur est diffusé sous
+              <a href="https://opensource.org/license/mit">
+                licence MIT</a>
+              et le contenu est diffusé (<i>sauf mention</i>) sous
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                licence CC BY-SA</a>.
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://github.com/xvw/capsule/blob/main/content/pages/tetra-master.md">
+                sources de la page
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Flux</h3>
+            <nav class="set svg-light">
+              <a href="/atom.xml"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Rss</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a><a rel="me" href="https://x.com/vdwxv"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a rel="me" href="https://merveilles.town/@xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a><a rel="me" href="https://github.com/xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Github</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="/feeds.html">Autres flux</a>
+            </nav>
+          </section>
+        </div>
+        <div>
+          <div class="set svg-light">
+            <a href="https://ocaml.org"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>OCaml</title><path d="M12.178 21.637c-.085-.17-.187-.524-.255-.676-.067-.135-.27-.506-.37-.625-.22-.253-.27-.27-.338-.608-.12-.574-.405-1.588-.76-2.296-.187-.372-.49-.677-.761-.947-.236-.236-.777-.624-.878-.607-.895.169-1.166 1.046-1.587 1.739-.237.388-.473.71-.66 1.115-.167.371-.151.793-.439 1.115a2.952 2.952 0 00-.624 1.097c-.034.084-.101.929-.186 1.131l1.318-.084c1.233.085.877.557 2.787.456l3.022-.1a5.376 5.376 0 00-.27-.71zM20.96 1.539H3.023A3.02 3.02 0 000 4.56v6.587c.44-.152 1.047-1.08 1.25-1.3.337-.389.405-.895.574-1.2.389-.709.456-1.215 1.334-1.215.406 0 .575.1.845.473.186.253.523.743.675 1.064.186.371.474.86.609.962.1.068.185.136.27.17.135.05.253-.051.354-.12.118-.1.17-.286.287-.556.17-.39.339-.827.44-.997.169-.27.236-.608.422-.76.27-.236.641-.253.743-.27.557-.118.81.27 1.08.507.186.168.423.49.609.91.135.339.304.661.388.846.068.185.237.49.338.86.101.322.337.575.44.744 0 0 .152.406 1.03.778a7.505 7.505 0 00.81.286c.39.135.76.12 1.233.068.338 0 .524-.49.676-.878.084-.237.185-.895.236-1.081.05-.185-.085-.32.034-.49.135-.186.22-.203.287-.439.17-.523 1.114-.54 1.655-.54.456 0 .389.44 1.149.287.439-.085.86.05 1.318.185.388.102.76.22.98.473.134.17.489.997.134 1.031.033.033.067.118.118.151-.085.322-.422.085-.625.051-.253-.05-.44 0-.693.118-.439.187-1.063.17-1.452.49-.32.271-.32.861-.473 1.2 0 0-.422 1.063-1.317 1.722-.237.17-.692.574-1.672.726-.44.068-.86.068-1.318.05-.22-.016-.438-.016-.658-.016-.136 0-.575-.017-.558.034l-.05.119a.6.6 0 00.033.169c.017.1.017.185.034.27 0 .185-.017.388 0 .574.017.388.17.743.186 1.148.017.44.236.913.456 1.267.085.135.203.152.254.32.067.186 0 .406.033.609.118.794.355 1.638.71 2.364v.017c.439-.067.895-.236 1.47-.32 1.063-.153 2.532-.085 3.478-.17 2.399-.22 3.7.98 5.844.49V4.562a3.045 3.045 0 00-3.04-3.023zm-8.951 14.187c0-.034 0-.034 0 0zm-6.47 2.769c.17-.372.271-.778.406-1.15.135-.354.337-.86.693-1.046-.05-.05-.744-.068-.929-.085a7.406 7.406 0 01-.608-.084 22.976 22.976 0 01-1.15-.236c-.22-.051-.979-.322-1.13-.39-.39-.168-.642-.658-.93-.607-.185.034-.37.101-.49.287-.1.152-.134.423-.202.608-.084.203-.22.405-.32.608-.238.354-.626.676-.795 1.03-.033.085-.05.169-.084.254v4.07c.202.034.405.068.624.135 1.69.456 2.095.49 3.75.304l.152-.017c.118-.27.22-1.165.304-1.435.067-.22.153-.39.187-.591.033-.203 0-.406-.017-.59-.034-.491.354-.661.54-1.065z"/></svg></a>
+            <span>Fièrement généré par
+              <a href="https://github.com/xhtmlboi/yocaml">YOCaml
+            </a></span>
+          </div>
+          <div class="svg-cc-light">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/"><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.785" cy="28.501" r="28.836"/><path d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314
+	  c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143
+	  c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429
+	  c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2
+	  c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657
+	  c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913
+	  c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971
+	  c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344
+	  c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187
+	  l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657
+	  c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2
+	  c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629
+	  c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686
+	  C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2
+	  c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113
+	  c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686
+	  c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313
+	  c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z"/></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.637" cy="28.806" r="28.276"/>
+ <g><path d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456
+ C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5
+ c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657
+ c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771
+ c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571
+ C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557
+ c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6
+ C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514
+ c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z"/>
+ </g></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="36.944" cy="28.631" r="29.105"/><g>
+<path d="M37.443-3.5c8.951,0,16.531,3.105,22.742,9.315C66.393,11.987,69.5,19.548,69.5,28.5c0,8.954-3.049,16.457-9.145,22.514
+			     C53.918,57.338,46.279,60.5,37.443,60.5c-8.649,0-16.153-3.143-22.514-9.429C8.644,44.786,5.5,37.264,5.5,28.501
+			     c0-8.723,3.144-16.285,9.429-22.685C21.138-0.395,28.643-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.572-18.457,7.715
+			     c-5.22,5.296-7.829,11.467-7.829,18.513c0,7.125,2.59,13.257,7.77,18.4c5.181,5.182,11.352,7.771,18.514,7.771
+			     c7.123,0,13.334-2.609,18.629-7.828c5.029-4.876,7.543-10.99,7.543-18.343c0-7.313-2.553-13.485-7.656-18.513
+			     C51.004,4.842,44.832,2.272,37.557,2.272z M23.271,23.985c0.609-3.924,2.189-6.962,4.742-9.114
+			     c2.552-2.152,5.656-3.228,9.314-3.228c5.027,0,9.029,1.62,12,4.856c2.971,3.238,4.457,7.391,4.457,12.457
+			     c0,4.915-1.543,9-4.627,12.256c-3.088,3.256-7.086,4.886-12.002,4.886c-3.619,0-6.743-1.085-9.371-3.257
+			     c-2.629-2.172-4.209-5.257-4.743-9.257H31.1c0.19,3.886,2.533,5.829,7.029,5.829c2.246,0,4.057-0.972,5.428-2.914
+			     c1.373-1.942,2.059-4.534,2.059-7.771c0-3.391-0.629-5.971-1.885-7.743c-1.258-1.771-3.066-2.657-5.43-2.657
+			     c-4.268,0-6.667,1.885-7.2,5.656h2.343l-6.342,6.343l-6.343-6.343L23.271,23.985L23.271,23.985z"/></g></g></svg></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      nightmare_js.suspend(function () {
+          capsule_hljs.run();
+      });
+      nightmare_js.mount();
+    </script>
+  </body>
+</html>

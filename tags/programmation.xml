@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/programmation.xml</id>
+  <title type="text">xvw.tags/programmation</title>
+  <subtitle type="text">Flux du tag programmation</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-09-25T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/emacs-yasnippet.html</id>
+    <title type="text">Expansion d&apos;abréviations avec YASnippet</title>
+    <updated>2024-09-25T00:00:00Z</updated>
+    <summary type="text">
+      Quand on programme (ou que l&apos;on rédige), il est assez courant de devoir saisir des séquences récurrentes (du _boilerplate_). C&apos;est probablement plus observable quand on écrit de code, où certaines constructions du langages, disposant de niveau d&apos;expressivité différents, doivent être répétées très régulièrement. Dans cet article, je vous propose de découvrir [YASnippet](https://github.com/joaotavora/yasnippet) (pour _**Y**et **A**n other **S**nippet extension_), un système de _template_ pour Emacs, permettant l&apos;expansion d&apos;abréviations, de manière structurée.
+    </summary>
+    <link href="https://xvw.lol/pages/emacs-yasnippet.html" rel="alternate" title="Expansion d&apos;abr\195\169viations avec YASnippet"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="yas"/>
+    <category term="snippet"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2024-09-21_16-25-07.html</id>
+    <title type="text">2024-09-21 16:25:07</title>
+    <updated>2024-09-21T16:25:07Z</updated>
+    <summary type="text">
+      Entrée du 2024-09-21 16:25:07, à propos de conference, rouen, forkit, pointfree, programmation
+    </summary>
+    <link href="https://xvw.lol/journal/2024-09-21_16-25-07.html" rel="alternate" title="2024-09-21 16:25:07"/>
+    <category term="conference"/>
+    <category term="rouen"/>
+    <category term="forkit"/>
+    <category term="pointfree"/>
+    <category term="programmation"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/why-ocaml.html</id>
+    <title type="text">Sur le choix d&apos;OCaml</title>
+    <updated>2024-08-25T00:00:00Z</updated>
+    <summary type="text">
+      J&apos;ai commencé à utiliser régulièrement le langage [OCaml](https://ocaml.org) vers 2012, et depuis, mon intérêt et mon engouement pour ce langage n&apos;ont cessé de croître. Il est devenu mon choix de prédilection pour presque tous mes projets personnels, influençant également mes choix professionnels.
+Depuis 2014, je participe activement aux conférences grand public dédiées à la programmation et à la construction de logiciels, où j&apos;exprime souvent mon enthousiasme pour OCaml de manière parfois excessive (mais toujours passionnée). Cela m&apos;a valu, de manière amicale, le surnom _d&apos;évangéliste d&apos;OCaml_, une appellation qui, je l&apos;avoue, me flatte énormément.
+Convaincu que mon intérêt pour OCaml est justifié, je prends souvent plaisir à énumérer les nombreux avantages de cette technologie. J&apos;ai donc décidé de coucher par écrit les raisons pour lesquelles je considère OCaml comme un excellent choix pour divers types de projets. Cette page me permettra de partager facilement mes arguments et d&apos;expliquer pourquoi OCaml mérite attention et intérêt.
+De plus, je ne suis pas seul à penser cela. Malgré l&apos;idée reçue que OCaml ne serait pas un choix pragmatique pour l&apos;industrie, de grandes entreprises telles que [Meta](https://engineering.fb.com/?s=ocaml), [Microsoft](https://www.microsoft.com/en-us/research/project/slam/?from=https://research.microsoft.com/en-us/projects/slam/&amp;type=exact), [Ahref](https://tech.ahrefs.com/tagged/ocaml), [Tarides](https://tarides.com), [OCamlPro](https://ocamlpro.com/), [Bloomberg](https://www.bloomberg.com/company?s=ocaml), [Docker](https://github.com/moby/vpnkit), [Janestreet](https://www.janestreet.com/technology/), [Citrix](https://xapi-project.github.io/), [Tezos](https://tezos.com), et [bien d&apos;autres](https://ocaml.org/industrial-users) l&apos;utilisent activement.
+    </summary>
+    <link href="https://xvw.lol/pages/why-ocaml.html" rel="alternate" title="Sur le choix d&apos;OCaml"/>
+    <category term="programmation"/>
+    <category term="ocaml"/>
+    <category term="opinion"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/ocaml-merlin-destruct.html</id>
+    <title type="text">Effective ML, au travers de la commande &apos;destruct&apos;</title>
+    <updated>2024-06-03T00:00:00Z</updated>
+    <summary type="text">
+      Cet article est une réinterprétation francophone d&apos;un article publié [le blog de Tarides](https://tarides.com/blog/2024-05-29-effective-ml-through-merlin-s-destruct-command/), en Anglais, qui présente l&apos;utilisation de la commande `destruct` pour générer des motifs manquants dans du filtrage par motif.
+    </summary>
+    <link href="https://xvw.lol/pages/ocaml-merlin-destruct.html" rel="alternate" title="Effective ML, au travers de la commande &apos;destruct&apos;"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="ocaml"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/emacs-occurs-long-line.html</id>
+    <title type="text">Lister les lignes trop longues (via Occur)</title>
+    <updated>2024-04-09T00:00:00Z</updated>
+    <summary type="text">
+      Une petite astuce qui explique comment utiliser [occur](https://www.emacswiki.org/emacs/OccurMode) et [l&apos;argument universel](https://www.gnu.org/software/emacs/manual/html_node/emacs/Arguments.html) pour énumérer, dans un _buffer_, l&apos;ensemble des lignes qui dépassent un nombre donné de caractères.
+    </summary>
+    <link href="https://xvw.lol/pages/emacs-occurs-long-line.html" rel="alternate" title="Lister les lignes trop longues (via Occur)"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="occur"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/modules-import.html</id>
+    <title type="text">OCaml, modules et schémas d&apos;importation</title>
+    <updated>2023-10-31T00:00:00Z</updated>
+    <summary type="text">
+      Le langage de modules de [OCaml](https://ocaml.org) peut être intimidant, et il implique généralement l&apos;utilisation de beaucoup de mots-clés, par exemple `open` et `include` qui  permettent d&apos;importer des définitions dans un module. Depuis la version `4.08` du langage, la primitive `open` a été _généralisée_ pour permettre l&apos;ouverture **d&apos;expression de module arbitraire**. Dans cet article, nous allons observer comment utiliser cette généralisation pour reproduire une pratique commune dans d&apos;autres langages, que j&apos;appelle, _un peu pompeusement_, des stratégies d&apos;importation, décrivant, par exemple, ce genre de d&apos;importation `import {a, b as c} from K` sans dépendre d&apos;un langage dédié à l&apos;importation.
+    </summary>
+    <link href="https://xvw.lol/pages/modules-import.html" rel="alternate" title="OCaml, modules et sch\195\169mas d&apos;importation"/>
+    <category term="programmation"/>
+    <category term="ocaml"/>
+    <category term="modules"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/oop-refl.html</id>
+    <title type="text">Méthodes gardées en OCaml</title>
+    <updated>2022-05-29T00:00:00Z</updated>
+    <summary type="text">
+      Les **méthodes gardées** permettent d&apos;attacher des **contraintes** au receveur (`self`) **uniquement pour certaines méthodes**, permettant donc de n&apos;appeler ces méthodes que si le receveur satisfait ces contraintes (ces _guards_). [OCaml](https://ocaml.org) ne permet pas, syntaxiquement, de définir _directement_ ce genre de méthodes. Dans cette note, nous allons voir comment les encoder en utilisant un **témoin d&apos;égalité de type**.
+    </summary>
+    <link href="https://xvw.lol/pages/oop-refl.html" rel="alternate" title="M\195\169thodes gard\195\169es en OCaml"/>
+    <category term="programmation"/>
+    <category term="type"/>
+    <category term="oop"/>
+    <category term="ocaml"/>
+    <category term="gadt"/>
+  </entry>
+</feed>

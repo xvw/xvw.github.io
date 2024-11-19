@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/inktober.xml</id>
+  <title type="text">xvw.tags/inktober</title>
+  <subtitle type="text">Flux du tag inktober</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-11-07T17:22:37Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2023-11-07_17-22-37.html</id>
+    <title type="text">2023-11-07 17:22:37</title>
+    <updated>2023-11-07T17:22:37Z</updated>
+    <summary type="text">Entrée du 2023-11-07 17:22:37, à propos de inktober, tezos, nft</summary>
+    <link href="https://xvw.lol/journal/2023-11-07_17-22-37.html" rel="alternate" title="2023-11-07 17:22:37"/>
+    <category term="inktober"/>
+    <category term="tezos"/>
+    <category term="nft"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/galleries/never-ended-inktober-2023.html</id>
+    <title type="text">Inktober 2023</title>
+    <updated>2023-10-31T00:00:00Z</updated>
+    <summary type="text">
+      Pour l&apos;année 2023, j&apos;ai tenté de recommencer à dessiner en m&apos;essayant à [L&apos;Inktober](https://inktober.com/), un _auto-defi_ où il est question de faire un dessin par jour, motivé par un thème commun. Même si j&apos;ai **lamentablement** abandonné après 6 jours, l&apos;objectif est atteint car j&apos;ai recommencé à dessiner.
+    </summary>
+    <link href="https://xvw.lol/galleries/never-ended-inktober-2023.html" rel="alternate" title="Inktober 2023"/>
+    <category term="inktober"/>
+    <category term="illustration"/>
+    <category term="krita"/>
+  </entry>
+</feed>

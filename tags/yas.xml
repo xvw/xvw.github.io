@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/yas.xml</id>
+  <title type="text">xvw.tags/yas</title>
+  <subtitle type="text">Flux du tag yas</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-09-25T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/emacs-yasnippet.html</id>
+    <title type="text">Expansion d&apos;abréviations avec YASnippet</title>
+    <updated>2024-09-25T00:00:00Z</updated>
+    <summary type="text">
+      Quand on programme (ou que l&apos;on rédige), il est assez courant de devoir saisir des séquences récurrentes (du _boilerplate_). C&apos;est probablement plus observable quand on écrit de code, où certaines constructions du langages, disposant de niveau d&apos;expressivité différents, doivent être répétées très régulièrement. Dans cet article, je vous propose de découvrir [YASnippet](https://github.com/joaotavora/yasnippet) (pour _**Y**et **A**n other **S**nippet extension_), un système de _template_ pour Emacs, permettant l&apos;expansion d&apos;abréviations, de manière structurée.
+    </summary>
+    <link href="https://xvw.lol/pages/emacs-yasnippet.html" rel="alternate" title="Expansion d&apos;abr\195\169viations avec YASnippet"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="yas"/>
+    <category term="snippet"/>
+  </entry>
+</feed>

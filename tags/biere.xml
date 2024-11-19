@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/biere.xml</id>
+  <title type="text">xvw.tags/biere</title>
+  <subtitle type="text">Flux du tag biere</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2022-12-02T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/addresses/wappers.html</id>
+    <title type="text">Le Wappers</title>
+    <updated>2022-12-02T00:00:00Z</updated>
+    <summary type="text">
+      Situé, logiquement, sur la [place Wappers](https://fr.wikipedia.org/wiki/Place_Wappers), le Wappers est une taverne moderne dans un moule ancien. Situé à deux pas de [L&apos;Ëcole Royale Militaire](https://www.rma.ac.be/fr), Le Wappers fut le théâtre de leurs pauses. Cependant, en Janvier 2020. c&apos;est un changement de direction qui orchestrera une lente mutation. On garde l&apos;aspect boisé (un peu rustique mais réconfortant) du lieu, et on modernise sa carte et son sevrice. Depuis, Le Wappers (que je ne connaissais pas à l&apos;époque), est devenu un des lieux où je suis toujours heureux de revenir quand je rentre à Bruxelles !
+    </summary>
+    <link href="https://xvw.lol/addresses/wappers.html" rel="alternate" title="Le Wappers"/>
+    <category term="bar"/>
+    <category term="alcool"/>
+    <category term="schaerbeek"/>
+    <category term="biere"/>
+  </entry>
+</feed>

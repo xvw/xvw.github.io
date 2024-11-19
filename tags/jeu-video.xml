@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/jeu-video.xml</id>
+  <title type="text">xvw.tags/jeu-video</title>
+  <subtitle type="text">Flux du tag jeu-video</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-09-05T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/tetra-master.html</id>
+    <title type="text">L&apos;enfer du Tetra Master</title>
+    <updated>2023-09-05T00:00:00Z</updated>
+    <summary type="text">
+      Le _Tetra Master_ est le jeu de cartes facultatif du jeu **Final Fantasy 9**. Son fonctionnement est, en surface, similaire au _Triple Triad_ — le jeu de cartes de Final Fantasy 8 — cependant, même s&apos;il est possible de capturer une intuition générale nous permettant de gagner, pour peu que l&apos;on possède des bonnes cartes, après plus d&apos;une centaine de parties, je dois avouer avoir accepté le fait que, juste en jouant au jeu, et en lisant tous les didacticiels _en jeu_, je fusse incapable d&apos;en comprendre l&apos;ensemble des règles, me poussant à me documenter pour comprendre ce que j&apos;avais raté. L&apos;absence d&apos; **aucune règle** dans le jeu (ou le manuel) m&apos;a exaspéré, me poussant à écrire cet article ...
+    </summary>
+    <link href="https://xvw.lol/pages/tetra-master.html" rel="alternate" title="L&apos;enfer du Tetra Master"/>
+    <category term="final-fantasy"/>
+    <category term="game-design"/>
+    <category term="jeu-video"/>
+    <category term="ocaml"/>
+  </entry>
+</feed>

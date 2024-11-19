@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/opinion.xml</id>
+  <title type="text">xvw.tags/opinion</title>
+  <subtitle type="text">Flux du tag opinion</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-08-25T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/why-ocaml.html</id>
+    <title type="text">Sur le choix d&apos;OCaml</title>
+    <updated>2024-08-25T00:00:00Z</updated>
+    <summary type="text">
+      J&apos;ai commencé à utiliser régulièrement le langage [OCaml](https://ocaml.org) vers 2012, et depuis, mon intérêt et mon engouement pour ce langage n&apos;ont cessé de croître. Il est devenu mon choix de prédilection pour presque tous mes projets personnels, influençant également mes choix professionnels.
+Depuis 2014, je participe activement aux conférences grand public dédiées à la programmation et à la construction de logiciels, où j&apos;exprime souvent mon enthousiasme pour OCaml de manière parfois excessive (mais toujours passionnée). Cela m&apos;a valu, de manière amicale, le surnom _d&apos;évangéliste d&apos;OCaml_, une appellation qui, je l&apos;avoue, me flatte énormément.
+Convaincu que mon intérêt pour OCaml est justifié, je prends souvent plaisir à énumérer les nombreux avantages de cette technologie. J&apos;ai donc décidé de coucher par écrit les raisons pour lesquelles je considère OCaml comme un excellent choix pour divers types de projets. Cette page me permettra de partager facilement mes arguments et d&apos;expliquer pourquoi OCaml mérite attention et intérêt.
+De plus, je ne suis pas seul à penser cela. Malgré l&apos;idée reçue que OCaml ne serait pas un choix pragmatique pour l&apos;industrie, de grandes entreprises telles que [Meta](https://engineering.fb.com/?s=ocaml), [Microsoft](https://www.microsoft.com/en-us/research/project/slam/?from=https://research.microsoft.com/en-us/projects/slam/&amp;type=exact), [Ahref](https://tech.ahrefs.com/tagged/ocaml), [Tarides](https://tarides.com), [OCamlPro](https://ocamlpro.com/), [Bloomberg](https://www.bloomberg.com/company?s=ocaml), [Docker](https://github.com/moby/vpnkit), [Janestreet](https://www.janestreet.com/technology/), [Citrix](https://xapi-project.github.io/), [Tezos](https://tezos.com), et [bien d&apos;autres](https://ocaml.org/industrial-users) l&apos;utilisent activement.
+    </summary>
+    <link href="https://xvw.lol/pages/why-ocaml.html" rel="alternate" title="Sur le choix d&apos;OCaml"/>
+    <category term="programmation"/>
+    <category term="ocaml"/>
+    <category term="opinion"/>
+  </entry>
+</feed>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/document.xml</id>
+  <title type="text">xvw.tags/document</title>
+  <subtitle type="text">Flux du tag document</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-01-31T15:41:13Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2024-01-31_15-41-13.html</id>
+    <title type="text">2024-01-31 15:41:13</title>
+    <updated>2024-01-31T15:41:13Z</updated>
+    <summary type="text">Entrée du 2024-01-31 15:41:13, à propos de logiciel, document, indexation</summary>
+    <link href="https://xvw.lol/journal/2024-01-31_15-41-13.html" rel="alternate" title="2024-01-31 15:41:13"/>
+    <category term="logiciel"/>
+    <category term="document"/>
+    <category term="indexation"/>
+  </entry>
+</feed>

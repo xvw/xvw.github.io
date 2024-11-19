@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/journal.xml</id>
+  <title type="text">xvw.journal</title>
+  <subtitle type="text">entrées du journal</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-09-21T16:25:07Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2024-09-21_16-25-07.html</id>
+    <title type="text">2024-09-21 16:25:07</title>
+    <updated>2024-09-21T16:25:07Z</updated>
+    <summary type="text">
+      Entrée du 2024-09-21 16:25:07, à propos de conference, rouen, forkit, pointfree, programmation
+    </summary>
+    <link href="https://xvw.lol/journal/2024-09-21_16-25-07.html" rel="alternate" title="2024-09-21 16:25:07"/>
+    <category term="conference"/>
+    <category term="rouen"/>
+    <category term="forkit"/>
+    <category term="pointfree"/>
+    <category term="programmation"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2024-03-12_13-33-29.html</id>
+    <title type="text">2024-03-12 13:33:29</title>
+    <updated>2024-03-12T13:33:29Z</updated>
+    <summary type="text">Entrée du 2024-03-12 13:33:29, à propos de conference, scala, gadts, nantes</summary>
+    <link href="https://xvw.lol/journal/2024-03-12_13-33-29.html" rel="alternate" title="2024-03-12 13:33:29"/>
+    <category term="conference"/>
+    <category term="scala"/>
+    <category term="gadts"/>
+    <category term="nantes"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2024-01-31_15-41-13.html</id>
+    <title type="text">2024-01-31 15:41:13</title>
+    <updated>2024-01-31T15:41:13Z</updated>
+    <summary type="text">Entrée du 2024-01-31 15:41:13, à propos de logiciel, document, indexation</summary>
+    <link href="https://xvw.lol/journal/2024-01-31_15-41-13.html" rel="alternate" title="2024-01-31 15:41:13"/>
+    <category term="logiciel"/>
+    <category term="document"/>
+    <category term="indexation"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-31_15-22-41.html</id>
+    <title type="text">2023-12-31 15:22:41</title>
+    <updated>2023-12-31T15:22:41Z</updated>
+    <summary type="text">
+      Entrée du 2023-12-31 15:22:41, à propos de retrospective, 2023, bilan, evenement
+    </summary>
+    <link href="https://xvw.lol/journal/2023-12-31_15-22-41.html" rel="alternate" title="2023-12-31 15:22:41"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="evenement"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-30_12-02-57.html</id>
+    <title type="text">2023-12-30 12:02:57</title>
+    <updated>2023-12-30T12:02:57Z</updated>
+    <summary type="text">Entrée du 2023-12-30 12:02:57, à propos de retrospective, 2023, bilan, projets</summary>
+    <link href="https://xvw.lol/journal/2023-12-30_12-02-57.html" rel="alternate" title="2023-12-30 12:02:57"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="projets"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-29_18-23-07.html</id>
+    <title type="text">2023-12-29 18:23:07</title>
+    <updated>2023-12-29T18:23:07Z</updated>
+    <summary type="text">
+      Entrée du 2023-12-29 18:23:07, à propos de retrospective, 2023, bilan, site, personnel
+    </summary>
+    <link href="https://xvw.lol/journal/2023-12-29_18-23-07.html" rel="alternate" title="2023-12-29 18:23:07"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="site"/>
+    <category term="personnel"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-11-14_15-20-50.html</id>
+    <title type="text">2023-11-14 15:20:50</title>
+    <updated>2023-11-14T15:20:50Z</updated>
+    <summary type="text">
+      Entrée du 2023-11-14 15:20:50, à propos de meta, fediverse, mastodon, commentaires
+    </summary>
+    <link href="https://xvw.lol/journal/2023-11-14_15-20-50.html" rel="alternate" title="2023-11-14 15:20:50"/>
+    <category term="meta"/>
+    <category term="fediverse"/>
+    <category term="mastodon"/>
+    <category term="commentaires"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-11-07_17-22-37.html</id>
+    <title type="text">2023-11-07 17:22:37</title>
+    <updated>2023-11-07T17:22:37Z</updated>
+    <summary type="text">Entrée du 2023-11-07 17:22:37, à propos de inktober, tezos, nft</summary>
+    <link href="https://xvw.lol/journal/2023-11-07_17-22-37.html" rel="alternate" title="2023-11-07 17:22:37"/>
+    <category term="inktober"/>
+    <category term="tezos"/>
+    <category term="nft"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-11-01_13-49-55.html</id>
+    <title type="text">2023-11-01 13:49:55</title>
+    <updated>2023-11-01T13:49:55Z</updated>
+    <summary type="text">Entrée du 2023-11-01 13:49:55, à propos de meta, blogosphere, flux, rss, atom</summary>
+    <link href="https://xvw.lol/journal/2023-11-01_13-49-55.html" rel="alternate" title="2023-11-01 13:49:55"/>
+    <category term="meta"/>
+    <category term="blogosphere"/>
+    <category term="flux"/>
+    <category term="rss"/>
+    <category term="atom"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-27_20-45-05.html</id>
+    <title type="text">2023-10-27 20:45:05</title>
+    <updated>2023-10-27T20:45:05Z</updated>
+    <summary type="text">Entrée du 2023-10-27 20:45:05, à propos de conference, web3, rouen, tezos</summary>
+    <link href="https://xvw.lol/journal/2023-10-27_20-45-05.html" rel="alternate" title="2023-10-27 20:45:05"/>
+    <category term="conference"/>
+    <category term="web3"/>
+    <category term="rouen"/>
+    <category term="tezos"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-24_11-19-35.html</id>
+    <title type="text">2023-10-24 11:19:35</title>
+    <updated>2023-10-24T11:19:35Z</updated>
+    <summary type="text">Entrée du 2023-10-24 11:19:35, à propos de ocaml, scala, meetup, lambda-nantes</summary>
+    <link href="https://xvw.lol/journal/2023-10-24_11-19-35.html" rel="alternate" title="2023-10-24 11:19:35"/>
+    <category term="ocaml"/>
+    <category term="scala"/>
+    <category term="meetup"/>
+    <category term="lambda-nantes"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-20_06-07-35.html</id>
+    <title type="text">2023-10-20 06:07:35</title>
+    <updated>2023-10-20T06:07:35Z</updated>
+    <summary type="text">Entrée du 2023-10-20 06:07:35, à propos de meta, nouvelle, reseaux-sociaux</summary>
+    <link href="https://xvw.lol/journal/2023-10-20_06-07-35.html" rel="alternate" title="2023-10-20 06:07:35"/>
+    <category term="meta"/>
+    <category term="nouvelle"/>
+    <category term="reseaux-sociaux"/>
+  </entry>
+</feed>

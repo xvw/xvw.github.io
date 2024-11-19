@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/cocktail.xml</id>
+  <title type="text">xvw.tags/cocktail</title>
+  <subtitle type="text">Flux du tag cocktail</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-12-30T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/addresses/copain.html</id>
+    <title type="text">Copain</title>
+    <updated>2023-12-30T00:00:00Z</updated>
+    <summary type="text">
+      Situé à l&apos;intersection de [l&apos;Avenue Rogier](https://fr.wikipedia.org/wiki/Avenue_Rogier_(Bruxelles)) et de la [Rue Henri Stacquet](https://fr.wikipedia.org/wiki/Rue_Henri_Stacquet), à Schaerbeek, à deux pas du [Parc Josaphat](https://fr.wikipedia.org/wiki/Parc_Josaphat) se trouve [Copain](https://copain.brussels), un bar de quartier **de qualité** où il m&apos;arrive très souvent de boire un (ou plusieurs) verre(s) quand je suis de retour à Bruxelles !
+    </summary>
+    <link href="https://xvw.lol/addresses/copain.html" rel="alternate" title="Copain"/>
+    <category term="bar"/>
+    <category term="alcool"/>
+    <category term="cocktail"/>
+    <category term="schaerbeek"/>
+    <category term="vin"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/addresses/ethylo.html</id>
+    <title type="text">Ethylo</title>
+    <updated>2023-12-16T00:00:00Z</updated>
+    <summary type="text">
+      Situé à l&apos;intersection de la [Rue Josse Impens](https://fr.wikipedia.org/wiki/Rue_Josse_Impens) et de la [Rue des Pâquerettes](https://fr.wikipedia.org/wiki/Rue_des_P%C3%A2querettes_(Bruxelles)), [l&apos;Ethylo](https://ethylococktailbar.be/) est un bar à cocktails **de qualité** ! Ouvert par mon très bon ami Romain, en 2019, c&apos;est naturellement par cette institution _Schaerbeekoise_ que j&apos;ai décidé de démarrer ma série sur les bars que j&apos;affectionne !
+    </summary>
+    <link href="https://xvw.lol/addresses/ethylo.html" rel="alternate" title="Ethylo"/>
+    <category term="bar"/>
+    <category term="alcool"/>
+    <category term="cocktail"/>
+    <category term="schaerbeek"/>
+  </entry>
+</feed>

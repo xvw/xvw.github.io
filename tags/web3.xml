@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/web3.xml</id>
+  <title type="text">xvw.tags/web3</title>
+  <subtitle type="text">Flux du tag web3</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-10-27T20:45:05Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-27_20-45-05.html</id>
+    <title type="text">2023-10-27 20:45:05</title>
+    <updated>2023-10-27T20:45:05Z</updated>
+    <summary type="text">Entrée du 2023-10-27 20:45:05, à propos de conference, web3, rouen, tezos</summary>
+    <link href="https://xvw.lol/journal/2023-10-27_20-45-05.html" rel="alternate" title="2023-10-27 20:45:05"/>
+    <category term="conference"/>
+    <category term="web3"/>
+    <category term="rouen"/>
+    <category term="tezos"/>
+  </entry>
+</feed>

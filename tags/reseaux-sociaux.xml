@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/reseaux-sociaux.xml</id>
+  <title type="text">xvw.tags/reseaux-sociaux</title>
+  <subtitle type="text">Flux du tag reseaux-sociaux</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-10-20T06:07:35Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-20_06-07-35.html</id>
+    <title type="text">2023-10-20 06:07:35</title>
+    <updated>2023-10-20T06:07:35Z</updated>
+    <summary type="text">Entrée du 2023-10-20 06:07:35, à propos de meta, nouvelle, reseaux-sociaux</summary>
+    <link href="https://xvw.lol/journal/2023-10-20_06-07-35.html" rel="alternate" title="2023-10-20 06:07:35"/>
+    <category term="meta"/>
+    <category term="nouvelle"/>
+    <category term="reseaux-sociaux"/>
+  </entry>
+</feed>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/misc.xml</id>
+  <title type="text">xvw.tags/misc</title>
+  <subtitle type="text">Flux du tag misc</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-11-19T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/colophon.html</id>
+    <title type="text">Colophon</title>
+    <updated>2024-11-19T00:00:00Z</updated>
+    <summary type="text">
+      Cette page décrit le rôle de ce site web. Elle décrit aussi les différentes ressources et bibliothèques utilisées. Un **Colophon** est, historiquement, en imprimerie, un encadré donnant des informations sur le résultat d&apos;une impression. C&apos;était donc une manière un peu manuelle d&apos;attacher des _méta-données_. Je ne sais pas si c&apos;est un titre de page pertinent, mais il est souvent utilisé, dans la _blogosphère_ (et spécifiquement dans [l&apos;anneau web](https://webring.xxiivv.com/) dont j&apos;ai fait partie pendant plusieures années) pour décrire les différents processus et outils utilisés pour décrire un site web.
+    </summary>
+    <link href="https://xvw.lol/pages/colophon.html" rel="alternate" title="Colophon"/>
+    <category term="misc"/>
+    <category term="meta"/>
+    <category term="colophon"/>
+    <category term="ocaml"/>
+  </entry>
+</feed>

@@ -1,0 +1,531 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><meta name="keywords" content="misc, meta, colophon, ocaml" /><meta name="description" content="Information sur comment cette application web est construite" /><meta name="generator" content="YOCaml" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Colophon" /><meta name="og:title" content="Colophon" /><meta name="twitter:description" content="Information sur comment cette application web est construite" /><meta name="og:description" content="Information sur comment cette application web est construite" /><meta name="og:site_name" content="xvw.lol" /><meta name="og:type" content="article" /><meta name="og:article:published_time" content="2024-02-02 00:00:00" /><meta name="og:article:modified_time" content="2024-11-19 00:00:00" /><meta name="og:article:tag" content="misc" /><meta name="og:article:tag" content="meta" /><meta name="og:article:tag" content="colophon" /><meta name="og:article:tag" content="ocaml" /><meta name="author" content="xvw, Xavier Van de Woestyne" /><meta name="twitter:site" content="@vdwxv" /><meta name="twitter:creator" content="@vdwxv" /><meta name="og:profile:username" content="xvw" /><meta name="og:profile:first_name" content="Xavier" /><meta name="og:profile:last_name" content="Van de Woestyne" /><meta name="og:image" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:url" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:type" content="image/png" /><meta name="og:image:width" content="1200" /><meta name="og:image:height" content="630" /><meta name="og:image:alt" content="Cover image xvw.lol" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/capsule.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="me" href="https://x.com/vdwxv"><link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://xvw.lol/pages/colophon.html">
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
+    <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <title>xvw.lol - Colophon</title>
+    <script src="/js/hell.js"></script>
+    <script src="/js/capsule_js.bc.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="header-content">
+        <div><h3><a href="/">xvw.lol</a></h3></div>
+        <div>
+          <nav class="set breadcrumb">
+            <a href="/">Index</a><a href="/#index-meta">Meta</a></nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="main-content"><h1>Colophon</h1><div class="set publication-date"><time class="date-repr"
+        data-prefix="publié le"
+        datetime="2024-02-02 00:00:00">
+    2024-02-02
+  </time><time class="date-repr"
+        data-prefix="modifié le"
+        datetime="2024-11-19 00:00:00">
+    2024-11-19
+  </time></div><article class="synopsis"><p>Cette page décrit le rôle de ce site web. Elle décrit aussi les différentes ressources et bibliothèques utilisées. Un <strong>Colophon</strong> est, historiquement, en imprimerie, un encadré donnant des informations sur le résultat d'une impression. C'était donc une manière un peu manuelle d'attacher des <em>méta-données</em>. Je ne sais pas si c'est un titre de page pertinent, mais il est souvent utilisé, dans la <em>blogosphère</em> (et spécifiquement dans <a href="https://webring.xxiivv.com/">l'anneau web</a> dont j'ai fait partie pendant plusieures années) pour décrire les différents processus et outils utilisés pour décrire un site web.</p>
+</article><section class="toc"><ul><li><a href="#thématiques-et-navigation">Thématiques et navigation</a></li><li><a href="#technologies">Technologies</a><ul><li><a href="#génération-statique-yocaml">Génération statique: YOCaml</a><ul><li><a href="#greffons-utilisés">Greffons utilisés</a></li></ul></li><li><a href="#infrastructure">Infrastructure</a></li><li><a href="#client-et-technologies-front-end">Client et technologies front-end</a><ul><li><a href="#css-et-intégration">CSS et intégration</a></li><li><a href="#coloration-syntaxique">Coloration syntaxique</a></li><li><a href="#nightmare">Nightmare</a></li></ul></li><li><a href="#commentaires">Commentaires</a></li><li><a href="#conclusion-sur-la-pile-technologique">Conclusion sur la pile technologique</a></li></ul></li><li><a href="#développement-et-production-de-contenu">Développement et production de contenu</a><ul><li><a href="#développement">Développement</a></li><li><a href="#éléments-visuels">Éléments visuels</a><ul><li><a href="#typographies">Typographies</a></li><li><a href="#iconographies">Iconographies</a></li></ul></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul></section><article><p>Vous êtes sur ma <em>page personnelle</em> et son objectif est de me
+permettre d'avoir un espace de <em>publication libre</em>. Où je peux choisir
+les thématiques que je veux traiter et où il est possible de
+structurer mes documents à ma guise. Les grandes sections présentent
+sur <a href="/">l'index</a> décrivent des <strong>thématiques</strong>, qui elles-même sont
+regroupées en <strong>sections</strong>. L'application possède aussi un
+<a href="/journal/">journal</a>, me permettant de rédiger <em>à la manière d'un
+blog</em>. Les documents peuvent être des articles, des guides ou des
+<a href="/galleries.html">galeries</a>.</p>
+<p>Mon tout premier site personnel date de 2001, et avait été construit
+avec l'éditeur en ligne du site
+<a href="https://fr.wikipedia.org/wiki/Voila">voila.fr</a>, au fil des années,
+j'ai eu beaucoup de sites différents (et j'ai utilisé beaucoup de
+platformes différentes) dont la première archive, encore accessible,
+<a href="https://web.archive.org/web/20040724002549/http://www.destination-x.be.tf/">date de
+2004</a>
+(attention, c'est <em>cringe</em>). Depuis quelques années, j'utilise des
+générateurs de sites statiques et mon contenu est versionné sur un
+dépôt Git, rendant l'archivage plus aisé (il est possible de retrouver
+des archives en cherchant
+<a href="https://web.archive.org/web/20240000000000*/nukifw.github.io">nukifw.github.io</a>
+et
+<a href="https://web.archive.org/web/20240000000000*/xvw.github.io">xvw.github.io</a>).</p>
+<h3 id="thématiques-et-navigation"><a class="anchor" aria-hidden="true" href="#thématiques-et-navigation"></a>Thématiques et navigation</h3>
+<p>Alors que pendant très longtemps, je tâchais de <em>dupliquer</em> mes
+espaces de rédactions pour garantir que chacun de mes sites
+possédaient une thématique clair, j'ai, vers 2014, commencé à être
+amusé par certaines pages de chercheurs qui exploitaient leurs espaces
+numériques pour discuter de sujets variés. Par exemple, je me souviens
+d'une page de <a href="https://en.wikipedia.org/wiki/Joe_Armstrong_(programmer)">Joe
+Armstrong</a>,
+le créateur de <a href="https://www.erlang.org/">Erlang</a> qui, au milieu d'une
+<a href="https://web.archive.org/web/20150905063923/https://www.sics.se/%7ejoe/bluetail/index.html">liste de projets très
+sérieux</a>,
+décrivait comment il avait construit des <a href="https://web.archive.org/web/20150905140220/https://www.sics.se/%7ejoe/bluetail/misc/water.html">fusées propulsées à
+l'eau</a>.
+Ou encore certains chercheurs de <a href="https://www.inria.fr/fr">INRIA</a>
+profitant de leurs pages pour partager leurs photos de vacances.</p>
+<p>Plus tard, en fréquentant l'instance Mastodon
+<a href="https://merveilles.town/getting-started">Merveilles</a>, j'ai découvert
+une <a href="https://webring.xxiivv.com/">collection de sites</a> dans lesquels
+il était possible de se perdre pendant plusieurs heures. Le site de
+<a href="https://wiki.xxiivv.com/site/home.html">Devine Lu Linvega</a> en est, de
+mon point de vue, un excellent exemple. On clique sur un lien, et,
+quelques heures plus tard, on s'est perdu au détour d'une section,
+appartenant elle-même à une rubrique.  L'auteur décrit d'ailleurs son
+site, dans la conférence <a href="https://www.youtube.com/watch?v=w5bbJcimCcs">The Frameworks for
+Mystics</a>, comme une ville
+<em>labyrinthique</em> dans lequel il est possible de se perdre.</p>
+<p>Cette approche du web, que l'on appelle maintenant <a href="https://indieweb.org/"><em>Le Web
+Indie</em></a> est un retour aux fondamentaux, à
+l'époque <a href="https://fr.wikipedia.org/wiki/GeoCities">Geocities</a> où les
+internautes étaient très créatifs et rigolos. La popularité des
+platforme de publications <em>à la Medium</em> a <strong>normalisé</strong> le contenu en
+ligne, et certains, dont je fais partie, trouvent ça dommage. C'est
+pour cette raison que j'ai pris, à la refonte de mon site personnel,
+la décision de ne pas <strong>figer sa thématique</strong>, et de m'offrir la
+liberté d'écrire sur <strong>tout ce dont j'ai envie</strong>. N'étant pas très
+productif, il est possible que mon site ne ressemble jamais à une
+ville dans laquelle il est possible de se perdre, mais la navigation
+<em>structurée, mais pas trop,</em> sert cette ambition.</p>
+<h3 id="technologies"><a class="anchor" aria-hidden="true" href="#technologies"></a>Technologies</h3>
+<p>Pour être parfaitement libre dans la manière dont je structure mes
+documents, il était très important que j'utilise un outil libre,
+extensible et que je puisse facilement maitriser. <a href="https://web.archive.org/web/20211021123408/https://xvw.github.io/">L'itération
+précédente</a>
+de mon site personnel approchait cette idée. J'avais construit une
+collection de petits logiciels (en <a href="https://ocaml.org">OCaml</a>,
+évidemment) me permettant de <em>structurer de la données</em> et,
+potentiellement, de générer des pages. N'étant pas emballé à l'idée de
+créer un <em>moteur de gabarits</em>, je m'étais tourné vers
+<a href="https://jaspervdj.be/hakyll/">Hakyll</a>, un excellent <strong>générateur, de
+générateurs de sites statiques</strong>, écrit en
+<a href="https://www.haskell.org/">Haskell</a>.  Cependant, le mélange
+OCaml/Haskell rendait la maintenance de l'application et j'ai décidé,
+en 2022, de repartir de zéro.</p>
+<p>Le code source du générateur, et le contenu <em>brut</em> se trouvent sur le
+dépôt Github <a href="https://github.com/xvw/capsule">xvw/capsule</a> et le
+résultat du site généré se trouve sur le dépôt Github
+<a href="https://github.com/xvw/xvw.github.io">xvw/xvw.github.io</a>.</p>
+<h4 id="génération-statique-yocaml"><a class="anchor" aria-hidden="true" href="#génération-statique-yocaml"></a>Génération statique: YOCaml</h4>
+<p><a href="https://github.com/xhtmlboi/yocaml">YOCaml</a> a été conçu par mon ami
+<a href="https://xhtmlboi.github.io/">Antoine</a> pour donner un exemple
+d'utilisation de la bibliothèque
+<a href="https://github.com/xvw/preface/">Preface</a>, sur laquelle j'avais, avec
+<a href="http://www.fungus.fr/">Didier</a> et <a href="https://github.com/gr-im">Pierre</a>,
+travaillé (depuis, comme YOCaml a été utilisé, contrairement à
+Preface, la version 2 du logiciel ne l'utilise plus, <em>snif</em>). Comme
+Hakyll, YOCaml est un générateur très versatile, qui laisse beaucoup
+de liberté sur les documents à construire. On peut le voir comme un
+tout petit <em>framework</em> pour construire des <em>build-systems</em>
+minimalistes. Son fonctionnement est, dans les grandes lignes, décrit
+<a href="https://xhtmlboi.github.io/articles/yocaml.html">dans un article</a> du
+créateur, et, j'ai eu l'honneur de <a href="https://www.irill.org/videos/OUPS/2023-01/xavier-van-de-woestyne.html">le
+présenter</a>
+au <a href="https://oups.frama.io/">OCaml <em>usergroup</em> Parisien</a>.</p>
+<p>Le binaire principale est orchestré via un logiciel en ligne de commandes,
+implémenté grâce à la très riche bibliothèque
+<a href="https://ocaml.org/p/cmdliner/latest">Cmdliner</a>.</p>
+<p>L'utilisation de YOCaml, dans un
+contexte un peu moins <em>orthodoxe</em> que les exemples présentés, permet
+d'utililiser mon site comme incubateur et de débroussailler des améliorations
+potentielles pour la prochaine version de la bibliothèque (mais aussi de trouver
+des
+<a href="https://github.com/xhtmlboi/yocaml/pull/36/commits/231b59a0d4a435722d2d10aea64d7a9f2b667371">bogues</a>).</p>
+<h5 id="greffons-utilisés"><a class="anchor" aria-hidden="true" href="#greffons-utilisés"></a>Greffons utilisés</h5>
+<p>YOCaml est un <em>framework</em> qui vient avec plusieurs greffons (des moteurs de
+gabarits, des description de langages de <em>markups</em> etc.) me permettant de
+construire une véritable application web, avec beaucoup de contrôle sur la
+manière dont les pages statiques sont produites. En général, un <em>greffon</em> est
+une sur-couche à une bibliothèque OCaml existante, servant à faire la glue entre
+cette dernière et YOCaml. Pour ce site, j'utilise ces différents <em>greffons</em> :</p>
+<ul>
+<li><a href="https://ocaml.org/p/yocaml_eio/latest">Yocaml_eio</a> : comme YOCaml
+est très versatile, il peut générer un site depuis et vers un
+système de fichier Unix (via la bibliothèque
+<a href="https://github.com/ocaml-multicore/eio">Eio</a>) (mais aussi dans un
+<a href="https://ocaml.org/p/yocaml_git/latest">répertoire Git</a> permettant
+au site généré d'être servi par un
+<a href="https://github.com/robur-coop/unipi">MirageOS</a>). Je l'utilise en
+développement (ce qui me permet d'avoir un serveur de développement)
+mais aussi en déployement.</li>
+<li><a href="https://ocaml.org/p/yocaml_yaml/latest">Yocaml_yaml</a> : qui repose sur la
+bibliothèque <a href="https://ocaml.org/p/yaml/latest">yaml</a> pour décrire les
+métadonnées des articles avec le langage de description
+<a href="https://fr.wikipedia.org/wiki/YAML">Yaml</a>. Le Yaml est assez controversé mais
+pour décrire des petites structures de données servant à donner du contexte à
+des articles, je le trouve largement suffisant.</li>
+<li><a href="https://ocaml.org/p/yocaml_toml/latest">Yocaml_toml</a> : qui repose
+sur la bibliothèque <a href="https://ocaml.org/p/otoml/latest">otoml</a> pour
+décrire la configuration du site</li>
+<li><a href="https://ocaml.org/p/yocaml_jingoo/latest">Yocaml_jingoo</a> : qui repose sur la
+bibliothèque <a href="https://ocaml.org/p/yocaml_jingoo/latest">jingoo</a>, un moteur de
+gabarits conceptuellement très proche de
+<a href="https://github.com/pallets/jinja/">Jinja</a> et qui est, de mon point de vue,
+incroyablement versatile.</li>
+<li><a href="https://ocaml.org/p/yocaml_syndication/latest">Yocaml_syndication</a> :
+me servant à décrire le flux Atom du site. Historiquement développé
+développé par l'équipe <a href="https://github.com/Psi-Prod">Psi-Prod</a>, qui
+réalise beaucoup de projets en rapport avec MirageOS, Gemini et
+YOCaml, <a href="https://github.com/xhtmlboi/yocaml/blob/main/CHANGES.md#v200-2024-10-04-nantes-france">la version
+2</a>
+l'a complètement réimplémenté</li>
+<li><a href="https://ocaml.org/p/yocaml_cmarkit/latest">Yocaml_cmarkit</a> : pour
+la transformation de
+<a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a> à HTML.</li>
+</ul>
+<h4 id="infrastructure"><a class="anchor" aria-hidden="true" href="#infrastructure"></a>Infrastructure</h4>
+<p>L'avantage d'un site généré statiquement est qu'il est <strong>incroyablement facile</strong>
+à déployer ! N'étant pas un très bon <em>devOps</em>, j'ai décidé d'utiliser <a href="https://pages.github.com/">Github
+Pages</a> comme serveur de fichiers. J'utilise une
+<a href="https://github.com/xvw/capsule/blob/main/.github/workflows/pfioooouuuu.yml">Github
+Action</a>
+(dont le nom est un peu nul) pour déployer une nouvelle version à chaque
+nouvelle version de la branche
+<a href="https://github.com/xvw/capsule/tree/main"><em>main</em></a>.</p>
+<h4 id="client-et-technologies-front-end"><a class="anchor" aria-hidden="true" href="#client-et-technologies-front-end"></a>Client et technologies <em>front-end</em></h4>
+<p>Le site web est assez sobre concernant les technologies <em>front-end</em> mise en
+œuvre, essentiellement parce que je ne suis pas très <em>aux faits</em> des nouvelles
+technologies web. Par contre, pour garantir une certaine forme d'interactivité
+(par exemple pour le développement des applications embarquées ou pour la
+gestion des commentaires), j'utilise <strong>un peu</strong> de JavaScript, cependant, la
+désactivation de ce dernier permet tout de même la navigation.</p>
+<h5 id="css-et-intégration"><a class="anchor" aria-hidden="true" href="#css-et-intégration"></a>CSS et intégration</h5>
+<p>Concernant le CSS, <strong>je n'utilise aucun framework</strong>. La feuille de style a été
+conçue à la main (et très maladroitement). Mon expérience avec
+<a href="https://tailwindcss.com/">Tailwind</a> a été très laborieuse donc j'ai décidé de
+tout écrire <em>from-scratch</em>. Actuellement, je suis satisfait de <em>bien comprendre</em>
+mes feuilles de styles, cependant, comme évoqué dans ma <a href="/journal/2023-12-29_18-23-07.html">rétrospective
+2023</a>, je devrais réecrire toute la feuille
+pour construire un
+<a href="https://en.wikipedia.org/wiki/Design_system"><em>design-system</em></a> dédié à mon site
+web pour éviter les répétitions (actuellement, les règles ont été écrites à la
+nécéssité).</p>
+<p>Je profite aussi de ce site web pour en apprendre un peu plus sur l'intégration,
+le HTML et le CSS. Par exemple, après des années sans m'y être intéressé, j'ai
+<em>enfin</em> utilisé des grilles, via le <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout">gabarit de
+grilles</a> qui,
+logiquement, pour décrire des grilles, est largement plus confortable que
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">Flexbox</a>.</p>
+<h5 id="coloration-syntaxique"><a class="anchor" aria-hidden="true" href="#coloration-syntaxique"></a>Coloration syntaxique</h5>
+<p>J'utilise la bibliothèque <a href="https://highlightjs.org/">Highlight.js</a> avec le thème
+<a href="https://github.com/highlightjs/highlight.js/blob/5bcb6c66133706ea84cfd3cfd7492b3e5321ca85/src/styles/grayscale.css">Grayscale</a>
+(très légèrement modifé pour s'adapter au visuel global de l'application).</p>
+<p>Le choix d'une bibliothèque JavaScript pour assurer la coloration syntaxique est
+<strong>de la pure fainéantise</strong>. Même s'il y a des priorités plus importantes, je
+garde en tête le projet <a href="https://ocaml.org/p/hilite/latest">Hilite</a> pour colorer
+les blocs de codes à la construction du site, et réduire la nécéssité d'une
+bibliothèque tiers aussi grande.</p>
+<h5 id="nightmare"><a class="anchor" aria-hidden="true" href="#nightmare"></a>Nightmare</h5>
+<p><a href="https://github.com/funkywork/nightmare">Nightmare</a> est une collection d'embryon
+de bibliothèques permettant de construire des applications <em>client/serveur</em> et
+développé à <a href="https://github.com/funkywork">The Funkyworkers</a> (dont je suis
+<em>co-fondateur</em>). Mon site utilise <strong>la partie cliente</strong>, qui est compilée en
+JavaScript grâce à l'excellent
+<a href="https://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_ocaml</a>, me
+permettant d'écrire le moins de JavaScript possible, et spécifiquement ces
+différentes bibliothèques :</p>
+<ul>
+<li>
+<p><code>Nightmare</code> : qui offre des abstractions génériques (pour le client et le
+serveur) comme, par exemple, l'abstraction sur la définition d'URL.</p>
+</li>
+<li>
+<p><code>Nightmare_js</code> : qui fourni des outils et des <em>liaisons</em> pour interagir
+facilement avec JavaScript (par exemple une liaison avec l'API
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch</a>, qui
+repose sur la description d'URL de <code>Nightmare</code>).</p>
+</li>
+<li>
+<p><code>nightmare_vdom</code> : qui fournit une glue entre
+<a href="https://ocaml.org/p/tyxml/latest">Tyxml</a>, une bibliothèque pour décrire des
+noeuds HTML avec une vérification statique des types, et
+<a href="https://ocaml.org/p/vdom/latest">vdom</a>, qui est une implémentation d'un <a href="https://en.wikipedia.org/wiki/Virtual_DOM">DOM
+virtual</a>, en OCaml, offrant la
+capacité de structurer une application par le biais de <a href="https://en.wikipedia.org/wiki/Moore_machine">Machine de
+Moore</a> (que l'on appelle, depuis
+quelques années, <a href="https://guide.elm-lang.org/architecture/">La Elm
+Architecture</a>).</p>
+</li>
+</ul>
+<p>Ces différentes bibliothèques me permettent d'embarquer des
+_applications riches. Et, comme le site fait office d'incubateur pour
+YOCaml, c'est aussi le cas pour les différentes bibliothèques qui
+constituent Nightmare.</p>
+<h4 id="commentaires"><a class="anchor" aria-hidden="true" href="#commentaires"></a>Commentaires</h4>
+<blockquote>
+<p>Cette fonctionnalité n'est pas encore développée dans la nouvelle
+version du site.</p>
+</blockquote>
+<p>Une des difficultés quand on construit un site statique, c'est que l'on perd des
+fonctionnalités d'interactivité. Par exemple, les commentaires sur les articles.
+Une solution acceptée dans le monde des sites statiques est d'utiliser un
+service tiers pour palier ces manque d'interactivité. On appelle ça la
+<a href="https://jamstack.org/">JamStack</a> et il existe beaucoup de services permettant
+de résoudre le problème des commentaires.</p>
+<p>Comme je l'avais expliqué dans <a href="/journal/2023-11-14_15-20-50.html">une entrée de
+journal</a>, je ne voulais pas dépendre d'un
+service pouvant, potentiellement faire du <em>tracking</em> sans mon accord, j'ai donc
+décidé de construire le support des commentaires sur base de réponses à des fils
+de conversations <a href="https://merveilles.town/getting-started">Mastodon</a>. La
+solution est limitée car elle ne me permet pas de faire de modérations, mais
+pour le moment, elle me suffit largement. Je pourrais imaginer une modération
+statique (en invalidant certains identifiants de messages au niveau d'une page),
+mais, pour le moment, n'ayant pas eu à déplorer des commentaires déplacés, je ne
+pense pas que ça soit nécéssaire.</p>
+<p>L'application utilise <code>nightmare_vdom</code>, ce qui est un peu <em>overkill</em> car il n y
+a pas d'interactivité et un seul composant, mais ça me permet de bénéficier de
+combinateurs pour décrire une UI.</p>
+<h4 id="conclusion-sur-la-pile-technologique"><a class="anchor" aria-hidden="true" href="#conclusion-sur-la-pile-technologique"></a>Conclusion sur la pile technologique</h4>
+<p>Même s'il reste des points d'améliorations, un des éléments qui me semblait
+essentiel dans la maintenance d'un site personnel était le plaisir que j'avais à
+le faire évoluer. L'utilisation de <a href="https://ocaml.org">OCaml</a> qui est, pour
+concrétiser des projets, mon langage favori, à presque toutes les couches du
+site web me donne, <strong>en permanence</strong>, envie de l'améliorer ! De plus,
+l'utilisation de bibliothèques expérimentales, développées par des
+partenaires/amis/collègues, me permet de dresser des retours d'utilisations
+pertinents et potentiellement de faire remonter des bogues.</p>
+<p>Donc même s'il est probable que dans les mois à venir, j'apporte certains
+changements, je resterai probablement sur cette base, qui m'amuse et me permet
+d'implémenter à peu près ce dont j'ai envie.</p>
+<h3 id="développement-et-production-de-contenu"><a class="anchor" aria-hidden="true" href="#développement-et-production-de-contenu"></a>Développement et production de contenu</h3>
+<p>En plus de la <em>génération concrète</em> du site, j'utilise des bibliothèques et des
+logiciels pour faciliter le développement de l'application et la production de
+contenu. Le code source et les différentes pages sont écrites avec
+<a href="https://github.com/doomemacs/doomemacs">Doom-Emacs</a> (une configuration
+<em>moderne</em> pour l'éditeur <a href="https://www.gnu.org/software/emacs/">Emacs</a>, que
+j'utilise depuis près d'une quinzaine d'années).</p>
+<h4 id="développement"><a class="anchor" aria-hidden="true" href="#développement"></a>Développement</h4>
+<p>Comme le générateur du site est un projet OCaml, j'utilise un ensemble d'outils
+relatifs au développement de projets OCaml :</p>
+<ul>
+<li><a href="https://opam.ocaml.org/">OPAM</a> : le gestionnaire de paquet de OCaml.</li>
+<li><a href="https://dune.build/">Dune</a> : le <em>build-system</em> (presque standard) de OCaml.</li>
+<li><a href="https://ocaml.github.io/merlin/">Merlin</a>, via Doom-Emacs comme support IDE.</li>
+<li><a href="https://github.com/ocaml-ppx/ocamlformat">OCamlformat</a> : comme formatteur de
+code.</li>
+<li><a href="https://github.com/ocaml-community/utop">Utop</a> : comme
+<a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>
+(qui se marie très bien avec <code>Dune</code>).</li>
+<li><a href="https://github.com/OCamlPro/ocp-indent">ocp-indent</a> : comme outil
+d'indentation, qui compose très bien avec <code>OCamlformat</code>.</li>
+<li><a href="https://ocaml.github.io/odoc/">Odoc</a> : comme générateur de documentation.</li>
+<li><a href="https://github.com/realworldocaml/mdx">mdx</a> : pour écrire des <em>tests</em> dans un
+style <em>literate</em> (dans de la documentation ou des documents Markown),</li>
+</ul>
+<p><a href="https://www.npmjs.com/">Npm</a> et <a href="https://webpack.js.org/">Webpack</a>
+pour gérer les dépendances JavaScript (en l'occurence, uniquement
+<code>Highlight.js</code>).</p>
+<h4 id="éléments-visuels"><a class="anchor" aria-hidden="true" href="#éléments-visuels"></a>Éléments visuels</h4>
+<p>Les différents éléments visuels du site sont réalisés avec ces trois outils :</p>
+<ul>
+<li>
+<p><a href="https://krita.org/">Krita</a> : comme logiciel de peinture numérique. Quand j'ai
+pris la décision de supprimer ma partition Windows pour utiliser exclusivement
+GNU/Linux, j'ai dû arrêter d'utiliser <a href="https://www.adobe.com/products/photoshop.html">Adobe
+Photoshop</a>, je l'ai remplacé
+par <code>Krita</code> pour le dessin numérique. Aujourd'hui, j'en suis pleinement
+satisfait (bien que je ne sois absolument plus au courant des nouveautés de
+Photoshop).</p>
+</li>
+<li>
+<p><a href="https://www.adobe.com/products/photoshop.html">Inkscape</a> : comme logiciel de
+dessin vectoriel. Je n'ai pas encore retrouvé l'agilité que j'avais avec
+<a href="https://www.adobe.com/products/photoshop.html">Adobe Illustrator</a> mais je
+compte bien continuer à utiliser à me former à <code>Inkscape</code> qui semble être
+capable de largement rivaliser avec son concurrent non-libre.</p>
+</li>
+<li>
+<p><a href="https://d2lang.com/">D2</a> : comme outil pour décrire des diagrammes. C'est un
+langage déclaratif permettant de décrire plusieurs types de schémas.
+Historiquement, j'utilisais <a href="https://graphviz.org/doc/info/lang.html">Dot</a>, de
+la suite <a href="https://graphviz.org/">Graphviz</a> (que je serai peut-être amené à
+réutiliser), mais je trouve <code>D2</code> plus facile à utiliser et à personnaliser.
+J'utilise le thème <a href="https://d2lang.com/tour/themes/"><code>301</code></a> et le moteur
+d'organisation <a href="https://d2lang.com/tour/elk">Elk</a>.</p>
+</li>
+</ul>
+<p>Dans un futur proche, j'utiliserai <a href="https://penpot.app/">Penpot</a> pour
+construire le <em>design-system</em>.</p>
+<p>L'ensemble des illustrations, <em>pixels</em> ou <em>vectorielles</em> sont réalisées avec une
+bien vieille (2008) tablettes graphique <strong>Bamboo</strong> de chez
+<a href="https://www.wacom.com/">Wacom</a> qui, malgré son âge avancé... fonctionne
+toujours !</p>
+<h5 id="typographies"><a class="anchor" aria-hidden="true" href="#typographies"></a>Typographies</h5>
+<p>Le site web utilise trois polices de caractères différentes :</p>
+<ul>
+<li>
+<p><a href="https://black-foundry.com/case-studies/inria-identity-font/">Inria Serif</a> :
+comme police principale pour les paragraphes. Une police avec serifs que je
+trouve très agréable à lire.</p>
+</li>
+<li>
+<p><a href="https://github.com/impallari/Libre-Franklin">Libre Franklin</a> : comme police
+principale pour les titres. Une police sans serif que je trouve lisible (et
+dont les titres en gras me font penser à la typographie de <a href="https://www.bk.com/">Burger
+King</a>).</p>
+</li>
+<li>
+<p><a href="https://github.com/tonsky/FiraCode">Fira Code</a> : comme police
+principale pour les blocs de code. Une police monospace très
+populaire et très lisible (pour du code).</p>
+</li>
+</ul>
+<p>J'ai longuement hésité à utiliser la police <a href="https://rsms.me/inter/">Inter</a>
+comme police sans serif, que je trouve aussi très jolie et lisible. Mais, même
+si mon avis en tant que <em>designer</em> a peu de valeur, je suis assez satisfait de
+la composition de ces trois polices.</p>
+<h5 id="iconographies"><a class="anchor" aria-hidden="true" href="#iconographies"></a>Iconographies</h5>
+<p>Dans la première version du site (avec YOCaml), j'évitais
+l'utilisation d'icones, parce que je n'y connais rien en
+SVG. Cependant, dans une volonté de <strong>modernité sauvage</strong>, j'ai
+décidé, d'enfin, en utiliser !</p>
+<ul>
+<li><a href="https://creativecommons.org/mission/downloads/">Creative Commons</a>,
+pour les icones concernant les attributions de la <a href="https://creativecommons.org/">Creative
+Commons</a></li>
+<li><a href="https://simpleicons.org/">Simple Icons</a>, pour les autres icones.</li>
+</ul>
+<h3 id="conclusion"><a class="anchor" aria-hidden="true" href="#conclusion"></a>Conclusion</h3>
+<p>C'était, dans les grandes lignes, les socles sur lesquels repose ce site web. Je
+n'ai malheureusement pas cité toutes les dépendances transitives des projets que
+j'utilise mais comme j'utilise presque essentiellement des logiciels libres,
+elles sont découvrables par le biais des liens que j'ai référencés.</p>
+<p>De mon point de vue, la pile technologique basée sur YOCaml et Nightmare est
+très amusante à utiliser et me motive à faire évoluer mon site. Ce qui me permet
+de conclure sur, selon moi, l'importance de contrôler son espace personnel sur
+le net. En effet, il m'arrive souvent de voir des articles publiés sur
+<a href="https://medium.com/">Medium</a> ou encore <a href="https://dev.to/">Dev.to</a>. Même si je
+comprend parfaitement que le gros avantage de ces médiums de publication est la
+communauté (et donc la promotion de ses rédactions), je trouve que garder le
+contrôle de son contenu, d'être capable de construire une expérience de lecture
+adapté à ses articles et d'offrir des rédactions sans publicités (le fameux
+<strong>Pardon the Interruption</strong> que je trouve infernal) est un <strong>gain énorme</strong>. De
+plus, maintenir son espace sur le web, comme un <a href="https://maggieappleton.com/garden-history">jardin
+numérique</a> est un exercice très
+amusant, formateur et qui, selon moi, stimule sa créativité ! Et de manière un
+peu technocratique, ça permet d'expérimenter des langages plus compliqués à
+proposer professionnellement !</p>
+<p>Pour ma part, même si je pense qu'au vue de mes choix technologiques, je suis
+assez indépendant concernant l'évolution de mon site et du code de son
+générateur, je trouve que je dépend encore trop fortemment de
+<a href="https://github.com">Github</a> et qu'un jour, je pourrai passer à une version
+auto-hébergée, le fait que je contrôle mon contenu, qu'il est facilement
+<em>backupable</em> ne m'inquiète pas quand je voudrai migrer. Et oui, une site généré
+statiquement, c'est très facile à déployer !</p>
+<p>Si vous avez envie de vous lancer dans la construction de votre espace sur le
+web, <a href="https://webring.xxiivv.com/">l'anneau de la communauté Merveilles</a> est une
+collection de <em>jardins numériques</em> pouvant être une très bonne source
+d'inspiration et je suis, évidemment, ouvert à tout échange à ce propos, via les
+différents canaux de contact qu'il est possible de trouver sur ce site !</p>
+</article>
+
+</div>
+    </main>
+    <footer>
+      <div id="footer-content">
+        <div>
+          <section>
+            <h3>Ring.muhokama.fun</h3>
+            <p>
+              Ce site fait partie du
+              <a href="https://ring.muhokama.fun">webring Muhokama</a>.
+              Je vous invite à le parcourir&nbsp;!
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/pred">
+                prédécesseur
+              </a>
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/succ">
+                successeur
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Diffusion</h3>
+            <p>
+              Le <a href="https://github.com/xvw/capsule">code source</a>
+              du générateur est diffusé sous
+              <a href="https://opensource.org/license/mit">
+                licence MIT</a>
+              et le contenu est diffusé (<i>sauf mention</i>) sous
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                licence CC BY-SA</a>.
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://github.com/xvw/capsule/blob/main/content/pages/colophon.md">
+                sources de la page
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Flux</h3>
+            <nav class="set svg-light">
+              <a href="/atom.xml"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Rss</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a><a rel="me" href="https://x.com/vdwxv"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a rel="me" href="https://merveilles.town/@xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a><a rel="me" href="https://github.com/xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Github</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="/feeds.html">Autres flux</a>
+            </nav>
+          </section>
+        </div>
+        <div>
+          <div class="set svg-light">
+            <a href="https://ocaml.org"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>OCaml</title><path d="M12.178 21.637c-.085-.17-.187-.524-.255-.676-.067-.135-.27-.506-.37-.625-.22-.253-.27-.27-.338-.608-.12-.574-.405-1.588-.76-2.296-.187-.372-.49-.677-.761-.947-.236-.236-.777-.624-.878-.607-.895.169-1.166 1.046-1.587 1.739-.237.388-.473.71-.66 1.115-.167.371-.151.793-.439 1.115a2.952 2.952 0 00-.624 1.097c-.034.084-.101.929-.186 1.131l1.318-.084c1.233.085.877.557 2.787.456l3.022-.1a5.376 5.376 0 00-.27-.71zM20.96 1.539H3.023A3.02 3.02 0 000 4.56v6.587c.44-.152 1.047-1.08 1.25-1.3.337-.389.405-.895.574-1.2.389-.709.456-1.215 1.334-1.215.406 0 .575.1.845.473.186.253.523.743.675 1.064.186.371.474.86.609.962.1.068.185.136.27.17.135.05.253-.051.354-.12.118-.1.17-.286.287-.556.17-.39.339-.827.44-.997.169-.27.236-.608.422-.76.27-.236.641-.253.743-.27.557-.118.81.27 1.08.507.186.168.423.49.609.91.135.339.304.661.388.846.068.185.237.49.338.86.101.322.337.575.44.744 0 0 .152.406 1.03.778a7.505 7.505 0 00.81.286c.39.135.76.12 1.233.068.338 0 .524-.49.676-.878.084-.237.185-.895.236-1.081.05-.185-.085-.32.034-.49.135-.186.22-.203.287-.439.17-.523 1.114-.54 1.655-.54.456 0 .389.44 1.149.287.439-.085.86.05 1.318.185.388.102.76.22.98.473.134.17.489.997.134 1.031.033.033.067.118.118.151-.085.322-.422.085-.625.051-.253-.05-.44 0-.693.118-.439.187-1.063.17-1.452.49-.32.271-.32.861-.473 1.2 0 0-.422 1.063-1.317 1.722-.237.17-.692.574-1.672.726-.44.068-.86.068-1.318.05-.22-.016-.438-.016-.658-.016-.136 0-.575-.017-.558.034l-.05.119a.6.6 0 00.033.169c.017.1.017.185.034.27 0 .185-.017.388 0 .574.017.388.17.743.186 1.148.017.44.236.913.456 1.267.085.135.203.152.254.32.067.186 0 .406.033.609.118.794.355 1.638.71 2.364v.017c.439-.067.895-.236 1.47-.32 1.063-.153 2.532-.085 3.478-.17 2.399-.22 3.7.98 5.844.49V4.562a3.045 3.045 0 00-3.04-3.023zm-8.951 14.187c0-.034 0-.034 0 0zm-6.47 2.769c.17-.372.271-.778.406-1.15.135-.354.337-.86.693-1.046-.05-.05-.744-.068-.929-.085a7.406 7.406 0 01-.608-.084 22.976 22.976 0 01-1.15-.236c-.22-.051-.979-.322-1.13-.39-.39-.168-.642-.658-.93-.607-.185.034-.37.101-.49.287-.1.152-.134.423-.202.608-.084.203-.22.405-.32.608-.238.354-.626.676-.795 1.03-.033.085-.05.169-.084.254v4.07c.202.034.405.068.624.135 1.69.456 2.095.49 3.75.304l.152-.017c.118-.27.22-1.165.304-1.435.067-.22.153-.39.187-.591.033-.203 0-.406-.017-.59-.034-.491.354-.661.54-1.065z"/></svg></a>
+            <span>Fièrement généré par
+              <a href="https://github.com/xhtmlboi/yocaml">YOCaml
+            </a></span>
+          </div>
+          <div class="svg-cc-light">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/"><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.785" cy="28.501" r="28.836"/><path d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314
+	  c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143
+	  c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429
+	  c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2
+	  c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657
+	  c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913
+	  c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971
+	  c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344
+	  c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187
+	  l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657
+	  c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2
+	  c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629
+	  c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686
+	  C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2
+	  c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113
+	  c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686
+	  c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313
+	  c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z"/></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.637" cy="28.806" r="28.276"/>
+ <g><path d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456
+ C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5
+ c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657
+ c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771
+ c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571
+ C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557
+ c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6
+ C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514
+ c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z"/>
+ </g></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="36.944" cy="28.631" r="29.105"/><g>
+<path d="M37.443-3.5c8.951,0,16.531,3.105,22.742,9.315C66.393,11.987,69.5,19.548,69.5,28.5c0,8.954-3.049,16.457-9.145,22.514
+			     C53.918,57.338,46.279,60.5,37.443,60.5c-8.649,0-16.153-3.143-22.514-9.429C8.644,44.786,5.5,37.264,5.5,28.501
+			     c0-8.723,3.144-16.285,9.429-22.685C21.138-0.395,28.643-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.572-18.457,7.715
+			     c-5.22,5.296-7.829,11.467-7.829,18.513c0,7.125,2.59,13.257,7.77,18.4c5.181,5.182,11.352,7.771,18.514,7.771
+			     c7.123,0,13.334-2.609,18.629-7.828c5.029-4.876,7.543-10.99,7.543-18.343c0-7.313-2.553-13.485-7.656-18.513
+			     C51.004,4.842,44.832,2.272,37.557,2.272z M23.271,23.985c0.609-3.924,2.189-6.962,4.742-9.114
+			     c2.552-2.152,5.656-3.228,9.314-3.228c5.027,0,9.029,1.62,12,4.856c2.971,3.238,4.457,7.391,4.457,12.457
+			     c0,4.915-1.543,9-4.627,12.256c-3.088,3.256-7.086,4.886-12.002,4.886c-3.619,0-6.743-1.085-9.371-3.257
+			     c-2.629-2.172-4.209-5.257-4.743-9.257H31.1c0.19,3.886,2.533,5.829,7.029,5.829c2.246,0,4.057-0.972,5.428-2.914
+			     c1.373-1.942,2.059-4.534,2.059-7.771c0-3.391-0.629-5.971-1.885-7.743c-1.258-1.771-3.066-2.657-5.43-2.657
+			     c-4.268,0-6.667,1.885-7.2,5.656h2.343l-6.342,6.343l-6.343-6.343L23.271,23.985L23.271,23.985z"/></g></g></svg></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      nightmare_js.suspend(function () {
+          capsule_hljs.run();
+      });
+      nightmare_js.mount();
+    </script>
+  </body>
+</html>

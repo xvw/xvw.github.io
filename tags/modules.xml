@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/modules.xml</id>
+  <title type="text">xvw.tags/modules</title>
+  <subtitle type="text">Flux du tag modules</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-10-31T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/modules-import.html</id>
+    <title type="text">OCaml, modules et schémas d&apos;importation</title>
+    <updated>2023-10-31T00:00:00Z</updated>
+    <summary type="text">
+      Le langage de modules de [OCaml](https://ocaml.org) peut être intimidant, et il implique généralement l&apos;utilisation de beaucoup de mots-clés, par exemple `open` et `include` qui  permettent d&apos;importer des définitions dans un module. Depuis la version `4.08` du langage, la primitive `open` a été _généralisée_ pour permettre l&apos;ouverture **d&apos;expression de module arbitraire**. Dans cet article, nous allons observer comment utiliser cette généralisation pour reproduire une pratique commune dans d&apos;autres langages, que j&apos;appelle, _un peu pompeusement_, des stratégies d&apos;importation, décrivant, par exemple, ce genre de d&apos;importation `import {a, b as c} from K` sans dépendre d&apos;un langage dédié à l&apos;importation.
+    </summary>
+    <link href="https://xvw.lol/pages/modules-import.html" rel="alternate" title="OCaml, modules et sch\195\169mas d&apos;importation"/>
+    <category term="programmation"/>
+    <category term="ocaml"/>
+    <category term="modules"/>
+  </entry>
+</feed>

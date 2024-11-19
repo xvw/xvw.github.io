@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/bilan.xml</id>
+  <title type="text">xvw.tags/bilan</title>
+  <subtitle type="text">Flux du tag bilan</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-12-31T15:22:41Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-31_15-22-41.html</id>
+    <title type="text">2023-12-31 15:22:41</title>
+    <updated>2023-12-31T15:22:41Z</updated>
+    <summary type="text">
+      Entrée du 2023-12-31 15:22:41, à propos de retrospective, 2023, bilan, evenement
+    </summary>
+    <link href="https://xvw.lol/journal/2023-12-31_15-22-41.html" rel="alternate" title="2023-12-31 15:22:41"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="evenement"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-30_12-02-57.html</id>
+    <title type="text">2023-12-30 12:02:57</title>
+    <updated>2023-12-30T12:02:57Z</updated>
+    <summary type="text">Entrée du 2023-12-30 12:02:57, à propos de retrospective, 2023, bilan, projets</summary>
+    <link href="https://xvw.lol/journal/2023-12-30_12-02-57.html" rel="alternate" title="2023-12-30 12:02:57"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="projets"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-29_18-23-07.html</id>
+    <title type="text">2023-12-29 18:23:07</title>
+    <updated>2023-12-29T18:23:07Z</updated>
+    <summary type="text">
+      Entrée du 2023-12-29 18:23:07, à propos de retrospective, 2023, bilan, site, personnel
+    </summary>
+    <link href="https://xvw.lol/journal/2023-12-29_18-23-07.html" rel="alternate" title="2023-12-29 18:23:07"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="site"/>
+    <category term="personnel"/>
+  </entry>
+</feed>

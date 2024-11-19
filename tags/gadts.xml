@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/gadts.xml</id>
+  <title type="text">xvw.tags/gadts</title>
+  <subtitle type="text">Flux du tag gadts</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-03-12T13:33:29Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2024-03-12_13-33-29.html</id>
+    <title type="text">2024-03-12 13:33:29</title>
+    <updated>2024-03-12T13:33:29Z</updated>
+    <summary type="text">Entrée du 2024-03-12 13:33:29, à propos de conference, scala, gadts, nantes</summary>
+    <link href="https://xvw.lol/journal/2024-03-12_13-33-29.html" rel="alternate" title="2024-03-12 13:33:29"/>
+    <category term="conference"/>
+    <category term="scala"/>
+    <category term="gadts"/>
+    <category term="nantes"/>
+  </entry>
+</feed>

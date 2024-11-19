@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/projets.xml</id>
+  <title type="text">xvw.tags/projets</title>
+  <subtitle type="text">Flux du tag projets</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-12-30T12:02:57Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-30_12-02-57.html</id>
+    <title type="text">2023-12-30 12:02:57</title>
+    <updated>2023-12-30T12:02:57Z</updated>
+    <summary type="text">Entrée du 2023-12-30 12:02:57, à propos de retrospective, 2023, bilan, projets</summary>
+    <link href="https://xvw.lol/journal/2023-12-30_12-02-57.html" rel="alternate" title="2023-12-30 12:02:57"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="projets"/>
+  </entry>
+</feed>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/personnel.xml</id>
+  <title type="text">xvw.tags/personnel</title>
+  <subtitle type="text">Flux du tag personnel</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-12-29T18:23:07Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2023-12-29_18-23-07.html</id>
+    <title type="text">2023-12-29 18:23:07</title>
+    <updated>2023-12-29T18:23:07Z</updated>
+    <summary type="text">
+      Entrée du 2023-12-29 18:23:07, à propos de retrospective, 2023, bilan, site, personnel
+    </summary>
+    <link href="https://xvw.lol/journal/2023-12-29_18-23-07.html" rel="alternate" title="2023-12-29 18:23:07"/>
+    <category term="retrospective"/>
+    <category term="2023"/>
+    <category term="bilan"/>
+    <category term="site"/>
+    <category term="personnel"/>
+  </entry>
+</feed>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/lambda-nantes.xml</id>
+  <title type="text">xvw.tags/lambda-nantes</title>
+  <subtitle type="text">Flux du tag lambda-nantes</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2023-10-24T11:19:35Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-24_11-19-35.html</id>
+    <title type="text">2023-10-24 11:19:35</title>
+    <updated>2023-10-24T11:19:35Z</updated>
+    <summary type="text">Entrée du 2023-10-24 11:19:35, à propos de ocaml, scala, meetup, lambda-nantes</summary>
+    <link href="https://xvw.lol/journal/2023-10-24_11-19-35.html" rel="alternate" title="2023-10-24 11:19:35"/>
+    <category term="ocaml"/>
+    <category term="scala"/>
+    <category term="meetup"/>
+    <category term="lambda-nantes"/>
+  </entry>
+</feed>

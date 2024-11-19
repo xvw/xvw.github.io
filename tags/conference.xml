@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/conference.xml</id>
+  <title type="text">xvw.tags/conference</title>
+  <subtitle type="text">Flux du tag conference</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-09-21T16:25:07Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2024-09-21_16-25-07.html</id>
+    <title type="text">2024-09-21 16:25:07</title>
+    <updated>2024-09-21T16:25:07Z</updated>
+    <summary type="text">
+      Entrée du 2024-09-21 16:25:07, à propos de conference, rouen, forkit, pointfree, programmation
+    </summary>
+    <link href="https://xvw.lol/journal/2024-09-21_16-25-07.html" rel="alternate" title="2024-09-21 16:25:07"/>
+    <category term="conference"/>
+    <category term="rouen"/>
+    <category term="forkit"/>
+    <category term="pointfree"/>
+    <category term="programmation"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2024-03-12_13-33-29.html</id>
+    <title type="text">2024-03-12 13:33:29</title>
+    <updated>2024-03-12T13:33:29Z</updated>
+    <summary type="text">Entrée du 2024-03-12 13:33:29, à propos de conference, scala, gadts, nantes</summary>
+    <link href="https://xvw.lol/journal/2024-03-12_13-33-29.html" rel="alternate" title="2024-03-12 13:33:29"/>
+    <category term="conference"/>
+    <category term="scala"/>
+    <category term="gadts"/>
+    <category term="nantes"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-27_20-45-05.html</id>
+    <title type="text">2023-10-27 20:45:05</title>
+    <updated>2023-10-27T20:45:05Z</updated>
+    <summary type="text">Entrée du 2023-10-27 20:45:05, à propos de conference, web3, rouen, tezos</summary>
+    <link href="https://xvw.lol/journal/2023-10-27_20-45-05.html" rel="alternate" title="2023-10-27 20:45:05"/>
+    <category term="conference"/>
+    <category term="web3"/>
+    <category term="rouen"/>
+    <category term="tezos"/>
+  </entry>
+</feed>

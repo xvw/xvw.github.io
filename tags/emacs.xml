@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/emacs.xml</id>
+  <title type="text">xvw.tags/emacs</title>
+  <subtitle type="text">Flux du tag emacs</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-09-25T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/emacs-yasnippet.html</id>
+    <title type="text">Expansion d&apos;abréviations avec YASnippet</title>
+    <updated>2024-09-25T00:00:00Z</updated>
+    <summary type="text">
+      Quand on programme (ou que l&apos;on rédige), il est assez courant de devoir saisir des séquences récurrentes (du _boilerplate_). C&apos;est probablement plus observable quand on écrit de code, où certaines constructions du langages, disposant de niveau d&apos;expressivité différents, doivent être répétées très régulièrement. Dans cet article, je vous propose de découvrir [YASnippet](https://github.com/joaotavora/yasnippet) (pour _**Y**et **A**n other **S**nippet extension_), un système de _template_ pour Emacs, permettant l&apos;expansion d&apos;abréviations, de manière structurée.
+    </summary>
+    <link href="https://xvw.lol/pages/emacs-yasnippet.html" rel="alternate" title="Expansion d&apos;abr\195\169viations avec YASnippet"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="yas"/>
+    <category term="snippet"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/ocaml-merlin-destruct.html</id>
+    <title type="text">Effective ML, au travers de la commande &apos;destruct&apos;</title>
+    <updated>2024-06-03T00:00:00Z</updated>
+    <summary type="text">
+      Cet article est une réinterprétation francophone d&apos;un article publié [le blog de Tarides](https://tarides.com/blog/2024-05-29-effective-ml-through-merlin-s-destruct-command/), en Anglais, qui présente l&apos;utilisation de la commande `destruct` pour générer des motifs manquants dans du filtrage par motif.
+    </summary>
+    <link href="https://xvw.lol/pages/ocaml-merlin-destruct.html" rel="alternate" title="Effective ML, au travers de la commande &apos;destruct&apos;"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="ocaml"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/emacs-occurs-long-line.html</id>
+    <title type="text">Lister les lignes trop longues (via Occur)</title>
+    <updated>2024-04-09T00:00:00Z</updated>
+    <summary type="text">
+      Une petite astuce qui explique comment utiliser [occur](https://www.emacswiki.org/emacs/OccurMode) et [l&apos;argument universel](https://www.gnu.org/software/emacs/manual/html_node/emacs/Arguments.html) pour énumérer, dans un _buffer_, l&apos;ensemble des lignes qui dépassent un nombre donné de caractères.
+    </summary>
+    <link href="https://xvw.lol/pages/emacs-occurs-long-line.html" rel="alternate" title="Lister les lignes trop longues (via Occur)"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="occur"/>
+  </entry>
+</feed>

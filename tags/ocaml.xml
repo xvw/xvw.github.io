@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/ocaml.xml</id>
+  <title type="text">xvw.tags/ocaml</title>
+  <subtitle type="text">Flux du tag ocaml</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-11-19T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/pages/colophon.html</id>
+    <title type="text">Colophon</title>
+    <updated>2024-11-19T00:00:00Z</updated>
+    <summary type="text">
+      Cette page décrit le rôle de ce site web. Elle décrit aussi les différentes ressources et bibliothèques utilisées. Un **Colophon** est, historiquement, en imprimerie, un encadré donnant des informations sur le résultat d&apos;une impression. C&apos;était donc une manière un peu manuelle d&apos;attacher des _méta-données_. Je ne sais pas si c&apos;est un titre de page pertinent, mais il est souvent utilisé, dans la _blogosphère_ (et spécifiquement dans [l&apos;anneau web](https://webring.xxiivv.com/) dont j&apos;ai fait partie pendant plusieures années) pour décrire les différents processus et outils utilisés pour décrire un site web.
+    </summary>
+    <link href="https://xvw.lol/pages/colophon.html" rel="alternate" title="Colophon"/>
+    <category term="misc"/>
+    <category term="meta"/>
+    <category term="colophon"/>
+    <category term="ocaml"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/why-ocaml.html</id>
+    <title type="text">Sur le choix d&apos;OCaml</title>
+    <updated>2024-08-25T00:00:00Z</updated>
+    <summary type="text">
+      J&apos;ai commencé à utiliser régulièrement le langage [OCaml](https://ocaml.org) vers 2012, et depuis, mon intérêt et mon engouement pour ce langage n&apos;ont cessé de croître. Il est devenu mon choix de prédilection pour presque tous mes projets personnels, influençant également mes choix professionnels.
+Depuis 2014, je participe activement aux conférences grand public dédiées à la programmation et à la construction de logiciels, où j&apos;exprime souvent mon enthousiasme pour OCaml de manière parfois excessive (mais toujours passionnée). Cela m&apos;a valu, de manière amicale, le surnom _d&apos;évangéliste d&apos;OCaml_, une appellation qui, je l&apos;avoue, me flatte énormément.
+Convaincu que mon intérêt pour OCaml est justifié, je prends souvent plaisir à énumérer les nombreux avantages de cette technologie. J&apos;ai donc décidé de coucher par écrit les raisons pour lesquelles je considère OCaml comme un excellent choix pour divers types de projets. Cette page me permettra de partager facilement mes arguments et d&apos;expliquer pourquoi OCaml mérite attention et intérêt.
+De plus, je ne suis pas seul à penser cela. Malgré l&apos;idée reçue que OCaml ne serait pas un choix pragmatique pour l&apos;industrie, de grandes entreprises telles que [Meta](https://engineering.fb.com/?s=ocaml), [Microsoft](https://www.microsoft.com/en-us/research/project/slam/?from=https://research.microsoft.com/en-us/projects/slam/&amp;type=exact), [Ahref](https://tech.ahrefs.com/tagged/ocaml), [Tarides](https://tarides.com), [OCamlPro](https://ocamlpro.com/), [Bloomberg](https://www.bloomberg.com/company?s=ocaml), [Docker](https://github.com/moby/vpnkit), [Janestreet](https://www.janestreet.com/technology/), [Citrix](https://xapi-project.github.io/), [Tezos](https://tezos.com), et [bien d&apos;autres](https://ocaml.org/industrial-users) l&apos;utilisent activement.
+    </summary>
+    <link href="https://xvw.lol/pages/why-ocaml.html" rel="alternate" title="Sur le choix d&apos;OCaml"/>
+    <category term="programmation"/>
+    <category term="ocaml"/>
+    <category term="opinion"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/ocaml-merlin-destruct.html</id>
+    <title type="text">Effective ML, au travers de la commande &apos;destruct&apos;</title>
+    <updated>2024-06-03T00:00:00Z</updated>
+    <summary type="text">
+      Cet article est une réinterprétation francophone d&apos;un article publié [le blog de Tarides](https://tarides.com/blog/2024-05-29-effective-ml-through-merlin-s-destruct-command/), en Anglais, qui présente l&apos;utilisation de la commande `destruct` pour générer des motifs manquants dans du filtrage par motif.
+    </summary>
+    <link href="https://xvw.lol/pages/ocaml-merlin-destruct.html" rel="alternate" title="Effective ML, au travers de la commande &apos;destruct&apos;"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="ocaml"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/modules-import.html</id>
+    <title type="text">OCaml, modules et schémas d&apos;importation</title>
+    <updated>2023-10-31T00:00:00Z</updated>
+    <summary type="text">
+      Le langage de modules de [OCaml](https://ocaml.org) peut être intimidant, et il implique généralement l&apos;utilisation de beaucoup de mots-clés, par exemple `open` et `include` qui  permettent d&apos;importer des définitions dans un module. Depuis la version `4.08` du langage, la primitive `open` a été _généralisée_ pour permettre l&apos;ouverture **d&apos;expression de module arbitraire**. Dans cet article, nous allons observer comment utiliser cette généralisation pour reproduire une pratique commune dans d&apos;autres langages, que j&apos;appelle, _un peu pompeusement_, des stratégies d&apos;importation, décrivant, par exemple, ce genre de d&apos;importation `import {a, b as c} from K` sans dépendre d&apos;un langage dédié à l&apos;importation.
+    </summary>
+    <link href="https://xvw.lol/pages/modules-import.html" rel="alternate" title="OCaml, modules et sch\195\169mas d&apos;importation"/>
+    <category term="programmation"/>
+    <category term="ocaml"/>
+    <category term="modules"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/journal/2023-10-24_11-19-35.html</id>
+    <title type="text">2023-10-24 11:19:35</title>
+    <updated>2023-10-24T11:19:35Z</updated>
+    <summary type="text">Entrée du 2023-10-24 11:19:35, à propos de ocaml, scala, meetup, lambda-nantes</summary>
+    <link href="https://xvw.lol/journal/2023-10-24_11-19-35.html" rel="alternate" title="2023-10-24 11:19:35"/>
+    <category term="ocaml"/>
+    <category term="scala"/>
+    <category term="meetup"/>
+    <category term="lambda-nantes"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/tetra-master.html</id>
+    <title type="text">L&apos;enfer du Tetra Master</title>
+    <updated>2023-09-05T00:00:00Z</updated>
+    <summary type="text">
+      Le _Tetra Master_ est le jeu de cartes facultatif du jeu **Final Fantasy 9**. Son fonctionnement est, en surface, similaire au _Triple Triad_ — le jeu de cartes de Final Fantasy 8 — cependant, même s&apos;il est possible de capturer une intuition générale nous permettant de gagner, pour peu que l&apos;on possède des bonnes cartes, après plus d&apos;une centaine de parties, je dois avouer avoir accepté le fait que, juste en jouant au jeu, et en lisant tous les didacticiels _en jeu_, je fusse incapable d&apos;en comprendre l&apos;ensemble des règles, me poussant à me documenter pour comprendre ce que j&apos;avais raté. L&apos;absence d&apos; **aucune règle** dans le jeu (ou le manuel) m&apos;a exaspéré, me poussant à écrire cet article ...
+    </summary>
+    <link href="https://xvw.lol/pages/tetra-master.html" rel="alternate" title="L&apos;enfer du Tetra Master"/>
+    <category term="final-fantasy"/>
+    <category term="game-design"/>
+    <category term="jeu-video"/>
+    <category term="ocaml"/>
+  </entry>
+  <entry>
+    <id>https://xvw.lol/pages/oop-refl.html</id>
+    <title type="text">Méthodes gardées en OCaml</title>
+    <updated>2022-05-29T00:00:00Z</updated>
+    <summary type="text">
+      Les **méthodes gardées** permettent d&apos;attacher des **contraintes** au receveur (`self`) **uniquement pour certaines méthodes**, permettant donc de n&apos;appeler ces méthodes que si le receveur satisfait ces contraintes (ces _guards_). [OCaml](https://ocaml.org) ne permet pas, syntaxiquement, de définir _directement_ ce genre de méthodes. Dans cette note, nous allons voir comment les encoder en utilisant un **témoin d&apos;égalité de type**.
+    </summary>
+    <link href="https://xvw.lol/pages/oop-refl.html" rel="alternate" title="M\195\169thodes gard\195\169es en OCaml"/>
+    <category term="programmation"/>
+    <category term="type"/>
+    <category term="oop"/>
+    <category term="ocaml"/>
+    <category term="gadt"/>
+  </entry>
+</feed>
