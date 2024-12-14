@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/paris.xml</id>
+  <title type="text">xvw.tags/paris</title>
+  <subtitle type="text">Flux du tag paris</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2024-12-14T14:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/journal/2024-12-14_14-00-00.html</id>
+    <title type="text">2024-12-14 14:00:00</title>
+    <updated>2024-12-14T14:00:00Z</updated>
+    <summary type="text">
+      Entrée du 2024-12-14 14:00:00, à propos de conference, paris, scala, ocaml, ide, merlin, lsp
+    </summary>
+    <link href="https://xvw.lol/journal/2024-12-14_14-00-00.html" rel="alternate" title="2024-12-14 14:00:00"/>
+    <category term="conference"/>
+    <category term="paris"/>
+    <category term="scala"/>
+    <category term="ocaml"/>
+    <category term="ide"/>
+    <category term="merlin"/>
+    <category term="lsp"/>
+  </entry>
+</feed>
