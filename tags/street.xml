@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/street.xml</id>
+  <title type="text">xvw.tags/street</title>
+  <subtitle type="text">Flux du tag street</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2025-02-25T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/galleries/rouen.html</id>
+    <title type="text">Rouen</title>
+    <updated>2025-02-25T00:00:00Z</updated>
+    <summary type="text">Photos prises dans _les rues_ de [Rouen](https://rouen.fr/).</summary>
+    <link href="https://xvw.lol/galleries/rouen.html" rel="alternate" title="Rouen"/>
+    <category term="street"/>
+    <category term="art"/>
+    <category term="rouen"/>
+    <category term="graffiti"/>
+  </entry>
+</feed>

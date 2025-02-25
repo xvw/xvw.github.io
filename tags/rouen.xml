@@ -4,11 +4,22 @@
   <title type="text">xvw.tags/rouen</title>
   <subtitle type="text">Flux du tag rouen</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2024-09-21T16:25:07Z</updated>
+  <updated>2025-02-25T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/galleries/rouen.html</id>
+    <title type="text">Rouen</title>
+    <updated>2025-02-25T00:00:00Z</updated>
+    <summary type="text">Photos prises dans _les rues_ de [Rouen](https://rouen.fr/).</summary>
+    <link href="https://xvw.lol/galleries/rouen.html" rel="alternate" title="Rouen"/>
+    <category term="street"/>
+    <category term="art"/>
+    <category term="rouen"/>
+    <category term="graffiti"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/journal/2024-09-21_16-25-07.html</id>
     <title type="text">2024-09-21 16:25:07</title>
