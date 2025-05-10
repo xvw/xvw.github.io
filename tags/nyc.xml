@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>https://xvw.lol/tags/art.xml</id>
-  <title type="text">xvw.tags/art</title>
-  <subtitle type="text">Flux du tag art</subtitle>
+  <id>https://xvw.lol/tags/nyc.xml</id>
+  <title type="text">xvw.tags/nyc</title>
+  <subtitle type="text">Flux du tag nyc</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
   <updated>2025-05-10T00:00:00Z</updated>
   <author>
@@ -18,17 +18,6 @@
     <category term="street"/>
     <category term="art"/>
     <category term="nyc"/>
-    <category term="graffiti"/>
-  </entry>
-  <entry>
-    <id>https://xvw.lol/galleries/rouen.html</id>
-    <title type="text">Rouen</title>
-    <updated>2025-02-25T00:00:00Z</updated>
-    <summary type="text">Photos prises dans _les rues_ de [Rouen](https://rouen.fr/).</summary>
-    <link href="https://xvw.lol/galleries/rouen.html" rel="alternate" title="Rouen"/>
-    <category term="street"/>
-    <category term="art"/>
-    <category term="rouen"/>
     <category term="graffiti"/>
   </entry>
 </feed>

@@ -4,11 +4,22 @@
   <title type="text">xvw.feed</title>
   <subtitle type="text">Fil complet d&apos;actualité</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2025-02-25T00:00:00Z</updated>
+  <updated>2025-05-10T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/galleries/nyc.html</id>
+    <title type="text">New York city</title>
+    <updated>2025-05-10T00:00:00Z</updated>
+    <summary type="text">Photos prises dans _les rues_ de [New York](https://www.nyc.gov/).</summary>
+    <link href="https://xvw.lol/galleries/nyc.html" rel="alternate" title="New York city"/>
+    <category term="street"/>
+    <category term="art"/>
+    <category term="nyc"/>
+    <category term="graffiti"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/galleries/rouen.html</id>
     <title type="text">Rouen</title>
