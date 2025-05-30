@@ -4,11 +4,23 @@
   <title type="text">xvw.galeries</title>
   <subtitle type="text">galeries de dessin/photo</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2025-05-10T00:00:00Z</updated>
+  <updated>2025-05-30T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/galleries/cosmic-atlantis.html</id>
+    <title type="text">Atlantide Cosmique</title>
+    <updated>2025-05-30T00:00:00Z</updated>
+    <summary type="text">
+      Cette galerie, qui porte un nom un peu _kéké_, liste une série d&apos;illustrations de _choses étranges_ observées dans l&apos;espace (c&apos;est de la fiction hein). L&apos;objectif est de m&apos;entrainer à dessiner des éléments qui font penser à de la science-fiction.
+    </summary>
+    <link href="https://xvw.lol/galleries/cosmic-atlantis.html" rel="alternate" title="Atlantide Cosmique"/>
+    <category term="scfi"/>
+    <category term="illustration"/>
+    <category term="krita"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/galleries/nyc.html</id>
     <title type="text">New York city</title>
@@ -30,18 +42,6 @@
     <category term="art"/>
     <category term="rouen"/>
     <category term="graffiti"/>
-  </entry>
-  <entry>
-    <id>https://xvw.lol/galleries/cosmic-atlantis.html</id>
-    <title type="text">Atlantide Cosmique</title>
-    <updated>2024-01-29T00:00:00Z</updated>
-    <summary type="text">
-      Cette galerie, qui porte un nom un peu _kéké_, liste une série d&apos;illustrations de _choses étranges_ observées dans l&apos;espace (c&apos;est de la fiction hein). L&apos;objectif est de m&apos;entrainer à dessiner des éléments qui font penser à de la science-fiction.
-    </summary>
-    <link href="https://xvw.lol/galleries/cosmic-atlantis.html" rel="alternate" title="Atlantide Cosmique"/>
-    <category term="scfi"/>
-    <category term="illustration"/>
-    <category term="krita"/>
   </entry>
   <entry>
     <id>https://xvw.lol/galleries/never-ended-inktober-2023.html</id>
