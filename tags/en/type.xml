@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/en/type.xml</id>
+  <title type="text">xvw.tags/en/type</title>
+  <subtitle type="text">Feed for tag type</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2025-06-29T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/en/articles/oop-refl.html</id>
+    <title type="text">Guarded methods in OCaml</title>
+    <updated>2025-06-29T00:00:00Z</updated>
+    <summary type="text">
+      **Guarded methods** allow attaching **constraints** to the receiver (`self`) **only for certain methods**, thus allowing these methods to be called only if the receiver satisfies these constraints (these _guards_). [OCaml](https://ocaml.org) does not syntactically allow defining this kind of method _directly_. In this note, we will see how to encode them using a **type equality witness**.
+    </summary>
+    <link href="https://xvw.lol/en/articles/oop-refl.html" rel="alternate" title="Guarded methods in OCaml"/>
+    <category term="programmation"/>
+    <category term="type"/>
+    <category term="oop"/>
+    <category term="ocaml"/>
+    <category term="gadt"/>
+  </entry>
+</feed>
