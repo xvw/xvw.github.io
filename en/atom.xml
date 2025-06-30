@@ -4,11 +4,23 @@
   <title type="text">xvw.articles</title>
   <subtitle type="text">English articles</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2025-06-29T00:00:00Z</updated>
+  <updated>2025-06-30T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/en/articles/modules-import.html</id>
+    <title type="text">OCaml, modules, and import schemes</title>
+    <updated>2025-06-30T00:00:00Z</updated>
+    <summary type="text">
+      The [OCaml](https://ocaml.org) module system can be intimidating, and it typically involves the use of many keywords—for example, `open` and `include`, which allow importing definitions into a module. Since version OCaml `4.08`, the `open` primitive has been *generalized* to allow the opening of **arbitrary module expressions**. In this article, we’ll explore how to use this generalization to reproduce a common practice in other languages, what I somewhat pompously call _import strategies_, to describe patterns like `import {a, b as c} from K`, without relying on a (_sub-_)language dedicated specifically to importing.
+    </summary>
+    <link href="https://xvw.lol/en/articles/modules-import.html" rel="alternate" title="OCaml, modules, and import schemes"/>
+    <category term="programming"/>
+    <category term="ocaml"/>
+    <category term="modules"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/en/articles/oop-refl.html</id>
     <title type="text">Guarded methods in OCaml</title>
