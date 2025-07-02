@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/en/videogame.xml</id>
+  <title type="text">xvw.tags/en/videogame</title>
+  <subtitle type="text">Feed for tag videogame</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2025-07-02T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/en/articles/tetra-master.html</id>
+    <title type="text">The Hell of Tetra Master</title>
+    <updated>2025-07-02T00:00:00Z</updated>
+    <summary type="text">
+      _Tetra Master_ is the optional card game in **Final Fantasy IX**. At first glance, it seems similar to _Triple Triad_ — the card game from Final Fantasy VIII. And while you can develop a general intuition for how to win, especially if you have strong cards, after playing over a hundred matches, I had to admit something: just playing the game and reading all the _in-game_ tutorials wasn’t enough to truly understand the rules. Eventually, I gave in and started looking things up to figure out what I was missing. The complete absence of **any actual rules** — whether in the game or the manual — left me utterly frustrated, which is what led me to write this article, illustrated in OCaml.
+    </summary>
+    <link href="https://xvw.lol/en/articles/tetra-master.html" rel="alternate" title="The Hell of Tetra Master"/>
+    <category term="final-fantasy"/>
+    <category term="game-design"/>
+    <category term="videogame"/>
+    <category term="ocaml"/>
+  </entry>
+</feed>
