@@ -130,7 +130,7 @@ l'abréviation, et tout ce qui suit décrira comment substituer la clé
 </ul>
 <p>En sauvegardant le fichier, l'expansion sera disponible et il sera
 possible de s'en servir de cette manière :
-<img src="/images/yas-1.gif" alt="Exemple d'expansion" >{ class=aered-centered-fig }</p>
+<img src="/images/yas-1.gif" alt="Exemple d'expansion" ></p>
 <p>Actuellement, notre abréviation ne fait pas beaucoup plus que ce qu'il
 était possible de faire avec <code>abbrev-mode</code>, mais c'est déjà un très
 bon début ! (Il existe des métadonnées aditionnelles, documentées
@@ -149,7 +149,7 @@ struct $0 end
 <p>Ici, <code>$0</code> dénotera la position du curseur après substitution. Une fois
 que <code>!struct</code> sera remplacé par <code>struct end</code>, le curseur se trouvera
 entre <code>struct</code> et <code>end</code>. Démonstration :</p>
-<p><img src="/images/yas-2.gif" alt="Exemple d'expansion avec relocalisation du curseur" >{ class=aered-centered-fig }</p>
+<p><img src="/images/yas-2.gif" alt="Exemple d'expansion avec relocalisation du curseur" ></p>
 <p>Dans notre exemple, on observe qu'une fois que <code>!struct</code> a été
 remplacé par <code>struct end</code>, le curseur se situe bel et bien entre les
 deux membres de l'expression de module ! A ce niveau, je trouve que
@@ -175,8 +175,7 @@ position <code>$1</code> et l'utilisation de <code>TAB</code> déplacera le curs
 permettant <strong>la navigation entre les différents trous</strong> du
 gabarit. Une fois que la saisie est finie, <code>TAB</code> déplacera le curseur
 à la fin de la substitution.</p>
-<p><img src="/images/yas-3.gif" alt="Exemple d'expansion avec navigation" >{
-class=aered-centered-fig }</p>
+<p><img src="/images/yas-3.gif" alt="Exemple d'expansion avec navigation" ></p>
 <p>La définition de trous permet aussi l'association à des labels, pour
 rendre la lecture de la substitution plus facile :</p>
 <pre><code># name: email
@@ -184,8 +183,7 @@ rendre la lecture de la substitution plus facile :</p>
 # --
 $1  &lt;$2&gt; $0
 </code></pre>
-<p><img src="/images/yas-4.gif" alt="Exemple d'expansion avec navigation et labels" >{
-class=aered-centered-fig }</p>
+<p><img src="/images/yas-4.gif" alt="Exemple d'expansion avec navigation et labels" ></p>
 <h4 id="répétitions-et-exécution-de-lisp"><a class="anchor" aria-hidden="true" href="#répétitions-et-exécution-de-lisp"></a>Répétitions et exécution de Lisp</h4>
 <p>Allons un peu plus loin, dans un exemple plus réaliste que les
 précédents. Il est très courant qu'un document
@@ -212,8 +210,7 @@ $0
 le champ <code>date</code> est construit en définissant comme valeur par défaut
 l'expression Elisp <code>(current-time-string)</code>. Ensuite, on répète
 l'utilisation du trou <code>$1</code> pour pré-remplir le titre de niveau 1 :</p>
-<p><img src="/images/yas-5.gif" alt="Exemple d'expansion de prélude Markdown" >{
-class=aered-centered-fig }</p>
+<p><img src="/images/yas-5.gif" alt="Exemple d'expansion de prélude Markdown" ></p>
 <p>L'exemple est déjà plus ambitieux (et potentiellement réaliste) que
 ceux que nous avions vu précédemment et, selon moi, démontre l'utilité
 de YASnippet ! Je vous invite à lire <a href="http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7">la documentation du langage de
@@ -261,7 +258,7 @@ end
 <p>En ajoutant quelques abréviations supplémentaires, pour décrire <code>let</code>
 par exemple, on peut construire un <em>workflow</em> d'écriture de code très
 interactive, de mon point de vue :</p>
-<p><img src="/images/yas-6.gif" alt="OCaml workflow" >{ class=aered-centered-fig }</p>
+<p><img src="/images/yas-6.gif" alt="OCaml workflow" ></p>
 <p>Il est évidemment possible d'aller largement plus loin, et d'améliorer
 drastiquement l'ergonomie de nos gabarits. Le but de cette rubrique
 était de montrer de quelle manière il est possible, au moyen de
@@ -339,14 +336,14 @@ efficace</em>, j'espère que cet article aura été utile !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                126
+                128
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>2 heures</strong>,
-              <strong>50 minutes</strong> et
-              <strong>27 secondes</strong>.
+              <strong>3 heures</strong>,
+              <strong>35 minutes</strong> et
+              <strong>41 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
