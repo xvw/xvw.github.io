@@ -4,11 +4,22 @@
   <title type="text">xvw.tags/street</title>
   <subtitle type="text">Flux du tag street</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2025-05-10T00:00:00Z</updated>
+  <updated>2025-07-19T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/galleries/lyon.html</id>
+    <title type="text">Lyon</title>
+    <updated>2025-07-19T00:00:00Z</updated>
+    <summary type="text">Photos prises dans _les rues_ de [Lyon](https://www.lyon.fr/).</summary>
+    <link href="https://xvw.lol/galleries/lyon.html" rel="alternate" title="Lyon"/>
+    <category term="street"/>
+    <category term="art"/>
+    <category term="lyon"/>
+    <category term="graffiti"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/galleries/nyc.html</id>
     <title type="text">New York city</title>
