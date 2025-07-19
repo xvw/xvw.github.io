@@ -8,9 +8,12 @@
     <link rel="canonical" href="https://xvw.lol/journal/2023-10-24_11-19-35.html">
     <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
     <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <script>
+      /* see:
+       * https://stackoverflow.com/questions/21147149/flash-of-unstyled-content-fouc-in-firefox-only-is-ff-slow-renderer*/
+      let FF_FOUC_FIX;
+    </script>
     <title>xvw.lol - 2023-10-24 11:19:35</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -49,15 +52,15 @@ d'un article compagnon sur le site de Nicolas), je voudrais m'arrêter
 sur un point que j'ai trouvé amusant.</p>
 <p>Très souvent, quand les <em>Free Monads</em> sont évoquées, on peut observer
 cette définition (qui est évidemment correcte) :</p>
-<pre><code class="language-haskell">data Free f a =
-  | Pure a
-  | Free (f (Free f a))
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>data</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a </span><span class='haskell-keyword-operator'>=</span><span class='haskell-source'>
+</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Pure</span><span class='haskell-source'> a
+</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> (f (</span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a))
+</span></code></pre>
 <p>Dans sa reconstruction, Nicolas propose des noms alternatifs :</p>
-<pre><code class="language-haskell">data Free f a =
-  | Pure a
-  | Flatten (f (Free f a))
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>data</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a </span><span class='haskell-keyword-operator'>=</span><span class='haskell-source'>
+</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Pure</span><span class='haskell-source'> a
+</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Flatten</span><span class='haskell-source'> (f (</span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a))
+</span></code></pre>
 <p>Même si ça ne change absolument pas l'usage de <em>Free</em>, je trouve que
 cette reformulation met, très nettement, en lumière, le fait que
 <em>Free</em> est, en fait, <strong>représentation défonctionnalisée d'une monade</strong>
@@ -129,14 +132,14 @@ opportunités pédagogiques !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                133
+                134
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 secondes</strong>.
+              <strong>14 heures</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
@@ -192,11 +195,5 @@ opportunités pédagogiques !</p>
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>

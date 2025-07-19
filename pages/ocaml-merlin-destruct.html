@@ -8,9 +8,12 @@
     <link rel="canonical" href="https://xvw.lol/pages/ocaml-merlin-destruct.html">
     <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
     <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <script>
+      /* see:
+       * https://stackoverflow.com/questions/21147149/flash-of-unstyled-content-fouc-in-firefox-only-is-ff-slow-renderer*/
+      let FF_FOUC_FIX;
+    </script>
     <title>xvw.lol - Effective ML, au travers de la commande &apos;destruct&apos;</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -199,24 +202,24 @@ présente un scénario où l'on pourrait trop rapidement utiliser le générique
 une analyse de cas. L'exemple est étroitement lié à la finance, mais il est
 facile de le transposer dans un exemple plus simple. Nous allons implémenter une
 fonction <code>equal</code> pour un type très basique :</p>
-<pre><code class="language-ocaml">type t = 
-  | Foo
-  | Bar
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Bar</span><span class='ocaml-source'>
+</span></code></pre>
 <p>La fonction <code>equal</code> peut être implémentée trivialement comme suit :</p>
-<pre><code class="language-ocaml">let equal a b = 
-  match (a, b) with
-  | Foo, Foo -&gt; true
-  | Bar, Bar -&gt; true
-  | _ -&gt; false
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>equal</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>match</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-boolean'>true</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Bar</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Bar</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-boolean'>true</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language'>_</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-boolean'>false</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Notre fonction fonctionne parfaitement et est exhaustive. Cependant, que se
 passe-t-il si nous ajoutons un constructeur à notre type <code>t</code> ?</p>
-<pre><code class="language-diff">  type t
-    | Foo
-    | Bar
-+   | Baz
-</code></pre>
+<pre><code><span class='diff-source'>  type t
+</span><span class='diff-source'>    | Foo
+</span><span class='diff-source'>    | Bar
+</span><span class='diff-punctuation-definition-inserted'>+</span><span class='diff-markup-inserted'>   | Baz
+</span></code></pre>
 <p>Notre fonction, dans le cas de <code>equal Baz Baz</code>, renverra <code>false</code>, ce
 qui n'est évidemment pas le comportement attendu. Comme le générique
 rend notre fonction exhaustive, <strong>le compilateur ne signalera aucune
@@ -327,14 +330,14 @@ de correctifs et <strong>de cas d'utilisation amusants</strong> via
             <h3>Etats</h3>
             <p>
               <strong>
-                133
+                134
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 secondes</strong>.
+              <strong>14 heures</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
@@ -390,11 +393,5 @@ de correctifs et <strong>de cas d'utilisation amusants</strong> via
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>

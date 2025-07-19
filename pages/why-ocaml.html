@@ -8,9 +8,12 @@
     <link rel="canonical" href="https://xvw.lol/pages/why-ocaml.html">
     <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
     <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <script>
+      /* see:
+       * https://stackoverflow.com/questions/21147149/flash-of-unstyled-content-fouc-in-firefox-only-is-ff-slow-renderer*/
+      let FF_FOUC_FIX;
+    </script>
     <title>xvw.lol - Sur le choix d&apos;OCaml</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -643,12 +646,12 @@ implémentables.</p>
 être utiles dans des contextes différents. Et nous allons nous
 inspirer de l'exemples très populaires du télétype pour montrer
 comment inverser les dépendances :</p>
-<pre><code class="language-ocaml">let program () =
-  let () = print_endline &quot;Hello World&quot; in
-  let () = print_endline &quot;What is your name?&quot; in
-  let name = read_line () in
-  print_endline (&quot;Hello &quot; ^ name)
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>print_endline</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello World</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>print_endline</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>What is your name?</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>name</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>read_line</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-source'>print_endline</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-source'>name</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Même si ça peut ne pas sembler évident, ce programme dépend
 d'implémentations concrètes, <strong>les interactions avec l'entrée et la
 sortie standards</strong>.</p>
@@ -665,21 +668,21 @@ modules</em></a>, il est
 <strong>très facile</strong> de dépendre d'un ensemble d'interaction abstrait. On
 commence par décrire la représentation abstraite des interactions
 possibles :</p>
-<pre><code class="language-ocaml">module type IO = sig
-  val print_endline : string -&gt; unit
-  val read_line : unit -&gt; string
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>IO</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>print_endline</span><span class='ocaml-source'> : string -&gt; unit
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>read_line</span><span class='ocaml-source'> : unit -&gt; string
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>On peut maintenant attendre de notre fonction <code>program</code> qu'elle prenne
 un module du type <code>IO</code> en argument (on appellera ça <em>un gestionnaire</em>)
 et utiliser les fonctions exportées par le module, qui, dans notre
 exemple, s'appelle <code>Handler</code> :</p>
-<pre><code class="language-ocaml">let program (module Handler: IO) =
-  let () = Handler.print_endline &quot;Hello World&quot; in
-  let () = Handler.print_endline &quot;What is your name?&quot; in
-  let name = Handler.read_line () in
-  Handler.print_endline (&quot;Hello &quot; ^ name)
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Handler</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>IO</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Handler</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>print_endline</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello World</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Handler</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>print_endline</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>What is your name?</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>name</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Handler</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>read_line</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Handler</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>print_endline</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-source'>name</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Et il est possible, par exemple, dans le contexte des tests unitaires,
 de fournir une implémentation qui journalise l'ensemble des opérations
 appelées (et qui <em>mock</em> l'appel de <code>read_line</code>, pour fixer le résultat
@@ -713,17 +716,17 @@ version <code>5.3.0</code> du langage.</p>
 <p>Comme pour notre amélioration précédente, il faut d'abord décrire
 l'ensemble des opérations que l'on pourra produire. On utilise la
 construction <code>effect</code> :</p>
-<pre><code class="language-ocaml">effect Print_endline : string -&gt; unit
-effect Read_line : unit -&gt; string
-</code></pre>
+<pre><code><span class='ocaml-source'>effect</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Print_endline</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>unit</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>effect</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Read_line</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>unit</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>string</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Ensuite, on peut écrire, dans un style directe, notre programme en
 <em>produisant des effets</em> :</p>
-<pre><code class="language-ocaml">let program () =
-  let () = Effect.perform (Print_endline &quot;Hello World&quot;) in
-  let () = Effect.perform (Print_endline &quot;What is your name?&quot;) in
-  let name = Effect.perform (Read_line ()) in
-  Effect.perform (Print_endline (&quot;Hello &quot; ^ name))
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Effect</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>perform</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Print_endline</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello World</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Effect</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>perform</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Print_endline</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>What is your name?</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>name</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Effect</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>perform</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Read_line</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Effect</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>perform</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Print_endline</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-source'>name</span><span class='ocaml-source'>)</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Il est ensuite possible d'interpréter, à postériori, notre programme
 en utilisant une construction similaire au filtrage par motif pour
 donner un sens spécifique à chaque effet.</p>
@@ -1693,26 +1696,26 @@ beau est aussi recevable que de dire que
 <h3 id="les-opérateurs-doublés-pour-les-flottants"><a class="anchor" aria-hidden="true" href="#les-opérateurs-doublés-pour-les-flottants"></a>Les opérateurs doublés pour les flottants</h3>
 <p>Dans la bibliothèque standard, on trouve les opérateurs arithmétiques
 sur les entiers suivant :</p>
-<pre><code class="language-ocaml">val ( + ) : int -&gt; int -&gt; int
-val ( - ) : int -&gt; int -&gt; int
-val ( * ) : int -&gt; int -&gt; int
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Mais aussi des opérateurs arithmétiques pour les nombres flottants :</p>
-<pre><code class="language-ocaml">val ( +. ) : float -&gt; float -&gt; float
-val ( -. ) : float -&gt; float -&gt; float
-val ( *. ) : float -&gt; float -&gt; float
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+.</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-.</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*.</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>float</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Aux premiers abords, cela peut sembler déroutant. Cependant, c'est
 parfaitement sensé. Si on voulait avoir des opérateurs génériques, il
 nous faudrait du <a href="https://en.wikipedia.org/wiki/Ad_hoc_polymorphism">polymorphisme
 ad-hoc</a>, comme
 c'est le cas en Haskell, par exemple, où les opérateurs arithmétiques
 résides dans la classe <code>Num</code> :</p>
-<pre><code class="language-haskell">class  Num a  where
-  -- more code
-  (+), (-), (*) :: a -&gt; a -&gt; a
-  -- more code
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>class</span><span class='haskell-meta-declaration-class'>  </span><span class='haskell-support-class-prelude'>Num</span><span class='haskell-meta-declaration-class'> </span><span class='haskell-variable-other-generic-type'>a</span><span class='haskell-meta-declaration-class'>  </span><span class='haskell-keyword-other'>where</span><span class='haskell-source'>
+</span><span class='haskell-punctuation-whitespace-comment-leading'>  </span><span class='haskell-punctuation-definition-comment'>--</span><span class='haskell-comment-line-double-dash'> more code</span><span class='haskell-comment-line-double-dash'>
+</span><span class='haskell-source'>  (+), (-), (*) :: a -&gt; a -&gt; a
+</span><span class='haskell-source'>  </span><span class='haskell-punctuation-definition-comment'>--</span><span class='haskell-comment-line-double-dash'> more code</span><span class='haskell-comment-line-double-dash'>
+</span></code></pre>
 <p>Sans forme de polymorphisme ad-hoc (via des classes, des traits ou des
 implicites), permettant de décrire une contrainte sur nos opérateurs :
 <code>op :: Num a =&gt; a -&gt; a -&gt; a</code> ? Une proposition que j'ai souvent lu sur
@@ -1734,41 +1737,41 @@ d'étranges raisons, suffixer les opérateurs par des points en présence
 de flottant vous donne de l'urticaire, il est possible, au moyen
 d'ouvertures locales, de s'en passer en fournissant, par exemple, ce
 module :</p>
-<pre><code class="language-ocaml">module Arithmetic (P : sig
-  type t
-
-  val add : t -&gt; t -&gt; t
-  val sub : t -&gt; t -&gt; t
-  val mul : t -&gt; t -&gt; t
-  val div : t -&gt; t -&gt; t
-end) =
-struct
-  let ( + ), ( - ), ( * ), ( / ) = P.(add, sub, mul, div)
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Arithmetic</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>P</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>type</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>t</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>add</span><span class='ocaml-source'> : t -&gt; t -&gt; t
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>sub</span><span class='ocaml-source'> : t -&gt; t -&gt; t
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>mul</span><span class='ocaml-source'> : t -&gt; t -&gt; t
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>div</span><span class='ocaml-source'> : t -&gt; t -&gt; t
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>P</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>add</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>sub</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>mul</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>div</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Qui permet d'étendre les modules <code>Int</code> et <code>Float</code> (qui disposent déjà
 des fonctions <code>add</code>, <code>sub</code>, <code>mul</code> et <code>div</code>) pour les provisionner
 d'opérateurs arithmétiques :</p>
-<pre><code class="language-ocaml">module Int = struct
-  include Int
-  include Arithmetic (Int)
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Arithmetic</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Int</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Dans les grandes lignes, on construit un module <code>Int</code>, on inclut le
 module <code>Int</code> précédent, pour que notre nouveau module <code>Int</code> dispose de
 toute l'API du module <code>Int</code> original, ensuite on construit (et on
 inclut) nos opértateurs arithmétiques. On peut maintenant répéter
 l'opération avec <code>Float</code> :</p>
-<pre><code class="language-ocaml">module Float = struct
-  include Float
-  include Arithmetic (Float)
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Float</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Float</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Arithmetic</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Float</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Et on peut maintenant se servir de l'ouverture locale pour ne pas
 devoir suffixer nos opérateurs avec des points :</p>
-<pre><code class="language-ocaml">let x = Int.(1 + 2 + 3 + (4 * 6 / 7))
-let y = Float.(1.3 + 2.5 + 3.1 + (4.6 * 6.8 / 7.9))
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Int</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>2</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>3</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-numeric-decimal-integer'>4</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>6</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>7</span><span class='ocaml-source'>)</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>y</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Float</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-constant-numeric-decimal-float'>1.3</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>2.5</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>3.1</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-numeric-decimal-float'>4.6</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>6.8</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>7.9</span><span class='ocaml-source'>)</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>De mon point de vue, même si ça peut être déroutant quand on vient de
 languages pour lesquels ce n'est pas une question, c'est un problème
 mineur, et il me semble que l'absence de surcharge d'opérateurs est un
@@ -1805,43 +1808,43 @@ d'importation</a>.</p>
 <p>On peut simplement utiliser <code>open struct (* code privé *) end</code> pour ne
 pas exporter des parties codes sans nécéssiter d'interfaces. Par
 exemple :</p>
-<pre><code class="language-ocaml">open struct
-  (* Private API *)
-  let f x = x
-  let g = _some_private_stuff
-end
-
-(* Public API *)
-let a = f 10
-let b = g + 11
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> Private API </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>f</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>g</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>_some_private_stuff</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> Public API </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>f</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>10</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>g</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>11</span><span class='ocaml-source'>
+</span></code></pre>
 <h4 id="exprimer-linterface-depuis-le-ml"><a class="anchor" aria-hidden="true" href="#exprimer-linterface-depuis-le-ml"></a>Exprimer l'interface depuis le <code>ml</code></h4>
 <p>Une autre technique similaire consiste à utiliser <code>include (struct ... end : sig (* API publique *) end)</code> pour permettre de décrire la
 structure et l'interface dans le même fichier. Par exemple :</p>
-<pre><code class="language-ocaml">include (struct
-  type t = int
-  let f x = x
-  let g = _some_private_stuff
-end : sig
-  type t
-  val f : int -&gt; t
-end)
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>f</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>g</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>_some_private_stuff</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>type</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>t</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>f</span><span class='ocaml-source'> : int -&gt; t
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>De cette manière, la signature et la structure vivent dans le même
 fichier, tout en permettant de contrôler précisemment
 l'encapsulation. Une autre approche consisterait à sortir la signature
 dans un <code>module type</code> dédié, de cette manière :</p>
-<pre><code class="language-ocaml">module type S = sig
-  type t
-  val f : int -&gt; t
-end
-
-include (struct
-  type t = int
-  let f x = x
-  let g = _some_private_stuff
-end : S)
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>S</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>type</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>t</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>f</span><span class='ocaml-source'> : int -&gt; t
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>f</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>g</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>_some_private_stuff</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>S</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>C'est très similaire à la première proposition, si ce n'est que le
 module expose aussi le type de module <code>S</code>. L'effet de bord bénéfique
 de ce <em>leak</em> est que l'on peut facilement référencer la signature du
@@ -1939,14 +1942,14 @@ bienveillant !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                133
+                134
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 secondes</strong>.
+              <strong>14 heures</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
@@ -2002,11 +2005,5 @@ bienveillant !</p>
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>

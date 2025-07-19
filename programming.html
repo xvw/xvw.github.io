@@ -8,9 +8,12 @@
     <link rel="canonical" href="https://xvw.lol/programming.html">
     <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
     <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <script>
+      /* see:
+       * https://stackoverflow.com/questions/21147149/flash-of-unstyled-content-fouc-in-firefox-only-is-ff-slow-renderer*/
+      let FF_FOUC_FIX;
+    </script>
     <title>xvw.lol - Programmation</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -87,14 +90,14 @@
             <h3>Etats</h3>
             <p>
               <strong>
-                133
+                134
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 secondes</strong>.
+              <strong>14 heures</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
@@ -150,11 +153,5 @@
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>

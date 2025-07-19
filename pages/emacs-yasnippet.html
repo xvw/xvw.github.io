@@ -8,9 +8,12 @@
     <link rel="canonical" href="https://xvw.lol/pages/emacs-yasnippet.html">
     <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
     <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <script>
+      /* see:
+       * https://stackoverflow.com/questions/21147149/flash-of-unstyled-content-fouc-in-firefox-only-is-ff-slow-renderer*/
+      let FF_FOUC_FIX;
+    </script>
     <title>xvw.lol - Expansion d&apos;abréviations avec YASnippet</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -65,11 +68,11 @@ des petits cas pratiques.</p>
 nécéssaire de l'installer. Pour ma part, j'utilise la macro
 <a href="https://github.com/jwiegley/use-package"><code>use-package</code></a>, qui me
 permet de décrire déclarativement ma configuration (et qui, depuis <code>&gt;= 29</code>, est disponible par défaut) :</p>
-<pre><code class="language-scheme">(use-package yasnippet
-  :config
-  (setq yas-snippet-dirs '(&quot;~/scame/snippets&quot;))
-  (yas-global-mode 1))
-</code></pre>
+<pre><code><span class='lisp-source'>(use-package yasnippet
+</span><span class='lisp-source'>  :config
+</span><span class='lisp-source'>  (</span><span class='lisp-support-function'>setq</span><span class='lisp-source'> yas-snippet-dirs '(</span><span class='lisp-punctuation-definition-string-begin'>&quot;</span><span class='lisp-string-quoted-double'>~/scame/snippets</span><span class='lisp-punctuation-definition-string-end'>&quot;</span><span class='lisp-source'>))
+</span><span class='lisp-source'>  (yas-global-mode </span><span class='lisp-constant-numeric'>1</span><span class='lisp-source'>))
+</span></code></pre>
 <p>L'installation est assez commune, je configure le répertoire où se
 trouveront mes <em>snippets</em> (<a href="https://github.com/xvw/scame">scame</a> est
 ma configuration Emacs) et j'active globalement le mode. Comme nous le
@@ -336,14 +339,14 @@ efficace</em>, j'espère que cet article aura été utile !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                133
+                134
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 secondes</strong>.
+              <strong>14 heures</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
@@ -399,11 +402,5 @@ efficace</em>, j'espère que cet article aura été utile !</p>
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>

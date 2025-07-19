@@ -8,8 +8,6 @@
     <link rel="canonical" href="https://xvw.lol/en/articles/oop-refl.html">
     <link rel="alternate" type="application/atom+xml" href="/en/atom.xml" />
     <title>xvw.lol - Guarded methods in OCaml</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -42,19 +40,19 @@ how to encode them using a <strong>type equality witness</strong>.</p>
 like in Java or OCaml) introduces <strong>parametric polymorphism</strong> (Java's
 <em>generics</em>), it's sometimes possible to constrain type variables. For
 example:</p>
-<pre><code class="language-java">class MyClass&lt;T extends S&gt; { ... }
-</code></pre>
+<pre><code><span class='java-storage-modifier'>class</span><span class='java-meta-class-identifier'> </span><span class='java-entity-name-type-class'>MyClass</span><span class='java-meta-class'>&lt;T </span><span class='java-storage-modifier-extends'>extends</span><span class='java-meta-definition-class-inherited-classes'> </span><span class='java-entity-other-inherited-class'>S</span><span class='java-meta-definition-class-inherited-classes'>&gt; </span><span class='java-punctuation-section-class-begin'>{</span><span class='java-meta-class-body'> </span><span class='java-constant-numeric-float'>.</span><span class='java-constant-numeric-float'>.</span><span class='java-constant-numeric-float'>.</span><span class='java-meta-class-body'> </span><span class='java-punctuation-section-class-end'>}</span><span class='java-source'>
+</span></code></pre>
 <p>We make <code>MyClass</code> generic by assuming that the type variable <code>T</code> is a
 subtype of <code>S</code>. The problem is that the constraint applies to <strong>the
 entire class</strong>. Yet sometimes, we’d like to have constraints apply
 <strong>only to certain methods</strong>. For example, let’s say we have a class
 <code>MyList</code> describing a list:</p>
-<pre><code class="language-java">class MyList&lt;A&gt; extends ArrayList&lt;A&gt; {
-   public int length() {
-     return this.size();
-   }
-}
-</code></pre>
+<pre><code><span class='java-storage-modifier'>class</span><span class='java-meta-class-identifier'> </span><span class='java-entity-name-type-class'>MyList</span><span class='java-meta-class'>&lt;A&gt; </span><span class='java-storage-modifier-extends'>extends</span><span class='java-meta-definition-class-inherited-classes'> </span><span class='java-entity-other-inherited-class'>ArrayList&lt;</span><span class='java-storage-type'>A</span><span class='java-entity-other-inherited-class'>&gt;</span><span class='java-meta-definition-class-inherited-classes'> </span><span class='java-punctuation-section-class-begin'>{</span><span class='java-meta-class-body'>
+</span><span class='java-meta-class-body'>   </span><span class='java-storage-modifier'>public</span><span class='java-meta-method'> </span><span class='java-storage-type-primitive-array'>int</span><span class='java-meta-method-return-type'> </span><span class='java-entity-name-function'>length</span><span class='java-meta-method-identifier'>(</span><span class='java-meta-method-identifier'>)</span><span class='java-meta-method'> </span><span class='java-punctuation-section-method-begin'>{</span><span class='java-meta-method-body'>
+</span><span class='java-meta-method-body'>     </span><span class='java-keyword-control'>return</span><span class='java-meta-method-body'> </span><span class='java-variable-language'>this</span><span class='java-keyword-operator-dereference'>.</span><span class='java-meta-method'>size</span><span class='java-punctuation-definition-method-parameters-begin'>(</span><span class='java-punctuation-definition-method-parameters-end'>)</span><span class='java-punctuation-terminator'>;</span><span class='java-meta-method-body'>
+</span><span class='java-meta-method-body'>   </span><span class='java-punctuation-section-method-end'>}</span><span class='java-meta-class-body'>
+</span><span class='java-punctuation-section-class-end'>}</span><span class='java-source'>
+</span></code></pre>
 <p>How can we define a <code>flatten</code> method that, for a list like <code>[[1, 2, 3], [4, 5]]</code>, would produce the list <code>[1, 2, 3, 4, 5]</code>? If we place
 the constraint at the class level, we force our list to be &quot;<em>always a
 list of lists</em>,&quot; which is very limiting. To implement such a method,
@@ -63,15 +61,15 @@ we have three theoretical approaches available.</p>
 <p>The first solution is the most obvious: simply &quot;<em>cheat</em>&quot; by moving the
 method outside the class body (for example, into the static context or
 a <em>companion object</em>):</p>
-<pre><code class="language-java">class MyList&lt;A&gt; extends ArrayList&lt;A&gt; {
-   public static &lt;A&gt; MyList&lt;A&gt; flatten(MyList&lt;MyList&lt;A&gt;&gt; list) {
-      // Flatten's implementation
-   }
-   public int length() {
-     return this.size();
-   }
-}
-</code></pre>
+<pre><code><span class='java-storage-modifier'>class</span><span class='java-meta-class-identifier'> </span><span class='java-entity-name-type-class'>MyList</span><span class='java-meta-class'>&lt;A&gt; </span><span class='java-storage-modifier-extends'>extends</span><span class='java-meta-definition-class-inherited-classes'> </span><span class='java-entity-other-inherited-class'>ArrayList&lt;</span><span class='java-storage-type'>A</span><span class='java-entity-other-inherited-class'>&gt;</span><span class='java-meta-definition-class-inherited-classes'> </span><span class='java-punctuation-section-class-begin'>{</span><span class='java-meta-class-body'>
+</span><span class='java-meta-class-body'>   </span><span class='java-storage-modifier'>public</span><span class='java-meta-method'> </span><span class='java-storage-modifier'>static</span><span class='java-meta-method'> </span><span class='java-storage-type-token'>&lt;</span><span class='java-storage-type'>A</span><span class='java-storage-type-token'>&gt;</span><span class='java-meta-method'> </span><span class='java-storage-type-generic'>MyList&lt;</span><span class='java-storage-type'>A</span><span class='java-storage-type-generic'>&gt;</span><span class='java-meta-method-return-type'> </span><span class='java-entity-name-function'>flatten</span><span class='java-meta-method-identifier'>(</span><span class='java-storage-type-generic'>MyList&lt;</span><span class='java-storage-type-generic'>MyList&lt;</span><span class='java-storage-type'>A</span><span class='java-storage-type-generic'>&gt;</span><span class='java-storage-type-generic'>&gt;</span><span class='java-meta-method-identifier'> </span><span class='java-variable-parameter'>list</span><span class='java-meta-method-identifier'>)</span><span class='java-meta-method'> </span><span class='java-punctuation-section-method-begin'>{</span><span class='java-meta-method-body'>
+</span><span class='java-punctuation-whitespace-comment-leading'>      </span><span class='java-punctuation-definition-comment'>//</span><span class='java-comment-line-double-slash'> Flatten's implementation</span><span class='java-comment-line-double-slash'>
+</span><span class='java-meta-method-body'>   }
+</span><span class='java-meta-method-body'>   public int length() {
+</span><span class='java-meta-method-body'>     return this.size();
+</span><span class='java-meta-method-body'>   }
+</span><span class='java-meta-method-body'>}
+</span></code></pre>
 <p>This approach works and doesn’t require any special ceremony. However,
 it forces the developer to keep track of which methods are in the
 class body and which are in the static context. Moreover, it breaks
@@ -87,9 +85,9 @@ class</strong> (which can be very useful for adding behavior to the <code>String
 class, which is <code>final</code> in Java), also provide more flexibility in
 defining the <em>receiver</em>. For example, we could write <code>flatten</code> like
 this (in Kotlin):</p>
-<pre><code class="language-kotlin">class MyList&lt;A&gt; : ArrayList&lt;A&gt; { ... }
-fun &lt;A&gt; MyList&lt;MyList&lt;A&gt;&gt;.flatten() = ...
-</code></pre>
+<pre><code><span class='kotlin-storage-modifier'>class</span><span class='kotlin-source'> </span><span class='kotlin-entity-name-type-class'>MyList</span><span class='kotlin-source'>&lt;</span><span class='kotlin-storage-type-generic'>A</span><span class='kotlin-source'>&gt;</span><span class='kotlin-source'> </span><span class='kotlin-keyword-operator-declaration'>:</span><span class='kotlin-source'> </span><span class='kotlin-entity-other-inherited-class'>ArrayList</span><span class='kotlin-source'>&lt;</span><span class='kotlin-entity-other-inherited-class'>A</span><span class='kotlin-source'>&gt; </span><span class='kotlin-source'>{</span><span class='kotlin-source'> </span><span class='kotlin-keyword-operator-dot'>.</span><span class='kotlin-keyword-operator-dot'>.</span><span class='kotlin-keyword-operator-dot'>.</span><span class='kotlin-source'> </span><span class='kotlin-source'>}</span><span class='kotlin-source'>
+</span><span class='kotlin-keyword-other'>fun</span><span class='kotlin-source'> </span><span class='kotlin-source'>&lt;</span><span class='kotlin-storage-type-generic'>A</span><span class='kotlin-source'>&gt;</span><span class='kotlin-source'> </span><span class='kotlin-source'>MyList&lt;MyList&lt;A&gt;&gt;.</span><span class='kotlin-entity-name-function'>flatten</span><span class='kotlin-source'>(</span><span class='kotlin-source'>)</span><span class='kotlin-source'> </span><span class='kotlin-keyword-operator-assignment'>=</span><span class='kotlin-source'> </span><span class='kotlin-keyword-operator-dot'>.</span><span class='kotlin-keyword-operator-dot'>.</span><span class='kotlin-keyword-operator-dot'>.</span><span class='kotlin-source'>
+</span></code></pre>
 <p>Even though this solution seems nearly perfect, it still requires the
 method to be defined <strong>outside the class</strong>, which might potentially
 mean having to make certain members of the class <em>public</em> in order to
@@ -104,12 +102,12 @@ abstractions. This is the idea of <strong>guarded methods</strong>, the ability 
 add constraints on the generic parameter at the method definition
 level. In an <strong>imaginary</strong> syntax (this code compiles because it's not
 syntactically invalid, but it doesn’t produce the intended effect):</p>
-<pre><code class="language-kotlin">class MyList&lt;A&gt; : ArrayList&lt;A&gt;() {
-    fun length() = size
-    fun &lt;B&gt; MyList&lt;MyList&lt;B&gt;&gt;.flatten() =
-        // Implémentation de flatten
-}
-</code></pre>
+<pre><code><span class='kotlin-storage-modifier'>class</span><span class='kotlin-source'> </span><span class='kotlin-entity-name-type-class'>MyList</span><span class='kotlin-source'>&lt;</span><span class='kotlin-storage-type-generic'>A</span><span class='kotlin-source'>&gt;</span><span class='kotlin-source'> </span><span class='kotlin-keyword-operator-declaration'>:</span><span class='kotlin-source'> </span><span class='kotlin-entity-other-inherited-class'>ArrayList</span><span class='kotlin-source'>&lt;</span><span class='kotlin-entity-other-inherited-class'>A</span><span class='kotlin-source'>&gt;</span><span class='kotlin-source'>(</span><span class='kotlin-source'>)</span><span class='kotlin-source'> </span><span class='kotlin-source'>{</span><span class='kotlin-source'>
+</span><span class='kotlin-source'>    </span><span class='kotlin-keyword-other'>fun</span><span class='kotlin-source'> </span><span class='kotlin-entity-name-function'>length</span><span class='kotlin-source'>(</span><span class='kotlin-source'>)</span><span class='kotlin-source'> </span><span class='kotlin-keyword-operator-assignment'>=</span><span class='kotlin-source'> size</span><span class='kotlin-source'>
+</span><span class='kotlin-source'>    </span><span class='kotlin-keyword-other'>fun</span><span class='kotlin-source'> </span><span class='kotlin-source'>&lt;</span><span class='kotlin-storage-type-generic'>B</span><span class='kotlin-source'>&gt;</span><span class='kotlin-source'> </span><span class='kotlin-source'>MyList&lt;MyList&lt;B&gt;&gt;.</span><span class='kotlin-entity-name-function'>flatten</span><span class='kotlin-source'>(</span><span class='kotlin-source'>)</span><span class='kotlin-source'> </span><span class='kotlin-keyword-operator-assignment'>=</span><span class='kotlin-source'>
+</span><span class='kotlin-source'>        </span><span class='kotlin-punctuation-definition-comment'>//</span><span class='kotlin-comment-line-double-slash'> Implémentation de flatten
+</span><span class='kotlin-source'>}</span><span class='kotlin-source'>
+</span></code></pre>
 <p>Even though this doesn’t seem significantly different from classic
 extension methods (as evidenced by their syntax, which <strong>inside the
 class body</strong> seems sufficient), it addresses all the issues raised
@@ -141,28 +139,28 @@ both approaches). Unfortunately not covered during the presentation
 guarded methods is included in the slides. The original example offers
 a symmetrical observation between the implementation of the <code>flatten</code>
 function in a classic functional style:</p>
-<pre><code class="language-ocaml">type 'a list = ...
-let rec length : 'a list -&gt; int = ...
-let rec concat : 'a list -&gt; 'a list -&gt; 'a list = ...
-
-let rec flatten : 'a list list -&gt; 'a list = function
-  | [] -&gt; []
-  | x::xs -&gt; x @ flatten xs
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>rec </span><span class='ocaml-entity-name-function-binding'>length</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>rec </span><span class='ocaml-entity-name-function-binding'>concat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>rec </span><span class='ocaml-entity-name-function-binding'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>function</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-list'>[]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-list'>[]</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>xs</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>@</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-source'>xs</span><span class='ocaml-source'>
+</span></code></pre>
 <p>And the implementation of a <code>flatten</code> method if we were in the
 object-oriented world, posing exactly the problem introduced in this
 note. The question is: what type should <code>flatten</code> have?</p>
-<pre><code class="language-ocaml">class type ['a] olist = object
-  method length : int
-  method concat : 'a olist -&gt; 'a olist
-
-  method flatten : ???
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>class</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>object</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>length</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>concat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>???</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>He therefore proposes this syntax, which implies a guard on the
 <code>flatten</code> method:</p>
-<pre><code class="language-ocaml">method flatten : 'b olist with 'a = 'b olist
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'>
+</span></code></pre>
 <p>This syntax allows describing a guarded method and could be
 generalized like this: <code>method method_name : return_type with generic_type = other_type</code>. Similar to <strong>substitutions</strong> in modules,
 we could specify constraints on multiple generics using <code>and</code>. For
@@ -171,13 +169,13 @@ class parameterized by two types: <code>class ['a, 'b] t</code>.</p>
 <p>Additionally, this syntax would also allow defining specific behaviors
 elegantly. For example, for our <code>olist</code> type, we could provide a <code>sum</code>
 method if the elements of the list are integers:</p>
-<pre><code class="language-ocaml">class type ['a] olist = object
-  method length : int
-  method concat : 'a olist -&gt; 'a olist
-  method flatten : 'b olist with 'a = 'b olist
-  method sum : int with 'a = int
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>class</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>object</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>length</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>concat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>olist</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>sum</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>All of this sounds extraordinary, <strong>but unfortunately, this syntax is
 not available</strong> in OCaml. That’s annoying! Don’t worry, it is possible
 to <strong>encode it</strong> using a few small tools.</p>
@@ -202,18 +200,18 @@ we want to provide <strong>evidence</strong>.</p>
 types</a>
 in the language, there is a fairly straightforward way to define a
 type equality witness:</p>
-<pre><code class="language-ocaml">type (_, _) eq =
-  | Refl : ('a, 'a) eq
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language'>_</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language'>_</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Refl</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'>
+</span></code></pre>
 <p>The <code>eq</code> type, which has only one constructor: <code>Refl</code>, allows
 representing type equalities <strong>not known by the
 <em>type-checker</em></strong>. Since we can only construct <code>Refl</code> values that
 associate two equal types, instantiating <code>Refl</code> within a <em>scope</em>
 guarantees that those types are equivalent. For example:</p>
-<pre><code class="language-ocaml">type other_int = int
-let _ : (int, other_int) eq = Refl
-(* Now, we have a proof of [int = other_int]. *)
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>other_int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>_</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>int</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>other_int</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Refl</span><span class='ocaml-source'>
+</span><span class='ocaml-comment-block'>(*</span><span class='ocaml-comment-block'> Now, we have a proof of [int = other_int]. </span><span class='ocaml-comment-block'>*)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>This example is somewhat artificial because here the compiler knows
 perfectly well that <code>int = other_int</code>. However, there are cases where
 the compiler cannot know this. For example, when data is provided at
@@ -226,93 +224,93 @@ two <em>syntactically different</em> types are actually equal.</p>
 <h3 id="constrain-with-eq"><a class="anchor" aria-hidden="true" href="#constrain-with-eq"></a>Constrain with <code>eq</code></h3>
 <p>Let’s return to our example that provides an object API for a
 list. Here is its interface:</p>
-<pre><code class="language-ocaml">class type ['a] obj_list =
-  object ('self)
-    method length : int
-    method append : 'a list -&gt; 'a obj_list
-    method uncons : ('a * 'self) option
-    method flatten : ???
-  end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>class</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-source'>obj_list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>object</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'self</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>length</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>append</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>obj_list</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>uncons</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'self</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>option</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>???</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>To give a type to <code>flatten</code>, we want to impose that <code>'a</code> (the type
 parameter of the <code>obj_list</code> class) is a list. In other words, we want
 <strong>a proof that <code>'a</code> is of type <code>'b list</code></strong>. That is, to guarantee that
 <code>'a</code> and <code>'b list</code>, though syntactically different, are equal. It’s
 simple: just require a value of type <code>('a, 'b list) eq</code> to be
 provided:</p>
-<pre><code class="language-ocaml">method flatten : ('a, 'b list) eq -&gt; 'b list
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Now that we have an interface describing a list with a <code>flatten</code>
 method that constrains the receiver to be <code>a list of something</code>, let’s
 concretely implement a class that implements <code>obj_list</code>.</p>
 <h4 id="implementing-the-interface-obj_list"><a class="anchor" aria-hidden="true" href="#implementing-the-interface-obj_list"></a>Implementing the interface <code>obj_list</code></h4>
 <p>The first methods (<code>length</code>, <code>append</code>, and <code>uncons</code>) are
 straightforward to implement:</p>
-<pre><code class="language-ocaml">let my_list (list : 'a list) =
-  object (self : 'a obj_list)
-    val l = list
-    method length = List.length l
-    method append x = {&lt;l = List.append l x&gt;}
-    method uncons = match l with [] -&gt; None | x :: xs -&gt; Some (x, {&lt;l = xs&gt;})
-
-    method flatten = ???
-  end
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>my_list</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>object</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>self</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>obj_list</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>l</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>length</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>List</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>length</span><span class='ocaml-source'> </span><span class='ocaml-source'>l</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>append</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>{</span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-source'>l</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>List</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>append</span><span class='ocaml-source'> </span><span class='ocaml-source'>l</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>}</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>uncons</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>match</span><span class='ocaml-source'> </span><span class='ocaml-source'>l</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-list'>[]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>None</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>xs</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Some</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>x</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>{</span><span class='ocaml-keyword-operator'>&lt;</span><span class='ocaml-source'>l</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>xs</span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'>}</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>???</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Now, let’s focus on <code>flatten</code>. We will recursively traverse the list,
 concatenating each element to the previous one. For example, <code>[[1]; [2]; [3]]</code> will become <code>[1] @ [2]; [3]</code>. Beyond the somewhat noisy
 annotations, the entire trick lies in instantiating <code>Refl</code> to provide
 evidence that <code>'a = 'b list</code>.</p>
-<pre><code class="language-ocaml">method flatten : 'b. ('a, 'b list) eq -&gt; 'b list =
-  let rec aux : type a b. a #obj_list -&gt; (a, b list) eq -&gt; b list =
-  fun list witness -&gt; match list#uncons with
-    | None -&gt; []
-    | Some (head_list, xs) -&gt;
-        let flatten_list : b list =
-          let Refl = witness  in head_list
-        in flatten_list @ aux xs witness
-  in aux self
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>rec </span><span class='ocaml-entity-name-function-binding'>aux</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>type</span><span class='ocaml-entity-name-function-binding'> a b</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>obj_list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-source'>witness</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>match</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>uncons</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>None</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-list'>[]</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Some</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>head_list</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>xs</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>        </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>flatten_list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>          </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Refl</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>witness</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> </span><span class='ocaml-source'>head_list</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>        </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten_list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>@</span><span class='ocaml-source'> </span><span class='ocaml-source'>aux</span><span class='ocaml-source'> </span><span class='ocaml-source'>xs</span><span class='ocaml-source'> </span><span class='ocaml-source'>witness</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> </span><span class='ocaml-source'>aux</span><span class='ocaml-source'> </span><span class='ocaml-source'>self</span><span class='ocaml-source'>
+</span></code></pre>
 <h4 id="adding-a-guarded-method-sum"><a class="anchor" aria-hidden="true" href="#adding-a-guarded-method-sum"></a>Adding a guarded method <code>sum</code></h4>
 <p>Now that we’re able to constrain certain methods, let’s try adding a
 <code>sum</code> method that produces the sum of a list of integers! First, let’s
 add <code>sum</code> to our interface. This time, we want to constrain our type
 parameter to be <code>int</code>. To do that, we simply take <code>('a, int) eq</code> as a
 type equality witness:</p>
-<pre><code class="language-ocaml">class type ['a] obj_list =
-  object ('self)
-    method length : int
-    method append : 'a list -&gt; 'a obj_list
-    method uncons : ('a * 'self) option
-    method flatten : ('a, 'b list) eq -&gt; 'b list
-    method sum : ('a, int) eq -&gt; int
-  end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>class</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-source'>obj_list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>object</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'self</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>length</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>append</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-source'>obj_list</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>uncons</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'self</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>option</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'b</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>sum</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Next, we can implement the <code>sum</code> method, which is just a use of the
 <code>fold_left</code> function.</p>
-<pre><code class="language-ocaml">method sum : ('a, int) eq -&gt; int =
-  let aux : type a. a list -&gt; (a, int) eq -&gt; int = fun list Refl -&gt;
-    List.fold_left (fun acc x -&gt; acc + x) 0 list
-  in aux l
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>method</span><span class='ocaml-source'> </span><span class='ocaml-source'>sum</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>aux</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>type</span><span class='ocaml-entity-name-function-binding'> a</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Refl</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-constant-language-capital-identifier'>List</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>fold_left</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-source'>acc</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>acc</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>0</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'> </span><span class='ocaml-source'>aux</span><span class='ocaml-source'> </span><span class='ocaml-source'>l</span><span class='ocaml-source'>
+</span></code></pre>
 <p>The implementation of <code>sum</code> is logically simpler than that of
 <code>flatten</code> because it doesn’t introduce additional type variables. And
 we can test our different methods: we can invoke <code>flatten</code> on an
 object of type <code>'a list obj_list</code> and <code>sum</code> on an object of type <code>int obj_list</code>.</p>
-<pre><code class="language-ocaml">let a = my_list [ [ 1 ]; [ 2 ]; [ 3 ] ]
-let _ = assert ([ 1; 2; 3 ] = a#flatten Refl)
-let b = my_list [ 1; 2; 3; 4 ]
-let _ = assert (10 = b#sum Refl)
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_list</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>2</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>3</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>_</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>assert</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>2</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>3</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>flatten</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Refl</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_list</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>2</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>3</span><span class='ocaml-keyword-other-ocaml punctuation-separator-terminator punctuation-separator'>;</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>4</span><span class='ocaml-source'> </span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>_</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>assert</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-numeric-decimal-integer'>10</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>sum</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Refl</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>If we try to apply a guarded method with the wrong type, for example,
 trying to sum our list <code>a</code> (which is of type <code>'a list obj_list</code>), the
 program will not compile. This makes sense, as we are trying to call a
 guarded method <strong>without respecting the imposed constraint</strong>.</p>
-<pre><code class="language-ocaml">1 | let _ = a#sum Refl
-                  ^^^^
-Error: This expression has type (int list, int list) eq
-       but an expression was expected of type (int list, int) eq
-       Type int list is not compatible with type int
-</code></pre>
+<pre><code><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>_</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-keyword-other'>#</span><span class='ocaml-source'>sum</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Refl</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>                  </span><span class='ocaml-keyword-operator'>^^^^</span><span class='ocaml-source'>
+</span><span class='ocaml-constant-language-capital-identifier'>Error</span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>This</span><span class='ocaml-source'> </span><span class='ocaml-source'>expression</span><span class='ocaml-source'> </span><span class='ocaml-source'>has</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>       </span><span class='ocaml-source'>but</span><span class='ocaml-source'> </span><span class='ocaml-source'>an</span><span class='ocaml-source'> </span><span class='ocaml-source'>expression</span><span class='ocaml-source'> </span><span class='ocaml-source'>was</span><span class='ocaml-source'> </span><span class='ocaml-source'>expected</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>of</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>eq</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>       </span><span class='ocaml-constant-language-capital-identifier'>Type</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-source'>list</span><span class='ocaml-source'> </span><span class='ocaml-source'>is</span><span class='ocaml-source'> </span><span class='ocaml-source'>not</span><span class='ocaml-source'> </span><span class='ocaml-source'>compatible</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>with</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Exactly the expected behavior! We can now define methods that
 <strong>constrain the receiver’s type</strong> by means of a type equality
 witness. <strong>Mission complete</strong>!</p>
@@ -384,14 +382,14 @@ practical use case for equality witnesses!</p>
             <h3>States</h3>
             <p>
               <strong>
-                133
+                134
                 logs
               </strong>
               for a period of
               <strong>15 days</strong>,
-              <strong>13 hours</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 seconds</strong>.
+              <strong>14 hours</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 seconds</strong>.
               <br />
               <a href="/activity.html">Activity (FR)</a>
             </p>
@@ -447,11 +445,5 @@ practical use case for equality witnesses!</p>
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>

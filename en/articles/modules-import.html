@@ -8,8 +8,6 @@
     <link rel="canonical" href="https://xvw.lol/en/articles/modules-import.html">
     <link rel="alternate" type="application/atom+xml" href="/en/atom.xml" />
     <title>xvw.lol - OCaml, modules, and import schemes</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -65,28 +63,28 @@ the differences between these two primitives, we will base ourselves
 on this (somewhat artificial) module, which we will use in the
 following examples:</p>
 <div class="side-by-side">
-<pre><code class="language-ocaml">module A = struct
-  type a = T_a
-  let a_a = 1
-  let a_b = T_a
-  module B = struct
-    type b = T_b
-    let b_a = T_b
-    let b_b = T_a
-  end
-end
-</code></pre>
-<pre><code class="language-ocaml">module A : sig
-  type a = T_a
-  val a_a : int
-  val a_b : a
-  module B : sig
-    type b = T_b
-    val b_a : b
-    val b_b : a
-  end
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>T_a</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a_b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>T_a</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>T_b</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>T_b</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b_b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>T_a</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>type</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a</span><span class='ocaml-source'> = T_a
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a_a</span><span class='ocaml-source'> : int
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>a_b</span><span class='ocaml-source'> : a
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other-ocaml'>module</span><span class='ocaml-source'> B : </span><span class='ocaml-keyword-other-ocaml'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>type</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b</span><span class='ocaml-source'> = T_b
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b_a</span><span class='ocaml-source'> : b
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>b_b</span><span class='ocaml-source'> : a
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>As you may notice, the implementation—and <em>de facto</em>, the signature —
 of the module is not very interesting; it will only serve to
@@ -95,8 +93,8 @@ will denote the module <code>C</code>), the components described in <code>A</cod
 <p>The first approach, and the most obvious one, is to use their full
 names (a <strong>fully qualified</strong> call) by using the module <strong>path</strong>. For
 example, let's create a pair of <code>int</code> and <code>A.a</code>:</p>
-<pre><code class="language-ocaml">let c_a = (A.a_a, A.B.b_b)
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>c_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>a_a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>b_b</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>However, using fully qualified paths can sometimes be <em>tedious</em> (or
 even completely unreadable). That’s why we’ll look at how to <strong>import
 components from module <code>A</code> into module <code>C</code></strong>. However, since the goal
@@ -115,12 +113,12 @@ and <a href="https://v2.ocaml.org/releases/5.1/htm">generalized opens</a></p>
 into another module, <strong>without re-exporting</strong> them in the current
 module. For example, let's use <code>open</code> to rewrite the function <code>c_a</code>:</p>
 <div class="side-by-side">
-<pre><code class="language-ocaml">open A
-
-let c_a = (a_a, B.b_b)
-</code></pre>
-<pre><code class="language-ocaml">val c_a : int * A.a
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>c_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>a_a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>b_b</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>c_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>a</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>As we can see from the (<em>inferred</em>) signature, it <strong>does not export</strong>
 the <em>components</em> of module <code>A</code> and references the type <code>a</code> by its full
@@ -167,16 +165,16 @@ module into the body of the module where it is called. For example, if
 we had used <code>include</code> instead of <code>open</code> in our previous example, let’s
 observe the impact on the inferred signature:</p>
 <div class="side-by-side">
-<pre><code class="language-ocaml">include A
-
-let c_a = (a_a, B.b_b)
-</code></pre>
-<pre><code class="language-ocaml">type a = A.a = T_a
-val a_a : int
-val a_b : a
-module B = A.B
-val c_a : int * A.a
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>c_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>a_a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>b_b</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>T_a</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>a_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>a_b</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>c_a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>a</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>Even though the signature <em>varies slightly</em> from the one we defined
 earlier — there are some subtleties regarding the propagation of
@@ -236,32 +234,32 @@ or constraints, it was necessary to use intermediate modules.</p>
 expressiveness — identical, because a path can also be a module
 expression:</p>
 <div class="side-by-side">
-<pre><code class="language-ocaml">include A.B.C
-</code></pre>
-<pre><code class="language-ocaml">open A.B.C
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>C</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-constant-language-capital-identifier'>C</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>However, as soon as we try to open somewhat more complex cases,
 natively supported by <code>include</code>, we quickly had to introduce
 intermediate modules:</p>
 <div class="side-by-side">
-<pre><code class="language-ocaml">include F(X)
-include (M : S)
-include struct
-  let x = 10
-end
-</code></pre>
-<pre><code class="language-ocaml">module A = F(X)
-open A
-
-module B : S = M
-open B
-
-module C = struct
-  let x = 10
-end
-open C
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>F</span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>X</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>M</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>S</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>10</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>F</span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>X</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>S</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>M</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>B</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>C</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>10</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>C</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>Even if at first glance it may not seem dramatic, introducing
 intermediate modules requires not exporting them in the signature of
@@ -281,14 +279,14 @@ so it is possible to very easily define non-exported top-level values
 by defining them inside an <code>open struct ... end</code> expression. For
 example:</p>
 <div class="side-by-side">
-<pre><code class="language-ocaml">open struct
-  let x = 10
-  let y = 20
-end
-let z = x + y
-</code></pre>
-<pre><code class="language-ocaml">val z : int
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>10</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>y</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>20</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>z</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-source'>y</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>val</span><span class='ocaml-source'> </span><span class='ocaml-source'>z</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>int</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>The functions <code>x</code> and <code>y</code> are <strong>confined within an open block</strong>, so
 they are not exported, which can be very useful when you want to
@@ -300,26 +298,26 @@ are two examples where it is impossible to modify the reference cell
 without going through the exported combinators, the first using a
 constraint, the second using nested local opens:</p>
 <div class="side-by-side">
-<pre><code class="language-ocaml">open (
-  struct
-    let cell = ref 0
-    let incr () = cell := !cell + 1
-    let decr () = cell := !cell - 1
-  end :
-    sig
-      val incr : unit -&gt; unit
-      val decr : unit -&gt; unit
-    end)
-</code></pre>
-<pre><code class="language-ocaml">open struct
-  open struct 
-    let cell = ref 0 
-  end
-  let incr () = cell := !cell + 1
-  let decr () = cell := !cell - 1
-end
-
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>ref</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>0</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>incr</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>!</span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>decr</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>!</span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>incr</span><span class='ocaml-source'> : unit -&gt; unit
+</span><span class='ocaml-source'>      </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>decr</span><span class='ocaml-source'> : unit -&gt; unit
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>ref</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>0</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>incr</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>!</span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>decr</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>!</span><span class='ocaml-source'>cell</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-integer'>1</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>Even though the classic approach used by an OCaml developer is to use
 signatures for <strong>encapsulation</strong> concerns, when used as such, the
@@ -345,12 +343,12 @@ usual import patterns — even though some, like those proposed by
 Haskell, may be somewhat verbose to encode.</p>
 <p>For the example, we will use the following module as the import
 target:</p>
-<pre><code class="language-ocaml">module Foo : sig
-  val x : int
-  val y : string
-  val z : char
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> : int
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>y</span><span class='ocaml-source'> : string
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>z</span><span class='ocaml-source'> : char
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>However, there is an <strong>essential nuance</strong> regarding the notion of
 <strong>qualified import</strong>: in Haskell, to use a module, it <strong>must be
 imported</strong>, whereas in OCaml, it is the build system (compilation
@@ -367,10 +365,10 @@ more flexibility than a rigid import <em>DSL</em>.</p>
 <p>The first directive simply imports the definitions from <code>Foo</code> into the
 current module, namely the functions <code>x</code>, <code>y</code>, and <code>z</code>:</p>
 <div class="side-by-side">
-<pre><code class="language-haskell">import * from Foo
-</code></pre>
-<pre><code class="language-ocaml">open Foo
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>import</span><span class='haskell-meta-import'> * from </span><span class='haskell-support-other-module'>Foo</span><span class='haskell-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>There is no subtlety here; importing all the terms exposed by <code>Foo</code>
 simply consists of opening it. There isn't much more to say, as we are
@@ -382,10 +380,10 @@ importing <code>Foo</code> under the name <code>Bar</code> so that <code>Bar.x</
 <a href="https://v2.ocaml.org/releases/5.1/htmlman/modulealias.html">type-level module
 aliases</a>.</p>
 <div class="side-by-side">
-<pre><code class="language-haskell">import Foo as Bar
-</code></pre>
-<pre><code class="language-ocaml">open struct module Bar = Foo end
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>import</span><span class='haskell-meta-import'> </span><span class='haskell-support-other-module'>Foo</span><span class='haskell-meta-import'> </span><span class='haskell-keyword-other'>as</span><span class='haskell-meta-import'> </span><span class='haskell-support-other-module'>Bar</span><span class='haskell-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Bar</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>We use the <code>open struct ... end</code> construct to keep our alias hidden
 from the module's public API. This ensures that the alias doesn’t leak
@@ -399,11 +397,11 @@ solution is to simply <em>empty the module</em> and, to clarify the error
 related to its undesired use, we can add an
 <a href="https://v2.ocaml.org/releases/5.1/htmlman/alerts.html#start-section">alert</a>
 indicating that the module has been removed:</p>
-<pre><code class="language-ocaml">open struct
-  module Bar = Foo
-  module Foo = struct end [@@alert erased]
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Bar</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-keyword-operator-attribute'>@@</span><span class='ocaml-keyword-other-attribute'>alert</span><span class='ocaml-source'> </span><span class='ocaml-source'>erased</span><span class='ocaml-source'>]</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Making the use of the module <code>Foo</code> within the current module
 impossible by raising an alert.  However, since it is common practice
 to provide module signatures — and thereby control the public API — you
@@ -415,12 +413,12 @@ original module is truly problematic.</p>
 OCaml does not allow full path descriptions of the form <code>module Bar.Baz = Foo</code>. Instead, you need to describe the module nesting
 hierarchy explicitly, like this, making the functions <code>Bar.Baz.x</code>,
 <code>Bar.Baz.y</code>, and <code>Bar.Baz.z</code> available in the current module:</p>
-<pre><code class="language-ocaml">open struct 
-  module Bar = struct 
-    module Baz = Foo 
-  end 
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Bar</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Baz</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'> 
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'> 
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Which, I admit, is a bit verbose, but if for some obscure reason you
 want to rename an existing module using a composed path, you can do so
 by explicitly declaring the module hierarchy.</p>
@@ -430,28 +428,28 @@ want a few components exposed by it. That’s why it’s possible to
 import just a part of a module. In this example, we want to import
 only <code>x</code> and <code>y</code>:</p>
 <div class="side-by-side">
-<pre><code class="language-haskell">import {x, y} from Foo
-</code></pre>
-<pre><code class="language-ocaml">open struct
-  let x = Foo.x
-  let y = Foo.y
-end
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>import</span><span class='haskell-meta-import'> {x, y} from </span><span class='haskell-support-other-module'>Foo</span><span class='haskell-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>x</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>y</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>y</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>Although this approach is also somewhat verbose, it imports only the
 functions <code>x</code> and <code>y</code> into the current module. It’s possible to
 simplify this syntax by using <em>tuples</em> and local openings:</p>
-<pre><code class="language-ocaml">open struct
-  let (x, y) = Foo.(x, y)
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>x</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>y</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>x</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>y</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Alternatively, it is also possible to <strong>constrain the opening</strong> using
 a signature, which requires specifying the types of the functions to
 export:</p>
-<pre><code class="language-ocaml">open (Foo : sig
-  val x : int
-  val y : string end)
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> : int
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>y</span><span class='ocaml-source'> : string </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Several proposals
 (<a href="https://github.com/ocaml/ocaml/pull/10013"><code>#10013</code></a> and
 <a href="https://github.com/ocaml/ocaml/issues/11558#issuecomment-1255946104"><code>#11558</code></a>)
@@ -466,23 +464,23 @@ issue stage.</p>
 integrated. In this example, we expose <code>x</code> and <code>new_y_name</code>, which
 calls <code>Foo.y</code>:</p>
 <div class="side-by-side">
-<pre><code class="language-haskell">import {x, y as new_y_name} from Foo
-</code></pre>
-<pre><code class="language-ocaml">open struct
-  let (x, new_y_name) = Foo.(x, y)
-end
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>import</span><span class='haskell-meta-import'> {x, y </span><span class='haskell-keyword-other'>as</span><span class='haskell-meta-import'> new_y_name} from </span><span class='haskell-support-other-module'>Foo</span><span class='haskell-source'>
+</span></code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>x</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>new_y_name</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>(</span><span class='ocaml-source'>x</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>y</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 </div>
 <p>Unsurprisingly, renaming is quite straightforward. However, if we
 wanted to use the signature-based approach, it would require a bit
 more trickery by combining an <code>open</code> with an <code>include</code>:</p>
-<pre><code class="language-ocaml">open (struct
-    include Foo
-    let new_y_name = y
-  end : sig
-    val x : int
-    val new_y_name : string end)
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>new_y_name</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>y</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> : int
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword'>val</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>new_y_name</span><span class='ocaml-source'> : string </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>However, this last proposal is so verbose that it becomes somewhat
 irrational — especially compared to the previous one — and I imagine
 it’s the kind of code you’ll never see — or at least never want to see
@@ -499,8 +497,8 @@ same solution, here it is. This modifier allows importing an entire
 module <strong>except</strong> for a list of components. In this example, <code>x</code> and
 <code>y</code> will be imported because we import <strong>the whole <code>Foo</code> module</strong>,
 except for the function <code>z</code>.</p>
-<pre><code class="language-haskell">import Foo hidding (z)
-</code></pre>
+<pre><code><span class='haskell-keyword-other'>import</span><span class='haskell-meta-import'> </span><span class='haskell-support-other-module'>Foo</span><span class='haskell-meta-import'> hidding </span><span class='haskell-meta-declaration-exports'>(</span><span class='haskell-entity-name-function'>z</span><span class='haskell-meta-declaration-exports'>)</span><span class='haskell-source'>
+</span></code></pre>
 <p>OCaml does not natively support constructing <strong>intersections</strong> or
 <strong>differences</strong> of modules. The solution proposed by
 <a href="https://github.com/Octachron">@octachron</a> and
@@ -516,8 +514,8 @@ which essentially allows you to <em>describe unrepresentable values</em>. To
 define it, you simply create a sum type with an empty branch (which,
 <strong>important</strong>, is not the <a href="https://en.wikipedia.org/wiki/Bottom_type">bottom
 type</a>, denoted <code>⊥</code>):</p>
-<pre><code class="language-ocaml">type empty = |
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>empty</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'>
+</span></code></pre>
 <p>To convince yourself that the compiler can reject cases containing a
 value of type <code>empty</code>, you can easily experiment with pattern
 matching. In the example below, the compiler raises no warnings
@@ -525,9 +523,9 @@ because the patterns are exhaustive. Since it's impossible to
 construct a value of type <code>empty</code> (except by cheating, for instance
 using sorcery like the infamous <code>Obj.magic</code> function), we can <em>refute</em>
 handling the error case:</p>
-<pre><code class="language-ocaml">let f : ('a, empty) result -&gt; 'a = function
-  | Ok x -&gt; x
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>f</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-storage-type'>'a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>empty</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-source'>result</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-storage-type'>'a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>function</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Ok</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'>
+</span></code></pre>
 <p>But in our use case, it’s not the refutation that interests us, rather
 the fact that it’s impossible to describe a value of type <code>empty</code>,
 which we can leverage to exclude certain functions.</p>
@@ -536,20 +534,20 @@ which we can leverage to exclude certain functions.</p>
 from the module <strong>impossible to call</strong>. To do this, we will first
 create a <em>placeholder</em> function that we will use to override an
 existing function:</p>
-<pre><code class="language-ocaml">type empty = |
-let expelled : empty -&gt; unit = fun _ -&gt; ()
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>empty</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>|</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>expelled</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other-ocaml punctuation-other-colon punctuation'>:</span><span class='ocaml-source'> </span><span class='ocaml-source'>empty</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-support-type'>unit</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>fun</span><span class='ocaml-source'> </span><span class='ocaml-constant-language'>_</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-&gt;</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'>
+</span></code></pre>
 <p>At first glance, our <code>expelled</code> function is impossible to call because
 it requires a value of type <code>empty</code>, which cannot be
 produced. Therefore, we can <strong>include the module we want to refine</strong>
 and then <strong>override the functions we want to exclude</strong> with our
 <code>expelled</code> function, associating them with an alert to clarify the
 error triggered by using a removed function:</p>
-<pre><code class="language-ocaml">open struct
-  include Foo
-  let (z [@alert expelled]) = expelled
-end
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>include</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Foo</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>z</span><span class='ocaml-source'> </span><span class='ocaml-source'>[</span><span class='ocaml-keyword-operator-attribute'>@</span><span class='ocaml-keyword-other-attribute'>alert</span><span class='ocaml-source'> </span><span class='ocaml-source'>expelled</span><span class='ocaml-source'>]</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>expelled</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span></code></pre>
 <p><em>And there you have it</em>, we can be pretty sure that using <code>z</code> will
 cause a compilation error, and compiling a module that uses it will
 raise a warning. However, the solution is far from perfect because it
@@ -572,9 +570,9 @@ improvements</em></a>.</p>
 <p>Since <code>open</code> does not export the opened components, without
 associating an explicit signature, some expressions cannot be
 typed. For example:</p>
-<pre><code class="language-ocaml">open struct type t = A end
-let x = A
-</code></pre>
+<pre><code><span class='ocaml-keyword-other'>open</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>struct</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-source'>t</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>end</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>A</span><span class='ocaml-source'>
+</span></code></pre>
 <p>In this example, the type <code>t</code> (and its constructor <code>A</code>) is present in
 the current scope; however, since it is not exported, it is impossible
 to correctly type <code>x</code>. If the module had a signature, one could easily
@@ -646,14 +644,14 @@ syntactic sugar wouldn’t hurt—especially for selective imports.</p>
             <h3>States</h3>
             <p>
               <strong>
-                133
+                134
                 logs
               </strong>
               for a period of
               <strong>15 days</strong>,
-              <strong>13 hours</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 seconds</strong>.
+              <strong>14 hours</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 seconds</strong>.
               <br />
               <a href="/activity.html">Activity (FR)</a>
             </p>
@@ -709,11 +707,5 @@ syntactic sugar wouldn’t hurt—especially for selective imports.</p>
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>

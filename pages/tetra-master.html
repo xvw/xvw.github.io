@@ -8,9 +8,12 @@
     <link rel="canonical" href="https://xvw.lol/pages/tetra-master.html">
     <link rel="alternate" type="application/atom+xml" href="/atom.xml" />
     <link rel="alternate" type="application/atom+xml" href="/pages.xml" />
+    <script>
+      /* see:
+       * https://stackoverflow.com/questions/21147149/flash-of-unstyled-content-fouc-in-firefox-only-is-ff-slow-renderer*/
+      let FF_FOUC_FIX;
+    </script>
     <title>xvw.lol - L&apos;enfer du Tetra Master</title>
-    <script src="/js/hell.js"></script>
-    <script src="/js/capsule_js.bc.js"></script>
   </head>
   <body>
     <header>
@@ -707,10 +710,10 @@ usuellement utilisée en mathématiques, où <code>[a, b]</code> décrit <code>x
 peut facilement décrire une formule systèmatique pour décrire
 l'intervalle depuis un chiffre hexadécimal (dans la formule, nommé
 <code>n</code>) :</p>
-<pre><code class="language-ocaml">let min = to_decimal(n) *. 16.0
-let max = min +. 15.0
-let range = (min, max)
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>min</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>to_decimal</span><span class='ocaml-source'>(</span><span class='ocaml-source'>n</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*.</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>16.0</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>max</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>min</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+.</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>15.0</span><span class='ocaml-source'>
+</span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>range</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>min</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>max</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Et oui, certains nombres devraient mettre <em>la puce à l'oreille</em> (par
 exemple <code>32</code>, <code>128</code> ou encore <code>255</code>). En effet , <code>n</code> pourrait être
 exprimer comme <code>nF</code> ce qui fait que chaque point de statistiques
@@ -824,26 +827,26 @@ roulement, et la soustraction ne sont absolument pas affichés).</p>
 <p>Le calcul de probabilité de victoire en cas de bataille est assez
 facile à simuler. En voici une approximation qui, pour notre exemple
 avec <code>X = 50</code> et <code>Y = 7</code> donnerait pour résultat <code>~92%</code> :</p>
-<pre><code class="language-ocaml">let proba my_stat opponent_stat =
-  let a, b, need_reverse =
-    if my_stat &gt; opponent_stat then (opponent_stat, my_stat, false)
-    else (my_stat, opponent_stat, true)
-  in
-  let x = 2.0 *. (1.0 +. b) and y = 1.0 +. a in
-  let result = 100.0 *. ((x -. y) /. x) in
-  if need_reverse then 100.0 -. result else result
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>proba</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_stat</span><span class='ocaml-source'> </span><span class='ocaml-source'>opponent_stat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>need_reverse</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>if</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_stat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>&gt;</span><span class='ocaml-source'> </span><span class='ocaml-source'>opponent_stat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>then</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>opponent_stat</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_stat</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-boolean'>false</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>    </span><span class='ocaml-keyword-other'>else</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>my_stat</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-source'>opponent_stat</span><span class='ocaml-keyword-other-ocaml punctuation-comma punctuation-separator'>,</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-boolean'>true</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>2.0</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*.</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-numeric-decimal-float'>1.0</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+.</span><span class='ocaml-source'> </span><span class='ocaml-source'>b</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>and</span><span class='ocaml-source'> </span><span class='ocaml-source'>y</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>1.0</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+.</span><span class='ocaml-source'> </span><span class='ocaml-source'>a</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>result</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>100.0</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*.</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>(</span><span class='ocaml-source'>x</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-.</span><span class='ocaml-source'> </span><span class='ocaml-source'>y</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>/.</span><span class='ocaml-source'> </span><span class='ocaml-source'>x</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>if</span><span class='ocaml-source'> </span><span class='ocaml-source'>need_reverse</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>then</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>100.0</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>-.</span><span class='ocaml-source'> </span><span class='ocaml-source'>result</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>else</span><span class='ocaml-source'> </span><span class='ocaml-source'>result</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Cependant, cette approche repose sur deux invariants qui ne sont
 généralement pas connu au moment de la partie, les deux positions
 concrètes dans l'intervalle. Une solution (acceptable) serait d'être
 <strong>très pessimiste</strong> concernant le calcul de ces probabilités en
 prenant la borne la plus basse de l'intervalle de <em>ma</em> carte et la
 borne la plus élevée de celle de l'opposant :</p>
-<pre><code class="language-ocaml">let pessimist_proba my_stat opponent_stat =
-  let my = to_decimal my_stat *. 16.0
-  and op = (to_decimal opponent_stat *. 16.0) +. 15.0 in
-  proba my op
-</code></pre>
+<pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>pessimist_proba</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_stat</span><span class='ocaml-source'> </span><span class='ocaml-source'>opponent_stat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>my</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>to_decimal</span><span class='ocaml-source'> </span><span class='ocaml-source'>my_stat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*.</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>16.0</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>and</span><span class='ocaml-source'> </span><span class='ocaml-source'>op</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-source'>to_decimal</span><span class='ocaml-source'> </span><span class='ocaml-source'>opponent_stat</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>*.</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>16.0</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>+.</span><span class='ocaml-source'> </span><span class='ocaml-constant-numeric-decimal-float'>15.0</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
+</span><span class='ocaml-source'>  </span><span class='ocaml-source'>proba</span><span class='ocaml-source'> </span><span class='ocaml-source'>my</span><span class='ocaml-source'> </span><span class='ocaml-source'>op</span><span class='ocaml-source'>
+</span></code></pre>
 <p>Ce qui nous permet d'avoir une assez bonne idée des probabilités de
 victoire (un peu pessimiste mais, dans la vie, ne vaut-il pas mieux
 être prudent).</p>
@@ -2272,8 +2275,8 @@ effet, il y a <code>163</code> combinaisons incluant <strong>au minimum <code>4<
 <td>1</td>
 </tr>
 <tr>
-<td></td>
 <td>256 permutations</td>
+<td></td>
 </tr>
 </table></div><p>Alors que pour atteindre le maximum, vous devez avoir <strong>toutes les cartes</strong> et
 elles <strong>doivent tout être au niveau <code>A</code></strong>, vous ne devez vous embarasser que de
@@ -2492,14 +2495,14 @@ lecture et <em>très bonne canicule</em>.</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                133
+                134
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>44 minutes</strong> et
-              <strong>42 secondes</strong>.
+              <strong>14 heures</strong>,
+              <strong>1 minutes</strong> et
+              <strong>18 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
@@ -2555,11 +2558,5 @@ lecture et <em>très bonne canicule</em>.</p>
         </div>
       </div>
     </footer>
-    <script>
-      nightmare_js.suspend(function () {
-          capsule_hljs.run();
-      });
-      nightmare_js.mount();
-    </script>
   </body>
 </html>
