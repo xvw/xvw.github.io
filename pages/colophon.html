@@ -35,7 +35,7 @@
         datetime="2024-11-19 00:00:00">
     2024-11-19
   </time></div><article class="synopsis"><p>Cette page décrit le rôle de ce site web. Elle décrit aussi les différentes ressources et bibliothèques utilisées. Un <strong>Colophon</strong> est, historiquement, en imprimerie, un encadré donnant des informations sur le résultat d'une impression. C'était donc une manière un peu manuelle d'attacher des <em>méta-données</em>. Je ne sais pas si c'est un titre de page pertinent, mais il est souvent utilisé, dans la <em>blogosphère</em> (et spécifiquement dans <a href="https://webring.xxiivv.com/">l'anneau web</a> dont j'ai fait partie pendant plusieures années) pour décrire les différents processus et outils utilisés pour décrire un site web.</p>
-</article><section class="toc"><ul><li><a href="#thématiques-et-navigation">Thématiques et navigation</a></li><li><a href="#technologies">Technologies</a><ul><li><a href="#génération-statique-yocaml">Génération statique: YOCaml</a><ul><li><a href="#greffons-utilisés">Greffons utilisés</a></li></ul></li><li><a href="#infrastructure">Infrastructure</a></li><li><a href="#client-et-technologies-front-end">Client et technologies front-end</a><ul><li><a href="#css-et-intégration">CSS et intégration</a></li><li><a href="#coloration-syntaxique">Coloration syntaxique</a></li><li><a href="#nightmare">Nightmare</a></li></ul></li><li><a href="#commentaires">Commentaires</a></li><li><a href="#conclusion-sur-la-pile-technologique">Conclusion sur la pile technologique</a></li></ul></li><li><a href="#développement-et-production-de-contenu">Développement et production de contenu</a><ul><li><a href="#développement">Développement</a></li><li><a href="#éléments-visuels">Éléments visuels</a><ul><li><a href="#typographies">Typographies</a></li><li><a href="#iconographies">Iconographies</a></li></ul></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul></section><article><p>Vous êtes sur ma <em>page personnelle</em> et son objectif est de me
+</article><section class="toc"><ul><li><a href="#thématiques-et-navigation">Thématiques et navigation</a></li><li><a href="#technologies">Technologies</a><ul><li><a href="#génération-statique-yocaml">Génération statique: YOCaml</a><ul><li><a href="#greffons-utilisés">Greffons utilisés</a></li></ul></li><li><a href="#infrastructure">Infrastructure</a></li><li><a href="#client-et-technologies-front-end">Client et technologies front-end</a><ul><li><a href="#css-et-intégration">CSS et intégration</a></li></ul></li><li><a href="#conclusion-sur-la-pile-technologique">Conclusion sur la pile technologique</a></li></ul></li><li><a href="#développement-et-production-de-contenu">Développement et production de contenu</a><ul><li><a href="#développement">Développement</a></li><li><a href="#éléments-visuels">Éléments visuels</a><ul><li><a href="#typographies">Typographies</a></li><li><a href="#iconographies">Iconographies</a></li></ul></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul></section><article><p>Vous êtes sur ma <em>page personnelle</em> et son objectif est de me
 permettre d'avoir un espace de <em>publication libre</em>. Où je peux choisir
 les thématiques que je veux traiter et où il est possible de
 structurer mes documents à ma guise. Les grandes sections présentent
@@ -181,6 +181,7 @@ l'a complètement réimplémenté</li>
 <li><a href="https://ocaml.org/p/yocaml_cmarkit/latest">Yocaml_cmarkit</a> : pour
 la transformation de
 <a href="https://fr.wikipedia.org/wiki/Markdown">Markdown</a> à HTML.</li>
+<li><a href="https://github.com/patricoferris/hilite">Hilite</a> pour la coloration syntaxique.</li>
 </ul>
 <h4 id="infrastructure"><a class="anchor" aria-hidden="true" href="#infrastructure"></a>Infrastructure</h4>
 <p>L'avantage d'un site généré statiquement est qu'il est <strong>incroyablement facile</strong>
@@ -194,10 +195,7 @@ nouvelle version de la branche
 <h4 id="client-et-technologies-front-end"><a class="anchor" aria-hidden="true" href="#client-et-technologies-front-end"></a>Client et technologies <em>front-end</em></h4>
 <p>Le site web est assez sobre concernant les technologies <em>front-end</em> mise en
 œuvre, essentiellement parce que je ne suis pas très <em>aux faits</em> des nouvelles
-technologies web. Par contre, pour garantir une certaine forme d'interactivité
-(par exemple pour le développement des applications embarquées ou pour la
-gestion des commentaires), j'utilise <strong>un peu</strong> de JavaScript, cependant, la
-désactivation de ce dernier permet tout de même la navigation.</p>
+technologies web.</p>
 <h5 id="css-et-intégration"><a class="anchor" aria-hidden="true" href="#css-et-intégration"></a>CSS et intégration</h5>
 <p>Concernant le CSS, <strong>je n'utilise aucun framework</strong>. La feuille de style a été
 conçue à la main (et très maladroitement). Mon expérience avec
@@ -215,75 +213,6 @@ le HTML et le CSS. Par exemple, après des années sans m'y être intéressé, j
 grilles</a> qui,
 logiquement, pour décrire des grilles, est largement plus confortable que
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox">Flexbox</a>.</p>
-<h5 id="coloration-syntaxique"><a class="anchor" aria-hidden="true" href="#coloration-syntaxique"></a>Coloration syntaxique</h5>
-<p>J'utilise la bibliothèque <a href="https://highlightjs.org/">Highlight.js</a> avec le thème
-<a href="https://github.com/highlightjs/highlight.js/blob/5bcb6c66133706ea84cfd3cfd7492b3e5321ca85/src/styles/grayscale.css">Grayscale</a>
-(très légèrement modifé pour s'adapter au visuel global de l'application).</p>
-<p>Le choix d'une bibliothèque JavaScript pour assurer la coloration syntaxique est
-<strong>de la pure fainéantise</strong>. Même s'il y a des priorités plus importantes, je
-garde en tête le projet <a href="https://ocaml.org/p/hilite/latest">Hilite</a> pour colorer
-les blocs de codes à la construction du site, et réduire la nécéssité d'une
-bibliothèque tiers aussi grande.</p>
-<h5 id="nightmare"><a class="anchor" aria-hidden="true" href="#nightmare"></a>Nightmare</h5>
-<p><a href="https://github.com/funkywork/nightmare">Nightmare</a> est une collection d'embryon
-de bibliothèques permettant de construire des applications <em>client/serveur</em> et
-développé à <a href="https://github.com/funkywork">The Funkyworkers</a> (dont je suis
-<em>co-fondateur</em>). Mon site utilise <strong>la partie cliente</strong>, qui est compilée en
-JavaScript grâce à l'excellent
-<a href="https://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_ocaml</a>, me
-permettant d'écrire le moins de JavaScript possible, et spécifiquement ces
-différentes bibliothèques :</p>
-<ul>
-<li>
-<p><code>Nightmare</code> : qui offre des abstractions génériques (pour le client et le
-serveur) comme, par exemple, l'abstraction sur la définition d'URL.</p>
-</li>
-<li>
-<p><code>Nightmare_js</code> : qui fourni des outils et des <em>liaisons</em> pour interagir
-facilement avec JavaScript (par exemple une liaison avec l'API
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch</a>, qui
-repose sur la description d'URL de <code>Nightmare</code>).</p>
-</li>
-<li>
-<p><code>nightmare_vdom</code> : qui fournit une glue entre
-<a href="https://ocaml.org/p/tyxml/latest">Tyxml</a>, une bibliothèque pour décrire des
-noeuds HTML avec une vérification statique des types, et
-<a href="https://ocaml.org/p/vdom/latest">vdom</a>, qui est une implémentation d'un <a href="https://en.wikipedia.org/wiki/Virtual_DOM">DOM
-virtual</a>, en OCaml, offrant la
-capacité de structurer une application par le biais de <a href="https://en.wikipedia.org/wiki/Moore_machine">Machine de
-Moore</a> (que l'on appelle, depuis
-quelques années, <a href="https://guide.elm-lang.org/architecture/">La Elm
-Architecture</a>).</p>
-</li>
-</ul>
-<p>Ces différentes bibliothèques me permettent d'embarquer des
-_applications riches. Et, comme le site fait office d'incubateur pour
-YOCaml, c'est aussi le cas pour les différentes bibliothèques qui
-constituent Nightmare.</p>
-<h4 id="commentaires"><a class="anchor" aria-hidden="true" href="#commentaires"></a>Commentaires</h4>
-<blockquote>
-<p>Cette fonctionnalité n'est pas encore développée dans la nouvelle
-version du site.</p>
-</blockquote>
-<p>Une des difficultés quand on construit un site statique, c'est que l'on perd des
-fonctionnalités d'interactivité. Par exemple, les commentaires sur les articles.
-Une solution acceptée dans le monde des sites statiques est d'utiliser un
-service tiers pour palier ces manque d'interactivité. On appelle ça la
-<a href="https://jamstack.org/">JamStack</a> et il existe beaucoup de services permettant
-de résoudre le problème des commentaires.</p>
-<p>Comme je l'avais expliqué dans <a href="/journal/2023-11-14_15-20-50.html">une entrée de
-journal</a>, je ne voulais pas dépendre d'un
-service pouvant, potentiellement faire du <em>tracking</em> sans mon accord, j'ai donc
-décidé de construire le support des commentaires sur base de réponses à des fils
-de conversations <a href="https://merveilles.town/getting-started">Mastodon</a>. La
-solution est limitée car elle ne me permet pas de faire de modérations, mais
-pour le moment, elle me suffit largement. Je pourrais imaginer une modération
-statique (en invalidant certains identifiants de messages au niveau d'une page),
-mais, pour le moment, n'ayant pas eu à déplorer des commentaires déplacés, je ne
-pense pas que ça soit nécéssaire.</p>
-<p>L'application utilise <code>nightmare_vdom</code>, ce qui est un peu <em>overkill</em> car il n y
-a pas d'interactivité et un seul composant, mais ça me permet de bénéficier de
-combinateurs pour décrire une UI.</p>
 <h4 id="conclusion-sur-la-pile-technologique"><a class="anchor" aria-hidden="true" href="#conclusion-sur-la-pile-technologique"></a>Conclusion sur la pile technologique</h4>
 <p>Même s'il reste des points d'améliorations, un des éléments qui me semblait
 essentiel dans la maintenance d'un site personnel était le plaisir que j'avais à
@@ -297,12 +226,12 @@ pertinents et potentiellement de faire remonter des bogues.</p>
 changements, je resterai probablement sur cette base, qui m'amuse et me permet
 d'implémenter à peu près ce dont j'ai envie.</p>
 <h3 id="développement-et-production-de-contenu"><a class="anchor" aria-hidden="true" href="#développement-et-production-de-contenu"></a>Développement et production de contenu</h3>
-<p>En plus de la <em>génération concrète</em> du site, j'utilise des bibliothèques et des
-logiciels pour faciliter le développement de l'application et la production de
-contenu. Le code source et les différentes pages sont écrites avec
-<a href="https://github.com/doomemacs/doomemacs">Doom-Emacs</a> (une configuration
-<em>moderne</em> pour l'éditeur <a href="https://www.gnu.org/software/emacs/">Emacs</a>, que
-j'utilise depuis près d'une quinzaine d'années).</p>
+<p>En plus de la <em>génération concrète</em> du site, j'utilise des
+bibliothèques et des logiciels pour faciliter le développement de
+l'application et la production de contenu. Le code source et les
+différentes pages sont écrites avec l'éditeur
+<a href="https://www.gnu.org/software/emacs/">Emacs</a>, que j'utilise depuis
+près d'une quinzaine d'années.</p>
 <h4 id="développement"><a class="anchor" aria-hidden="true" href="#développement"></a>Développement</h4>
 <p>Comme le générateur du site est un projet OCaml, j'utilise un ensemble d'outils
 relatifs au développement de projets OCaml :</p>
@@ -321,9 +250,6 @@ d'indentation, qui compose très bien avec <code>OCamlformat</code>.</li>
 <li><a href="https://github.com/realworldocaml/mdx">mdx</a> : pour écrire des <em>tests</em> dans un
 style <em>literate</em> (dans de la documentation ou des documents Markown),</li>
 </ul>
-<p><a href="https://www.npmjs.com/">Npm</a> et <a href="https://webpack.js.org/">Webpack</a>
-pour gérer les dépendances JavaScript (en l'occurence, uniquement
-<code>Highlight.js</code>).</p>
 <h4 id="éléments-visuels"><a class="anchor" aria-hidden="true" href="#éléments-visuels"></a>Éléments visuels</h4>
 <p>Les différents éléments visuels du site sont réalisés avec ces trois outils :</p>
 <ul>
@@ -475,14 +401,14 @@ différents canaux de contact qu'il est possible de trouver sur ce site !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                134
+                136
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>14 heures</strong>,
-              <strong>1 minutes</strong> et
-              <strong>18 secondes</strong>.
+              <strong>18 heures</strong>,
+              <strong>5 minutes</strong> et
+              <strong>45 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
