@@ -4,11 +4,21 @@
   <title type="text">xvw.tags/meta</title>
   <subtitle type="text">Flux du tag meta</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2024-11-19T00:00:00Z</updated>
+  <updated>2025-07-20T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/journal/2025-07-20-00-00.html</id>
+    <title type="text">2025-07-20 00:00:00</title>
+    <updated>2025-07-20T00:00:00Z</updated>
+    <summary type="text">Entrée du 2025-07-20 00:00:00, à propos de meta, ocaml, yocaml</summary>
+    <link href="https://xvw.lol/journal/2025-07-20-00-00.html" rel="alternate" title="2025-07-20 00:00:00"/>
+    <category term="meta"/>
+    <category term="ocaml"/>
+    <category term="yocaml"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/pages/colophon.html</id>
     <title type="text">Colophon</title>

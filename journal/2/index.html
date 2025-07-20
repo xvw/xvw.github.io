@@ -31,8 +31,74 @@
   <div class="sidebar">
     <time class="date-repr"
           data-prefix="publié le"
+          datetime="2023-11-14 15:20:50">
+      2023-11-14
+    </time><nav class="nav-enum">
+      <h3>Tags</h3>
+      <ul class="without-padding"><li class="tag">meta</li><li class="tag">fediverse</li><li class="tag">mastodon</li><li class="tag">commentaires</li></ul>
+    </nav></div>
+  
+  <div class="content"><article><p>Depuis la version <a href="https://github.com/xvw/planet">précédente</a> de mon
+site web, j'avais mis les commentaires de côté. En effets, il y a
+quelques années, j'avais eu l'occasion — <em>à titre personnel</em> — d'être
+contrarié par <a href="https://disqus.com/">Disqus</a>, un service permettant
+d'enrichir une site généré statiquement de commentaires et
+d'interactions sociales. Après une très brève investigation, j'en
+étais arrivé à la conclusion qu'en fait, si les gens voulaient me
+faire des retours, ils pouvaient le faire au moyen de réseaux sociaux,
+ou encore par courrier électronique. Comme depuis que mon site
+personnel est construit au moyen de
+<a href="https://github.com/xhtmlboi/yocaml">YOCaml</a>, donc avec un langage que
+je maitrise mieux, l'inénarrable <a href="https://ocaml.org">OCaml</a>, j'ai
+décidé de prendre mon courage à deux mains et de me replonger dans
+l'investigation !</p>
+<p>Il existe beaucoup de solutions très sophistiquées et intéressantes à
+mettre en place, notamment celle de passer par une application très
+simple qui supporterait le <em>minimum des interactions nécéssaires</em> pour
+permettre, entre-autres, le support des commentaires, probablement
+dans un <a href="https://en.wikipedia.org/wiki/Unikernel">unikernel</a> construit
+au moyen de <a href="https://mirage.io/">MirageOS</a>. Cependant, même si cette
+solution est séduisante (parce qu'elle m'oblige à écrire du Caml et
+que ça pourrait être un bon <em>stress-test</em> pour
+<a href="https://github.com/funkywork/nightmare">Nightmare</a>), elle soulève une
+collection de questions potentiellement ennuyante concernant la notion
+<strong>d'identité</strong> ou encore la <strong>modération</strong>. Je garde l'idée en tête,
+ceci-dit, car elle est potentiellement très amusante !</p>
+<p>Récemment, alors que je réfléchissais toujours à l'intégration de
+commentaires, je suis tombé sur un article qui présente son
+<a href="https://cassidyjames.com/blog/fediverse-blog-comments-mastodon/">utilisation de
+Mastodon</a>
+(et donc, par extension, du <em>fediverse</em>) pour embarquer des
+commentaires dans son site généré statiquement. Comme depuis quelques
+mois (oui, je ne suis pas très original), j'utilise de plus en plus
+<a href="https://merveilles.town/@xvw">Mastodon</a>, il m'a semblé que c'était un
+très bon point de départ !</p>
+<p>J'ai donc, à la manière des différents articles qui traitent du sujet,
+ajouté la possibilité <strong>d'attacher un fil de discussion Mastodon</strong> à
+des pages qui sont rendues dans l'interface via un peu de JavaScript
+(écrit en OCaml, évidemment, via
+<a href="https://ocsigen.org/js_of_ocaml/latest/manual/overview">Js_of_OCaml</a>).
+Actuellement, le support des messages, des mentions et des tags est
+assez rudimentaire, mais c'est, de mon point de vue, un bon début. Et
+maintenant, mon minuscule lectorat à l'opportunité de commenter mes
+articles !</p>
+</article>
+
+    <div class="details"><div class="index">
+        <h3>Autres implémentations</h3>L'idée ne vient pas de moi, voici d'autres propositions.<nav class="nav-enum">
+          <ul><li><a href="https://cassidyjames.com/blog/fediverse-blog-comments-mastodon/">Cassidy James</a></li><li><a href="https://jan.wildeboer.net/2023/02/Jekyll-Mastodon-Comments/">Jan Wildeboer</a></li><li><a href="https://notes.abhinavsarkar.net/2023/mastodon-comments">Abhinav&apos;s Notes</a></li><li><a href="https://carlschwan.eu/2020/12/29/adding-comments-to-your-static-blog-with-mastodon/">Carl Schwan</a></li></ul>
+        </nav></div><div class="index">
+        <h3>Alternatives</h3>Le Fediverse n'est pas la seule manière d'intégrer des commentaires, voici quelques alternatives.<nav class="nav-enum">
+          <ul><li><a href="https://en.wikipedia.org/wiki/Webmention">Webmention</a></li><li><a href="https://cactus.chat/">Cacuts</a></li><li><a href="https://giscus.app/">Giscus</a></li><li><a href="https://utteranc.es/">Utterances</a></li></ul>
+        </nav></div></div>
+  </div>
+</section><section class="journal-entry">
+
+  <div class="sidebar">
+    <time class="date-repr"
+          data-prefix="publié le"
           datetime="2023-11-07 17:22:37">
-      2023-11-07 17:22:37
+      2023-11-07
     </time><nav class="nav-enum">
       <h3>Tags</h3>
       <ul class="without-padding"><li class="tag">inktober</li><li class="tag">tezos</li><li class="tag">nft</li></ul>
@@ -80,7 +146,7 @@ encore me re-créer un compte Twitter.</p>
     <time class="date-repr"
           data-prefix="publié le"
           datetime="2023-11-01 13:49:55">
-      2023-11-01 13:49:55
+      2023-11-01
     </time><nav class="nav-enum">
       <h3>Tags</h3>
       <ul class="without-padding"><li class="tag">meta</li><li class="tag">blogosphere</li><li class="tag">flux</li><li class="tag">rss</li><li class="tag">atom</li></ul>
@@ -104,7 +170,7 @@ articles</a> sur le réseau
 <p>Maintenant que je peux diffuser mon contenu sur les ondes via un
 <a href="https://xvw.lol/atom.xml"><em>flux ATOM</em></a> et que, malgré ce qu'en disent
 certains, ATOM et RSS sont encore utilisés par beaucoup de
-développeurs — du moins dans ceux que je suis, j'ai décidé de trouver
+développeurs — du moins dans ceux que je <em>suis</em> — j'ai décidé de trouver
 le client idéal. J'ai trouvé ça assez contrariant d'avoir des
 difficultés à en trouver un correspondant à mes attentes. En ce
 moment, j'en expérimente deux, simultanément pour me faire une opinion
@@ -167,7 +233,7 @@ qu'il lit sont, de mon point de vue, incroyablement impressionnants !</p>
     <time class="date-repr"
           data-prefix="publié le"
           datetime="2023-10-27 20:45:05">
-      2023-10-27 20:45:05
+      2023-10-27
     </time><nav class="nav-enum">
       <h3>Tags</h3>
       <ul class="without-padding"><li class="tag">conference</li><li class="tag">web3</li><li class="tag">rouen</li><li class="tag">tezos</li></ul>
@@ -206,62 +272,6 @@ conversations.</p>
         </div></div><div class="index">
         <h3>Liens</h3>Liens divers relatifs à la conférence<nav class="nav-enum">
           <ul><li><a href="https://www.codeursenseine.com/2023">Site de la conférence</a></li><li><a href="https://www.codeursenseine.com/2023/programme/le-web3-a-une-conference-estampille-du-hashtag-nobullshit">Résumé de ma présentation</a></li><li><a href="http://xvw.lol/talks/codeursenseine2023-web3/slides.pdf">Support de ma présentation</a></li><li><a href="https://www.youtube.com/watch?v=32fnBEbbMjI">Vidéo de ma présentation</a></li><li><a href="https://www.youtube.com/watch?v=GiEcNK3XA_o&amp;list=PLbbYL6fWx8WybrUDhYES0JgqfANVME4OV">Playlist</a></li><li><a href="https://tezos.com/">Tezos</a></li></ul>
-        </nav></div></div>
-  </div>
-</section><section class="journal-entry">
-
-  <div class="sidebar">
-    <time class="date-repr"
-          data-prefix="publié le"
-          datetime="2023-10-24 11:19:35">
-      2023-10-24 11:19:35
-    </time><nav class="nav-enum">
-      <h3>Tags</h3>
-      <ul class="without-padding"><li class="tag">ocaml</li><li class="tag">scala</li><li class="tag">meetup</li><li class="tag">lambda-nantes</li></ul>
-    </nav></div>
-  
-  <div class="content"><article><p>Le 23 Octobre 2023, hier, j'ai eu l'occasion (et le plaisir)
-d'organiser, dans les bureaux nantais de
-<a href="https://www.palo-it.com/fr/services/web-app-dev/nantes">PaloIT</a>, la
-quatrième édition de
-<a href="https://twitter.com/LambdaNantes">LambdaNantes</a>. J'y ai parlé de
-<em>Build Systems</em> (et je tâcherai d'écrire un véritable article sur mes
-lectures) et <a href="https://nrinaudo.github.io/">Nicolas Rinaudo</a> y a
-présenté une <em>reconstruction</em> des <em>Free monads</em> (où, <em>monade gratuite
-pour un foncteur</em>). La présentation était excellente, très bien
-construite, avec un <em>storytelling</em> soigné. Un peu trop longue pour que
-je la synthétise (et je sais de sources sûres qu'elle sera le sujet
-d'un article compagnon sur le site de Nicolas), je voudrais m'arrêter
-sur un point que j'ai trouvé amusant.</p>
-<p>Très souvent, quand les <em>Free Monads</em> sont évoquées, on peut observer
-cette définition (qui est évidemment correcte) :</p>
-<pre><code><span class='haskell-keyword-other'>data</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a </span><span class='haskell-keyword-operator'>=</span><span class='haskell-source'>
-</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Pure</span><span class='haskell-source'> a
-</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> (f (</span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a))
-</span></code></pre>
-<p>Dans sa reconstruction, Nicolas propose des noms alternatifs :</p>
-<pre><code><span class='haskell-keyword-other'>data</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a </span><span class='haskell-keyword-operator'>=</span><span class='haskell-source'>
-</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Pure</span><span class='haskell-source'> a
-</span><span class='haskell-source'>  </span><span class='haskell-keyword-operator'>|</span><span class='haskell-source'> </span><span class='haskell-constant-other'>Flatten</span><span class='haskell-source'> (f (</span><span class='haskell-constant-other'>Free</span><span class='haskell-source'> f a))
-</span></code></pre>
-<p>Même si ça ne change absolument pas l'usage de <em>Free</em>, je trouve que
-cette reformulation met, très nettement, en lumière, le fait que
-<em>Free</em> est, en fait, <strong>représentation défonctionnalisée d'une monade</strong>
-décrite au moyen de <code>map</code>, qui est provisionné par le foncteur, de
-<code>pure</code> et de <code>flatten</code> (aussi parfois appelé <code>join</code>). Ce qui permet
-d'esquisser <code>Freer</code>, qui est la <em>monade gratuite sur un constructeur
-de type</em> et qui elle, utilise la description via <code>pure</code> et <code>flatmap</code>.</p>
-<p>C'était un très <em>chouette</em> événement et la présentation de Nicolas,
-bien que parlant d'un sujet que je pensais maitriser, m'a ouvert des
-opportunités pédagogiques !</p>
-</article>
-
-    <div class="details"><div class="index">
-        <h3>Lambda Nantes</h3>Liens relatifs à l'évènement.<nav class="nav-enum">
-          <ul><li><a href="https://mobilizon.fr/events/1779fd8b-8e51-485b-87fd-2b2e54c348d4">Page Mobilizon</a></li><li><a href="https://nrinaudo.github.io/">Nicolas Rinaudo</a></li><li><a href="https://nrinaudo.github.io/free_monad/#1">Support de Nicolas</a></li><li><a href="https://xvw.lol/talks/lambdanantes4-build/slides.pdf">Mon support</a></li></ul>
-        </nav></div><div class="index">
-        <h3>Papiers évoqués</h3>Quelques liens vers les papiers évoqués durant l'évènement.<nav class="nav-enum">
-          <ul><li><a href="http://bit.ly/3s3aUfs">Data Types à la carte</a></li><li><a href="http://bit.ly/3S9FWgk">Build Systems à la carte, Theory And Practice</a></li><li><a href="https://dl.acm.org/doi/10.1145/3341694">Selective Applicative Functors</a></li></ul>
         </nav></div></div>
   </div>
 </section><div class="journal-navigation"><div class="pred"><a href="/journal/1">Entrées plus récentes</a></div><div class="succ"><a href="/journal/3">Entrées plus anciennes</a></div></div></div>
@@ -311,14 +321,14 @@ opportunités pédagogiques !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                136
+                138
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>18 heures</strong>,
-              <strong>5 minutes</strong> et
-              <strong>45 secondes</strong>.
+              <strong>19 heures</strong>,
+              <strong>52 minutes</strong> et
+              <strong>29 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>

@@ -31,8 +31,143 @@
   <div class="sidebar">
     <time class="date-repr"
           data-prefix="publié le"
+          datetime="2025-07-20 00:00:00">
+      2025-07-20
+    </time><nav class="nav-enum">
+      <h3>Tags</h3>
+      <ul class="without-padding"><li class="tag">meta</li><li class="tag">ocaml</li><li class="tag">yocaml</li></ul>
+    </nav></div>
+  
+  <div class="content"><article><p>Ça faisait <em>très longtemps</em> que j'avais délaissé cette section. Comme
+j'ai passé beaucoup de temps à améliorer ce site, je profite de cette
+<em>tribune</em> pour faire un petit état des lieux des modifications
+apportées depuis le début de l'année !</p>
+<h4>Migration a YOCaml2</h4>
+<p>En Octobre 2024, nous avons publié la <a href="https://github.com/xhtmlboi/yocaml/releases/tag/v2.0.0">seconde version de
+YOCaml</a>. Même
+si la logique est, <em>dans les grandes lignes</em>, la même que la première
+version, il s'agissait d'une complète réecriture rendant,
+malheureusement, les générateurs rédigés avec la première version,
+incompatibles avec la seconde.</p>
+<p>Étant un <em>adopteur prématuré</em> (et un zélote très actif), je <strong>devais</strong>
+migrer mon site vers cette nouvelle version ! Mon site étant un peu
+plus complexe qu'un blog usuel, la migration a été <em>relativement
+laborieuse</em>. J'ai globalement migré toutes les
+sections/fonctionnalités de la version 1, excepté :</p>
+<ul>
+<li>
+<p>la section <strong>dApp</strong> : elle était relativement peu utilisée (et
+évoluait très peu). De plus, elle me forçait à utiliser une version
+ancienne de <a href="https://github.com/ocsigen/js_of_ocaml">JSOO</a>. Dans une
+volonté de réduire au maximum ma dépendance à JavaScript (pour ce
+site), j'ai pris la décision de ne pas l'importer.</p>
+</li>
+<li>
+<p>les commentaires via <strong>Mastodon</strong> : la fonctionnalité était
+globalement peu utilisée et créait un état étrange entre les
+commentaires en français et les commentaires en Anglais. De plus,
+utilisant de plus en plus
+<a href="https://bsky.app/profile/xvw.lol">BlueSky</a>, trouver un compromis
+pour composer avec <em>ActivityPub</em> et <em>ATProtocol</em> demandait, pour le
+moment, trop de réflexion.</p>
+</li>
+</ul>
+<p>Même si leur réintégration n'est pas à l'ordre du jour, je ne me
+prive, moralement pas, d'utiliser du JavaScript si c'est sensé dans
+l'expérience utilisateur — cependant, le récent retrait de
+<a href="https://highlightjs.org/">highlight.js</a> au profit de
+<a href="https://github.com/patricoferris/hilite">Hilite</a>, me permettant de
+faire la coloration syntaxique à la génération (et en OCaml), est une
+<strong>victoire personnelle</strong>.</p>
+<p>Je suis <strong>globalement très satisfait par la migration</strong>. En effet,
+YOCaml améliore drastiquement des coquilles que nous (l'ensemble des
+utilisateurs de la première version) avions observés après plusieurs
+années d'utilisation. L'API est plus structurée, le support des
+dépendances dynamiques n'est plus <em>ad-hoc</em> et les processus de
+validations sont largement plus fins et expressifs. <em>Si vous utilisez
+la version 1, je vous invite à migrer, même si c'est un peu de
+travail</em>, le seul point où, pour le moment, YOCaml2 est largement
+inférieur à son prédécesseur est sa documentation, même s'il y a des
+exemples très expansifs.</p>
+<h4>Nouvelles rubriques</h4>
+<p>Le passage à la nouvelle version de YOCaml m'a permis d'être plus
+serein dans l'implémentations de rubriques (avec des structures plus
+originales) me faisant ajouter plusieurs sections dans le site :</p>
+<ul>
+<li>
+<p><a href="/links.html">Annuaires et liens</a>, même si le <a href="https://ring.muhokama.fun">webring de
+Muhokama</a> est une forme d'agrégateur de
+liens, je trouvais ça amusant de faire une ode au web des années
+2000 en indexant les liens des copains !</p>
+</li>
+<li>
+<p><a href="/speaking.html">Présentations</a>, même si je tentais de maintenir,
+<em>laborieusement</em> une <a href="https://github.com/xvw/talks">liste</a> de mes
+présentations, le fait d'utiliser du HTML rendait la tâche irritante
+(il semble d'ailleurs que j'ai abandonné en 2021). Maintenant, c'est
+supporté par mon site, ce qui rend la tâche largement plus facile !</p>
+</li>
+<li>
+<p><a href="/readings.html">Lectures</a>, au fil des ans, ma fréquence de lecture
+a <em>drastiquement</em> diminué, ce qui est triste. Le but de cette page
+est de recenser mes lectures (pour me motiver à ne pas exhiber mon
+manque d'activités culturelles).</p>
+</li>
+<li>
+<p><a href="/now/">En ce moment</a> et <a href="/activity.html">Activité</a>, j'en parlerai
+plus en détail dans la section suivante mais j'ai restauré (et
+totalement réimplanté) mon <em>timetracker</em> pour produire des rapports
+relativement mon précis sur mon activité.</p>
+</li>
+<li>
+<p><a href="/en/">Blog en Anglais</a>, dans l'optique d'augmenter mon audimat
+potentiel, j'ai intégré une version <em>dégradée</em> de mon site pour
+traduire certains articles en Anglais. La traduction est toujours en
+cours mais m'aura permis d'atteindre de nouveaux lecteurs, par le
+biais de
+<a href="https://lobste.rs/s/nqatzn/hell_ffix_tetra_master">Lobtse.rs</a> et
+<a href="https://news.ycombinator.com/item?id=44440333">HackerNew</a>. De plus,
+mon site a pu rejoindre la <a href="https://ocaml.org/ocaml-planet">Planète
+OCaml</a>.</p>
+</li>
+</ul>
+<h4>Timetracking</h4>
+<p>Sur mon <a href="https://github.com/xvw/planet">ancien site</a>, j'avais
+implémenté tout un réseau complexe (beaucoup trop) de données pour
+collecter des métriques. Au début de l'année, j'ai réimplémenté un
+<em>timetracker</em>, <a href="https://github.com/xvw/kohai">Kohai</a> — le nom est un
+clin d'oeil à <a href="https://abailly.github.io/">Arnaud Bailly</a> et son
+projet <a href="https://github.com/abailly/sensei">Sensei</a>. L'outil utilise
+essentiellement <a href="https://www.gnu.org/software/emacs/">Emacs</a> comme
+interface principale.</p>
+<p>Pour le moment, l'outil ne me sert qu'à hydrater les différentes pages
+d'activité, cependant, dans un <em>futur proche</em>, il est probable que je
+m'en serve pour construire d'autres types de pages et potentiellement
+pour documenter les différents projets sur lesquels je travaille.</p>
+<h4>Pour conclure</h4>
+<p>Travailler sur son site internet est une bonne approche pour ne pas
+produire du contenu, je l'avoue, mais j'ai bon espoir que ces
+modifications me permettront d'utiliser sereinement mon site web comme
+une platforme de production de contenu. Et si jamais ça ne fonctionne
+pas, pas de panique, je me serai au moins amusé en implémentant ces
+fonctionnalités !</p>
+</article>
+
+    <div class="details"><div class="index">
+        <h3>Liens divers</h3>Liens divers évoqués dans la brève<nav class="nav-enum">
+          <ul><li><a href="https://github.com/xhtmlboi/yocaml">YOCaml</a></li><li><a href="https://github.com/patricoferris/hilite">Hilite</a></li><li><a href="https://github.com/xvw/kohai">Kohai</a></li><li><a href="https://activitypub.rocks/">ActivityPub</a></li><li><a href="https://atproto.com/">ATProtocol</a></li></ul>
+        </nav></div><div class="index">
+        <h3>Résaux</h3>Discussions sur mes articles<nav class="nav-enum">
+          <ul><li><a href="https://lobste.rs/s/nqatzn/hell_ffix_tetra_master">Tetra Master sur Lobste.rs</a></li><li><a href="https://news.ycombinator.com/item?id=44440333">Tetra Master sur HackerNews</a></li><li><a href="https://ocaml.org/ocaml-planet">OCaml Planet</a></li></ul>
+        </nav></div></div>
+  </div>
+</section><section class="journal-entry">
+
+  <div class="sidebar">
+    <time class="date-repr"
+          data-prefix="publié le"
           datetime="2024-12-14 14:00:00">
-      2024-12-14 14:00:00
+      2024-12-14
     </time><nav class="nav-enum">
       <h3>Tags</h3>
       <ul class="without-padding"><li class="tag">conference</li><li class="tag">paris</li><li class="tag">scala</li><li class="tag">ocaml</li><li class="tag">ide</li><li class="tag">merlin</li><li class="tag">lsp</li></ul>
@@ -87,7 +222,7 @@ la promotion de OCaml</em>.</p>
     <time class="date-repr"
           data-prefix="publié le"
           datetime="2024-09-21 16:25:07">
-      2024-09-21 16:25:07
+      2024-09-21
     </time><nav class="nav-enum">
       <h3>Tags</h3>
       <ul class="without-padding"><li class="tag">conference</li><li class="tag">rouen</li><li class="tag">forkit</li><li class="tag">pointfree</li><li class="tag">programmation</li></ul>
@@ -152,7 +287,7 @@ formateur), pour un <em>barbecue</em> de cloture !</p>
     <time class="date-repr"
           data-prefix="publié le"
           datetime="2024-03-12 13:33:29">
-      2024-03-12 13:33:29
+      2024-03-12
     </time><nav class="nav-enum">
       <h3>Tags</h3>
       <ul class="without-padding"><li class="tag">conference</li><li class="tag">scala</li><li class="tag">gadts</li><li class="tag">nantes</li></ul>
@@ -340,68 +475,6 @@ Merci.</p>
           <ul><li><a href="https://scala.io/">Site de la conférence</a></li><li><a href="https://scala.io/talks/intro-to-gadts">Résumé de ma présentation</a></li><li><a href="http://xvw.lol/talks/scalaio24-gadts/slides.pdf">Support de ma présentation</a></li><li><a href="https://youtu.be/r4c7xuVB9xA?feature=shared">Vidéo de ma présentation</a></li><li><a href="https://www.youtube.com/watch?v=B3Mz-6e9B3s&amp;list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb">Playlist francophone</a></li><li><a href="https://www.youtube.com/watch?v=K3babGnXfEI&amp;list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg">Playlist anglophone</a></li></ul>
         </nav></div></div>
   </div>
-</section><section class="journal-entry">
-
-  <div class="sidebar">
-    <time class="date-repr"
-          data-prefix="publié le"
-          datetime="2024-01-31 15:41:13">
-      2024-01-31 15:41:13
-    </time><nav class="nav-enum">
-      <h3>Tags</h3>
-      <ul class="without-padding"><li class="tag">logiciel</li><li class="tag">document</li><li class="tag">indexation</li></ul>
-    </nav></div>
-  
-  <div class="content"><article><p>Depuis plusieurs années, je téléchargeais beaucoup de PDFs,
-essentiellement des publications en rapport avec les sujets qui
-m'intéresse et j'utilisais une nomenclature de nommage un peu
-récurrente : <code>nom-auteur-titre-approximatif</code>.  Cette approche posait
-plusieurs problèmes :</p>
-<ul>
-<li>parfois, certaines publications avaient beaucoup d'auteurs</li>
-<li>je n'étais pas vraiment consistant sur l'ordre des auteurs, rendant donc
-l'ordre des publications, dans mon système de fichiers, un peu aléatoire</li>
-<li>pas de <em>tags</em>, donc impossibilité de trouver rapidement des publications</li>
-<li>obligé de retrouver la provenance du document quand je voulais le
-citer.</li>
-</ul>
-<p>Il y a plusieurs années, j'avais utilisé le logiciel
-<a href="https://github.com/Armael/papiers">Papiers</a>, qui avait le bon goût
-d'être écrit en <a href="https://ocaml.org">OCaml</a>, cependant, j'ai, au fil du
-temps, rapidement perdu l'habitude d'indexer mes documents, me plaçant
-dans une situation où, <em>à postériori</em>, j'avais beaucoup trop de
-documents à traiter.</p>
-<p>Comme souvent, j'ai pensé <strong>réinventer la roue</strong>, mais je pense que je
-n'aurais pas pu faire mieux que Papiers. J'ai donc décidé de me
-tourner vers une solution existante, dont j'avais déjà entendu parlé,
-mais que je n'avais jamais essayé !</p>
-<h4>Zotero</h4>
-<p><a href="https://www.zotero.org/">Zotero</a> est un logiciel
-<a href="https://github.com/zotero/zotero">libre</a>, permettant l'indexation
-facile de publications scientifiques. Son énorme point fort est qu'il
-permet d'importer rapidement des documents depuis un
-<a href="https://fr.wikipedia.org/wiki/International_Standard_Book_Number">ISBN</a>,
-un identifiant
-<a href="https://fr.wikipedia.org/wiki/Digital_Object_Identifier">DOI</a> et
-beaucoup d'autres. De plus, il est possible d'ajouter des <em>tags</em> par
-entrée et de générer une référence bibliographique
-(<a href="https://fr.wikipedia.org/wiki/BibTeX">Bibtex</a>, entre autres) très
-facilement.  Il existe des solutions de synchronisation mais j'avoue
-ne pas m'y être intéressé pour le moment, l'indexation me suffit
-largement.</p>
-<p>Je suis encore loin d'être un expert, mais j'ai pu <strong>très rapidement</strong>
-indexer les documents éparses de mon disque. Je suis donc <strong>très
-satisfait</strong> du logiciel pour le moment. Si jamais vous connaissez des
-alternatives <em>qui valent le coup</em>, n'hésitez surtout pas à m'en faire
-part via les différents canaux de communication par lesquels il est
-possible de me contacter !</p>
-</article>
-
-    <div class="details"><div class="index">
-        <h3>Liens</h3>Liens relatifs à l'article<nav class="nav-enum">
-          <ul><li><a href="https://www.zotero.org/">Zotero</a></li><li><a href="https://github.com/zotero/zotero">Github Zotero</a></li><li><a href="https://github.com/Armael/papiers">Papiers</a></li></ul>
-        </nav></div></div>
-  </div>
 </section><div class="journal-navigation"><div class="succ"><a href="/journal/1">Entrées plus anciennes</a></div></div></div>
     </main>
     <footer>
@@ -449,14 +522,14 @@ possible de me contacter !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                136
+                138
                 journaux
               </strong>
               pour une durée de
               <strong>15 jours</strong>,
-              <strong>18 heures</strong>,
-              <strong>5 minutes</strong> et
-              <strong>45 secondes</strong>.
+              <strong>19 heures</strong>,
+              <strong>52 minutes</strong> et
+              <strong>29 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
