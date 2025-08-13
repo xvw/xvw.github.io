@@ -205,7 +205,7 @@ pour l'implémentation de <a href="https://coq.inria.fr/">Coq/Rocq</a></strong>.
 si, historiquement, c'était vrai, les motivations apportées par les
 utilisateurs industriels justifient le titre &quot;<em>An industrial-strength
 functional programming language with an emphasis on expressiveness and
-safety</em>&quot;. La <em>Keynote</em> d'ouverture du <a href="https://ocaml.org/workshops/ocaml-workshop-2021">OCaml Workshop
+safety</em>&quot;. La <em>Keynote</em> d'ouverture du <a href="https://ocaml.org/conferences/ocaml-workshop-2021">OCaml Workshop
 2021</a> de <a href="https://xavierleroy.org/">Xavier
 Leroy</a>, &quot;<a href="https://watch.ocaml.org/w/tU8wR9EcAcyFHHVcX4GS46"><em>25 Years Of
 OCaml</em></a>&quot; présente
@@ -324,7 +324,7 @@ actuellement, ces propositions <em>ajoutent des garde-fous</em>, mais ne
 servent pas encore d'outils de <em>design</em> expressifs.</p>
 <p>Dans l'utilisation de systèmes de types de plus en plus riches, <strong>la
 Maison Blanche</strong> a récemment publié un
-<a href="https://www.whitehouse.gov/wp-content/uploads/2024/02/Final-ONCD-Technical-Report.pdf">communiqué</a>
+<a href="https://bidenwhitehouse.archives.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/">communiqué</a>
 qui insiste sur l'importance de la <em>memory safety</em> dans la conception
 de programmes et ... <em>plébiscite</em> l'utilisation du langage
 <a href="https://www.rust-lang.org">Rust</a> (historiquement <a href="https://users.rust-lang.org/t/understanding-how-the-rust-compiler-is-built/87237/7">écrit en
@@ -642,9 +642,9 @@ décrire des treillis de dépendance au moyen <strong>d'abstractions</strong> et
 <em>injectées à postériori</em> — rendant, notamment, le changement de
 contextes, pour des tests unitaires par exemple, trivialement
 implémentables.</p>
-<p>OCaml dispose de deux outils facilitant cette inversion, et pouvant
-être utiles dans des contextes différents. Et nous allons nous
-inspirer de l'exemples très populaires du télétype pour montrer
+<p>OCaml dispose (<em>au moins</em>) de deux outils facilitant cette inversion,
+et pouvant être utiles dans des contextes différents. Et nous allons
+nous inspirer de l'exemples très populaires du télétype pour montrer
 comment inverser les dépendances :</p>
 <pre><code><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>program</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword-other'>let</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-source'>print_endline</span><span class='ocaml-source'> </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello World</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
@@ -1368,6 +1368,12 @@ projets sur lequel travaille l'équipe <code>Editeur</code>, chez
 de Merlin pour réduire la maintenance des clients alternatifs (Emacs
 et Vim), ne nous souciant plus que des requêtes et actions spécifiques
 à OCaml (et ne faisant donc, logiquement, pas partie du protocole).</p>
+<p>Actuellement, la <a href="https://marketplace.visualstudio.com/items?itemName=ocamllabs.ocaml-platform">plateforme OCaml pour Visual Studio
+Code</a>
+et <a href="https://github.com/tarides/ocaml-eglot">OCaml-eglot</a> sont les deux
+implémentations canoniques (qui étendent le protocole LSP pour OCaml),
+respectivement pour VSCode et Emacs. Nous somme en train de penser
+l'implémentation du plugin NeoVim.</p>
 <p>Un peu comme pour Dune, l'état de l'outillage est, à mon sens,
 excellent, et la feuille de route est motivante ! Cependant, comme
 c'est <strong>mon travail</strong>, il est probable que je sois biaisé.</p>
@@ -1387,7 +1393,7 @@ bénéficiant des références croisées</li>
 <a href="https://doc.sherlocode.com/">Sherlodoc</a>)</li>
 <li>l'inclusion du code source (rédigé dans la documentation ou des
 modules documentés)</li>
-<li>l'implémentation de <em>dérivers</em> permettant de générer des grands
+<li>l'implémentation de <em>drivers</em> permettant de générer des grands
 ensembles de documentation (utilisé pour implémenter <a href="https://ocaml.org/packages">la
 documentation de tous les paquets présents sur
 OPAM</a>)</li>
@@ -1405,7 +1411,9 @@ langage <a href="https://elixir-lang.org/">Elixir</a>,
 fonctionnalités), et à titre personnel, j'aimerais que OCaml converge
 vers cet exemple. En revanche, il faut reconnaitre que la
 documentation générée par Odoc est supérieure à beaucoup de
-documentation d'autres langages.</p>
+documentation d'autres langages. De plus, de part la nature fortemment
+modulaire du langage, un bon générateur de documentation supportant
+efficacement les <em>cross-references</em> est un sacré exploit !</p>
 <h3 id="bibliothèques-disponibles"><a class="anchor" aria-hidden="true" href="#bibliothèques-disponibles"></a>Bibliothèques disponibles</h3>
 <p>On a vu que le langage était <em>cool</em>, et qu'il dispose d'un outillage,
 bien que toujours en progrès, efficace et agréable à utiliser. Se
@@ -1942,14 +1950,14 @@ bienveillant !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                156
+                158
                 journaux
               </strong>
               pour une durée de
               <strong>17 jours</strong>,
-              <strong>5 heures</strong>,
-              <strong>21 minutes</strong> et
-              <strong>47 secondes</strong>.
+              <strong>12 heures</strong>,
+              <strong>42 minutes</strong> et
+              <strong>11 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>
             </p>
