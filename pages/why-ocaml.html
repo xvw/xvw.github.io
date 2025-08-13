@@ -1728,7 +1728,7 @@ résides dans la classe <code>Num</code> :</p>
 implicites), permettant de décrire une contrainte sur nos opérateurs :
 <code>op :: Num a =&gt; a -&gt; a -&gt; a</code> ? Une proposition que j'ai souvent lu sur
 internet serait d'utiliser <em>la même triche</em> que pour l'opérateur <code>=</code>,
-dont le type est <code>val (=) : 'a -&gt; 'a -&gt; 'a</code>. Ça ne fonctionne pas,
+dont le type est <code>val (=) : 'a -&gt; 'a -&gt; bool</code>. Ça ne fonctionne pas,
 parce que alors que l'on peut espérer que <em>tout soit comparable</em> (dans
 le pire des cas, on peut renvoyer <code>false</code>), comment généraliser, par
 exemple, une addition ?</p>

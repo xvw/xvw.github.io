@@ -1559,7 +1559,7 @@ in Haskell, for example, where arithmetic operators reside in the
 <p>Without some form of ad-hoc polymorphism (via classes, traits, or
 implicits) to describe a constraint on our operators, e.g., <code>op :: Num a =&gt; a -&gt; a -&gt; a</code>, what can we do? A suggestion I’ve often seen online
 is to use <em>the same trick</em> as with the <code>=</code> operator, whose type is
-<code>val (=) : 'a -&gt; 'a -&gt; 'a -&gt; bool</code>. That doesn’t work, because while
+<code>val (=) : 'a -&gt; 'a -&gt; bool</code>. That doesn’t work, because while
 we can hope that <em>everything is comparable</em> (at worst, we can return
 <code>false</code>), how can we generalize something like addition?</p>
 <p>Support for arithmetic operators is a tricky problem, which is
