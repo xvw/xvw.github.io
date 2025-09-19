@@ -31,7 +31,7 @@
         datetime="2024-06-03 00:00:00">
     2024-06-03
   </time></div><article class="synopsis"><p>Cet article est une réinterprétation francophone d'un article publié <a href="https://tarides.com/blog/2024-05-29-effective-ml-through-merlin-s-destruct-command/">le blog de Tarides</a>, en Anglais, qui présente l'utilisation de la commande <code>destruct</code> pour générer des motifs manquants dans du filtrage par motif.</p>
-</article><section class="toc"><ul><li><a href="#destruct-dans-les-grandes-lignes">destruct, dans les grandes lignes</a><ul><li><a href="#déstructuration-sur-une-expression">Déstructuration sur une expression</a></li><li><a href="#déstructuration-sur-une-correspondance-de-motifs-non-exhaustive">Déstructuration sur une correspondance de motifs non-exhaustive</a></li><li><a href="#déstructuration-sur-un-motif-générique">Déstructuration sur un motif générique</a></li><li><a href="#déstructuration-en-présence-de-nesting">Déstructuration en présence de nesting</a></li><li><a href="#dans-le-cas-de-produits-plutôt-que-de-sommes">Dans le cas de produits (plutôt que de sommes)</a></li><li><a href="#quand-lensemble-des-constructeurs-est-non-fini">Quand l'ensemble des constructeurs est non-fini</a></li></ul></li><li><a href="#la-quête-de-lexhaustivité-effective-ml">La quête de l'exhaustivité: Effective ML</a></li><li><a href="#en-conclusion">En conclusion</a></li></ul></section><article><p>Les serveurs <a href="https://github.com/ocaml/merlin">Merlin</a> et <a href="https://github.com/ocaml/ocaml-lsp">OCaml
+</article><section class="toc"><ul><li><a href="#destruct-dans-les-grandes-lignes" data-toc-target="destruct-dans-les-grandes-lignes">destruct, dans les grandes lignes</a><ul><li><a href="#déstructuration-sur-une-expression" data-toc-target="déstructuration-sur-une-expression">Déstructuration sur une expression</a></li><li><a href="#déstructuration-sur-une-correspondance-de-motifs-non-exhaustive" data-toc-target="déstructuration-sur-une-correspondance-de-motifs-non-exhaustive">Déstructuration sur une correspondance de motifs non-exhaustive</a></li><li><a href="#déstructuration-sur-un-motif-générique" data-toc-target="déstructuration-sur-un-motif-générique">Déstructuration sur un motif générique</a></li><li><a href="#déstructuration-en-présence-de-nesting" data-toc-target="déstructuration-en-présence-de-nesting">Déstructuration en présence de nesting</a></li><li><a href="#dans-le-cas-de-produits-plutôt-que-de-sommes" data-toc-target="dans-le-cas-de-produits-plutôt-que-de-sommes">Dans le cas de produits (plutôt que de sommes)</a></li><li><a href="#quand-lensemble-des-constructeurs-est-non-fini" data-toc-target="quand-lensemble-des-constructeurs-est-non-fini">Quand l'ensemble des constructeurs est non-fini</a></li></ul></li><li><a href="#la-quête-de-lexhaustivité-effective-ml" data-toc-target="la-quête-de-lexhaustivité-effective-ml">La quête de l'exhaustivité: Effective ML</a></li><li><a href="#en-conclusion" data-toc-target="en-conclusion">En conclusion</a></li></ul></section><article><p>Les serveurs <a href="https://github.com/ocaml/merlin">Merlin</a> et <a href="https://github.com/ocaml/ocaml-lsp">OCaml
 LSP</a>, deux serveurs de langage
 OCaml étroitement liés (en effet, OCaml LSP utilise des bibliothèques
 décrites dans Merlin), améliorent la productivité grâce à des
@@ -330,13 +330,13 @@ de correctifs et <strong>de cas d'utilisation amusants</strong> via
             <h3>Etats</h3>
             <p>
               <strong>
-                159
+                162
                 journaux
               </strong>
               pour une durée de
               <strong>17 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>18 minutes</strong> et
+              <strong>22 heures</strong>,
+              <strong>48 minutes</strong> et
               <strong>58 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>

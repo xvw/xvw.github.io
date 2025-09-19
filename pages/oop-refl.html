@@ -31,7 +31,7 @@
         datetime="2022-05-29 00:00:00">
     2022-05-29
   </time></div><article class="synopsis"><p>Les <strong>méthodes gardées</strong> permettent d'attacher des <strong>contraintes</strong> au receveur (<code>self</code>) <strong>uniquement pour certaines méthodes</strong>, permettant donc de n'appeler ces méthodes que si le receveur satisfait ces contraintes (ces <em>guards</em>). <a href="https://ocaml.org">OCaml</a> ne permet pas, syntaxiquement, de définir <em>directement</em> ce genre de méthodes. Dans cette note, nous allons voir comment les encoder en utilisant un <strong>témoin d'égalité de type</strong>.</p>
-</article><section class="toc"><ul><li><a href="#présentation-du-problème">Présentation du problème</a><ul><li><a href="#déplacer-la-méthodes-en-dehors-de-la-classe">Déplacer la méthodes en dehors de la classe</a></li><li><a href="#les-méthodes-dextension">Les méthodes d'extension</a></li><li><a href="#les-méthodes-gardées">Les méthodes gardées</a></li><li><a href="#la-symétrie-oopfp--théorie-et-pratique">La symétrie OOP/FP : théorie et pratique</a></li></ul></li><li><a href="#méthodes-gardées-en-ocaml">Méthodes gardées en OCaml</a><ul><li><a href="#fournir-un-témoin-dégalité-de-types">Fournir un témoin d'égalité de types</a></li><li><a href="#contraindre-avec-eq">Contraindre avec eq</a><ul><li><a href="#implémentation-de-linterface-obj_list">Implémentation de l'interface obj_list</a></li><li><a href="#ajout-dune-méthode-gardée-sum">Ajout d'une méthode gardée sum</a></li></ul></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul></section><article><p>Les <em>défenseurs</em> de la <strong>programmation orientée objets</strong> défendent
+</article><section class="toc"><ul><li><a href="#présentation-du-problème" data-toc-target="présentation-du-problème">Présentation du problème</a><ul><li><a href="#déplacer-la-méthodes-en-dehors-de-la-classe" data-toc-target="déplacer-la-méthodes-en-dehors-de-la-classe">Déplacer la méthodes en dehors de la classe</a></li><li><a href="#les-méthodes-dextension" data-toc-target="les-méthodes-dextension">Les méthodes d'extension</a></li><li><a href="#les-méthodes-gardées" data-toc-target="les-méthodes-gardées">Les méthodes gardées</a></li><li><a href="#la-symétrie-oopfp--théorie-et-pratique" data-toc-target="la-symétrie-oopfp--théorie-et-pratique">La symétrie OOP/FP : théorie et pratique</a></li></ul></li><li><a href="#méthodes-gardées-en-ocaml" data-toc-target="méthodes-gardées-en-ocaml">Méthodes gardées en OCaml</a><ul><li><a href="#fournir-un-témoin-dégalité-de-types" data-toc-target="fournir-un-témoin-dégalité-de-types">Fournir un témoin d'égalité de types</a></li><li><a href="#contraindre-avec-eq" data-toc-target="contraindre-avec-eq">Contraindre avec eq</a><ul><li><a href="#implémentation-de-linterface-obj_list" data-toc-target="implémentation-de-linterface-obj_list">Implémentation de l'interface obj_list</a></li><li><a href="#ajout-dune-méthode-gardée-sum" data-toc-target="ajout-dune-méthode-gardée-sum">Ajout d'une méthode gardée sum</a></li></ul></li></ul></li><li><a href="#conclusion" data-toc-target="conclusion">Conclusion</a></li></ul></section><article><p>Les <em>défenseurs</em> de la <strong>programmation orientée objets</strong> défendent
 souvent cette dernière en affirmant que c'est &quot;<em>la manière normale de
 raisonner (sur) l'ensemble des objets du métier</em>&quot; et qu'elle permet de
 modéliser efficacement l'ensemble des structures de données de manière
@@ -409,13 +409,13 @@ l'utilisation de témoins d'égalités !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                159
+                162
                 journaux
               </strong>
               pour une durée de
               <strong>17 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>18 minutes</strong> et
+              <strong>22 heures</strong>,
+              <strong>48 minutes</strong> et
               <strong>58 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>

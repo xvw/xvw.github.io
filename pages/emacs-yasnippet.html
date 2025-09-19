@@ -31,7 +31,7 @@
         datetime="2024-09-25 00:00:00">
     2024-09-25
   </time></div><article class="synopsis"><p>Quand on programme (ou que l'on rédige), il est assez courant de devoir saisir des séquences récurrentes (du <em>boilerplate</em>). C'est probablement plus observable quand on écrit de code, où certaines constructions du langages, disposant de niveau d'expressivité différents, doivent être répétées très régulièrement. Dans cet article, je vous propose de découvrir <a href="https://github.com/joaotavora/yasnippet">YASnippet</a> (pour <em><strong>Y</strong>et <strong>A</strong>n other <strong>S</strong>nippet extension</em>), un système de <em>template</em> pour Emacs, permettant l'expansion d'abréviations, de manière structurée.</p>
-</article><section class="toc"><ul><li><a href="#un-petit-détour-par-abbrev-mode">Un petit détour par abbrev-mode</a></li><li><a href="#installation-et-organisation-des-snippets">Installation et organisation des snippets</a><ul><li><a href="#organisation-du-répertoire-de-snippets">Organisation du répertoire de snippets</a></li></ul></li><li><a href="#création-dabréviations">Création d'abréviations</a><ul><li><a href="#contrôle-du-curseur-après-subsitution">Contrôle du curseur après subsitution</a></li><li><a href="#remplacements-et-navigation-structurée">Remplacements et navigation structurée</a><ul><li><a href="#répétitions-et-exécution-de-lisp">Répétitions et exécution de Lisp</a></li></ul></li></ul></li><li><a href="#une-collection-de-snippets-pour-ocaml">Une collection de snippets pour OCaml</a></li><li><a href="#pour-conclure">Pour conclure</a></li></ul></section><article><p>Quand on écrit du code, où que l'on rédige des documents, il est assez
+</article><section class="toc"><ul><li><a href="#un-petit-détour-par-abbrev-mode" data-toc-target="un-petit-détour-par-abbrev-mode">Un petit détour par abbrev-mode</a></li><li><a href="#installation-et-organisation-des-snippets" data-toc-target="installation-et-organisation-des-snippets">Installation et organisation des snippets</a><ul><li><a href="#organisation-du-répertoire-de-snippets" data-toc-target="organisation-du-répertoire-de-snippets">Organisation du répertoire de snippets</a></li></ul></li><li><a href="#création-dabréviations" data-toc-target="création-dabréviations">Création d'abréviations</a><ul><li><a href="#contrôle-du-curseur-après-subsitution" data-toc-target="contrôle-du-curseur-après-subsitution">Contrôle du curseur après subsitution</a></li><li><a href="#remplacements-et-navigation-structurée" data-toc-target="remplacements-et-navigation-structurée">Remplacements et navigation structurée</a><ul><li><a href="#répétitions-et-exécution-de-lisp" data-toc-target="répétitions-et-exécution-de-lisp">Répétitions et exécution de Lisp</a></li></ul></li></ul></li><li><a href="#une-collection-de-snippets-pour-ocaml" data-toc-target="une-collection-de-snippets-pour-ocaml">Une collection de snippets pour OCaml</a></li><li><a href="#pour-conclure" data-toc-target="pour-conclure">Pour conclure</a></li></ul></section><article><p>Quand on écrit du code, où que l'on rédige des documents, il est assez
 courant de devoir répéter des instructions imposant une structure
 fixe. Par exemple, dans beaucoup de langages de programmation, la
 construction <code>if</code> respecte généralement ce motif : <code>if PREDICATE then A else B</code>. <a href="https://github.com/joaotavora/yasnippet">YASnippet</a> est un
@@ -339,13 +339,13 @@ efficace</em>, j'espère que cet article aura été utile !</p>
             <h3>Etats</h3>
             <p>
               <strong>
-                159
+                162
                 journaux
               </strong>
               pour une durée de
               <strong>17 jours</strong>,
-              <strong>13 heures</strong>,
-              <strong>18 minutes</strong> et
+              <strong>22 heures</strong>,
+              <strong>48 minutes</strong> et
               <strong>58 secondes</strong>.
               <br />
               <a href="/activity.html">Activité</a>

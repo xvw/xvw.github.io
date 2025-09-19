@@ -29,7 +29,7 @@
   This article is a translation, the <a href="/pages/oop-refl.html">original version is
   available here</a>.
 </section><article class="synopsis"><p><strong>Guarded methods</strong> allow attaching <strong>constraints</strong> to the receiver (<code>self</code>) <strong>only for certain methods</strong>, thus allowing these methods to be called only if the receiver satisfies these constraints (these <em>guards</em>). <a href="https://ocaml.org">OCaml</a> does not syntactically allow defining this kind of method <em>directly</em>. In this note, we will see how to encode them using a <strong>type equality witness</strong>.</p>
-</article><section class="toc"><ul><li><a href="#problem-presentation">Problem presentation</a><ul><li><a href="#moving-the-method-outside-the-class">Moving the method outside the class</a></li><li><a href="#extension-methods">Extension methods</a></li><li><a href="#guarded-methods">Guarded methods</a></li><li><a href="#oopfp-symmetry-theory-and-practice">OOP/FP symmetry: theory and practice</a></li></ul></li><li><a href="#guarded-methods-in-ocaml">Guarded methods in OCaml</a><ul><li><a href="#provide-a-type-equality-witness">Provide a type equality witness</a></li><li><a href="#constrain-with-eq">Constrain with eq</a><ul><li><a href="#implementing-the-interface-obj_list">Implementing the interface obj_list</a></li><li><a href="#adding-a-guarded-method-sum">Adding a guarded method sum</a></li></ul></li></ul></li><li><a href="#to-conclude">To conclude</a></li></ul></section><article><p><strong>Guarded methods</strong> make it possible to attach <strong>constraints</strong> to the
+</article><section class="toc"><ul><li><a href="#problem-presentation" data-toc-target="problem-presentation">Problem presentation</a><ul><li><a href="#moving-the-method-outside-the-class" data-toc-target="moving-the-method-outside-the-class">Moving the method outside the class</a></li><li><a href="#extension-methods" data-toc-target="extension-methods">Extension methods</a></li><li><a href="#guarded-methods" data-toc-target="guarded-methods">Guarded methods</a></li><li><a href="#oopfp-symmetry-theory-and-practice" data-toc-target="oopfp-symmetry-theory-and-practice">OOP/FP symmetry: theory and practice</a></li></ul></li><li><a href="#guarded-methods-in-ocaml" data-toc-target="guarded-methods-in-ocaml">Guarded methods in OCaml</a><ul><li><a href="#provide-a-type-equality-witness" data-toc-target="provide-a-type-equality-witness">Provide a type equality witness</a></li><li><a href="#constrain-with-eq" data-toc-target="constrain-with-eq">Constrain with eq</a><ul><li><a href="#implementing-the-interface-obj_list" data-toc-target="implementing-the-interface-obj_list">Implementing the interface obj_list</a></li><li><a href="#adding-a-guarded-method-sum" data-toc-target="adding-a-guarded-method-sum">Adding a guarded method sum</a></li></ul></li></ul></li><li><a href="#to-conclude" data-toc-target="to-conclude">To conclude</a></li></ul></section><article><p><strong>Guarded methods</strong> make it possible to attach <strong>constraints</strong> to the
 receiver (<code>self</code>) <strong>only for certain methods</strong>, meaning these methods
 can only be called if the receiver satisfies those constraints (these
 <em>guards</em>). <a href="https://ocaml.org">OCaml</a> does not, syntactically, allow
@@ -382,13 +382,13 @@ practical use case for equality witnesses!</p>
             <h3>States</h3>
             <p>
               <strong>
-                159
+                162
                 logs
               </strong>
               for a period of
               <strong>17 days</strong>,
-              <strong>13 hours</strong>,
-              <strong>18 minutes</strong> et
+              <strong>22 hours</strong>,
+              <strong>48 minutes</strong> et
               <strong>58 seconds</strong>.
               <br />
               <a href="/activity.html">Activity (FR)</a>
