@@ -4,11 +4,22 @@
   <title type="text">xvw.feed</title>
   <subtitle type="text">Fil complet d&apos;actualité</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2025-07-20T00:00:00Z</updated>
+  <updated>2025-09-24T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/galleries/misc.html</id>
+    <title type="text">Illustrations non triées</title>
+    <updated>2025-09-24T00:00:00Z</updated>
+    <summary type="text">
+      Une collection de dessins qui n&apos;appartiennent à aucune catégorie particulière, que j&apos;ai réalisé au fil des années.
+    </summary>
+    <link href="https://xvw.lol/galleries/misc.html" rel="alternate" title="Illustrations non tri\195\169es"/>
+    <category term="misc"/>
+    <category term="illustration"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/journal/2025-07-20-00-00.html</id>
     <title type="text">2025-07-20 00:00:00</title>
