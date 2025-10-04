@@ -639,7 +639,7 @@ injecter au moyen de <strong>fonctionnalités offertes par le langage</strong>. 
 les grandes lignes, le principe d'inversion des dépendances consiste à
 décrire des treillis de dépendance au moyen <strong>d'abstractions</strong> et non
 <strong>d'implémentations</strong>. De cette manière, les dépendances peuvent-être
-<em>injectées à postériori</em> — rendant, notamment, le changement de
+<em>injectées a posteriori</em> — rendant, notamment, le changement de
 contextes, pour des tests unitaires par exemple, trivialement
 implémentables.</p>
 <p>OCaml dispose (<em>au moins</em>) de deux outils facilitant cette inversion,
@@ -665,7 +665,7 @@ signatures et les structures rend l'inversion de dépendances
 évidente. Par exemple, pour reprendre notre exemple, voici comment, en
 utilisant des <a href="https://ocaml.org/manual/firstclassmodules.html"><em>first-class
 modules</em></a>, il est
-<strong>très facile</strong> de dépendre d'un ensemble d'interaction abstrait. On
+<strong>très facile</strong> de dépendre d'un ensemble d'interactions abstraites. On
 commence par décrire la représentation abstraite des interactions
 possibles :</p>
 <pre><code><span class='ocaml-keyword-other'>module</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>type</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>IO</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>sig</span><span class='ocaml-source'>
@@ -727,7 +727,7 @@ construction <code>effect</code> :</p>
 </span><span class='ocaml-source'>  </span><span class='ocaml-keyword'>let</span><span class='ocaml-source'> </span><span class='ocaml-entity-name-function-binding'>name</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>=</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-capital-identifier'>Effect</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>perform</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Read_line</span><span class='ocaml-source'> </span><span class='ocaml-constant-language-unit'>()</span><span class='ocaml-source'>)</span><span class='ocaml-source'> </span><span class='ocaml-keyword-other'>in</span><span class='ocaml-source'>
 </span><span class='ocaml-source'>  </span><span class='ocaml-constant-language-capital-identifier'>Effect</span><span class='ocaml-keyword-other-ocaml punctuation-other-period punctuation-separator'>.</span><span class='ocaml-source'>perform</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-constant-language-capital-identifier'>Print_endline</span><span class='ocaml-source'> </span><span class='ocaml-source'>(</span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-string-quoted-double'>Hello </span><span class='ocaml-string-quoted-double'>&quot;</span><span class='ocaml-source'> </span><span class='ocaml-keyword-operator'>^</span><span class='ocaml-source'> </span><span class='ocaml-source'>name</span><span class='ocaml-source'>)</span><span class='ocaml-source'>)</span><span class='ocaml-source'>
 </span></code></pre>
-<p>Il est ensuite possible d'interpréter, à postériori, notre programme
+<p>Il est ensuite possible d'interpréter, a posteriori, notre programme
 en utilisant une construction similaire au filtrage par motif pour
 donner un sens spécifique à chaque effet.</p>
 <p>Actuellement, on regrettera que la propagation d'effets ne soit pas
@@ -927,7 +927,7 @@ multi-paradigmes</em> de OCaml permet de centraliser son apprentissage
 dans un seul langage. À ma connaissance, dans la jungle de langages
 <em>partiellement populaires</em>, seul Scala semble couvrir autant de
 sujets, même si, de mon point de vue, son modèle objet est,
-essentiellement par soucis d'interopérabilité avec les autres langages
+essentiellement par souci d'interopérabilité avec les autres langages
 de la JVM, largement moins intéressant.</p>
 <p>Comme l'objectif de cet article n'est pas d'être un tutoriel, je suis
 volontairement passé rapidement sur certains concepts, <a href="https://ocaml.org/docs/modules">les
@@ -946,15 +946,15 @@ personne désireuse d'approfondir ses connaissances en OCaml.</p>
 <p>Pour conclure, OCaml offre un outillage, au niveau du langage, varié
 et riche pour l'apprentissage de la programmation, la construction de
 programmes industriels respectant des standards mais aussi
-l'implémentation <a href="https://github.com/art-w/deque">structure de données
-complexes</a> et <a href="https://github.com/xvw/preface">d'abstractions issu de
+l'implémentation de <a href="https://github.com/art-w/deque">structures de données
+complexes</a> et <a href="https://github.com/xvw/preface">d'abstractions issues de
 la théorie des catégories</a> comme un
 noyau fonctionnel, des traits impératifs, un système de types inférés
 riche et expressif (permettant l'expression de types algébriques,
 facilitant l'expression de domaines clairs), un langage de modules
 comme outil d'abstraction, de réutilisabilité et de définition
 d'unités de compilation, un modèle objet, la possibilité d'exprimer
-des effets que l'on peut propager et interpréter <em>à postériori</em> et
+des effets que l'on peut propager et interpréter <em>a posteriori</em> et
 d'autres fonctionnalités avancées. Ne serait-ce que pour <em>appréhender
 des concepts avancés de programmation</em>, OCaml est un <strong>excellent
 candidat</strong> — c'est d'ailleurs pour ça que OCaml est une inspiration
