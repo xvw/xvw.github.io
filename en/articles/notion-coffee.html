@@ -1,0 +1,962 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><meta name="keywords" content="low-code, notion, coffee, database" /><meta name="description" content="Example of using Notion for coffee indexing" /><meta name="generator" content="YOCaml" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Indexing coffee with Notion" /><meta name="og:title" content="Indexing coffee with Notion" /><meta name="twitter:description" content="Example of using Notion for coffee indexing" /><meta name="og:description" content="Example of using Notion for coffee indexing" /><meta name="og:site_name" content="xvw.lol" /><meta name="og:type" content="article" /><meta name="og:article:published_time" content="2025-10-28 00:00:00" /><meta name="og:article:section" content="café" /><meta name="og:article:tag" content="low-code" /><meta name="og:article:tag" content="notion" /><meta name="og:article:tag" content="coffee" /><meta name="og:article:tag" content="database" /><meta name="author" content="xvw, Xavier Van de Woestyne" /><meta name="twitter:site" content="@vdwxv" /><meta name="twitter:creator" content="@vdwxv" /><meta name="og:profile:username" content="xvw" /><meta name="og:profile:first_name" content="Xavier" /><meta name="og:profile:last_name" content="Van de Woestyne" /><meta name="og:image" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:url" content="https://xvw.lol/images/xvw-cover.png" /><meta name="og:image:type" content="image/png" /><meta name="og:image:width" content="1200" /><meta name="og:image:height" content="630" /><meta name="og:image:alt" content="Cover image xvw.lol" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/capsule.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="me" href="https://x.com/vdwxv"><link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://xvw.lol/en/articles/notion-coffee.html">
+    <link rel="alternate" type="application/atom+xml" href="/en/atom.xml" />
+    <title>xvw.lol - Indexing coffee with Notion</title>
+  </head>
+  <body>
+    <header>
+      <div id="header-content">
+        <div><h3><a href="/">xvw.lol</a></h3></div>
+        <div>
+          <nav class="set breadcrumb">
+            <a href="/">Fr</a>
+            <a href="/en/">Index</a></nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="main-content" class="en-content"><h1>Indexing coffee with Notion</h1><div class="set publication-date"><time class="date-repr"
+        data-prefix="published on"
+        datetime="2025-10-28 00:00:00">
+    2025-10-28
+  </time></div><section class="origin">
+  This article is a translation, the <a href="/pages/notion-coffee.html">original version is
+  available here</a>.
+</section><article class="synopsis"><p>This article is a reinterpretation of an <a href="https://github.com/xvw/planet/blob/master/content/posts/notion-cafe.org">article</a> I wrote in 2021 on my <a href="https://github.com/xvw/planet">former site</a>. I tried to focus on the essentials, and it outlines the set of <a href="https://www.notion.so/about">Notion</a> pages I created to index my coffee consumption and attempt to build an intuition about understanding my tastes.
+In general, I think that building a <em>knowledge base</em> is a good practice when trying to explore a discipline. Being far from an expert in both coffee and Notion, it’s likely that much of what I describe in this article may seem naïve! To sum up, this article will present how I set up an infrastructure to index the coffees I taste, with the goal of providing precise metrics to help characterize my preferences, using the Notion tool, while also sharing some techniques and tricks I learned during the creation of this system.</p>
+</article><section class="toc"><ul><li><a href="#about-notion" data-toc-target="about-notion">About Notion</a><ul><li><a href="#on-nocodelowcode" data-toc-target="on-nocodelowcode">On NoCode/LowCode</a></li><li><a href="#workspace-organization" data-toc-target="workspace-organization">Workspace Organization</a><ul><li><a href="#on-databases" data-toc-target="on-databases">On Databases</a></li></ul></li></ul></li><li><a href="#initial-features" data-toc-target="initial-features">Initial Features</a><ul><li><a href="#from-tree-to-cup" data-toc-target="from-tree-to-cup">From Tree to Cup</a></li><li><a href="#note-on-replicability" data-toc-target="note-on-replicability">Note on replicability</a></li></ul></li><li><a href="#table-modelling" data-toc-target="table-modelling">Table modelling</a><ul><li><a href="#describing-farmsproducers-and-roasters" data-toc-target="describing-farmsproducers-and-roasters">Describing farms/producers and roasters</a><ul><li><a href="#a-first-set-of-tables-geographical-areas" data-toc-target="a-first-set-of-tables-geographical-areas">A first set of tables: geographical areas</a><ul><li><a href="#the-mirror-field-technique" data-toc-target="the-mirror-field-technique">The Mirror Field Technique</a></li></ul></li><li><a href="#describing-farms" data-toc-target="describing-farms">Describing farms</a></li><li><a href="#describing-roasters" data-toc-target="describing-roasters">Describing roasters</a><ul><li><a href="#a-first-tool-coffee-roasters-to-try" data-toc-target="a-first-tool-coffee-roasters-to-try">A first tool: coffee roasters to try</a></li></ul></li></ul></li><li><a href="#modeling-coffee-varieties-and-beans" data-toc-target="modeling-coffee-varieties-and-beans">Modeling Coffee, Varieties, and Beans</a><ul><li><a href="#describing-the-different-varieties-of-coffee" data-toc-target="describing-the-different-varieties-of-coffee">Describing the different varieties of coffee</a></li><li><a href="#describing-the-roasted-beans" data-toc-target="describing-the-roasted-beans">Describing the roasted beans</a><ul><li><a href="#trivial-improvement" data-toc-target="trivial-improvement">Trivial improvement</a></li><li><a href="#a-second-tool-diversifying-experiences" data-toc-target="a-second-tool-diversifying-experiences">A second tool: diversifying experiences</a></li></ul></li></ul></li><li><a href="#modelling-recipes-and-experiments" data-toc-target="modelling-recipes-and-experiments">Modelling recipes and experiments</a><ul><li><a href="#describing-coffee-machines" data-toc-target="describing-coffee-machines">Describing coffee machines</a></li><li><a href="#describing-a-recipe" data-toc-target="describing-a-recipe">Describing a recipe</a><ul><li><a href="#ratio-explanation" data-toc-target="ratio-explanation">Ratio explanation</a></li><li><a href="#a-third-tool-a-ratio-assistant" data-toc-target="a-third-tool-a-ratio-assistant">A third tool: a Ratio assistant</a></li></ul></li><li><a href="#describing-an-experimentation" data-toc-target="describing-an-experimentation">Describing an experimentation</a></li></ul></li></ul></li><li><a href="#more-dashboards" data-toc-target="more-dashboards">More dashboards</a><ul><li><a href="#bidirectional-relationships" data-toc-target="bidirectional-relationships">Bidirectional relationships</a><ul><li><a href="#bidirectional-relations-and-rollups-average-score" data-toc-target="bidirectional-relations-and-rollups-average-score">Bidirectional Relations and Rollups: Average Score</a></li></ul></li></ul></li><li><a href="#to-sum-up" data-toc-target="to-sum-up">To sum up</a><ul><li><a href="#after-2-years-of-use" data-toc-target="after-2-years-of-use">After ~2 years of use</a></li><li><a href="#on-notion-and-lowcode" data-toc-target="on-notion-and-lowcode">On Notion and LowCode</a></li><li><a href="#the-sequel" data-toc-target="the-sequel">The Sequel</a></li></ul></li></ul></section><article><p>While generally, as long as one hasn’t <em>fallen</em> into the very amusing
+world of <strong>specialty coffee</strong>, we tend to simply accept a cup without
+<em>really</em> caring about the characteristics of what we’ll be
+drinking. Yet, there are <strong>many</strong> factors that influence the cup: the
+origin of the beans, the coffee variety, the drying method, the roast
+profile, the extraction method, and many others. Much like wine,
+<em>understanding what one tastes</em> is essential to appreciate specialty
+coffee and to develop interest in the product — to understand how to
+choose one’s coffee and how to prepare it properly, while potentially
+reducing the number of steps needed to approach, based on these
+characteristics, the ideal cup.</p>
+<p>In this article, I will present <strong>my use of Notion</strong> for building a
+record of my coffee preparations (a database), allowing me to
+<em>understand how I appreciate coffee</em> and to be able to define, based
+on the extraction methods, a recipe suited to attempt to brew cups
+that match <em>my preferences</em> and, potentially, to adapt to my guests’
+expectations!</p>
+<p>However, this article is neither a general <em>guide to using Notion</em> nor
+an introduction to specialty coffee, it is a report on how I decided
+to organize my coffee indexing in order to collect metrics about my
+preferences.</p>
+<h2 id="about-notion"><a class="anchor" aria-hidden="true" href="#about-notion"></a>About Notion</h2>
+<p>It’s very difficult to summarize Notion without using the neologism
+<a href="https://fr.wikipedia.org/wiki/Id%C3%A9ateur_%28informatique%29"><em>ideator</em></a>. In
+general, when I try to describe it to people around me, I present it
+as a note-taking tool <em>on steroids</em>, allowing the manipulation, among
+other things, of <em>spreadsheets</em> as first-class values. Over the past
+few years, this kind of advanced note-taking tool has become very
+popular, and their versatility places them within the
+<a href="https://fr.wikipedia.org/wiki/D%C3%A9veloppement_No_code"><em>NoCode/LowCode</em></a>
+movement. There are many of them, and to my knowledge, the most
+popular ones (specifically as extensions of note-taking tools) are
+<a href="https://obsidian.md/">Obsidian</a>, <a href="https://anytype.io/">AnyType</a>,
+<a href="https://evernote.com/fr-fr">Evernote</a>, and Notion. I don’t have
+strong opinions about which tool to favor — although, for ideological
+reasons, I should probably spend more time playing with AnyType, which
+has the great advantage of being <strong>free</strong> and <em>local-first</em>. Moreover,
+much of what I’ll present in this article could work perfectly well
+with a <em>more specific</em> piece of software, such as
+<a href="https://www.airtable.com/">Airtable</a>, or even with a traditional
+relational database. But when I began indexing my coffee consumption,
+I wanted a generic tool to handle <strong>all</strong> of my digital note-taking.</p>
+<p>Additionally, at the time I wrote the first version of this article,
+<a href="https://www.shubham-sharma.fr/">Shubham Sharma</a> was talking a lot
+about Notion on his <a href="https://www.youtube.com/channel/UCLKx4-_XO5sR0AO0j8ye7zQ">YouTube
+channel</a> and
+offered a <a href="https://www.notionfacile.fr/">free course</a> to get started
+with the tool! Moreover, at that time, I was working at <a href="https://memo.bank/">Memo
+Bank</a>, and one of my colleagues, <a href="https://jonathanlefevre.com/">Jonathan
+Lefèvre</a>, also had plenty of feedback
+about Notion and, upon rereading the first version, did me the honor
+of saying (roughly_ in these terms):</p>
+<blockquote>
+<p>It’s always amusing and interesting to see a programmer use Notion,
+and you too have found a very particular — and slightly unsettling —
+use for it, at least for the uninitiated.</p>
+</blockquote>
+<p>In short, I don’t know if Notion is the most suitable tool, and I
+don’t know if I’ve used it in the most relevant way (<em>since my goal
+wasn’t to drastically increase my productivity</em>), but after 2 years of
+use, I’m quite satisfied with how much my <strong>understanding of my
+tastes</strong> in coffee has improved!</p>
+<h3 id="on-nocodelowcode"><a class="anchor" aria-hidden="true" href="#on-nocodelowcode"></a>On NoCode/LowCode</h3>
+<p>I love reinventing the wheel, so it might seem strange that I decided
+to use proprietary software when I could simply <em>reimplement</em> an
+entire suite of coffee-dedicated tools! Especially since, in a shared
+discussion space I used to frequent a lot in 2020, <em>NoCode</em> (back when
+the term <em>LowCode</em> was still quite obscure) had a very bad reputation.</p>
+<p>To be honest, I am very supportive of <em>NoCode/LowCode</em> in the sense
+that they allow me to focus on <strong>the problem I want to address</strong>, and
+even though I am convinced that to use such tools <em>very effectively</em>,
+it’s better to be familiar with programming (which requires a certain
+form of logic and modeling skills), my only <em>real</em> criticism of this
+collection of tools is their name. Indeed, you are always programming,
+and using a tool <em>called &quot;NoCode&quot;</em> does not exempt you from needing an
+architect capable of building a relevant solution.</p>
+<p>From my point of view, using Notion and the like allows me to have
+form generation <em>for free</em>, and therefore to focus on <strong>data
+processing</strong> rather than data entry, which, in many cases, is a
+monumental time saver.</p>
+<p>However, as mentioned earlier, 2026 will likely be the year I
+seriously look into <a href="https://anytype.io">AnyType</a> to favor a <strong>free</strong>
+and <em><strong>local-first</strong></em> software, because not having to write every line
+of code, character by character, seems far less problematic
+<em>ideologically speaking</em> than having to rely on proprietary
+technologies, over which I have no governance of my own data.</p>
+<h3 id="workspace-organization"><a class="anchor" aria-hidden="true" href="#workspace-organization"></a>Workspace Organization</h3>
+<p>Notion allows you to structure hierarchical documents — documents can
+contain other documents. Each of these documents is a collection of
+blocks whose behavior varies depending on the need. There are title
+blocks, paragraphs, images, but they can also reference other
+documents, document fragments, or even <em>views</em> configured from data
+sources. The versatility of blocks allows you to neatly organize your
+workspace.</p>
+<p>Since a Notion workspace isn’t limited to a single use, I organized
+all my pages dedicated to coffee indexing into one document, simply
+called <code>Coffee</code> (to which I added the <em>emoji</em> <code>:coffee:</code> because I’m
+modern and I use <em>emojis</em>). This first document serves as an umbrella;
+you can think of it as a <em>namespace</em> or a <em>directory</em>. Within this
+same document, I add a new <code>database</code> document (associated with the
+icon <code>:floppy_disk:</code>) where I will place all my tables. Then, I can
+build views (which consume these tables), also within the <code>Coffee</code>
+document, to address specific needs. Compartmentalizing <strong>raw data</strong>
+is probably a developer’s quirk, but I’m happy with it.</p>
+<h4 id="on-databases"><a class="anchor" aria-hidden="true" href="#on-databases"></a>On Databases</h4>
+<p><a href="https://www.notion.so/help/intro-to-databases">Notion databases</a> are
+probably one of the most useful features (from my point of view). They
+allow you to define tables in the same sense as relational databases,
+with the possibility of including fields that are formulas whose
+values depend on other fields. This is partly why I consider Notion
+databases to sit at the intersection of a table and a spreadsheet.</p>
+<p>Since there are so many features attached to databases, I will try to
+explain, throughout the article, the different functions I use (when
+there might be potential ambiguities).</p>
+<h2 id="initial-features"><a class="anchor" aria-hidden="true" href="#initial-features"></a>Initial Features</h2>
+<p>Now that we have <em>briefly</em> gone over some Notion features, we can turn
+our attention to coffee, <em>properly speaking</em>. Our exercise will be to
+try to understand the coffee lifecycle, <strong>from tree to cup</strong>, in order
+to extract elements that <strong>will serve in modeling our
+system</strong>. Through this modeling, we can describe a collection of
+tables that will then be used to create views to answer factual
+questions. From my point of view, this is the most fun part, and I am
+firmly convinced that, whether you use <em>NoCode/LowCode</em> or fully
+program the application <em>from scratch</em>, the approach is the same (and
+fundamental).</p>
+<h3 id="from-tree-to-cup"><a class="anchor" aria-hidden="true" href="#from-tree-to-cup"></a>From Tree to Cup</h3>
+<p>To derive relevant models for our indexing, it is important to
+understand the coffee lifecycle. Indeed, by observing the different
+stages from the tree to the coffee beans used for brewing, we can
+isolate a collection of criteria that will influence the <em>cup</em>. Not
+being (yet, I hope) an expert, it is likely that my understanding of
+the cycle is naive and clumsy, so I am open to any suggestions for
+improvement!</p>
+<p>Broadly speaking, the coffee trade involves several parties:</p>
+<ul>
+<li>producers, who own coffee farms and handle the drying of the beans;</li>
+<li>exporters, who transport the beans to roasters;</li>
+<li>roasters, who roast the beans;</li>
+<li>merchants, who supply retailers and <em>coffee shops</em>;</li>
+<li>preparers (<em>baristas</em> or the <em>end consumer</em>).</li>
+</ul>
+<p>It is obvious that these different parties do not always form
+completely separate groups. It is very common for a roaster to also be
+a merchant (or even a <em>barista</em>). But this <em>breakdown</em> of the various
+parties involved allows us to describe a rough schematic of the coffee
+journey, <em>from tree to cup</em>:</p>
+<p><img src="/images/coffee-to-cup-en.svg" alt="From Tree To Cup" ></p>
+<ol>
+<li>
+<p><strong>Harvesting</strong>:<br>
+This stage highlights several criteria. First, the
+<strong>geographical region</strong> where the coffee was harvested, and by
+extension, the <strong>producer</strong> (or farm) and the altitude of the
+plantation, the <strong>type of tree</strong> (naively, <strong>Robusta</strong> versus
+<strong>Arabica</strong>, although in specialty coffee, you almost exclusively
+find Arabica), the <strong>coffee variety</strong>, and information related to
+harvest dates.</p>
+</li>
+<li>
+<p><strong>Drying</strong>:<br>
+As consumers, we are used to seeing only coffee beans (or ground),
+but <strong>the coffee bean is the heart of a cherry</strong>. There are several
+drying techniques — <em>natural</em>, <em>washed</em>, or <em>honey</em> (which has
+several specific variations) — that <strong>strongly influence</strong> the
+taste in the cup. This <strong>process</strong> is an essential criterion. I
+plan to write an article entirely dedicated to explaining the
+different drying processes.  In addition to drying, some producers
+add a step of <strong>additional fermentation</strong> (which can be, for
+example, <em>anaerobic</em> or <em>carbonic</em>), which also greatly affects the
+coffee’s aromas. Given ecological conditions, coffee has become a
+luxury product, making import costly, which leads some producers to
+experiment with <strong>aromatic alterations</strong> during fermentation,
+further influencing the cup’s flavor.</p>
+</li>
+<li>
+<p><strong>Roasting</strong>:<br>
+Roasting, roughly the <em>cooking</em> of green beans to reveal their
+aromas, plays a crucial role (obviously) in the final cup. In
+France, it is generally the roaster who chooses the producers and
+farms they want to work with, allowing us to extract new criteria:
+the <strong>roaster</strong>, the <strong>roast level</strong>, the <strong>aromatic profile</strong> of
+the coffee, and the <strong>roasting date</strong>.</p>
+</li>
+<li>
+<p><strong>Brewing</strong>:<br>
+The way coffee is brewed also strongly affects the final cup and is
+determined by several criteria: the <strong>recipe used</strong>, the <strong>amount
+of coffee</strong>, the <strong>amount of water</strong>, the <strong>grind size</strong>, the
+<strong>water temperature</strong>, the <strong>freshness of the coffee</strong>, the
+<strong>extraction time</strong>, in short, all the variables of the
+recipe. This allows us to speculate that the overall appreciation
+of a coffee is <strong>recipe-dependent for a specific <em>roast batch</em></strong>.</p>
+</li>
+</ol>
+<p>This is a fairly broad (and, for now, vague) view of the different
+criteria we will use to describe our modeling. Rest assured, when we
+explicitly build the tables and views, I will make sure to revisit the
+different criteria used.</p>
+<p>Attentive readers will notice that I haven’t mentioned the export
+process at all. To be completely honest, I have no idea how it works,
+and I’m not convinced it’s possible (consistently) to track criteria
+related to export. That’s why I discreetly allow myself not to worry
+about it. Additionally, the <strong>freshness</strong> of the beans used during
+brewing also affects the cup; storage conditions — type of container,
+exposure to light, etc. — should ideally be an indexing
+criterion. However, since I use a fairly consistent storage method
+(applied to all my coffees), I haven’t found it relevant to highlight
+in my indexing!</p>
+<h3 id="note-on-replicability"><a class="anchor" aria-hidden="true" href="#note-on-replicability"></a>Note on replicability</h3>
+<p>In the outline of the criteria we’ve selected, the recipe plays a very
+important role. For indexing to be meaningful, it’s essential to be
+able to reproduce a recipe precisely and collect as many metrics as
+possible. Moreover, imagine savoring the most delicious cup you’ve
+ever made — it would be terrible not to be able to reproduce it due to
+measurement inaccuracies! For this, I use a collection of precise
+tools:</p>
+<ul>
+<li>
+<p>A click grinder, the <a href="https://www.comandantegrinder.com/">Comandante
+C40</a>. A click grinder allows
+precise control over the <em>grind size</em>, and the Comandante is a very
+versatile grinder whose click settings have become almost a
+<em>standard</em> for adjustment. The grinder is truly an essential tool,
+as coffee loses a large part of its aromas 15 minutes after
+grinding.</p>
+</li>
+<li>
+<p>A scale, the <a href="https://brewista.co/products/smart-scale-2">Brewista Smart Scale
+2</a>, precise and equipped
+with a timer, which I use to weigh the coffee and water. (This helps
+me avoid volumetric measurements, which are often imprecise and
+difficult to replicate.)</p>
+</li>
+<li>
+<p>A kettle with precise temperature control (allowing degree-by-degree
+adjustments) and ideally a gooseneck spout (for pour-over coffee). I
+use the <a href="https://brewista.co/products/artisan-electric-gooseneck-kettle">Artisan Electric Gooseneck
+Kettle</a>,
+also from <a href="https://brewista.co/">Brewista</a>.</p>
+</li>
+</ul>
+<h2 id="table-modelling"><a class="anchor" aria-hidden="true" href="#table-modelling"></a>Table modelling</h2>
+<p>Even though normally one wouldn’t start by building <em>user stories</em> to
+derive a relevant model, since a Notion workspace is easier to evolve
+than a database used in production, and the somewhat naive mapping of
+the coffee lifecycle gives us intuitions about which variables we’d
+like to track, I allow myself to build tables that will help describe
+the data I want to exploit in specific views. We can therefore
+populate our <code>database</code> document with tables. All of these tables are
+organized by theme, but I think for the purposes of this article, it
+isn’t necessary to document this organization (which is somewhat a
+matter of personal preference).</p>
+<h3 id="describing-farmsproducers-and-roasters"><a class="anchor" aria-hidden="true" href="#describing-farmsproducers-and-roasters"></a>Describing farms/producers and roasters</h3>
+<p>Even though I became interested in farms and producers relatively
+late, by tasting more and more coffee, I have learned to <em>identify</em>
+farms whose harvests I consistently enjoy (for example, the
+extraordinary <a href="https://www.panamavarietals.com/copy-of-cafe-gallardo">Finca
+Hartmann</a> from
+Panama). So before describing a farm briefly, it is important to be
+able to locate it geographically.</p>
+<h4 id="a-first-set-of-tables-geographical-areas"><a class="anchor" aria-hidden="true" href="#a-first-set-of-tables-geographical-areas"></a>A first set of tables: geographical areas</h4>
+<p>Let’s tackle our first modeling exercise, where we will face the
+construction of <strong>relationships between tables</strong>! My model is fairly
+simple: I distinguish 4 tables — Continent, Country, Region, and
+City. These 4 levels provide sufficient granularity (even though the
+terminology is not uniform across all countries; for example, in
+Panama, one would refer to a
+<a href="https://fr.wikipedia.org/wiki/Corregimiento"><em>corregimiento</em></a> rather
+than a region).</p>
+<p>I don’t need information other than the name (which serves as the
+index) and a relational hierarchy following this order: <code>cities -&gt; regions -&gt; countries -&gt; continents</code>. Here is a schematic view of the
+geographic model (which I placed in a document named <code>Location</code>):</p>
+<p><img src="/images/coffee-geopoint.svg" alt="Geopoint" ></p>
+<p>You’ll notice that I added <em>dashed</em> relations (labeled <code>rollup</code>). In Notion, there are two types of relationships:</p>
+<ul>
+<li><em>Standard</em> relations, which reference another table directly;</li>
+<li><em>Rollups</em>, which describe a <strong>relation field</strong>. This is very similar
+to
+<a href="https://en.wikipedia.org/wiki/Delegation_%28object-oriented_programming%29"><em>Delegates</em></a>
+in object-oriented programming. In other words, <strong>a Rollup is a
+virtual field computed from a relation</strong>.</li>
+</ul>
+<p><em>Rollups</em> allow adding context to a table and <strong>should not be filled
+manually</strong>. For example, once I name a region and assign it a country,
+the continent field is automatically computed. However, there is a
+small restriction with <em>Rollups</em>: <strong>you cannot create a Rollup that
+takes another Rollup as its source</strong>. Rollups always take <strong>relations
+as their source</strong>. In the modeling schema, you can see that in
+<code>cities</code>, I list both the country and the continent it belongs
+to. According to the rule about Rollups of Rollups, this should be
+impossible. But there’s a trick!</p>
+<h5 id="the-mirror-field-technique"><a class="anchor" aria-hidden="true" href="#the-mirror-field-technique"></a>The <em>Mirror Field</em> Technique</h5>
+<p>In our example, we have the tables <code>continents</code>, <code>countries</code>,
+<code>regions</code>, and <code>cities</code>. For readability, I want:</p>
+<ul>
+<li>entries in <code>countries</code> to list their associated <code>continent</code>;</li>
+<li>entries in <code>regions</code> to list their <code>country</code> and, transitively,
+their associated <code>continent</code>;</li>
+<li>entries in <code>cities</code> to list their <code>region</code>, and transitively their
+<code>country</code> and <code>continent</code>.</li>
+</ul>
+<p>We know that:</p>
+<ul>
+<li><strong>Relations</strong> allow referencing an entry directly;</li>
+<li><strong>Rollups</strong> allow targeting a field of a reference (transitively).</li>
+</ul>
+<p>Since a <strong>Rollup</strong> always uses a relation as its source, it is not
+possible, in the case of <code>cities</code>, to pull up the continent — this is
+actually the only table where the problem arises. <code>country</code> can use
+only one relation to express its continent, <code>region</code> uses a relation
+to express its <code>country</code> and a Rollup to bring up the continent, and
+in the case of <code>cities</code>, a relation expresses the <code>region</code>, a Rollup
+brings up the <code>country</code>, but we cannot directly bring up the
+continent.</p>
+<p>To allow <code>cities</code> to access the continent from <code>regions</code>, it is enough
+to use a <strong>mirror field</strong>, which I called <code>_mirror_continent</code>. This
+will be a formula equal to <code>prop(&quot;Continent&quot;)</code>. This creates a second
+field that is strictly equivalent to the <code>Continent</code> field, except
+that this field is not the result of a Rollup (even though <code>Continent</code>
+itself is). It then becomes possible to reference this field from
+<code>cities</code> by creating another Rollup pointing to the region and
+referencing our new <code>_mirror_continent</code> field, which is not the result
+of a Rollup computation, making the continent a city belongs to
+explicit.</p>
+<p>For enthusiasts of <strong>encapsulation</strong>, Notion makes it easy to hide
+fields from the main view, keeping our <code>regions</code> view easy to read. In
+the rest of the article, I won’t specifically distinguish between
+using a mirror field or a Rollup, as the former is just a technical
+detail necessary to work around an inherent Rollup limitation.</p>
+<h4 id="describing-farms"><a class="anchor" aria-hidden="true" href="#describing-farms"></a>Describing farms</h4>
+<p>Now that we can <em>locate</em> a farm, we can describe them. The exercise
+isn’t very complicated. Indeed, I simply list the fields that allow me
+to build a <em>directory</em> of farms:</p>
+<p><img src="/images/coffee-farm.svg" alt="Farms modelling" ></p>
+<p>I need a <strong>name</strong> and a <strong>website</strong> (or social page) and to reference
+the <strong>city</strong> where the farm is located. More generally, I find it
+useful to have quick access to the country, which is why there is a
+Rollup (requiring the addition of a <strong>mirror field</strong> on <code>country</code> in
+<code>cities</code>). Now, we can describe the roasters.</p>
+<h4 id="describing-roasters"><a class="anchor" aria-hidden="true" href="#describing-roasters"></a>Describing roasters</h4>
+<p>Describing roasters isn’t fundamentally different from describing
+farms. You’ll find common fields — <strong>Name</strong>, <strong>City</strong>, a Rollup from
+the city to the <strong>Country</strong>, and a <strong>URL</strong>. I added a precise address
+(mainly to reference a <em>street</em>), as it’s more common that I want to
+visit a roaster’s shop rather than the producer’s farm, and two
+boolean fields to indicate <strong>if I have already tried their coffee</strong>
+and whether the <strong>roaster is still active</strong>.</p>
+<p><img src="/images/coffee-roaster.svg" alt="Roasters modelling" ></p>
+<p>Keeping inactive roasters allows me to maintain consistent
+indexing. Having a marker indicating whether a coffee from a roaster
+has already been tasted/tested enables the creation of a first
+tool. However, once our model is richer, it will be possible to
+automate the computation of this field.</p>
+<h5 id="a-first-tool-coffee-roasters-to-try"><a class="anchor" aria-hidden="true" href="#a-first-tool-coffee-roasters-to-try"></a>A first tool: coffee roasters to try</h5>
+<p>One of Notion’s strengths is that it allows you <strong>to build data
+prisms</strong>, that is, <strong>views that apply filters and sorting methods</strong> to
+existing databases. This makes it easy to create a view that lists all
+the roasters I haven’t tried yet.</p>
+<p>For example, using this <code>roasters</code> table (with a very small dataset),
+we would want a view called <code>Roasters to Try</code> to display only <em>L'Arbre
+à Café</em>.</p>
+<p><img src="/images/coffee-notion-roasters.png" alt="Roasters Lists" ></p>
+<p>To do this, simply create a view (with the <strong>List</strong> <em>layout</em>) and add
+an <a href="https://www.notion.so/help/guides/using-advanced-database-filters"><strong>advanced
+filter</strong></a>
+specifying that the <code>Tested</code> field should not be checked and the
+<code>Active</code> field should be checked. In my view, building advanced
+filters is quite intuitive:</p>
+<p><img src="/images/coffee-notion-roaster-filter.png" alt="Filter Application" ></p>
+<p>Which, logically, produces a view showing only <strong>active</strong> and
+<strong>untested</strong> roasters.</p>
+<p><img src="/images/coffee-notion-roasters-view.png" alt="Filter Application Result" ></p>
+<p>It’s partly for this kind of <em>possibility</em> that I decided to use
+Notion at the time. There are several view templates (for example, one
+that displays data as a <em>Kanban</em> table), and combined with sorting and
+filtering, it is possible to create specific views (which can be
+embedded in other documents) to answer very precise questions. Later
+in the article, we will illustrate other uses of these views.</p>
+<h3 id="modeling-coffee-varieties-and-beans"><a class="anchor" aria-hidden="true" href="#modeling-coffee-varieties-and-beans"></a>Modeling Coffee, Varieties, and Beans</h3>
+<p>We can move on to what I consider the most fun part: <strong>describing the
+coffee</strong>! Even though there are <strong>over 130 species of <a href="https://en.wikipedia.org/wiki/Coffea">coffee
+plants</a></strong>, we generally
+distinguish two main ones used for making coffee:
+<a href="https://en.wikipedia.org/wiki/Coffea_arabica">Arabica</a> and
+<a href="https://en.wikipedia.org/wiki/Coffea_canephora">Canephora</a> — commonly
+called <strong>Robusta</strong>. In specialty coffee, you will almost exclusively
+find <em>Arabica</em>, which is harder to cultivate but produces
+higher-quality coffee. Next, there is a very large collection of
+coffee varieties derived from Robusta and Arabica, called <em>Cultivars</em>
+(or cultivated varieties). In the following sections, we will model
+the tables describing coffee varieties and then describe roasted
+beans.</p>
+<h4 id="describing-the-different-varieties-of-coffee"><a class="anchor" aria-hidden="true" href="#describing-the-different-varieties-of-coffee"></a>Describing the different varieties of coffee</h4>
+<p>A first <em>design</em> question arises quite directly. Although we know that
+generally there will be a distinction between Arabica and Robusta,
+should we dedicate a table to describe the coffee plants, or can we
+just consider it a compact field — for example, <code>is_arabica</code>, a
+boolean where <code>false</code> would imply the plant is Robusta? I don’t have a
+strong opinion on the best approach, so I will dedicate a specific
+table. This allows me to use the page attached to an entry — in
+Notion, it’s possible to add additional content to each table entry —
+to collect notes related to the coffee plants. We can therefore
+describe the varieties in this way:</p>
+<p><img src="/images/coffee-cultivar.svg" alt="Cultivar Modelling" ></p>
+<p>The species (<code>species</code>) aren’t very original; I just store the <strong>short
+name</strong> and the <strong>full name</strong>. Then, for the <em>cultivars</em>, I store a
+<strong>name</strong>, a <strong>link</strong> (usually pointing to the excellent <a href="https://worldcoffeeresearch.org/">World Coffee
+Research</a> index), a list of
+<strong>alternative names</strong> (for example, the <em>Villa Sarchi</em> variety is also
+called <em>Villalobos</em>), a <strong>species</strong> (<em>Arabica</em> or <em>Robusta</em>), and
+potential <strong>parent cultivars</strong>.</p>
+<p>Referencing parent cultivars allows us to capture artificial or
+natural genetic mutations. For example, <a href="https://perfectdailygrind.com/2023/10/pink-bourbon-specialty-coffee/">Bourbon
+Rose</a>
+is a natural mutation of
+<a href="https://varieties.worldcoffeeresearch.org/varieties/bourbon">Bourbon</a>
+(one of the most popular cultivars), and <a href="https://varieties.worldcoffeeresearch.org/varieties/mundo-novo">Mundo
+Novo</a>
+is an artificial mutation of
+<a href="https://varieties.worldcoffeeresearch.org/varieties/typica">Typica</a>
+(probably the oldest variety) and
+<a href="https://varieties.worldcoffeeresearch.org/varieties/bourbon">Bourbon</a>. This
+level of detail might seem like a nicety, but I find that having an
+approximate idea of a cultivar’s lineage provides a better
+understanding of its characteristics.</p>
+<p>Now, we have all the tables needed to describe <strong>roasted beans</strong>.</p>
+<h4 id="describing-the-roasted-beans"><a class="anchor" aria-hidden="true" href="#describing-the-roasted-beans"></a>Describing the roasted beans</h4>
+<p>We now have all the ingredients to describe the bean we will use to
+make a cup. This will naturally be one of the most complex tables in
+our system. Logically, it will include <strong>producers</strong> (farms) and
+<strong>roasters</strong>, the <strong>regions</strong> (one might think that the producer alone
+would suffice to describe the region, but I’m not sure all farms are
+entirely contained within a single region, and some beans may result
+from collaboration between two farms, where one provides the cherries
+and the other handles fermentation, hence my need to duplicate the
+region), the list of <strong>varieties</strong> (when a coffee consists of a single
+variety, it is called a single origin; when it contains multiple
+varieties, it is called a <em>blend</em>), and other fields that I will
+describe after presenting the structure (to avoid overloading the
+diagram, I’ve taken the liberty of not reproducing the relation
+tables):</p>
+<p><img src="/images/coffee-bean.svg" alt="Beans Modellisation" ></p>
+<p>This is the model that, in retrospect, required the most thought and
+still has some shortcomings. The fields <code>Cultivars</code>, <code>Farms</code>,
+<code>Roasters</code>, and <code>Regions</code> accept <strong>multiple</strong> relations to account for
+<em>collaborations</em> and potentially <em>blends</em>.</p>
+<p>The process is described by the <code>Process</code> field, which allows
+selection from a list of drying methods. This list can obviously
+evolve over time, although after several years of tasting coffee, it
+seems exhaustive to me.</p>
+<p>Next, we can characterize the <strong>fermentation</strong>, which we will enumerate. As of now, I’ve observed <strong>no additional fermentation</strong> (or <em>aerobic</em> coffee), <strong>anaerobic fermentation</strong>, <strong>carbonic fermentation</strong>, and <strong>lactic fermentation</strong> (this list can obviously change with new discoveries). In addition to the additional fermentation process, it is important to record the fermentation duration (in hours). Unlike Excel, it isn’t possible to invalidate this value when no fermentation occurs; however, it would be possible (though perhaps a bit excessive) to add a formula field that uses the value of <code>Fermentation_duration</code> if fermentation is not <code>None</code> and returns <code>0</code> otherwise.</p>
+<p><strong>Soaking</strong> during fermentation is a <em>boolean</em> (for which the same
+technique could be applied as for fermentation duration, since soaking
+only makes sense for additionally fermented coffee). One might regret
+the absence of the fruits or aromas used for soaking, but in my
+experience, the <strong>list of flavors</strong> (<code>Flavours</code>) provided by the
+roaster is sufficient to form an opinion.</p>
+<p>The <strong>roast level</strong> is a fairly imprecise indicator. In specialty
+coffee, values like <code>dark</code> and <code>extradark</code> are almost never used, as
+roasters generally aim to preserve the trace of the
+terroir. Typically, the higher the roast level, the more the coffee
+tends toward bitterness, which is generally a characteristic one wants
+to avoid (or at least control). After several years of use, I
+generally only use the values <code>light</code> and <code>middle</code>. Since there is no
+real consensus on roast level classification, my approach is quite
+approximate.</p>
+<p>The <strong>Altitude</strong> field may seem surprising; indeed, we could have
+placed it at the farm level. However, I imagine that some farms may
+extend their plantations over several hectares and therefore
+potentially across multiple altitude levels. I haven’t yet found a
+compact and ergonomic way to manage <em>blends</em> of multiple beans from
+multiple harvest levels.</p>
+<p>The final field is the <strong>SCA Score</strong>, <a href="https://en.wikipedia.org/wiki/Specialty_coffee#Definition">a score designed to grade
+specialty
+coffee</a>,
+established by the <a href="https://sca.coffee">Specialty Coffee
+Association</a>. Its value is therefore a <strong>highly
+revealing</strong> indicator of the overall quality of the coffee.</p>
+<p>Even though the model is, unfortunately, not perfect, in my view it is
+sufficient to build a solid intuition about <em>my general appreciation
+of coffee</em>.</p>
+<h5 id="trivial-improvement"><a class="anchor" aria-hidden="true" href="#trivial-improvement"></a>Trivial improvement</h5>
+<p>When I shared the article on various networks, <a href="https://github.com/q-rault">Quentin
+Rault</a> kindly pointed out in <a href="https://www.linkedin.com/feed/update/urn:li:activity:7155947052378521600?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7155947052378521600%2C7156372641266716673%29&amp;dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287156372641266716673%2Curn%3Ali%3Aactivity%3A7155947052378521600%29">this
+conversation</a>
+that I could <strong>split</strong> the <code>beans</code> model into two models:</p>
+<ul>
+<li><code>GreenBeans</code> describing the beans <strong>before roasting</strong>;</li>
+<li><code>RoastedBeans</code> describing the beans <strong>after roasting</strong> (which
+maintains a relation with <code>GreenBeans</code>).</li>
+</ul>
+<p>The advantage of this separation is that it avoids information
+redundancy when roasters roast the same green beans. Indeed, producers
+sell the product of their harvests to several different roasters. This
+is therefore a trivial improvement that greatly enhances the model.</p>
+<h5 id="a-second-tool-diversifying-experiences"><a class="anchor" aria-hidden="true" href="#a-second-tool-diversifying-experiences"></a>A second tool: diversifying experiences</h5>
+<p>As in many disciplines with varied parameters — and here, the number
+of fields describing <em>roasted beans</em> and the number of <em>drying
+processes</em> promise a lot of diversity — experimenting with as many of
+these parameters as possible is crucial! That’s why, by using a
+<strong>view</strong>, such as a <a href="https://www.notion.so/help/boards">Kanban</a> view
+based on the <strong>drying process</strong>, for example, it is possible to
+quickly get a panoramic vision of the beans that <em>need more
+testing</em>. In 2021, after building the first iteration of this table
+collection to index my coffee, the Kanban view of roasted beans
+quickly made me realize that <strong>I had somewhat neglected <em>Honey</em>
+coffees</strong>, allowing me to adjust my purchases to diversify my coffee
+knowledge! With this relatively modular model, it’s possible to play
+with views, their dynamic feeds, and filters to highlight
+low-consumption signals.</p>
+<p>Now, we can move on to the final modeling step, which will leverage
+all the previous steps: the recipes!</p>
+<h3 id="modelling-recipes-and-experiments"><a class="anchor" aria-hidden="true" href="#modelling-recipes-and-experiments"></a>Modelling recipes and experiments</h3>
+<p>Even though we’ve modeled a few tables and can <em>relatively precisely</em>
+describe roasted beans, it’s noticeable that at no point have we
+captured the interpretation (whether we like a cup or not). While we
+could have added a <code>Personal_score</code> field (in contrast to the <em>SCA</em>
+score) in the roasted beans table, I think it would have been a
+<em>somewhat vague</em> field. Indeed, although it is possible to extract <strong>a
+lot of information</strong> from our current model, there are still many
+parameters that, in my view, should not be associated with the
+description of the beans. The freshness of the coffee (its roasting
+date) and the preparation method play a crucial role in the
+appreciation of a cup.</p>
+<p>Storing recipe experiments has allowed me, over time, to adjust chosen
+recipes based on the characteristics of the coffee, but also to
+fine-tune <em>the default parameters of a recipe</em> to approach the ideal
+recipe on the first try. To enable meaningful entry of preparations,
+we will separate the description of the recipe from its
+experimentation. But before describing the recipe, let’s look at the
+description of the coffee machines.</p>
+<h4 id="describing-coffee-machines"><a class="anchor" aria-hidden="true" href="#describing-coffee-machines"></a>Describing coffee machines</h4>
+<p>Even though, quite naively, one might think that describing a coffee
+machine only involves giving it a name — and therefore doesn’t require
+a dedicated table — it quickly becomes clear that <em>for convenience</em>,
+we want a hierarchical representation.</p>
+<p>Indeed, to characterize a machine, I can either use a
+<a href="https://www.notion.so/help/database-properties"><em>Multi-Select</em></a>,
+giving me flexibility regarding the level of granularity I want, or I
+can describe a set of hierarchical tables. In the original version of
+the article, I used a multi-select, but in this revision, I decided to
+use two tables: the first allows me to describe the <strong>machine
+category</strong> (for example, <em>Pour Over</em>, <em>French Press</em>, <em>Aeropress</em>,
+<em>Espresso</em>, etc.), and the second describes the <strong>specific coffee
+maker</strong> in more detail.</p>
+<p><img src="/images/coffee-brewer.svg" alt="Coffee Maker Modellisation" ></p>
+<p>Nothing special to note, but this breakdown allows us to describe a
+recipe for a <strong>category of coffee makers</strong> and associate an experiment
+with a <strong>specific coffee maker</strong>. Now, we can move on to describing a
+recipe.</p>
+<h4 id="describing-a-recipe"><a class="anchor" aria-hidden="true" href="#describing-a-recipe"></a>Describing a recipe</h4>
+<p>Now we can move on to the fun part: describing a recipe! For this,
+we’ll use a Notion feature I mentioned briefly when describing coffee
+varieties. Indeed, <strong>an entry in a Notion table automatically attaches
+a document</strong>. We’ll use a table to describe the recipe’s metadata, and
+then <strong>use the body of the entry to detail the different extraction
+steps</strong>. Previously, I experimented with finer levels of modeling,
+treating the steps as entries in a table as well, but it was quite
+uncomfortable, and the over-normalization made describing a recipe
+cumbersome.</p>
+<p><img src="/images/coffee-recipe.svg" alt="Recipe Modellisation" ></p>
+<p>The first fields are quite obvious: we <strong>name</strong> the recipe, assign it
+a <strong>source</strong> (usually the page or video describing it), and associate
+it with a <strong>machine category</strong>. Since some recipes are specifically
+<em>designed</em> for a particular machine, the <strong>Recommended Machine</strong> field
+allows us to capture this detail.</p>
+<p>The <strong>water temperature</strong> is a factor that greatly influences the
+recipe, as does the <strong>grind size</strong> (which I count in the number of
+clicks on my <a href="https://www.comandantegrinder.com/">Commandante C40</a>
+grinder). The final field, the <strong>ratio</strong>, allows us to compactly
+express the <em>water-to-coffee</em> proportion.</p>
+<h5 id="ratio-explanation"><a class="anchor" aria-hidden="true" href="#ratio-explanation"></a>Ratio explanation</h5>
+<p>In coffee preparation descriptions found in the literature, it’s
+common to encounter a ratio. The ratio is a compact notation that
+describes the relationship between the amount of water and coffee
+needed for a preparation. This notation avoids the imprecision of
+volumetric measures (for example, 2 tablespoons of coffee) and relies
+solely on weight. Typically, the ratio is expressed as <code>1:X</code>, which
+can be read as <code>1g of coffee for Xg of water</code>.</p>
+<p>For example, a ratio <em>typical of gentle brewing methods</em>, <code>1:18</code>,
+allows you to quickly calculate either the amount of water needed for
+a given portion of coffee or the amount of coffee needed for a given
+portion of water (the magic of arithmetic):</p>
+<ul>
+<li>For 20g of coffee: <code>20 * 18</code> = <code>360g</code> of water</li>
+<li>For 240g of water: <code>240 / 18</code> = <code>~13g</code> of coffee</li>
+</ul>
+<p>In my model, I only store the <code>X</code> from the formula, with the <code>1</code> being
+constant, which allows me to use it numerically in a tool.</p>
+<h5 id="a-third-tool-a-ratio-assistant"><a class="anchor" aria-hidden="true" href="#a-third-tool-a-ratio-assistant"></a>A third tool: a Ratio assistant</h5>
+<p>Now that we understand the ratio, we can create a new tool that allows
+us to define <strong>the amount of water to use for a specific recipe</strong>
+based on a given amount of coffee. We often prefer to calculate the
+water amount from the coffee rather than the reverse because it’s
+usually the coffee quantity that dictates the recipe, not the other
+way around, and generally, we choose the coffee before pouring the
+water.</p>
+<p>To do this, we’ll create an <code>inline</code> database on our <code>tools</code> page,
+which will contain only a single entry. In addition to the name, it
+will have 4 fields:</p>
+<ol>
+<li><code>Recipe</code>, a relation to the recipe we want to use as a base;</li>
+<li><code>Ratio</code>, a rollup on the <code>Recipe</code> relation pointing to the <code>Ratio</code>
+field, allowing the recipe’s ratio to be accessible;</li>
+<li><code>Coffee</code>, a numeric field that will hold the amount of coffee used;</li>
+<li><code>Water</code>, a <code>formula</code> field that will display the required amount of
+water.</li>
+</ol>
+<p>Now that our fields are set up, we can build the formula. Even though
+the arithmetic operation is very simple, Notion’s relation model
+introduces a few complications. Indeed, it is <strong>not possible</strong> to
+enforce that a field has only one relation, which means the formula
+must be written like this: <code>prop(&quot;Coffee&quot;) * prop(&quot;Ratio&quot;).at(0)</code>. This can be read as: <em>multiply the &quot;Coffee&quot;
+property by the first value of &quot;Ratio&quot;</em>.</p>
+<p>This tool highlights some inherent limitations of Notion, which can be
+annoying when trying to build more ambitious tools:</p>
+<ul>
+<li>The impossibility of defining a unique relation;</li>
+<li>The impossibility of setting a maximum table size. Here, we would
+like to limit our table to a single entry to create a true <em>widget</em>;</li>
+<li>The requirement of having a primary key (<code>Name</code>), which, in the case
+of a single-entry table, doesn’t really make sense.</li>
+</ul>
+<p>Even though these issues exist and are closely tied to Notion’s
+<em>table-oriented</em> model, it is often possible to find a solution
+(sometimes a bit verbose) to work around the problem.</p>
+<h4 id="describing-an-experimentation"><a class="anchor" aria-hidden="true" href="#describing-an-experimentation"></a>Describing an experimentation</h4>
+<p>At this stage, we have all the building blocks necessary to <strong>truly
+characterize our tasting experience</strong>! We can now describe each
+<strong>experience</strong>. An experience is <strong>the application of a recipe with a
+specific machine and specific beans</strong>. This is the part that will
+finally allow us to gather appreciation metrics. In other words, an
+experiment is both a variation and a specialization of a recipe.</p>
+<p>Since a recipe serves as a guide, some parameters are duplicated to
+allow adjustments based on the coffee used or the machine. As with the
+steps of a recipe, we can use the document attached to each entry to
+collect additional notes.</p>
+<p><img src="/images/coffee-exp.svg" alt="Experience Modellisation" ></p>
+<p>Many of the fields have already been described in the previous
+models. Note that for each recipe, I store the <strong>roasting date</strong>,
+which is an important indicator of the freshness of the roasted
+coffee. Indeed, it is common to let the coffee <em>degass</em> for a few days
+after roasting. Personally, I tend to let the coffee rest for up to a
+week <em>post-roasting</em> and consume it within the following three weeks.</p>
+<p>The <strong>Personal Score</strong> is a rating (out of 20) that allows me to
+capture a general impression of the quality of my cup. This is why
+it’s important to record the time at which I consumed the coffee
+(here, the <strong>Date</strong> field), because some coffees, in my view, aren’t
+suitable for the morning (for example, fermented coffees). This field
+will be crucial in the following sections, as it will allow us to
+extract interesting metrics.</p>
+<p>The <strong>Ratio</strong> field allows us to calculate the ratio (logically) based
+on the amounts of water and coffee, and its formula is quite simple:
+<code>prop(&quot;Water_quantity&quot;) / prop(&quot;Coffee_quantity&quot;)</code>.</p>
+<p>The <strong>Coffee Freshness</strong> field is a simple subtraction, showing the
+result in <strong>weeks</strong> between the preparation date and the roast date,
+represented by the following formula:
+<code>prop(&quot;Date&quot;).dateBetween(prop(&quot;Torrefaction_date&quot;), &quot;weeks&quot;)</code>, which
+demonstrates that Notion’s formula language is also very expressive
+when working with dates.</p>
+<p>We have finished the modeling. At this stage, the exercise of entering
+this kind of information is already, in my opinion, a significant step
+toward understanding one’s coffee preferences. We will conclude by
+leveraging a <strong>relationship-based feature</strong> to build <strong>refined summary
+tools</strong>.</p>
+<h2 id="more-dashboards"><a class="anchor" aria-hidden="true" href="#more-dashboards"></a>More dashboards</h2>
+<p>Now that we have a <em>complete</em> data collection foundation, we will look
+at how to slightly modify our models to extract <strong>fun and relevant
+insights</strong>. For example, how to sort my favorite coffees, highlight
+the farms that produce the coffees I enjoy most, or identify which
+machines produce the results I like best. In the current setup,
+collecting all these metrics dynamically is quite
+challenging. However, thanks to a very useful feature in Notion, it is
+possible to implement them.</p>
+<p>For this article, we will focus on a single problem: based on
+<strong>experiment scores</strong>, how can we sort:</p>
+<ul>
+<li>the coffees I prefer;</li>
+<li>the roasters that give me the most satisfaction;</li>
+<li>the farms/producers that produce the coffees I enjoy the most.</li>
+</ul>
+<p>By working through this example <em>in sequence</em>, a series of
+increasingly complex dashboards becomes trivial to implement. To keep
+the article from ballooning in size, we will stick to this single
+example.</p>
+<h3 id="bidirectional-relationships"><a class="anchor" aria-hidden="true" href="#bidirectional-relationships"></a>Bidirectional relationships</h3>
+<p>In a relation’s properties, there is an option called <code>Show on relation_source</code>. When checked, it adds a field in the source of the
+relation that lists all entities linked to a given entry. For example,
+if in the <code>experimentations</code> table I check <code>Show on</code> for <code>Beans</code>, then
+for each entry in <code>Beans</code>, I will see all the experimentations based
+on those beans. Coupled with <strong>Rollups</strong>, this allows aggregating
+values and surfacing insights automatically.</p>
+<h4 id="bidirectional-relations-and-rollups-average-score"><a class="anchor" aria-hidden="true" href="#bidirectional-relations-and-rollups-average-score"></a>Bidirectional Relations and Rollups: Average Score</h4>
+<p>Now that all our experimentations are accessible by beans through the
+<code>Beans</code> table, we can <strong>add a Rollup</strong> pointing to the
+<code>experimentations</code> field, selecting the <code>Personal_score</code> property and
+using <code>Average</code> as the <strong>calculation function</strong>. This will compute the
+average of personal scores for each bean. To apply the same logic to
+calculate the average score of a roaster or a farm, we <strong>duplicate
+this calculated field using the mirror-field technique</strong> (since the
+average is the result of a Rollup) and make the relations between
+roasted beans and roasters/farms <strong>bi-directional</strong>. Then, in the
+<code>Roasters</code> and <code>Farms</code> tables, we can add a Rollup on these newly
+modified relations, again using the <code>Average</code> calculation
+function. This way, each roaster and farm will display an <strong>average
+score</strong> reflecting all experimentations of the beans they produced.</p>
+<p>We now have an <strong>average experimentation score per bean</strong>, an
+<strong>average bean score per roaster</strong>, and an <strong>average bean score per
+producer</strong>. This setup allows us to create <strong>dedicated views</strong> to
+display my favorite beans, my favorite roasters, and my favorite
+farms!</p>
+<p>For me, after several years of indexing, <a href="https://www.instagram.com/fincahartmann/?hl=fr">Finca
+Hartmann</a> is the farm
+to which I have given the highest score, and
+<a href="https://www.cime-cafe.fr/">Cime</a> is the top-rated roaster.</p>
+<p>By leveraging the bi-directional propagation of relations, mirrored
+fields, and Rollups, it’s possible to surface interesting metrics, and
+the possibilities are incredibly varied. For example, one could even
+automate the calculation of the <code>tested</code> checkbox using a similar
+approach—if there’s at least one experimentation referencing a roaster
+(in other words, if the experimentation field isn’t empty), then it
+can be marked as tested! This concludes my process and coffee indexing
+system; it’s time to wrap up.</p>
+<h2 id="to-sum-up"><a class="anchor" aria-hidden="true" href="#to-sum-up"></a>To sum up</h2>
+<p>The article, unfortunately, turned out to be longer than I had hoped,
+and I think that to conclude properly, this section should be divided
+into several parts. The first will focus on the concrete benefits of
+the indexing tool, the second on Notion and, more specifically, on
+<em>LowCode</em>, and the last will touch on the hypothetical future I
+envision for this system.</p>
+<p>In any case, I hope this article has conveyed, even a little, my
+passion for coffee! It’s a fascinating world, driven by fascinating
+people. Much of my interest in coffee truly began to develop thanks to
+<a href="https://www.instagram.com/clementfaivre/">Clément</a> during the days of
+the now-missed Coøk Kaffé, which allowed me to discover
+<a href="https://www.aprilcoffeeroasters.com/">April</a>. It deepened thanks to
+the expertise of <a href="https://www.instagram.com/baptistedmrt/">Baptiste</a>
+and the entire team at <a href="https://www.cime-cafe.fr/">Cime</a>, whose coffee
+is excellent (and has become my favorite roaster), with a special
+mention for <a href="https://www.substancecafe.com/">Substance</a>, where every
+reservation promises an incredible journey and discoveries, enriched
+with loads of information about the terroir, producers, and brewing
+methods, and
+<a href="https://www.instagram.com/kultivar_cafe_nantes/">Kultivar</a>, which
+gave me the opportunity to taste very original and exotic fermented
+coffees!</p>
+<p>What makes the specialty coffee world even <em>cooler</em> than just being
+able to drink good coffee is that it’s lifted by people who are
+generous with advice, discussion, and sharing!</p>
+<h3 id="after-2-years-of-use"><a class="anchor" aria-hidden="true" href="#after-2-years-of-use"></a>After ~2 years of use</h3>
+<p>Before I started meticulously recording my experiments in the index
+presented in this article, I primarily relied on the <strong>branding</strong> and
+artistic direction of roasters to discover new coffees. Using an index
+allowed me, <strong>during a discovery phase</strong>, to deliberately diversify my
+choices, to understand — contextually — the appeal and appreciation I
+could have for certain coffees, and to build a strong intuition about
+the aromas and the acidity/bitterness balance I usually look for in a
+cup. It also helped me find <strong>relevant first settings</strong> to experiment
+with new coffees. Moreover, the exercise of <strong>documentation</strong> is truly
+a fantastic tool to <strong>stabilize one’s knowledge</strong>, and even though I
+still consider myself very much a beginner in the coffee world, I
+believe I have been able to <strong>learn more</strong> and progress significantly
+thanks to this meticulous indexing.</p>
+<p>In short, I believe that in many disciplines, building <strong>indexes,
+knowledge bases, or dictionaries</strong> is a valuable practice. For me,
+creating this coffee index has been genuinely useful, while also
+allowing me to produce <strong>two articles</strong> — which, given my almost
+nonexistent writing productivity, is quite the bonus!</p>
+<h3 id="on-notion-and-lowcode"><a class="anchor" aria-hidden="true" href="#on-notion-and-lowcode"></a>On Notion and LowCode</h3>
+<p>Even though, as a developer, one might regret some of the <strong>necessary
+workarounds</strong>, I found Notion ergonomic and really fun to use. From my
+perspective, the model—sitting at the intersection of relational
+tables and <strong>spreadsheets</strong> — is highly versatile, and when combined
+with its <a href="https://developers.notion.com/">API</a>, it can be used as a
+true <strong>back-end</strong>, quickly providing a UI for structured data. This
+was my first <strong>LowCode/NoCode</strong> experience (outside of Excel), and I
+wasn’t disappointed. Even using just a small subset of the application
+(and missing out on many features), I was very impressed by the
+<strong>prototyping speed</strong> that such a tool enables.</p>
+<p>I will continue to <strong>keep an eye</strong> on alternatives (ideally
+open-source and <strong>local-first</strong>) and keep experimenting with
+<strong>LowCode</strong> technologies to solve problems I don’t particularly want
+to develop <strong>from scratch</strong>. If you have any feedback — <em>positive or
+negative</em> — about Notion, or suggestions for <strong>LowCode/NoCode</strong> tools
+to try, don’t hesitate to reach out; I’d be delighted to explore them.</p>
+<p>In short, although it’s not possible with Notion to build <strong>everything
+that could be built</strong> with a full relational database and a dedicated
+front-end, the tool covers a huge number of use cases and offers a
+very high level of generality, combined with excellent
+ergonomics. It’s probably worth seeing what <strong>LowCode</strong> has to
+offer. In my case, Notion allowed me to benefit from a graphical
+interface — more or less ergonomic — based on data description and
+structure, <strong>for free</strong>.</p>
+<h3 id="the-sequel"><a class="anchor" aria-hidden="true" href="#the-sequel"></a>The Sequel</h3>
+<p>The construction of the system and its documentation (this article and
+its predecessor) were fun exercises, resulting in a tool that I use
+daily. However, I believe that to make it <strong>generically
+ergonomic</strong> — meaning usable by someone other than <strong>myself</strong>, and
+therefore potentially publishable as a <strong>template</strong> or at least
+distributable — there is still <strong>a lot of work</strong> to do. Throughout this
+article, I’ve pointed out small points of frustration. They might
+exist only because I don’t fully master Notion (and if that’s the
+case, please don’t hesitate to contact me to explain how to improve my
+system), but I think that, like any tool <em>so versatile</em>, designed to
+be easy to pick up, it’s impossible to precisely define certain
+relational constraints or formatting rules. That’s why it’s
+conceivable (<em>hypothetically</em>) that I might develop a dedicated
+software (free, of course) to <em>relax</em> all these constraints!</p>
+<p>In any case, the Notion prototype is extremely helpful, as it provided
+a first modeling, making the use of <strong>LowCode</strong> as a prototyping tool
+perfectly relevant.</p>
+<p>Finally, don’t hesitate to drink good coffee, ditch the <em>Nespresso</em>
+machines, stop buying over-roasted supermarket coffee (like <em>Carte
+Noire</em> or <em>Grand Mère</em>), and allow yourself to enjoy specialty coffee
+— cultivated, harvested, dried, and roasted with care. <strong>It’s far
+better</strong>. Promise.</p>
+</article>
+
+</div>
+    </main>
+    <footer>
+      <div id="footer-content">
+        <div>
+          <section>
+            <h3>Ring.muhokama.fun</h3>
+            <p>
+              This website if part of the
+              <a href="https://ring.muhokama.fun">Muhokama webring</a>.
+              I invite you to browse it!
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/pred">
+                predecessor
+              </a>
+              <a class="btn" href="https://ring.muhokama.fun/u/xvw/succ">
+                successor
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Diffusion</h3>
+            <p>
+              Generator's <a href="https://github.com/xvw/capsule">source code</a>
+              is released under the
+              <a href="https://opensource.org/license/mit">
+                MIT license</a>
+             and the content is released (<i>unless mention</i>) under
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/">
+                CC BY-SA license</a>.
+            </p>
+            <nav class="set">
+              <a class="btn" href="https://github.com/xvw/capsule/blob/main/content/en/articles/notion-coffee.md">
+                page source
+              </a>
+            </nav>
+          </section>
+          <section>
+            <h3>Feeds</h3>
+            <nav class="set svg-light">
+              <a href="/en/atom.xml"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Rss</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a><a rel="me" href="https://bsky.app/profile/xvw.lol"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Bluesky</title><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"/></svg></svg></a><a rel="me" href="https://x.com/vdwxv"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a rel="me" href="https://merveilles.town/@xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a><a rel="me" href="https://github.com/xvw"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Github</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="/feeds.html">Other feeds (FR)</a>
+            </nav>
+          </section><section>
+            <h3>States</h3>
+            <p>
+              <strong>
+                207
+                logs
+              </strong>
+              for a period of
+              <strong>22 days</strong>,
+              <strong>10 hours</strong>,
+              <strong>23 minutes</strong> et
+              <strong>26 seconds</strong>.
+              <br />
+              <a href="/activity.html">Activity (FR)</a>
+            </p>
+          </section></div>
+        <div>
+          <div class="set svg-light">
+            <a href="https://ocaml.org"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>OCaml</title><path d="M12.178 21.637c-.085-.17-.187-.524-.255-.676-.067-.135-.27-.506-.37-.625-.22-.253-.27-.27-.338-.608-.12-.574-.405-1.588-.76-2.296-.187-.372-.49-.677-.761-.947-.236-.236-.777-.624-.878-.607-.895.169-1.166 1.046-1.587 1.739-.237.388-.473.71-.66 1.115-.167.371-.151.793-.439 1.115a2.952 2.952 0 00-.624 1.097c-.034.084-.101.929-.186 1.131l1.318-.084c1.233.085.877.557 2.787.456l3.022-.1a5.376 5.376 0 00-.27-.71zM20.96 1.539H3.023A3.02 3.02 0 000 4.56v6.587c.44-.152 1.047-1.08 1.25-1.3.337-.389.405-.895.574-1.2.389-.709.456-1.215 1.334-1.215.406 0 .575.1.845.473.186.253.523.743.675 1.064.186.371.474.86.609.962.1.068.185.136.27.17.135.05.253-.051.354-.12.118-.1.17-.286.287-.556.17-.39.339-.827.44-.997.169-.27.236-.608.422-.76.27-.236.641-.253.743-.27.557-.118.81.27 1.08.507.186.168.423.49.609.91.135.339.304.661.388.846.068.185.237.49.338.86.101.322.337.575.44.744 0 0 .152.406 1.03.778a7.505 7.505 0 00.81.286c.39.135.76.12 1.233.068.338 0 .524-.49.676-.878.084-.237.185-.895.236-1.081.05-.185-.085-.32.034-.49.135-.186.22-.203.287-.439.17-.523 1.114-.54 1.655-.54.456 0 .389.44 1.149.287.439-.085.86.05 1.318.185.388.102.76.22.98.473.134.17.489.997.134 1.031.033.033.067.118.118.151-.085.322-.422.085-.625.051-.253-.05-.44 0-.693.118-.439.187-1.063.17-1.452.49-.32.271-.32.861-.473 1.2 0 0-.422 1.063-1.317 1.722-.237.17-.692.574-1.672.726-.44.068-.86.068-1.318.05-.22-.016-.438-.016-.658-.016-.136 0-.575-.017-.558.034l-.05.119a.6.6 0 00.033.169c.017.1.017.185.034.27 0 .185-.017.388 0 .574.017.388.17.743.186 1.148.017.44.236.913.456 1.267.085.135.203.152.254.32.067.186 0 .406.033.609.118.794.355 1.638.71 2.364v.017c.439-.067.895-.236 1.47-.32 1.063-.153 2.532-.085 3.478-.17 2.399-.22 3.7.98 5.844.49V4.562a3.045 3.045 0 00-3.04-3.023zm-8.951 14.187c0-.034 0-.034 0 0zm-6.47 2.769c.17-.372.271-.778.406-1.15.135-.354.337-.86.693-1.046-.05-.05-.744-.068-.929-.085a7.406 7.406 0 01-.608-.084 22.976 22.976 0 01-1.15-.236c-.22-.051-.979-.322-1.13-.39-.39-.168-.642-.658-.93-.607-.185.034-.37.101-.49.287-.1.152-.134.423-.202.608-.084.203-.22.405-.32.608-.238.354-.626.676-.795 1.03-.033.085-.05.169-.084.254v4.07c.202.034.405.068.624.135 1.69.456 2.095.49 3.75.304l.152-.017c.118-.27.22-1.165.304-1.435.067-.22.153-.39.187-.591.033-.203 0-.406-.017-.59-.034-.491.354-.661.54-1.065z"/></svg></a>
+            <span>Proudly generated by
+              <a href="https://github.com/xhtmlboi/yocaml">YOCaml
+            </a></span>
+          </div>
+          <div class="svg-cc-light">
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/"><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.785" cy="28.501" r="28.836"/><path d="M37.441-3.5c8.951,0,16.572,3.125,22.857,9.372c3.008,3.009,5.295,6.448,6.857,10.314
+	  c1.561,3.867,2.344,7.971,2.344,12.314c0,4.381-0.773,8.486-2.314,12.313c-1.543,3.828-3.82,7.21-6.828,10.143
+	  c-3.123,3.085-6.666,5.448-10.629,7.086c-3.961,1.638-8.057,2.457-12.285,2.457s-8.276-0.808-12.143-2.429
+	  c-3.866-1.618-7.333-3.961-10.4-7.027c-3.067-3.066-5.4-6.524-7-10.372S5.5,32.767,5.5,28.5c0-4.229,0.809-8.295,2.428-12.2
+	  c1.619-3.905,3.972-7.4,7.057-10.486C21.08-0.394,28.565-3.5,37.441-3.5z M37.557,2.272c-7.314,0-13.467,2.553-18.458,7.657
+	  c-2.515,2.553-4.448,5.419-5.8,8.6c-1.354,3.181-2.029,6.505-2.029,9.972c0,3.429,0.675,6.734,2.029,9.913
+	  c1.353,3.183,3.285,6.021,5.8,8.516c2.514,2.496,5.351,4.399,8.515,5.715c3.161,1.314,6.476,1.971,9.943,1.971
+	  c3.428,0,6.75-0.665,9.973-1.999c3.219-1.335,6.121-3.257,8.713-5.771c4.99-4.876,7.484-10.99,7.484-18.344
+	  c0-3.543-0.648-6.895-1.943-10.057c-1.293-3.162-3.18-5.98-5.654-8.458C50.984,4.844,44.795,2.272,37.557,2.272z M37.156,23.187
+	  l-4.287,2.229c-0.458-0.951-1.019-1.619-1.685-2c-0.667-0.38-1.286-0.571-1.858-0.571c-2.856,0-4.286,1.885-4.286,5.657
+	  c0,1.714,0.362,3.084,1.085,4.113c0.724,1.029,1.791,1.544,3.201,1.544c1.867,0,3.181-0.915,3.944-2.743l3.942,2
+	  c-0.838,1.563-2,2.791-3.486,3.686c-1.484,0.896-3.123,1.343-4.914,1.343c-2.857,0-5.163-0.875-6.915-2.629
+	  c-1.752-1.752-2.628-4.19-2.628-7.313c0-3.048,0.886-5.466,2.657-7.257c1.771-1.79,4.009-2.686,6.715-2.686
+	  C32.604,18.558,35.441,20.101,37.156,23.187z M55.613,23.187l-4.229,2.229c-0.457-0.951-1.02-1.619-1.686-2
+	  c-0.668-0.38-1.307-0.571-1.914-0.571c-2.857,0-4.287,1.885-4.287,5.657c0,1.714,0.363,3.084,1.086,4.113
+	  c0.723,1.029,1.789,1.544,3.201,1.544c1.865,0,3.18-0.915,3.941-2.743l4,2c-0.875,1.563-2.057,2.791-3.541,3.686
+	  c-1.486,0.896-3.105,1.343-4.857,1.343c-2.896,0-5.209-0.875-6.941-2.629c-1.736-1.752-2.602-4.19-2.602-7.313
+	  c0-3.048,0.885-5.466,2.658-7.257c1.77-1.79,4.008-2.686,6.713-2.686C51.117,18.558,53.938,20.101,55.613,23.187z"/></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="37.637" cy="28.806" r="28.276"/>
+ <g><path d="M37.443-3.5c8.988,0,16.57,3.085,22.742,9.257C66.393,11.967,69.5,19.548,69.5,28.5c0,8.991-3.049,16.476-9.145,22.456
+ C53.879,57.319,46.242,60.5,37.443,60.5c-8.649,0-16.153-3.144-22.514-9.43C8.644,44.784,5.5,37.262,5.5,28.5
+ c0-8.761,3.144-16.342,9.429-22.742C21.101-0.415,28.604-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.553-18.457,7.657
+ c-5.22,5.334-7.829,11.525-7.829,18.572c0,7.086,2.59,13.22,7.77,18.398c5.181,5.182,11.352,7.771,18.514,7.771
+ c7.123,0,13.334-2.607,18.629-7.828c5.029-4.838,7.543-10.952,7.543-18.343c0-7.276-2.553-13.465-7.656-18.571
+ C50.967,4.824,44.795,2.272,37.557,2.272z M46.129,20.557v13.085h-3.656v15.542h-9.944V33.643h-3.656V20.557
+ c0-0.572,0.2-1.057,0.599-1.457c0.401-0.399,0.887-0.6,1.457-0.6h13.144c0.533,0,1.01,0.2,1.428,0.6
+ C45.918,19.5,46.129,19.986,46.129,20.557z M33.042,12.329c0-3.008,1.485-4.514,4.458-4.514s4.457,1.504,4.457,4.514
+ c0,2.971-1.486,4.457-4.457,4.457S33.042,15.3,33.042,12.329z"/>
+ </g></g></svg><svg role="img" viewBox="5.5 -3.5 64 64" xmlns="http://www.w3.org/2000/svg"><g><circle cx="36.944" cy="28.631" r="29.105"/><g>
+<path d="M37.443-3.5c8.951,0,16.531,3.105,22.742,9.315C66.393,11.987,69.5,19.548,69.5,28.5c0,8.954-3.049,16.457-9.145,22.514
+			     C53.918,57.338,46.279,60.5,37.443,60.5c-8.649,0-16.153-3.143-22.514-9.429C8.644,44.786,5.5,37.264,5.5,28.501
+			     c0-8.723,3.144-16.285,9.429-22.685C21.138-0.395,28.643-3.5,37.443-3.5z M37.557,2.272c-7.276,0-13.428,2.572-18.457,7.715
+			     c-5.22,5.296-7.829,11.467-7.829,18.513c0,7.125,2.59,13.257,7.77,18.4c5.181,5.182,11.352,7.771,18.514,7.771
+			     c7.123,0,13.334-2.609,18.629-7.828c5.029-4.876,7.543-10.99,7.543-18.343c0-7.313-2.553-13.485-7.656-18.513
+			     C51.004,4.842,44.832,2.272,37.557,2.272z M23.271,23.985c0.609-3.924,2.189-6.962,4.742-9.114
+			     c2.552-2.152,5.656-3.228,9.314-3.228c5.027,0,9.029,1.62,12,4.856c2.971,3.238,4.457,7.391,4.457,12.457
+			     c0,4.915-1.543,9-4.627,12.256c-3.088,3.256-7.086,4.886-12.002,4.886c-3.619,0-6.743-1.085-9.371-3.257
+			     c-2.629-2.172-4.209-5.257-4.743-9.257H31.1c0.19,3.886,2.533,5.829,7.029,5.829c2.246,0,4.057-0.972,5.428-2.914
+			     c1.373-1.942,2.059-4.534,2.059-7.771c0-3.391-0.629-5.971-1.885-7.743c-1.258-1.771-3.066-2.657-5.43-2.657
+			     c-4.268,0-6.667,1.885-7.2,5.656h2.343l-6.342,6.343l-6.343-6.343L23.271,23.985L23.271,23.985z"/></g></g></svg></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
