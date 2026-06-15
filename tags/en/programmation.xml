@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://xvw.lol/tags/en/programmation.xml</id>
+  <title type="text">xvw.tags/en/programmation</title>
+  <subtitle type="text">Feed for tag programmation</subtitle>
+  <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
+  <updated>2026-06-15T00:00:00Z</updated>
+  <author>
+    <name>xvw, Xavier Van de Woestyne</name>
+    <uri>https://xvw.lol</uri>
+  </author>
+  <entry>
+    <id>https://xvw.lol/en/articles/emacs-start.html</id>
+    <title type="text">Emacs, how it all started (for me)</title>
+    <updated>2026-06-15T00:00:00Z</updated>
+    <summary type="text">
+      I have been using (_badly_) [Emacs](https://www.gnu.org/software/emacs/) since around 2008. In this short article, I will try to present the **chaotic path** that led me to choose Emacs as my main text and code editor. This is **absolutely not a tutorial**, but rather a small piece of my personal lore, because it is quite amusing to describe clumsy choices that, in hindsight, turned out to be, in my view, beneficial. This article is **largely inspired**, while being less ambitious, by the [April 2026](https://www.emacswiki.org/emacs/CarnivalApril2026) topic of the [Emacs Carnival](https://www.emacswiki.org/emacs/Carnival).
+    </summary>
+    <link href="https://xvw.lol/en/articles/emacs-start.html" rel="alternate" title="Emacs, how it all started (for me)"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+  </entry>
+</feed>
