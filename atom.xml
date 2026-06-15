@@ -4,11 +4,23 @@
   <title type="text">xvw.feed</title>
   <subtitle type="text">Fil complet d&apos;actualité</subtitle>
   <generator uri="https://github.com/xhtmlboi/yocaml" version="2">YOCaml</generator>
-  <updated>2025-09-24T00:00:00Z</updated>
+  <updated>2026-06-15T00:00:00Z</updated>
   <author>
     <name>xvw, Xavier Van de Woestyne</name>
     <uri>https://xvw.lol</uri>
   </author>
+  <entry>
+    <id>https://xvw.lol/pages/emacs-start.html</id>
+    <title type="text">Emacs, comment tout a démarré (pour moi)</title>
+    <updated>2026-06-15T00:00:00Z</updated>
+    <summary type="text">
+      J&apos;utilise (_mal_) [Emacs](https://www.gnu.org/software/emacs/) depuis approximativement 2008. Dans ce bref article, je vais essayer de vous présenter la **manière chaotique** qui m&apos;a conduit à choisir Emacs comme éditeur, de texte et de code, principal. Ce n&apos;est **absolument pas un article pédagogique**, c&apos;est _un petit fragment de mon lore personnel_ parce que c&apos;est très rigolo de décrire des choix maladroits qui se sont révélés être, de mon point de vue, bénéfiques. Cet article est **grandement inspiré**, tout en étant moins ambitieux, du sujet [d&apos;avril 2026](https://www.emacswiki.org/emacs/CarnivalApril2026) de [l&apos;Emacs Carnival](https://www.emacswiki.org/emacs/Carnival).
+    </summary>
+    <link href="https://xvw.lol/pages/emacs-start.html" rel="alternate" title="Emacs, comment tout a d\195\169marr\195\169 (pour moi)"/>
+    <category term="programmation"/>
+    <category term="emacs"/>
+    <category term="decouverte"/>
+  </entry>
   <entry>
     <id>https://xvw.lol/galleries/misc.html</id>
     <title type="text">Illustrations non triées</title>
