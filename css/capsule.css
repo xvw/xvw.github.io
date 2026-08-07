@@ -456,7 +456,7 @@ body {
             color: var(--lightest-color);
         }
     }
-    
+
 }
 
 #main-content {
@@ -519,14 +519,14 @@ body {
         }
     }
 
-    
+
 
     hr {
         margin: 3.5rem 0 4rem 0;
         border: 0px solid transparent;
         border-bottom: 1px solid var(--middle-light-color);
     }
-    
+
 
     a {
         color: var(--middle-color);
@@ -611,11 +611,11 @@ body {
             & li:last-child {
                 margin-bottom: 1.5rem;
             }
-            
+
             & > li:has(p) {
 
                 margin: 1rem 0;
-                
+
                 & > p {
                     margin-bottom: 0.5rem;
                 }
@@ -632,7 +632,7 @@ body {
         & img {
             display: block;
             margin: 2rem auto;
-            max-width: 100%;   
+            max-width: 100%;
         }
 
         & table {
@@ -653,10 +653,10 @@ body {
                 visibility: hidden;
                 border: 0 solid transparent;
             }
-            
+
         }
 
-       
+
 
         & .side-by-side {
             display: flex;
@@ -685,7 +685,7 @@ body {
         padding: 0 0.5rem;
         margin: 3rem 0;
         position: relative;
-        
+
         & > summary {
             border-bottom: 0.3rem solid var(--light-color);
             padding: 1rem 0;
@@ -697,8 +697,8 @@ body {
             font-family: var(--font-sans-serif);
             font-weight: 600;
         }
-        
-    }    
+
+    }
 }
 
 .fr-content > article {
@@ -788,7 +788,7 @@ body {
         & > div:last-child {
             text-align: right;
         }
-        
+
     }
 }
 
@@ -825,7 +825,7 @@ section.indexes {
         margin-bottom: 0;
         border-style: none;
     }
-    
+
 }
 
 section.logs-summary {
@@ -836,7 +836,7 @@ section.logs-summary {
             font-size: 90%;
         }
     }
-    
+
     & > .global-view {
         display: flex;
         flex-direction: row;
@@ -849,7 +849,7 @@ section.logs-summary {
 
         & > div {
             flex: 1;
-            
+
             & > div > div {
                 display: flex;
                 flex-direction: row;
@@ -880,13 +880,13 @@ section.logs-summary {
     & section.log-list {
 
         --main-color: var(--light-color);
-        
+
         margin: 4rem 0;
 
         & > div {
             margin: 1.8rem 0;
             border: 1px solid var(--main-color);
-            
+
 
             & > p {
                 margin-bottom: 0.2rem;
@@ -899,7 +899,7 @@ section.logs-summary {
                 color: var(--middle-color);
                 font-size: 80%;
             }
-            
+
 
         }
     }
@@ -957,7 +957,7 @@ section.journal-entry {
             }
         }
     }
-    
+
 }
 
 section.journal-entry:last-child {
@@ -1100,7 +1100,7 @@ section.origin {
     margin: 2rem 0;
 
 
-    
+
     & > li {
         list-style: none;
         margin-bottom: 5rem;
@@ -1197,7 +1197,7 @@ section.origin {
             margin-bottom: 0;
         }
 
-        
+
     }
 }
 
@@ -1228,7 +1228,7 @@ section.origin {
     flex-wrap: wrap;
     flex-direction: row;
     gap: 0.5rem;
-    
+
     & > div {
         display: flex;
         flex-direction: row;
@@ -1281,10 +1281,10 @@ section.origin {
             padding-right: 0.5rem;
         }
     }
-    
+
     & > div.succ {
         text-align: right;
-        
+
         & a::after {
             content: "▶";
             padding-left: 0.5rem;
@@ -1296,7 +1296,7 @@ section.origin {
 
     margin-top: 4rem;
 
-    
+
     & > div {
         display: flex;
         flex-direction: row;
@@ -1337,7 +1337,7 @@ section.origin {
         & > .kind {
             flex: 1;
             font-family: var(--font-mono);
-            
+
         }
 
         & > .kind {
@@ -1376,14 +1376,28 @@ section.origin {
                     font-weight: 600;
                 }
             }
+
+            & span.re-reading {
+                display: inline-block;
+                margin-top: 1rem;
+                font-family: var(--font-sans-serif);
+                font-size: 80%;
+                font-weight: 600;
+                padding: 0.2rem 0.4rem;
+            }
+
+            & span.is-new {
+                background-color: var(--lightest-color);
+                color: var(--darkest-color);
+            }
         }
-        
+
     }
 
     & .talk {
         margin-bottom: calc(var(--gap) * 3.2);
         padding-bottom: var(--gap);
-        
+
         & > h4 {
             font-weight: 200;
         }
@@ -1463,12 +1477,12 @@ time.date-repr::before {
     #main-content {
 
         & article {
-            
+
             & .side-by-side {
                 display: flex;
                 flex-direction: column;
                 gap: 2rem;
-                
+
                 & > * {
                     margin: 0;
                 }
@@ -1482,7 +1496,7 @@ time.date-repr::before {
         & .address-meta {
             flex-direction: column;
         }
-        
+
     }
 
     section.logs-summary {
@@ -1554,7 +1568,7 @@ time.date-repr::before {
             }
         }
 
-        
+
     }
 
 }
